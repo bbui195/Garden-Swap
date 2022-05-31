@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 const express = require("express");
 const bodyParser = require('body-parser');
+const multer = require('multer')
+const upload = multer({dest: 'uploads/'})
+
+const { uploadFile } = require('./s3')
+
+// const passport = require("passport");
 const passport = require("passport");
 
 const app = express();
