@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 class ListingIndexItem extends React.Component {
     constructor(props) {
         super(props)
-        title.titleChopper= this.titleChopper.bind(this)
+        this.titleChopper = this.titleChopper.bind(this)
     }
 
 
