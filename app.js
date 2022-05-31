@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 const express = require("express");
 const bodyParser = require('body-parser');
+const multer = require('multer')
+const upload = multer({dest: 'uploads/'})
+
+const { uploadFile } = require('./s3')
+
 // const passport = require("passport");
 
 const app = express();
@@ -12,6 +17,18 @@ mongoose
 
 
 app.get("/", (req, res) => res.send("Hello World!"));
+
+app.post("/images"), upload.single('image'), async (req,res)=>{
+    const file = req.file
+    const result = await uploadFile(file)
+    console.log(result)
+    const description = req.body.description
+    res.send("upload picture")
+}
+// not sure about this part, figure it out after I'm done with S3
+
+
+
 // app.use(passport.initialize());
 // require('./config/passport')(passport);
 
