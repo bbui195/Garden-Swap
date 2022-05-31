@@ -5,7 +5,6 @@ export default ({ currentUser,logoutUser}) => {
 
     const display = currentUser ? (
         <div>
-           
             <div>
                 <p>Hello, {currentUser.username}</p>
             </div>
@@ -14,15 +13,8 @@ export default ({ currentUser,logoutUser}) => {
     ) : (
         <>
             <ul>
-                <li><Link to='/login' >Hello, Sign In<span>Account & Lists</span></Link>
-                    <ul>
-                        <li>
-                            <button><Link to='/login'>
-                                <p >Sign In</p></Link></button>
-                        </li>
-                        <li>
-                            <p>New Customer?<Link to='/signup'><span> Start here</span>.</Link></p></li>
-                    </ul>
+                <li><Link to='/login' >Hello, Sign In<span>Account</span></Link>
+                <li>New User?<Link to='/signup'><span> Start here</span>.</Link></li>
                 </li>
             </ul>
         </>
