@@ -35,6 +35,7 @@ export default ({ currentUser,logoutUser}) => {
         <>
             <header>
                <p>header</p>
+               <p>{display}</p> 
             </header>
         </>
     )
