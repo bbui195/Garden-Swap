@@ -18,15 +18,6 @@ mongoose
 
 app.get("/", (req, res) => res.send("Hello World!"));
 
-app.post("/images"), upload.single('image'), async (req,res)=>{
-    const file = req.file
-    const result = await uploadFile(file)
-    console.log(result)
-    const description = req.body.description
-    res.send("upload picture")
-}
-// not sure about this part, figure it out after I'm done with S3
-
 
 
 // app.use(passport.initialize());

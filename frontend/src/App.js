@@ -1,17 +1,5 @@
 import logo from './logo.svg';
 import './App.css';
-import axios from 'axios'
-
-
-async function postImage({image, description}) {
-  const formData = new FormData();
-  formData.append("image", image)
-  formData.append("description", description)
-
-  const result = await axios.post('/images', formData, { headers: {'Content-Type': 'multipart/form-data'}})
-  return result.data
-}
-
 
 function App() {
 
