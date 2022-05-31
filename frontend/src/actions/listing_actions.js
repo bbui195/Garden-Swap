@@ -12,9 +12,9 @@ const createListing = listing => ({
     listing
 })
 
-const receiveListings = listing => ({
+const receiveListings = listings => ({
     type: RECEIVE_LISTINGS,
-    listingS
+    listings
 })
 
 const receiveListing = listing => ({
