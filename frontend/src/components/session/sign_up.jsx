@@ -67,23 +67,13 @@ class Signup extends React.Component {
                     <input
                 
                         type='submit' 
-                        value='Continue'
+                        value='Sign Up'
                         onClick={this.handleSubmit} 
                     />
 
                     <p >Already have an account?<span><Link to='/login' > Sign-In</Link></span></p>
 
                 </div>
-
-                
-                <footer>
-                    <ul>
-                        <Link to='/'><li>Conditions of Use</li></Link>
-                        <Link to='/'><li>Privacy Notice</li></Link>
-                        <Link to='/'><li>Help</li></Link>
-                    </ul>
-                </footer>
-                <p>&copy; 2020, gardenswap.com, Inc. or its affiliates</p>
             </div>
         )
     }

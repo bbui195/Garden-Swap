@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import { createNewUser } from '../../actions/session_actions'
-import Signup from './signup'
+import Signup from './sign_up'
 import { clearErrors } from '../../actions/session_actions';
 
 const mSTP = ({ errors }) => {

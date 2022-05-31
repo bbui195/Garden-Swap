@@ -72,7 +72,7 @@ class Login extends React.Component {
                 />
               </label>
               <br/>
-              <input type="submit" value='Continue' />
+              <input type="submit" value='Sign In' />
               <button onClick={this.handleDemo}>Demo User</button>
             </div>
           
