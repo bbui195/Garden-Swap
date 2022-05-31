@@ -3,7 +3,7 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
+      username: '',
       password: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,7 +29,7 @@ class Login extends React.Component {
   handleDemo(e) {
     e.preventDefault();
     const user = {
-      email: 'demouser@gmail.com',
+      username: 'demouser@gmail.com',
       password: '123456'
     }
     this.props.processForm(user);
@@ -57,10 +57,10 @@ class Login extends React.Component {
             <h1>Sign-In</h1>
             <div>
               <br/>
-              <label>Email or mobile phone number:
+              <label>Username:
                 <input type="text"
-                  value={this.state.email}
-                  onChange={this.update('email')}
+                  value={this.state.username}
+                  onChange={this.update('username')}
                 />
               </label>
               <br/>

@@ -7,7 +7,7 @@ export default ({ currentUser,logoutUser}) => {
         <div>
            
             <div>
-                <p>Hello, {currentUser.name}</p>
+                <p>Hello, {currentUser.username}</p>
             </div>
             <button onClick={logoutUser}>Log Out</button>
         </div>

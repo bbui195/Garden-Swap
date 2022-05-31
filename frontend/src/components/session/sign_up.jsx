@@ -5,8 +5,7 @@ class Signup extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            name: '',
-            email: '',
+            username: '',
             password: ''
         }
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -42,29 +41,15 @@ class Signup extends React.Component {
 
     render() {
         return (
-             
             <div>
                 <div>
                    {this.renderErrors()}
                     <form onSubmit={this.handleSubmit}>Create Account</form>
-                    <label htmlFor='name'>Your name</label>
-                    <br></br>
-                    <input
-                        placeholder='First and last name'
-                        name='name' 
-                        id='name' 
-                        type='text'
-
-                        onChange={this.handleChange('name')} 
-                    />
-                    <br></br>
-                    <label htmlFor='email'>Mobile number or email</label>
+                    <label htmlFor='username'>Username:</label>
                     <br></br>
                     <input 
-                        name='email' 
-                        id='email' 
                         type='text' 
-                        onChange={this.handleChange('email')} 
+                        onChange={this.handleChange('username')} 
                     />
                     <br></br>
                     <label htmlFor='password'>Password</label>
@@ -86,11 +71,8 @@ class Signup extends React.Component {
                         onClick={this.handleSubmit} 
                     />
 
-                    <div >
-                        <p>By creating an account, you agree to Nile's <Link to='/' ><span>Conditions of Use</span></Link> and <Link to='/' ><span>Privacy Notice.</span></Link></p>
-                    </div>
                     <p >Already have an account?<span><Link to='/login' > Sign-In</Link></span></p>
-                    <p >Buying for work?<Link to='/signup' ><span>Create a free business account</span></Link></p>
+
                 </div>
 
                 
