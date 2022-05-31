@@ -1,5 +1,4 @@
 import { 
-    CREATE_NEW_LISTING,
     RECEIVE_LISTING,
     RECEIVE_LISTINGS,
     DELETE_LISTING,
@@ -11,8 +10,6 @@ const listingReducer = (oldState = {}, action) => {
     Object.freeze(oldState)
     let nextState = Object.assign({listings:{}}, oldState)
     switch (action.type) {
-        case CREATE_NEW_LISTING:
-
         case RECEIVE_LISTINGS:
             nextState.listings = action.listings
             return nextState
