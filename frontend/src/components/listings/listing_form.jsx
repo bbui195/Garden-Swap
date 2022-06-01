@@ -59,42 +59,42 @@ class ListingForm extends React.Component {
 
     handleSubmit(e){
         e.preventDefault();
-        // console.log(this.state, "hehehe")
         this.props.makeListing(this.handleFormData())
     }
 
     render(){
         return(
-            <div>
-
-                <form onSubmit={this.handleSubmit} className='listing-form-container'>
-                    <input 
-                        type="text" 
-                        value={this.state.title}
-                        onChange={this.update("title")}
-                        placeholder="Title"
-                        className='title-input'
-                    />
-                    <textarea 
-                        value={this.state.body}
-                        onChange={this.update('body')}
-                        className="description-input"
-                    />
-                    <input 
-                        type="number" 
-                        min="1" 
-                        step="any" 
-                        // value={this.state.price}
-                    />
-                    <select name="categories" id="categories">
-                        <option selected="true" disabled="disabled">Choose Category</option>    
-                        <option value="Fruit">Fruit</option>
-                        <option value="Vegetables">Vegetables</option>
-                        <option value="Nuts">Nuts</option>
-                        <option value="Dairy">Dairy</option>
-                        <option value="Meats">Meats</option>
-                        <option value="Grains">Grains</option>
-                    </select>
+            <div className='listing-form-container'>
+                <form onSubmit={this.handleSubmit} >
+                    <div className='form-inputs-container'>
+                        <input 
+                            type="text" 
+                            value={this.state.title}
+                            onChange={this.update("title")}
+                            placeholder="Title"
+                            className='title-input'
+                        />
+                        <select name="categories" id="categories">
+                            <option selected="true" disabled="disabled">Choose Category</option>    
+                            <option value="Fruit">Fruit</option>
+                            <option value="Vegetables">Vegetables</option>
+                            <option value="Nuts">Nuts</option>
+                            <option value="Dairy">Dairy</option>
+                            <option value="Meats">Meats</option>
+                            <option value="Grains">Grains</option>
+                        </select>
+                        <input 
+                            type="number" 
+                            min="1" 
+                            step="any" 
+                        />
+                        <textarea 
+                            value={this.state.body}
+                            onChange={this.update('body')}
+                            className="description-input"
+                        />
+                    </div>
+                    {this.previewImage()}
                     <input 
                         type="file"
                         onChange={this.handleFile}

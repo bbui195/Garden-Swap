@@ -9,7 +9,7 @@ const mSTP = (state, ownProps) => ({
         photoUrls: "",
         price: "",
         location: "85203",
-        category: "Fruit"
+        category: ""
     }
 })
 
