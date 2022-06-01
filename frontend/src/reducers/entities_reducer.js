@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import usersReducer from './users_reducer'
+import usersReducer from "./user_reducer";
 import listingReducer from "./listings_reducer";
 
 const entitiesReducer = combineReducers({
