@@ -7,7 +7,7 @@ const mSTP = (state, ownProps) => ({
         title: "",
         body: "",
         photoUrls: "",
-        price: "10.99",
+        price: "",
         location: "85203",
         category: "Fruit"
     }
