@@ -8,6 +8,7 @@ import SignUpContainer from './session/signup_container'
 import NavBarContainer from './navbar/nav_bar_container'
 import NotFoundPage from './not_found/not_found'
 import useGeoLocation from "../hooks/useGeoLocation";
+import ListingForm from './listings/listing_form_container';
 
 
 
@@ -17,6 +18,7 @@ export default () => (
         <Switch>
             <AuthRoute exact path='/login' component={LogInContainer}  />
             <AuthRoute exact path='/signup' component={SignUpContainer} />
+            <AuthRoute exact path='/listingForm' component={ListingForm} />
             <Route exact path='/test' component={useGeoLocation} />
             <Route exact path = '/' component={Home} />
             {/* <Route path="*" component={NotFoundPage} /> */}
