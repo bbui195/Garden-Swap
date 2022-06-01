@@ -15,7 +15,8 @@ export default () => (
             <AuthRoute exact path='/login' component={LogInContainer}  />
             <AuthRoute exact path='/signup' component={SignUpContainer} />
             <Route exact path = '/' component={Home} />
-            <Route path="*" component={NotFoundPage} />
+            {/* <Route path="*" component={NotFoundPage} /> */}
+            <Redirect to='/' />
         </Switch>
 
         <Footer />

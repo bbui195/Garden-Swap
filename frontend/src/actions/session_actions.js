@@ -25,21 +25,31 @@ const receiveErrors = errors => ({
 
 export const loginUser = formUser => dispatch => (
     SessionApiUtil.login(formUser)
-        .then(user => dispatch(receiveCurrentUser(user)), 
-        error => (dispatch(receiveErrors(error.responseJSON))))
+        .then(response => {
+            localStorage.setItem('jwtToken', response.data.token);
+            SessionApiUtil.setAuthToken(response.data.token);
+            return dispatch(receiveCurrentUser(response.data.user));
+        }, 
+        error => (dispatch(receiveErrors(error.response.data))))
 )
 
-export const logoutUser = () => dispatch => (
+export const logoutUser = () => dispatch => {
+    localStorage.removeItem('jwtToken');
     SessionApiUtil.setAuthToken(false)
         .then(() => dispatch(logoutCurrentUser()))
-)
+};
 
 export const createNewUser = formUser => dispatch => {
     return SessionApiUtil.signup(formUser)
-        .then(user => dispatch(receiveCurrentUser(user)),
+        // .then(user => dispatch(receiveCurrentUser(user)),
+        .then(response => {
+            localStorage.setItem('jwtToken', response.data.token);
+            SessionApiUtil.setAuthToken(response.data.token);
+            return dispatch(receiveCurrentUser(response.data.user));
+        },
         error => {
             console.log('errors',error);
-            dispatch(receiveErrors(error.responseJSON));
+            dispatch(receiveErrors(error.response.data));
         })
 }
 

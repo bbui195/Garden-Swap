@@ -37,7 +37,7 @@ export default ({ currentUser,logoutUser}) => {
                         <i className="fa-solid fa-location-arrow location-icon"></i>
                         <p>Current Location</p>
                     </div>
-                    <p>{session}</p> 
+                    <div>{session}</div> 
                 </div>
                 <div>
                     <p className='cats'>Categories</p>
