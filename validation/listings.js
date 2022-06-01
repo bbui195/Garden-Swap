@@ -21,6 +21,9 @@ module.exports = function validateCreateListingInput(data) {
         errors.body = 'Body field is required';
     }
 
+    if(Validator.isEmpty(data.photoUrls)){
+        errors.photoUrls = 'Must upload a photo of your product';
+    }
 
     // if(!Array.isArray(data.photoUrls)) {
     //     errors.photoUrl = 'Photo Urls must be an array';

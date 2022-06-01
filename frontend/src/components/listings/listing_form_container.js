@@ -6,7 +6,7 @@ const mSTP = (state, ownProps) => ({
     listing: {
         title: "",
         body: "",
-        photoUrls: [],
+        photoUrls: '',
         price: "10.99",
         location: "85203",
         category: "Fruit"
