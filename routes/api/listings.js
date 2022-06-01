@@ -38,7 +38,7 @@ router.get('/:id', (req, res) => {
     Listing.findById(req.params.id)
         .then(listing => res.json(listing))
         .catch(err =>
-            res.status(404).json({ notweetfound: 'No listing found with that ID'})
+            res.status(404).json({ nolistingfound: 'No listing found with that ID'})
         )
 });
 
@@ -46,7 +46,7 @@ router.get('/category/:category', (req, res) => {
     Listing.find({ category: req.params.category })
         .then(listing => res.json(listing))
         .catch(err =>
-            res.status(404).json({ notweetfound: 'No listing found with that ID'})
+            res.status(404).json({ nolistingfound: 'No listing found with that ID'})
         )
 });
 
