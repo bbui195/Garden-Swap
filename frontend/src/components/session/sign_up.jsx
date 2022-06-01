@@ -41,39 +41,43 @@ class Signup extends React.Component {
 
     render() {
         return (
-            <div>
-                <div>
-                   {this.renderErrors()}
-                    <form onSubmit={this.handleSubmit}>Create Account</form>
-                    <label htmlFor='username'>Username:</label>
-                    <br></br>
-                    <input 
-                        type='text' 
-                        onChange={this.handleChange('username')} 
-                    />
-                    <br></br>
-                    <label htmlFor='password'>Password</label>
-                    <br></br>
-                    <input
-                        placeholder='At least 6 characters'
-                        name='password'
-                        id='password' 
-                        type='password'
-                        onChange={this.handleChange('password')}
-                    />
-
-                    <p>Passwords must be at least 6 characters</p>
-                   
-                    <input
-                
-                        type='submit' 
-                        value='Sign Up'
-                        onClick={this.handleSubmit} 
-                    />
-
-                    <p >Already have an account?<span><Link to='/login' > Sign-In</Link></span></p>
-
-                </div>
+            <div className="session-form-container">
+                <form onSubmit={this.handleSubmit} className="session-form">
+                    <br />
+                    {this.renderErrors()}
+                    <p>Create Account</p> 
+                    <div className='input-container'>
+                        <label>
+                            <p>Username:</p>
+                            <input 
+                                type='text' 
+                                onChange={this.handleChange('username')}
+                                className="input" 
+                            />
+                        </label>
+                        <label>
+                            <p>Password:</p> 
+                            <input
+                                placeholder='At least 6 characters'
+                                name='password'
+                                id='password' 
+                                type='password'
+                                onChange={this.handleChange('password')}
+                                className="input"
+                            />  
+                        <p>Passwords must be at least 6 characters</p>
+                        </label>
+                        <br></br>
+                    
+                        <input
+                            type='submit' 
+                            value='Sign Up'
+                            onClick={this.handleSubmit} 
+                            className='button'
+                        />   
+                        <p >Already have an account?<span><Link to='/login' > Sign-In</Link></span></p>
+                    </div>
+                </form>
             </div>
         )
     }

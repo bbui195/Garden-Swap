@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import configureStore from './store/store'
 import Root from './components/root'
 import { loginUser, logoutUser} from './actions/session_actions'
+import './styles/app.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
     const root = document.getElementById('root')
