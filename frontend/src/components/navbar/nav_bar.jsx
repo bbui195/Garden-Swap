@@ -11,13 +11,13 @@ export default ({ currentUser, logoutUser}) => {
         <div className="profile-dropdown" onClick={toggleDropDown}>
             <img src={profilePic} className='prof' />
             <div className='dropdown-content'>
-                <div className='email-container'>
+                <div className='username-container'>
                     {/* <img src={window.profilePicLogo} className='profile-logo' /> */}
-                    <span>{currentUser.username}</span>
+                    <span>Hi, {currentUser.username}</span>
                 </div>
                 <div className='orders-container'>
                     {/* <img src={window.ordersIcon} className='orders-icon' /> */}
-                    <Link to='/orders'>Order History</Link>
+                    <Link to='/listingForm'>Add Listing</Link>
                 </div>
                 <div className='sign-out-container'>
                     {/* <img src={window.signOutIcon} className='sign-out-icon' /> */}
