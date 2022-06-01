@@ -9,7 +9,7 @@ import NavBarContainer from './navbar/nav_bar_container'
 import NotFoundPage from './not_found/not_found'
 
 export default () => (
-    <>
+    <div className="app-container">
         <NavBarContainer/>
         <Switch>
             <AuthRoute exact path='/login' component={LogInContainer}  />
@@ -19,5 +19,5 @@ export default () => (
         </Switch>
 
         <Footer />
-    </>
+    </div>
 )
