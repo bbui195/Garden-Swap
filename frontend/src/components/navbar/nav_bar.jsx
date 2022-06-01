@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import words from "../../assets/images/words.png";
 import cabbage from "../../assets/images/cabbage.png";
+import ListingForm from '../listings/listing_form_container';
 // import { FaLocationArrow } from "react-icons/Fa";
 
 export default ({ currentUser,logoutUser}) => {
@@ -46,6 +47,7 @@ export default ({ currentUser,logoutUser}) => {
                 </div>
                
             </header>
+            <ListingForm/>
         </>
     )
 };

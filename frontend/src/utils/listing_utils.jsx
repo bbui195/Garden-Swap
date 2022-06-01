@@ -9,13 +9,17 @@ export const fetchListing = listingId => {
 }
 
 export const createListing = listing =>  {
-    return axios.post('/api/listings/',listing)
+    return axios.post('/api/listings/', listing)
 }
 
 export const deleteListing = listingId => {
     return axios.delete(`/api/listings/${listingId}`)
 }
-gi
+
 export const patchListing = listing => {
     return axios.patch(`/api/listings/${listing.id}`,listing)
+}
+
+export const testCreateListing = listing => {
+    return axios.post('/api/listings/image', listing)
 }
