@@ -75,7 +75,7 @@ class Signup extends React.Component {
                             onClick={this.handleSubmit} 
                             className='button'
                         />   
-                        <p >Already have an account?<span><Link to='/login' > Sign-In</Link></span></p>
+                        <p >Already have an account?<span><Link to='/login' className='link'> Sign-In</Link></span></p>
                     </div>
                 </form>
             </div>

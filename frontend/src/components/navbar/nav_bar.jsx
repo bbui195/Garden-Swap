@@ -15,10 +15,8 @@ export default ({ currentUser,logoutUser}) => {
         </div>
     ) : (
         <>
-            <ul>
-                <li >
-                    <Link to='/login' className='link'>Sign In</Link>
-                </li>
+            <ul className='container'>
+                <Link to='/login' className='btn'>Sign In</Link>
             </ul>
         </>
     )
@@ -30,8 +28,8 @@ export default ({ currentUser,logoutUser}) => {
         <>
             <header className='header-container'>
                 <div className='topline'>
-                    <Link to="/">
-                        <img src={words} alt="Logo" className='logo'/>
+                    <Link to="/" className='logos'>
+                        <span className='title'>Garden Swap</span>
                         <img src={cabbage} alt="Logo" className='logo'/>
                     </Link>
                     <input type="text" className='search-bar' placeholder="Search local gardens"/>
