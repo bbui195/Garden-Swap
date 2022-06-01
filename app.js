@@ -17,6 +17,7 @@ mongoose
     .catch(err => console.log(err));
 
 const users = require("./routes/api/users");
+const listings = require("./routes/api/listings");
 
 // app.get("/", (req, res) => res.send("Hello World!"));
 app.use(passport.initialize());
@@ -24,6 +25,7 @@ require('./config/passport')(passport);
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
 app.use("/api/users", users);
+app.use("/api/listings", listings);
 
 
 const port = process.env.PORT || 5000;
