@@ -15,8 +15,6 @@ module.exports = function validateCreateListingInput(data) {
     
     if(!mongoose.Types.ObjectId.isValid(data.userId)) {
         errors.userId = 'Invalid id';
-    } else {
-        data.userId = Mongoose.Types.ObjectId.fromString(data.userId);
     }
 
     if(Validator.isEmpty(data.title)) {

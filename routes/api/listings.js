@@ -42,6 +42,14 @@ router.get('/:id', (req, res) => {
         )
 });
 
+router.get('/category/:category', (req, res) => {
+    Listing.find({ category: req.params.category })
+        .then(listing => res.json(listing))
+        .catch(err =>
+            res.status(404).json({ notweetfound: 'No listing found with that ID'})
+        )
+});
+
 router.post('/',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
@@ -52,7 +60,7 @@ router.post('/',
         }
 
         const newListing = new Listing({
-            userId: req.user.id,
+            userId: mongoose.Types.ObjectId.fromString(req.user.id),
             title: req.body.title,
             body: req.body.body,
             photoUrls: req.body.photoUrls,
