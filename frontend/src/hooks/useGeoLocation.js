@@ -1,44 +1,36 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
-const useGeoLocation = () => {
-    const [location, setLocation] = useState({
-        loaded:false, 
-        coordinates: {lat:'', lng:''},
-    })
+function Geo() {
+    const [latitude, setLatitude] = useState('')
+    const [longitude, setLongitude] = useState('')
+    const [zipCode,setZipcode] = useState('')
+    console.log(zipCode)
+    
+    const userLocation= `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
 
-    const onSuccess = true;
-        setLocation({
-            loaded: true,
-            coordinates: {
-                lat: location.coords.latiude,
-                lng: location.coords.longitude
-            }
-        })
-
-    const onError = error => {
-        setLocation({
-            loaded: true,
-            error
-        })
-    }
+    
 
     useEffect(() => {
-        if((!'geolocation' in navigator)) {
-            onError({
-                code: 0,
-                message: "Geolocation is not supported",
-            })
-        }
+        navigator.geolocation.getCurrentPosition(position => {
+            console.log(position)
+            setLatitude(position.coords.latitude)
+            setLongitude(position.coords.longitude)
 
-
-        //this will get the user's location
-        navigator.geolocaiton.getCurrentPosition(onSuccess, onError)
+            fetch(userLocation)
+                .then(res => res.json())
+                .then(data => {
+                    setZipcode(data.postcode)
+                })
+        })
     },[])
 
-    return location
+    return(
+        <div>
+        </div>
+    )
 }
 
-export default useGeoLocation
+export default Geo
 
 
 // //to use google maps reverse geo locaiton and show on google maps
