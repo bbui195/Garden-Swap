@@ -2,10 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import words from "../../assets/images/words.png";
 import cabbage from "../../assets/images/cabbage.png";
-import ListingForm from '../listings/listing_form_container';
 // import { FaLocationArrow } from "react-icons/Fa";
-
 import profilePic from "../../assets/images/cabbage.jpeg"
+
 export default ({ currentUser,logoutUser}) => {
 
     const session = currentUser ? (
@@ -46,7 +45,6 @@ export default ({ currentUser,logoutUser}) => {
                 </div>
                
             </header>
-            <ListingForm/>
         </>
     )
 };
