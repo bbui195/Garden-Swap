@@ -19,7 +19,8 @@ export default () => (
             <AuthRoute exact path='/signup' component={SignUpContainer} />
             <Route exact path='/test' component={useGeoLocation} />
             <Route exact path = '/' component={Home} />
-            <Route path="*" component={NotFoundPage} />
+            {/* <Route path="*" component={NotFoundPage} /> */}
+            <Redirect to='/' />
         </Switch>
 
         <Footer />

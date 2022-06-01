@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const ListingSchema = new Schema({
     userId:{
         type: Schema.Types.ObjectId,
-        ref: 'users'  
+        ref: 'users',
+        index: true
     },
     title: {
         type: String,

@@ -5,7 +5,7 @@ import { clearErrors } from '../../actions/session_actions';
 
 const mSTP = ({ errors }) => {
   return {
-    errors: errors.session,
+    errors: Object.values(errors.session),
   };
 };
 

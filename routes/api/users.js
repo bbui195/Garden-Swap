@@ -20,7 +20,7 @@ router.get("/current", passport.authenticate("jwt", {session: false}), (req, res
 router.post("/register", (req, res) => {
     console.log("aaaaaaa", req.body);
     const { errors, isValid } = validateRegisterInput(req.body);
-
+    console.log(errors, isValid);
     if(!isValid) {
         return res.status(400).json(errors);
     }
@@ -41,12 +41,16 @@ router.post("/register", (req, res) => {
                         newUser.save()
                             .then(user => {
                                 // res.json(user)
-                                const payload = {id: user.id, handle: user.username};
+                                const payload = {id: user.id, username: user.username};
                                 jwt.sign(payload, keys.secretOrKey, {expiresIn: 3600},
                                     (err, token) => {
                                         res.json({
-                                            success:true,
-                                            token: "Bearer " + token
+                                            success: true,
+                                            token: "Bearer " + token,
+                                            // user: {
+                                            //     username: newUser.username,
+                                            //     id: newUser.id
+                                            // }
                                         });
                                     });
                             })
@@ -65,11 +69,12 @@ router.post("/login", (req, res) => {
         return res.status(400).json(errors);
     }
     const username = req.body.username;
+    const password = req.body.password;
     User.findOne({username})
         .then(user => {
             if(!user) {
                 errors.email = 'User not found';
-                return res.statusMessage(404).json(errors);
+                return res.status(404).json(errors);
             }
 
             bcrypt.compare(password, user.password)
@@ -84,7 +89,11 @@ router.post("/login", (req, res) => {
                             (err, token) => {
                                 res.json({
                                     success: true,
-                                    token: 'Bearer ' + token
+                                    token: "Bearer " + token,
+                                    // user: {
+                                    //     username: user.username,
+                                    //     id: user.id
+                                    // }
                                 });
                             }
                         );
