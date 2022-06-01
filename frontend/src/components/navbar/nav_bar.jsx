@@ -40,23 +40,26 @@ export default ({ currentUser, logoutUser}) => {
         }  
     });
 
-    function dropDown(e) {
+    function dropDown2(e) {
+        console.log(e);
         if (!e.target.closest(".profile-dropdown") && !e.target.closest(".dropdown-content")) {
             document.querySelector(".dropdown-content").style.display = 'none'
-            document.removeEventListener("click", dropDown)
+            document.removeEventListener("click", dropDown2)
         }
-      }
+    }
 
     function toggleDropDown() {
         let dropDown = document.querySelector('.dropdown-content');
+        console.log(dropDown.style.display);
         if (dropDown.style.display === 'none') {
-          dropDown.style.display = 'flex'
-          document.addEventListener('click', dropDown)
+            dropDown.style.display = 'flex'
+            document.addEventListener('click', dropDown2);
+
         } else {
-          dropDown.style.display = 'none'
-          document.removeEventListener('click', dropDown)
+            dropDown.style.display = 'none'
+            document.removeEventListener('click', dropDown2);
         };
-      };
+    };
 
  
 
