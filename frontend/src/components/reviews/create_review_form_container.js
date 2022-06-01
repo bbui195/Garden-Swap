@@ -1,16 +1,18 @@
 import { connect } from 'react-redux'
-import ReviewForm from './leave_review_form'
+import ReviewForm from './create_review_form'
 import { makeReview } from '../../actions/review_action'
 
 
 const mSTP = (state, ownProps) => {
+    console.log(state)
     return {
         formType: "Create Review",
-        fullName: state.session.currentUser.name,
+        fullName: state.session.currentUser.username,
         review : {
-            product_id: ownProps.match.params.userId,
-            comment: '',
+            userId: ownProps.match.params.userId,
+            body: '',
             rating: '',
+
         }
     }
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import Rating from './star'
+import Rating from './stars'
 
 class ReviewForm extends React.Component {
     constructor(props) {
