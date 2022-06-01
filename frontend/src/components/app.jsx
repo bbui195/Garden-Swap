@@ -19,6 +19,7 @@ export default () => (
             <AuthRoute exact path='/login' component={LogInContainer}  />
             <AuthRoute exact path='/signup' component={SignUpContainer} />
             <Route exact path='/listingForm' component={ListingForm} />
+            <Route exact path='/userProfile' />
             <Route exact path='/test' component={useGeoLocation} />
             <Route exact path = '/' component={Home} />
             {/* <Route path="*" component={NotFoundPage} /> */}
