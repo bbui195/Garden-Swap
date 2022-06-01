@@ -31,7 +31,7 @@ class Login extends React.Component {
   handleDemo(e) {
     e.preventDefault();
     const user = {
-      username: 'demouser@gmail.com',
+      username: 'demouser',
       password: '123456'
     }
     this.props.processForm(user);
