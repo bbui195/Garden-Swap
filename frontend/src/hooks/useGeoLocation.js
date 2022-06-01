@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { $where } from '../../../models/User';
 
 const useGeoLocation = () => {
     const [location, setLocation] = useState({
