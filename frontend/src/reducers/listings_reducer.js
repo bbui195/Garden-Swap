@@ -2,7 +2,8 @@ import {
     RECEIVE_LISTING,
     RECEIVE_LISTINGS,
     DELETE_LISTING,
-    UPDATE_LISTING
+    UPDATE_LISTING,
+    CREATE_NEW_LISTING
 } from "../actions/listing_actions";
 
 
@@ -10,6 +11,11 @@ const listingReducer = (oldState = {}, action) => {
     Object.freeze(oldState)
     let nextState = Object.assign({listings:{}}, oldState)
     switch (action.type) {
+        case CREATE_NEW_LISTING:
+            nextState[action.listing.data.id] = action.listing.data;
+            return nextState;
+            //this is because our make listing action in the listing_action has 
+            //CREATE_NEW_LISTING instead of receive_Listing
         case RECEIVE_LISTINGS:
             nextState.listings = action.listings
             return nextState

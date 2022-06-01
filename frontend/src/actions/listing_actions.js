@@ -1,4 +1,4 @@
-// import * as listingApiUtils  from '../utils/listing_utils/'
+import * as listingApiUtils  from '../utils/listing_utils'
 
 
 // export const CREATE_NEW_LISTING = 'CREATE_NEW_LISTING'
@@ -39,11 +39,15 @@
 //      .then(listing => dispatch(createListing(listing)))
 // }
 
+export const testMakeListing = listing => dispatch => {
+    return listingApiUtils.testCreateListing(listing)
+     .then(listing => dispatch(createListing(listing)))
+}
+
 // export const requestListings = listings => dispatch => {
 //     return listingApiUtils.requestListing(listings)
 //         .then(listings => dispatch(receiveListings(listings)) )
 // }
-
 
 // export const requestListing = listingId => dispatch => {
 //     return listingApiUtils.requestListing(listingId)
