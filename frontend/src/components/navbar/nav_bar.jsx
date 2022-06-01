@@ -12,10 +12,12 @@ export default ({ currentUser, logoutUser}) => {
             <img src={profilePic} className='prof' />
             <div className='dropdown-content'>
                 <div className='username-container'>
-                    {/* <img src={window.profilePicLogo} className='profile-logo' /> */}
-                    <span>Hi, {currentUser.username}</span>
+                    Hi, {currentUser.username}
                 </div>
-                <div className='orders-container'>
+                <div className='user-profile-container'>
+                    <Link to="/userProfile">Profile</Link> 
+                </div>
+                <div className='add-listing-container'>
                     {/* <img src={window.ordersIcon} className='orders-icon' /> */}
                     <Link to='/listingForm'>Add Listing</Link>
                 </div>

@@ -14,7 +14,7 @@
     }
 
     .dropdown-content {
-        height: 150px;
+        height: 200px;
         width: 200px;
         position: absolute;
         display: none;
@@ -24,6 +24,78 @@
         box-shadow: 0 6px 10px rgb(127, 127, 127);
         transform: translateY(100px) translateX(-30%);
         color: black;
+
+        .username-container {
+            height: 50px;
+            width: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            background-color: #88A09E;
+            padding: 5px;
+            color: white;
+        }
+
+        .user-profile-container {
+            height: 50px;
+            width: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            padding: 5px;
+            background-color: rgb(255, 255, 255);
+        }
+
+        .add-listing-container {
+            height: 50px;
+            width: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            padding: 5px;
+            background-color: rgb(255, 255, 255);
+            
+            a {
+                text-decoration: none;
+                color: black;
+            }
+        }
+
+        .add-listing-container:hover {
+            background-color: #f7e0eb;
+        }
+
+        .sign-out-container {
+            height: 50px;
+            width: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            padding: 15px;
+            background-color: rgb(255, 255, 255);
+            cursor: pointer;
+             
+            .logout-button {
+                height: 100%;
+                background: none;
+                border: none;
+                font-size: 16px;
+                cursor: pointer;
+                font-family: 'Comfortaa', cursive;  
+            }
+        }
+
+        .sign-out-container:hover {
+            background-color: #f7e0eb;
+        }
     }
 
 }
@@ -52,84 +124,18 @@
     transform: scale(260%);
 }
 
-.logout-button {
-    height: 50px;
-    background: none;
-    border: none;
-    transform: translateX(10px);
-    font-family: sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-}
 
-.ootsy-logo-li {
-    width: 100px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    margin-right: 15px;
-}
 
-.search-li {
-    width: 80%;
-}
 
-.username-container {
-    background-color: rgb(237, 237, 237);
-    width: 100%;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    padding: 5px;
-    position: relative;
-    box-sizing: border-box;
-    padding-left: 13px;
-}
 
-.orders-container {
-    background-color: rgb(255, 255, 255);
-    width: 100%;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    padding: 5px;
-    position: relative;
-    box-sizing: border-box;
-    padding-left: 13px;
-    text-decoration: none;
 
-    a {
-        text-decoration: none;
-        color: black;
-        padding-left: 10px;
-    }
 
-}
 
-.sign-out-container {
-    background-color: rgb(255, 255, 255);
-    width: 100%;
-    height: 50px;
-    display: flex;
-    padding-left: 15px;
-    align-items: center;
-    padding: 15px;
-    position: relative;
-    box-sizing: border-box;
-    cursor: pointer;
-     
-    button {
-        cursor: pointer;
-    }
-}
 
-.sign-out-container:hover {
-    background-color: rgb(237, 237, 237);
-}
 
-.orders-container:hover {
-    background-color: rgb(237, 237, 237);
-}
+
+
+
 
 .orders-container span {
     transform: translateX(10px);
