@@ -8,16 +8,17 @@ function Footer(props) {
         <div className="footer">
             <div className="questions">
                 <span className="grid1">Have a question? Well, we’ve got some answers.</span>
-                <button className="grid2" onClick={() => this.props.openModal("help-center")}>Go to Help Center</button>
+                <button className="grid2" >Go to Help Center</button>
             </div>
-            <div className="powered-by">
-                <GiGreenPower size={25}/>
-                <span>Garden Swap is powered by 100% renewable energy.</span>
-            </div>
+            
             <div className="bottom">
                 <div className="details">
                     <GiUsaFlag className="fleg"/>
                     <span>United States{" "} | {" "}English (US) {" "}|{" "} $ (USD)</span> 
+                </div>
+                <div className="powered-by">
+                    <GiGreenPower size={25}/>
+                    <span className='clean'>Garden Swap is powered by 100% renewable energy.</span>
                 </div>
                 <div className="links">
                     <a className="git" href="https://github.com/Colemartindale">
