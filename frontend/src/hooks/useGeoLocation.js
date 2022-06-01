@@ -1,44 +1,44 @@
-// import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-// const useGeoLocation = () => {
-//     const [location, setLocation] = useState({
-//         loaded:false, 
-//         coordinates: {lat:'', lng:''},
-//     })
+const useGeoLocation = () => {
+    const [location, setLocation] = useState({
+        loaded:false, 
+        coordinates: {lat:'', lng:''},
+    })
 
-//     const onSucess = true;
-//         setLocation({
-//             loaded: true,
-//             coordinates: {
-//                 lat: location.coords.latiude,
-//                 lng: location.coords.longitude
-//             }
-//         })
+    const onSuccess = true;
+        setLocation({
+            loaded: true,
+            coordinates: {
+                lat: location.coords.latiude,
+                lng: location.coords.longitude
+            }
+        })
 
-//     const onError = error => {
-//         setLocation({
-//             loaded: true,
-//             error
-//         })
-//     }
+    const onError = error => {
+        setLocation({
+            loaded: true,
+            error
+        })
+    }
 
-//     useEffect(() => {
-//         if((!'geolocation' in navigator)) {
-//             onError({
-//                 code: 0,
-//                 message: "Geolocation is not supported",
-//             })
-//         }
+    useEffect(() => {
+        if((!'geolocation' in navigator)) {
+            onError({
+                code: 0,
+                message: "Geolocation is not supported",
+            })
+        }
 
 
-//         //this will get the user's location
-//         navigator.geolocaiton.getCurrentPosition(onSuccess, onError)
-//     },[])
+        //this will get the user's location
+        navigator.geolocaiton.getCurrentPosition(onSuccess, onError)
+    },[])
 
-//     return location
-// }
+    return location
+}
 
-// export default useGeoLocation
+export default useGeoLocation
 
 
 // //to use google maps reverse geo locaiton and show on google maps
