@@ -14,7 +14,6 @@ class ListingForm extends React.Component {
 
     handleFile(e){
         const file = e.currentTarget.files[0];
-        console.log(file, 'hahaha')
         const fileReader = new FileReader();
         fileReader.onloadend = function(){
             this.setState({imageFile: file, photoUrls: fileReader.result})
@@ -60,7 +59,7 @@ class ListingForm extends React.Component {
 
     handleSubmit(e){
         e.preventDefault();
-        console.log(this.state, "hehehe")
+        // console.log(this.state, "hehehe")
         this.props.makeListing(this.handleFormData())
     }
 

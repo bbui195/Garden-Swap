@@ -117,7 +117,9 @@ const storage = multer.memoryStorage({
 })
 
 const filefilter = (req, file, cb) => {
-    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg') {
+    if (file.mimetype === 'image/jpeg' || 
+        file.mimetype === 'image/jpg' || 
+        file.mimetype === 'image/png') {
         cb(null, true)
     } else {
         cb(null, false)
@@ -140,10 +142,8 @@ const s3 = new Aws.S3({
 router.post(`/image`, upload.single('listing[image]'), (req, res) => { 
     console.log(req.body, 'should log the req.body')// given data object, creates new entry
     const { errors, isValid } = validateCreateListingInput(req.body.listing);
-    debugger
-    console.log(errors);
-    console.log('is valid', isValid);
     console.log(req.body.listing);
+    console.log(req.file)
     if (!isValid) {
         return res.status(400).json(errors);
     }
@@ -157,7 +157,7 @@ router.post(`/image`, upload.single('listing[image]'), (req, res) => {
         ContentType:"image/jpeg"                 // Necessary to define the image content-type to view the photo in the browser with the link
     };
 
-    s3.upload(params,(error,data)=>{
+    s3.upload(params,(error, data)=>{
         if(error){
             res.status(500).send({"err":error})  // if we get any error while uploading error message will be returned.
             return
