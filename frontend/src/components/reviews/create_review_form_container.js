@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import ReviewForm from './leave_review_form'
+import ReviewForm from './create_review_form'
 import { makeReview } from '../../actions/review_action'
 
 
