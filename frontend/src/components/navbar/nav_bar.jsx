@@ -4,6 +4,7 @@ import words from "../../assets/images/words.png";
 import cabbage from "../../assets/images/cabbage.png";
 import profilePic from "../../assets/images/cabbage.jpeg"
 import { useEffect } from "react";
+import { BiLogOut, BiImageAdd } from "react-icons/bi";
 
 export default ({ currentUser, logoutUser}) => {
 
@@ -14,17 +15,18 @@ export default ({ currentUser, logoutUser}) => {
                 <div className='username-container'>
                     Hi, {currentUser.username}
                 </div>
-                <div className='user-profile-container'>
+                <Link className='user-profile-container' to="/userProfile">
+                    <img src={profilePic} className='prof' />
                     <Link to="/userProfile">Profile</Link> 
-                </div>
-                <div className='add-listing-container'>
-                    {/* <img src={window.ordersIcon} className='orders-icon' /> */}
+                </Link>
+                <Link className='add-listing-container' to='/listingForm'>
+                    <span><BiImageAdd size={26} color = "black"/></span>
                     <Link to='/listingForm'>Add Listing</Link>
-                </div>
-                <div className='sign-out-container'>
-                    {/* <img src={window.signOutIcon} className='sign-out-icon' /> */}
+                </Link>
+                <Link className='sign-out-container' onClick={logoutUser}>
+                    <span><BiLogOut size={26} color = "black"/></span>
                     <button className="logout-button" onClick={logoutUser}>Log Out</button>
-                </div>
+                </Link>
             </div>
         </div>
     ) : (
