@@ -21,11 +21,12 @@ module.exports = function validateCreateListingInput(data) {
         errors.body = 'Body field is required';
     }
 
-    if(!Array.isArray(data.photoUrls)) {
-        errors.photoUrl = 'Photo Urls must be an array';
-    } else if(data.photoUrls.length == 0) {
-        errors.photourl = 'Photo Urls cannot be empty';
-    }
+
+    // if(!Array.isArray(data.photoUrls)) {
+    //     errors.photoUrl = 'Photo Urls must be an array';
+    // } else if(data.photoUrls.length == 0) {
+    //     errors.photourl = 'Photo Urls cannot be empty';
+    // }
 
     if(Validator.isEmpty(data.category)) {
         errors.category = 'Category field is required';
