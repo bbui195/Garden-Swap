@@ -13,7 +13,6 @@ class ListingForm extends React.Component {
 
     handleFile(e){
         const file = e.currentTarget.files[0];
-        console.log(file, 'hahaha')
         const fileReader = new FileReader();
         fileReader.onloadend = function(){
             this.setState({imageFile: file, photoUrls: fileReader.result})
