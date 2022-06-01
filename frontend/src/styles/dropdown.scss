@@ -11,6 +11,12 @@
     .prof {
         width: 45px;
         height: 45px;
+        border: 2px solid black;
+        transition: all 200ms ease;
+    }
+
+    .prof:hover {
+        transform: scale(1.1);
     }
 
     .dropdown-content {
@@ -22,7 +28,7 @@
         background-color: #fff;
         z-index: 1;
         box-shadow: 0 6px 10px rgb(127, 127, 127);
-        transform: translateY(100px) translateX(-30%);
+        transform: translateY(125px) translateX(-37%);
         color: black;
 
         .username-container {
@@ -43,11 +49,31 @@
             width: 100%;
             position: relative;
             display: flex;
-            justify-content: center;
             align-items: center;
             box-sizing: border-box;
             padding: 5px;
             background-color: rgb(255, 255, 255);
+            text-decoration: none;
+
+            .prof {
+                height: 24px;
+                width: 24px; 
+                margin-left: 25px;   
+            }
+
+            a {
+                text-decoration: none;
+                color: black;
+                padding-left: 15px;
+            }
+        }
+
+        .user-profile-container img {
+            margin-left: 14px;
+        }
+
+        .user-profile-container:hover {
+            background-color: #f7e0eb;
         }
 
         .add-listing-container {
@@ -55,16 +81,21 @@
             width: 100%;
             position: relative;
             display: flex;
-            justify-content: center;
+            // justify-content: space-evenly;
             align-items: center;
             box-sizing: border-box;
             padding: 5px;
             background-color: rgb(255, 255, 255);
+            text-decoration: none;
             
             a {
                 text-decoration: none;
                 color: black;
             }
+        }
+
+        .add-listing-container * {
+            padding-left: 14px;
         }
 
         .add-listing-container:hover {
@@ -76,12 +107,11 @@
             width: 100%;
             position: relative;
             display: flex;
-            justify-content: center;
             align-items: center;
             box-sizing: border-box;
-            padding: 15px;
             background-color: rgb(255, 255, 255);
             cursor: pointer;
+            text-decoration: none;
              
             .logout-button {
                 height: 100%;
@@ -91,6 +121,14 @@
                 cursor: pointer;
                 font-family: 'Comfortaa', cursive;  
             }
+
+            a {
+                color: black;
+            }
+        }
+        
+        .sign-out-container * {
+            padding-left: 15px;
         }
 
         .sign-out-container:hover {
