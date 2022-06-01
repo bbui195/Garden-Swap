@@ -5,21 +5,20 @@ import cabbage from "../../assets/images/cabbage.png";
 import ListingForm from '../listings/listing_form_container';
 // import { FaLocationArrow } from "react-icons/Fa";
 
+import profilePic from "../../assets/images/cabbage.jpeg"
 export default ({ currentUser,logoutUser}) => {
 
     const session = currentUser ? (
         <div>
             <div>
-                <p>Hello, {currentUser.username}</p>  
+                <img src={profilePic} alt="" />  
             </div>
             <button onClick={logoutUser}>Log Out</button>
         </div>
     ) : (
         <>
-            <ul>
-                <li >
-                    <Link to='/login' className='link'>Sign In</Link>
-                </li>
+            <ul className='container'>
+                <Link to='/login' className='btn'>Sign In</Link>
             </ul>
         </>
     )
@@ -31,8 +30,8 @@ export default ({ currentUser,logoutUser}) => {
         <>
             <header className='header-container'>
                 <div className='topline'>
-                    <Link to="/">
-                        <img src={words} alt="Logo" className='logo'/>
+                    <Link to="/" className='logos'>
+                        <span className='title'>Garden Swap</span>
                         <img src={cabbage} alt="Logo" className='logo'/>
                     </Link>
                     <input type="text" className='search-bar' placeholder="Search local gardens"/>

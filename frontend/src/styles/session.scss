@@ -1,13 +1,20 @@
 .session-form-container {
     height: 500px;
     width: 450px;
-    border: 1px solid black;
+    background-color: $tweed;
+    border-radius: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: sans-serif;
-    margin-top: 20px;
+    margin-top: 5%;
     margin-bottom: 50px;
+    font-family: 'Comfortaa', cursive;  
+    color: white;
+    font-size: 18px;
+    box-shadow: 0px 0px 10px #656565;
+
+
 
     .session-form {
         height: 100%;
@@ -16,16 +23,28 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+
+        > p {
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
     }
     
     .input-container {
-        // border: 1px solid black;
-        height: 80%;
+        height: 70%;
         width: 80%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
+        > p {
+            font-size: 16px;
+        }
+
+        .or {
+            font-size: 22px;
+        }
 
         label {
             width: 80%;
@@ -36,28 +55,47 @@
                 box-sizing: border-box;
                 padding-left: 15px;
                 margin-bottom: 20px;
-                border-radius: 5px;
+                border-radius: 15px;
                 border: none;
                 box-shadow:inset 0 0 2px 2px #888;
                 background: #fff;
+                font-size: 18px;
+            }
+
+            .input:focus {
+                outline: 1px solid $wintergreen-dream;
             }
         }
 
 
         .button {
             border: none;
-            width: 65%;
-            height: 35px;
+            width: 75%;
+            height: 45px;
             border-radius: 20px;
-            margin: 10px;
+            margin: 15px;
             background-color: black;
             color: white;
             cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 200ms ease;
+            font-family: 'Amatic SC', cursive;
+            font-size: 20px;
         }
         
         .button:hover {
-            width: 67%;
-            height: 38px;
+            transform: scale(1.1);
+        }
+
+        .link {
+            color: $light-orange; 
+            margin-left: 10px;           
+        }
+
+        .link:hover {
+            color: $claret;
         }
         
     }

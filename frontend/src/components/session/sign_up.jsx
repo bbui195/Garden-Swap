@@ -43,7 +43,6 @@ class Signup extends React.Component {
         return (
             <div className="session-form-container">
                 <form onSubmit={this.handleSubmit} className="session-form">
-                    <br />
                     {this.renderErrors()}
                     <p>Create Account</p> 
                     <div className='input-container'>
@@ -65,17 +64,14 @@ class Signup extends React.Component {
                                 onChange={this.handleChange('password')}
                                 className="input"
                             />  
-                        <p>Passwords must be at least 6 characters</p>
-                        </label>
-                        <br></br>
-                    
+                        </label>                    
                         <input
                             type='submit' 
                             value='Sign Up'
                             onClick={this.handleSubmit} 
                             className='button'
                         />   
-                        <p >Already have an account?<span><Link to='/login' > Sign-In</Link></span></p>
+                        <p >Already have an account?<span><Link to='/login' className='link'> Sign-In</Link></span></p>
                     </div>
                 </form>
             </div>

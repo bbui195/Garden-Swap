@@ -73,12 +73,11 @@ class Login extends React.Component {
                 className="input"
               />
             </label>
-            <br/>
             <input type="submit" value='Sign In' className='button'/>
-            <p>or</p>
+            <p className='or'>or</p>
             <button onClick={this.handleDemo} className='button'>Demo User</button> 
           
-            <p>New User?<Link to='/signup'><span> Start here</span>.</Link></p> 
+            <p>New User?<Link to='/signup' className='link'><span> Start here</span></Link></p> 
                 
           </div> 
         </form>
