@@ -1,5 +1,5 @@
 
-const { default: mongoose } = require("mongoose");
+const { default: mongoose, Mongoose } = require("mongoose");
 const Validator = require("validator");
 const validText = require("./valid-text");
 const validCategory = require("./valid_category");
@@ -12,6 +12,12 @@ module.exports = function validateCreateListingInput(data) {
     data.price = mongoose.Types.Decimal128.fromString(data.price);
     data.location = validText(data.location) ? data.location : '';
     data.category = validText(data.category) ? data.category : '';
+    
+    if(!mongoose.Types.ObjectId.isValid(data.userId)) {
+        errors.userId = 'Invalid id';
+    } else {
+        data.userId = Mongoose.Types.ObjectId.fromString(data.userId);
+    }
 
     if(Validator.isEmpty(data.title)) {
         errors.title = 'Title field is required';
