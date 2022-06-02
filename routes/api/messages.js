@@ -72,11 +72,28 @@ router.patch('/:messageId',
         Message.findById(req.params.messageId)
             .then(message => {
                 if(message.senderId !== req.user.id) {
-                    res.status().json({ notowned: 'Current user did not send this message' })
+                    res.status(400).json({ notowned: 'Current user did not send this message' });
                 } else {
-
+                    message.body = req.body.body;
+                    message.save()
+                        // .then(message => res.json(message));
                 }
             }).catch(err => res.status(404).json({nomessagefound: 'No message found with that ID'}));
+    }
+);
+
+router.delete('/:messageId',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        Message.findById(req.params.messageId)
+            .then(message => {
+                if(message.senderId !== req.user.id) {
+                    res.status(400).json({ notowned: 'Current user did not send this message' });
+                } else {
+                    Message.findByIdAndDelete(res.params.messageId)
+                        // .then(() => null)
+                }
+            })
     }
 );
 
