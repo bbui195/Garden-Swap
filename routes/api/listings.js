@@ -18,20 +18,23 @@ const Aws = require('aws-sdk');
     delete
 */
 
+function formatListing(listing) {
+    return {
+        id: listing.id,
+        body: listing.body,
+        category: listing.category,
+        location: listing.location,
+        photoUrls: listing.photoUrls,
+        title: listing.title,
+        postedAt: listing.createdAt,
+        price: listing.price.toString()
+    }
+}
+
 function formatListings(listings) {
     let returnData = {};
     listings.forEach((listing) => {
-        listing.price = listing.price.$numberDecimal;
-        // returnData[listing.id] = listing;
-        returnData[listing.id] = {
-            id: listing.id,
-            body: listing.body,
-            category: listing.category,
-            location: listing.location,
-            photoUrls: listing.photoUrls,
-            title: listing.title,
-            postedAt: listing.createdAt
-        }
+        returnData[listing.id] = formatListing(listing);
     });
     return returnData;
 }
@@ -56,7 +59,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     Listing.findById(req.params.id)
-        .then(listing => res.json(listing))
+        .then(listing => res.json(formatListing(listing)))
         .catch(err =>
             res.status(404).json({ nolistingfound: 'No listing found with that ID'})
         )
