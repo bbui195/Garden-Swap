@@ -5,7 +5,7 @@ class UserShow extends React.Component {
     constructor(props) {
         super(props)
 
-        this.handleRemove = this.handleRemove.bind(this)
+        // this.handleRemove = this.handleRemove.bind(this)
     }
 
     componentDidMount() {
