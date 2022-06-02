@@ -1,7 +1,13 @@
 const Listing = require('../models/Listing');
 const mongoose = require("mongoose");
- //get your mongoose string
-//create your array. i inserted only 1 object here
+// get your mongoose string
+// create your array. i inserted only 1 object here
+//demoUser 6297b832fbdf777ab18c0078
+// honoratoDickerson 629927fab03db20ffd8c5250
+// christineBurt 629928e9d166a69900915138
+// portiaDuran 629928e9d166a69900915139
+// kylaDominguez 629928e9d166a6990091513a
+// raeJones 629928e9d166a6990091513b
 
 const listings = [   
   new Listing({
@@ -12,7 +18,7 @@ const listings = [
     price: "1.99",
     location: '92843',
     category: 'vegetables',
-    userId: '6297b832fbdf777ab18c0078' 
+    userId: '629927fab03db20ffd8c5250' 
   }),
 new Listing({
     image: '',
@@ -32,7 +38,7 @@ new Listing({
     price: "1.96",
     location: '94710',
     category: 'vegetables',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629927fab03db20ffd8c5250'
   }),
  new Listing({
     image: '',
@@ -42,7 +48,7 @@ new Listing({
     price: "2.10",
     location: '94608',
     category: 'vegetables',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629927fab03db20ffd8c5250'
   }),
  new Listing({
     image: '',
@@ -52,7 +58,7 @@ new Listing({
     price: "2.42",
     location: '94609',
     category: 'vegetables',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629927fab03db20ffd8c5250'
   }),
  new Listing({
     image: '',
@@ -72,7 +78,7 @@ new Listing({
     price: "1.97",
     location: '94578',
     category: 'vegetables',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a69900915138'
   }),
  new Listing({
     image: '',
@@ -82,7 +88,7 @@ new Listing({
     price: "2.66",
     location: '94619',
     category: 'vegetables',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629927fab03db20ffd8c5250'
   }),
  new Listing({
     image: '',
@@ -92,7 +98,7 @@ new Listing({
     price: "1.99",
     location: '94502',
     category: 'vegetables',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a6990091513b'
   }),
  new Listing({
     image: '',
@@ -122,7 +128,7 @@ new Listing({
     price: "2.97",
     location: '94578',
     category: 'vegetables',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a69900915138'
   }),
  new Listing({
     image: '',
@@ -142,7 +148,7 @@ new Listing({
     price: "1.00",
     location: '94575',
     category: 'fruit',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629927fab03db20ffd8c5250'
   }),
  new Listing({
     image: '',
@@ -152,7 +158,7 @@ new Listing({
     price: "2.99",
     location: '94611',
     category: 'fruit',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a69900915138'
   }),
  new Listing({
     image: '',
@@ -162,7 +168,7 @@ new Listing({
     price: "0.89",
     location: '94541',
     category: 'fruit',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a69900915138'
   }),
  new Listing({
     image: '',
@@ -172,7 +178,7 @@ new Listing({
     price: "1.95",
     location: '94501',
     category: 'fruit',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a6990091513a'
   }),
  new Listing({
     image: '',
@@ -182,7 +188,7 @@ new Listing({
     price: "3.19",
     location: '94580',
     category: 'fruit',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a6990091513a'
   }),
  new Listing({
     image: '',
@@ -192,7 +198,7 @@ new Listing({
     price: "3.99",
     location: '94610',
     category: 'fruit',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a69900915138'
   }),
  new Listing({
     image: '',
@@ -202,7 +208,7 @@ new Listing({
     price: "3.59",
     location: '94595',
     category: 'fruit',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a69900915138'
   }),
  new Listing({
     image: '',
@@ -212,7 +218,7 @@ new Listing({
     price: "3.00",
     location: '94578',
     category: 'fruit',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a6990091513a'
   }),
  new Listing({
     image: '',
@@ -222,7 +228,7 @@ new Listing({
     price: "2.89",
     location: '94850',
     category: 'fruit',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a69900915138'
   }),
  new Listing({
     image: '',
@@ -232,7 +238,7 @@ new Listing({
     price: "1.32",
     location: '94573',
     category: 'fruit',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a69900915138'
   }),
  new Listing({
     image: '',
@@ -242,7 +248,7 @@ new Listing({
     price: "1.99",
     location: '94579',
     category: 'fruit',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a6990091513a'
   }),
  new Listing({
     image: '',
@@ -262,7 +268,7 @@ new Listing({
     price: "3.64",
     Location: '90241',
     category: 'nuts',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a69900915138'
   }),
  new Listing({
     image: '',
@@ -272,7 +278,7 @@ new Listing({
     price: "5.40",
     location: '94516',
     category: 'nuts',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a6990091513a'
   }),
  new Listing({
     image: '',
@@ -282,7 +288,7 @@ new Listing({
     price: "4.00",
     location: '94577',
     category: 'nuts',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a69900915138'
   }),
  new Listing({
     image: '',
@@ -302,7 +308,7 @@ new Listing({
     price: "2.77",
     location: '94606',
     category: 'nuts',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a69900915138'
   }),
  new Listing({
     image: '',
@@ -312,7 +318,7 @@ new Listing({
     price: "2.49",
     location: '94621',
     category: 'nuts',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a6990091513a'
   }),
  new Listing({
     image: '',
@@ -322,7 +328,7 @@ new Listing({
     price: "4.21",
     location: '94607',
     category: 'nuts',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629927fab03db20ffd8c5250'
   }),
  new Listing({
     image: '',
@@ -332,7 +338,7 @@ new Listing({
     price: "3.79",
     location: '94602',
     category: 'nuts',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a69900915138'
   }),
  new Listing({
     image: '',
@@ -342,7 +348,7 @@ new Listing({
     price: "2.11",
     location: '94613',
     category: 'nuts',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a6990091513a'
   }),
  new Listing({
     image: '',
@@ -352,7 +358,7 @@ new Listing({
     price: "1.99",
     location: '94556',
     category: 'nuts',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a69900915139'
   }),
  new Listing({
     image: '',
@@ -362,7 +368,7 @@ new Listing({
     price: "3.33",
     location: '94605',
     category: 'nuts',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a6990091513b'
   }),
  new Listing({
     image: '',
@@ -372,7 +378,7 @@ new Listing({
     price: "3.96",
     location: '94703',
     category: 'dairy',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a6990091513a'
   }),
  new Listing({
     image: '',
@@ -382,7 +388,7 @@ new Listing({
     price: "3.90",
     location: '94607',
     category: 'dairy',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629927fab03db20ffd8c5250'
   }),
  new Listing({
     image: '',
@@ -392,7 +398,7 @@ new Listing({
     price: "5.23",
     location: '94611',
     category: 'dairy',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629927fab03db20ffd8c5250'
   }),
  new Listing({
     image: '',
@@ -402,7 +408,7 @@ new Listing({
     price: "4.19",
     location: '94710',
     category: 'dairy',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a6990091513a'
   }),
  new Listing({
     image: '',
@@ -412,7 +418,7 @@ new Listing({
     price: "2.94",
     location: '94606',
     category: 'dairy',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a6990091513a'
   }),
  new Listing({
     image: '',
@@ -432,7 +438,7 @@ new Listing({
     price: "4.74",
     location: '94563',
     category: 'dairy',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a6990091513b'
   }),
  new Listing({
     image: '',
@@ -442,7 +448,7 @@ new Listing({
     price: "4.85",
     location: '94501',
     category: 'dairy',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a69900915139'
   }),
  new Listing({
     image: '',
@@ -452,7 +458,7 @@ new Listing({
     price: "3.47",
     location: '94610',
     category: 'dairy',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a6990091513b'
   }),
  new Listing({
     image: '',
@@ -462,7 +468,7 @@ new Listing({
     price: "2.87",
     location: '94595',
     category: 'dairy',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a69900915139'
   }),
  new Listing({
     image: '',
@@ -472,7 +478,7 @@ new Listing({
     price: "5.29",
     location: '94619',
     category: 'dairy',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a69900915139'
   }),
  new Listing({
     image: '',
@@ -482,7 +488,7 @@ new Listing({
     price: "4.39",
     location: '94602',
     category: 'dairy',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a6990091513b'
   }),
  new Listing({
     image: '',
@@ -492,7 +498,7 @@ new Listing({
     price: "8.99",
     location: '94612',
     category: 'meats',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a6990091513b'
   }),
  new Listing({
     image: '',
@@ -502,7 +508,7 @@ new Listing({
     price: "6.49",
     location: '94606',
     category: 'meats',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a6990091513b'
   }),
  new Listing({
     image: '',
@@ -512,7 +518,7 @@ new Listing({
     price: "7.99",
     location: '94577',
     category: 'meats',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629927fab03db20ffd8c5250'
   }),
  new Listing({
     image: '',
@@ -532,7 +538,7 @@ new Listing({
     price: "9.99",
     location: '94619',
     category: 'meats',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a6990091513b'
   }),
  new Listing({
     image: '',
@@ -542,7 +548,7 @@ new Listing({
     price: "6.12",
     location: '94613',
     category: 'meats',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a69900915139'
   }),
  new Listing({
     image: '',
@@ -552,7 +558,7 @@ new Listing({
     price: "8.41",
     location: '94541',
     category: 'meats',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a69900915139'
   }),
  new Listing({
     image: '',
@@ -572,7 +578,7 @@ new Listing({
     price: "7.96",
     Location: '94501',
     category: 'meats',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a69900915139'
   }),
  new Listing({
     image: '',
@@ -582,7 +588,7 @@ new Listing({
     price: "6.44",
     location:'',
     category: 'meats',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a6990091513b'
   }),
  new Listing({
     image: '',
@@ -592,7 +598,7 @@ new Listing({
     price: "9.59",
     location: '94580',
     category: 'meats',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a6990091513b'
   }),
  new Listing({
     image: '',
@@ -602,7 +608,7 @@ new Listing({
     price: "9.88",
     location: '94610',
     category: 'meats',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a69900915139'
   }),
  new Listing({
     image: '',
@@ -612,7 +618,7 @@ new Listing({
     price: "12.11",
     Location: '94612',
     category: 'grains',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a69900915139'
   }),
  new Listing({
     image: '',
@@ -632,7 +638,7 @@ new Listing({
     price: "5.99",
     location: 94611,
     category: 'grains',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a6990091513b'
   }),
  new Listing({
     image: '',
@@ -642,7 +648,7 @@ new Listing({
     price: "8.99",
     location: '94541',
     category: 'grains',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a6990091513b'
   }),
  new Listing({
     image: '',
@@ -652,7 +658,7 @@ new Listing({
     price: "7.78",
     location: '94609',
     category: 'grains',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a69900915139'
   }),
  new Listing({
     image: '',
@@ -662,7 +668,7 @@ new Listing({
     price: "13.49",
     location: '94516',
     category: 'grains',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a69900915139'
   }),
  new Listing({
     image: '',
@@ -672,7 +678,7 @@ new Listing({
     price: "23.49",
     location: '94707',
     category: 'grains',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a6990091513b'
   }),
  new Listing({
     image: '',
@@ -682,7 +688,7 @@ new Listing({
     price: "9.35",
     location: '94601',
     category: 'grains',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629928e9d166a69900915139'
   }),
  new Listing({
     image: '',
@@ -702,7 +708,7 @@ new Listing({
     price: "7.99",
     location: '94612',
     category: 'grains',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629927fab03db20ffd8c5250'
   }),
  new Listing({
     image: '',
@@ -722,7 +728,7 @@ new Listing({
     price: "7.33",
     location: '94541',
     category: 'grains',
-    userId: '6297b832fbdf777ab18c0078'
+    userId: '629927fab03db20ffd8c5250'
   }),
 ]
 //connect mongoose

@@ -30,6 +30,7 @@
         box-shadow: 0 6px 10px rgb(127, 127, 127);
         transform: translateY(125px) translateX(-37%);
         color: black;
+        border-radius: 25px;
 
         .username-container {
             height: 50px;
@@ -42,6 +43,8 @@
             background-color: #88A09E;
             padding: 5px;
             color: white;
+            border-radius: 20px 20px 0 0;
+
         }
 
         .user-profile-container {
@@ -61,7 +64,7 @@
                 margin-left: 25px;   
             }
 
-            a {
+            span {
                 text-decoration: none;
                 color: black;
                 padding-left: 15px;
@@ -87,7 +90,7 @@
             background-color: rgb(255, 255, 255);
             text-decoration: none;
             
-            a {
+            span {
                 text-decoration: none;
                 color: black;
             }
@@ -101,6 +104,31 @@
             background-color: #f7e0eb;
         }
 
+        .inbox-container {
+            height: 50px;
+            width: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+            padding: 5px;
+            background-color: rgb(255, 255, 255);
+            text-decoration: none;
+            
+            span {
+                text-decoration: none;
+                color: black;
+            }
+        }
+
+        .inbox-container * {
+            padding-left: 14px;
+        }
+
+        .inbox-container:hover {
+            background-color: #f7e0eb;
+        }
+
         .sign-out-container {
             height: 50px;
             width: 100%;
@@ -111,6 +139,7 @@
             background-color: rgb(255, 255, 255);
             cursor: pointer;
             text-decoration: none;
+            border-radius: 0 0 20px 20px;
              
             .logout-button {
                 height: 100%;
