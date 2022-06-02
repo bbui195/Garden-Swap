@@ -8,6 +8,7 @@ $wintergreen-dream: #53917E;
 $dark-liver: #63535B;
 $claret: #6D1A36;
 $tweed: #937755;
+// $tweed: #c2ac91;
 
 //Fonts
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
@@ -32,7 +33,7 @@ $tweed: #937755;
     background-color: #e6e6e6;
     height: 100%;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-size: 100%;
 }
 
