@@ -21,16 +21,16 @@ export default ({ currentUser, logoutUser}) => {
                 </div>
                 <Link className='user-profile-container' to="/userProfile">
                     <img src={profilePic} className='prof' />
-                    <Link to="/userProfile">Profile</Link> 
+                    <span to="/userProfile">Profile</span> 
                 </Link>
                 <Link className='add-listing-container' to='/listingForm'>
                     <span><BiImageAdd size={26} color = "black"/></span>
-                    <Link to='/listingForm'>Add Listing</Link>
+                    <span to='/listingForm'>Add Listing</span>
                 </Link>
-                <Link className='sign-out-container' onClick={logoutUser}>
+                <div className='sign-out-container' onClick={logoutUser}>
                     <span><BiLogOut size={26} color = "black"/></span>
                     <button className="logout-button" onClick={logoutUser}>Log Out</button>
-                </Link>
+                </div>
             </div>
         </div>
     ) : (
@@ -93,7 +93,7 @@ export default ({ currentUser, logoutUser}) => {
                     <ul className='cats'>
                         {categories.map(category => {
                                 return (
-                                    <Link to={`/category/${category}`}>{category}</Link>
+                                    <Link to={`/category/${category}`} key={category}>{category}</Link>
                                 )
                             })
                         }
