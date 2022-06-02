@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import ListingIndex from './listing_index'
-import { requestListings } from '../../actions/listings_action'
+import { requestListings } from '../../actions/listing_actions'
 
 const toArray = vals => {
     if (vals.length === 0) {
@@ -10,7 +10,7 @@ const toArray = vals => {
     }
 }
 
-const mSTP = state => { 
+const mSTP = (state,ownProps) => { 
     return {
         //i'm assuming i have all the listings from enttiies
         listings: toArray(state.entities.listings),
