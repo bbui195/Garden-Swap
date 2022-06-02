@@ -25,8 +25,8 @@ class ListingIndexItem extends React.Component {
             <Link to={`/listing/${listing.id}`} className='listing-container'>
                 <img src={listing.photoUrls}/>               
                 <p className='title'>{listing.title}</p> 
-                <p>{listing.price}</p>    
-                <p>{listing.location}</p>               
+                <p className='price'>${listing.price}</p>    
+                <p className='location'>Zip Code: {listing.location}</p>               
             </Link>    
         )
     }

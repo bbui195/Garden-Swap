@@ -21,7 +21,7 @@ function Footer(props) {
                     <span className='clean'>Garden Swap is powered by 100% renewable energy.</span>
                 </div>
                 <div className="links">
-                    <a className="git" href="https://github.com/Colemartindale">
+                    <a className="git" href="https://github.com/bbui195/Garden-Swap">
                         <FaGithubSquare className="github" size={29}/>
                     </a>
                     <a href="https://www.linkedin.com/in/cole-martindale-385045147/">
