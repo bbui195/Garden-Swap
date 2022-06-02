@@ -3,12 +3,42 @@ const bcrypt = require("bcryptjs");
 const express = require("express");
 const router = express.Router();
 const User = require("../../models/User");
+const Listing = require("../../models/Listing");
 const keys = require("../../config/keys");
 const passport = require("passport");
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 
 router.get("/test", (req, res) => res.json({ msg: "This is the users route" }));
+
+router.get("/:id",
+    (req, res) => {
+        User.findById(req.params.id)
+            .then(user => {
+                Listing.find({userId: user.id})
+                    .then(listings => {
+                        res.json({
+                            id: user.id,
+                            username: user.username,
+                            joined: user.createdAt,
+                            zipcode: Math.floor(Math.random() * 10000).toString(),
+                            rating: Math.ceil(Math.random() * 5).toString(),
+                            listings: listings.map(listing => {
+                                return {
+                                    id: listing.id,
+                                    body: listing.body,
+                                    category: listing.category,
+                                    location: listing.location,
+                                    photoUrls: listing.photoUrls,
+                                    title: listing.title,
+                                    postedAt: listing.createdAt
+                                }
+                            })
+                        });
+                    })
+            }).catch(err => res.status(404).json({ nouserfound: "User with that id was not found"}))
+    }
+)
 
 router.get("/current", passport.authenticate("jwt", {session: false}), (req, res) => {
     res.json({
