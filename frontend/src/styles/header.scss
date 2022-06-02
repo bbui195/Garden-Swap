@@ -10,6 +10,7 @@
     flex-direction: column;
     border-bottom: 2px solid $dark-liver;
     position: fixed;
+    z-index: 10;
 
     .topline {
         width: 100%;
