@@ -9,7 +9,8 @@ import {
 
 const listingReducer = (oldState = {}, action) => {
     Object.freeze(oldState)
-    let nextState = Object.assign({listings:{}}, oldState)
+    // let nextState = Object.assign({listings:{}}, oldState)
+    let nextState = Object.assign({}, oldState)
     switch (action.type) {
         case CREATE_NEW_LISTING:
             nextState[action.listing.data.id] = action.listing.data;
