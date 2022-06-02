@@ -6,11 +6,15 @@ class ListingShow extends React.Component {
     }
 
     componentDidMount(){
+        console.log(this.props.listingId, "listingId???")
         this.props.requestListing(this.props.listingId)
     }
 
     render() {
         console.log(this.props.listing, "this is the listing on the show page")
+        if (!this.props.listing){
+            return null
+        }
         return (
             <div className='listing-container'>
                 <p>{this.props.listing.title}</p>

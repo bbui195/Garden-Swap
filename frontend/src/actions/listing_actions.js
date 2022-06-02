@@ -51,7 +51,7 @@ export const requestListings = () => dispatch => {
 
 export const requestListing = listingId => dispatch => {
     return listingApiUtils.fetchListing(listingId)
-        .then(listing => dispatch(receiveListing(listing)) )
+        .then(listing => dispatch(receiveListing(listing.data)) )
 }
 
 export const deleteListing = id => dispatch => {

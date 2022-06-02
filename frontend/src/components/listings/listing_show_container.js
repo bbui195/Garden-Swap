@@ -7,7 +7,7 @@ import ListingShow from './listing_show'
 const mSTP = (state, ownProps) => {
     return {
         listingId: ownProps.match.params.listingId,
-        listing: state.entities.listings.listings[ownProps.match.params.listingId]
+        listing: state.entities.listings[ownProps.match.params.listingId]
     }
 }
 
