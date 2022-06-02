@@ -15,7 +15,7 @@ export default ({ currentUser, logoutUser}) => {
                 <div className='username-container'>
                     Hi, {currentUser.username}
                 </div>
-                <Link className='user-profile-container' to="/userProfile">
+                <Link className='user-profile-container' to="/user/show">
                     <img src={profilePic} className='prof' />
                     <Link to="/userProfile">Profile</Link> 
                 </Link>
