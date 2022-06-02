@@ -26,6 +26,10 @@ const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
+messages.io = io;
+io.on('connection', (socket) => {
+    console.log(socket);
+})
 //
 
 // app.get("/", (req, res) => res.send("Hello World!"));
