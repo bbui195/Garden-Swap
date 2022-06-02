@@ -44,14 +44,14 @@ export const testMakeListing = listing => dispatch => {
      .then(listing => dispatch(createListing(listing)))
 }
 
-export const requestListings = listings => dispatch => {
-    return listingApiUtils.fetchListings(listings)
+export const requestListings = () => dispatch => {
+    return listingApiUtils.fetchListings()
         .then(listings => dispatch(receiveListings(listings.data)) )
 }
 
 export const requestListing = listingId => dispatch => {
     return listingApiUtils.fetchListing(listingId)
-        .then(listing => dispatch(receiveListing(listing)) )
+        .then(listing => dispatch(receiveListing(listing.data)) )
 }
 
 export const deleteListing = id => dispatch => {

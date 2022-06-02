@@ -20,6 +20,7 @@ const Aws = require('aws-sdk');
 
 function formatListing(listing) {
     return {
+        userId: listing.userId,
         id: listing.id,
         body: listing.body,
         category: listing.category,

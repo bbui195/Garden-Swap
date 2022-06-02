@@ -19,4 +19,4 @@ const ReviewSchema = new Schema({
     timestamps: true
 })
 
-module.exports = Listing = mongoose.model("Message", ReviewSchema);
+module.exports = Review = mongoose.model("Review", ReviewSchema);

@@ -8,10 +8,11 @@ $wintergreen-dream: #53917E;
 $dark-liver: #63535B;
 $claret: #6D1A36;
 $tweed: #937755;
+// $tweed: #c2ac91;
 
 //Fonts
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Comfortaa:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
 
 @import "./header.scss";
 @import "./session.scss";
@@ -19,6 +20,8 @@ $tweed: #937755;
 @import "./footer.scss";
 @import "./dropdown.scss";
 @import "./listing_index.scss";
+@import "./listing_show.scss";
+@import "./inbox.scss";
 
 .app-container {
     width: 100%;
@@ -32,7 +35,9 @@ $tweed: #937755;
     background-color: #e6e6e6;
     height: 100%;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-size: 100%;
+    font-weight: 600;
+
 }
 

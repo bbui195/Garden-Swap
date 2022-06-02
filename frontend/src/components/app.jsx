@@ -11,13 +11,15 @@ import ListingForm from './listings/listing_form_container';
 import ReviewFormContainer from './reviews/create_review_form_container';
 import UserShowContainer from '../components/users/user_show_container';
 import Test from "./geo/geo";
-import ListingCategoryIndex from './category/listing_category_index_container'
-import ListingIndexContainer from './listings/listing_index_container'
-import ListingShow from "./listings/listing_show";
+import ListingCategoryIndex from './category/listing_category_index_container';
+import ListingIndexContainer from './listings/listing_index_container';
+import InboxContainer from './messaging/inbox_container';
+import ConversationContainer from "./messaging/conversation_container";
+import ListingShow from "./listings/listing_show_container";
 
 export default () => (
     <div className="app-container">
-        <NavBarContainer/>
+        <NavBarContainer/> 
         <Switch>
             <AuthRoute exact path='/login' component={LogInContainer}  />
             <AuthRoute exact path='/signup' component={SignUpContainer} />
