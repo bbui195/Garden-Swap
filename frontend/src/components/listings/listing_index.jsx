@@ -17,19 +17,21 @@ class ListingIndex extends React.Component {
 
     render() {
         //i'm assuming i have all the listings passed in container
-
-        // console.log('listing index', this.props)
-        // const {listings} = this.props
-        // const {listings} = Object.values(this.props.listings[0].data)
-        // console.log(Object.values(this.props.listings[0].data[0]))
-        // const listings = (Object.values(this.props.listings[0].data[0]))
+        const { listings } = this.props
+        console.log(listings, 'hehehe');
+        let listingsArr;
+        if (listings.length > 0){
+            listingsArr = listings[0].data;
+        }else{
+            listingsArr = []
+        }
+        // 
+        console.log(listingsArr, 'this is me');
         return(
             <div>
-                {/* {listings.map(listing => (
-                    <div>
-                        <ListingIndexItem listing={listing} />
-                    </div>
-                ))} */}
+                {listingsArr.map(listing => (
+                    <ListingIndexItem key={listing.id} listing={listing} />
+                ))}
             </div>
         )
     }
