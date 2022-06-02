@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import words from "../../assets/images/words.png";
 import cabbage from "../../assets/images/cabbage.png";
-import profilePic from "../../assets/images/cabbage.jpeg"
+import profilePic from "../../assets/images/prof-placeholder.png"
 import { useEffect } from "react";
 import { BiLogOut, BiImageAdd } from "react-icons/bi";
 
@@ -21,11 +21,11 @@ export default ({ currentUser, logoutUser}) => {
                 </div>
                 <Link className='user-profile-container' to="/user/show">
                     <img src={profilePic} className='prof' />
-                    <span to="/userProfile">Profile</span> 
+                    <span>Profile</span> 
                 </Link>
                 <Link className='add-listing-container' to='/listingForm'>
                     <span><BiImageAdd size={26} color = "black"/></span>
-                    <span to='/listingForm'>Add Listing</span>
+                    <span>Add Listing</span>
                 </Link>
                 <div className='sign-out-container' onClick={logoutUser}>
                     <span><BiLogOut size={26} color = "black"/></span>
