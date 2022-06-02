@@ -7,6 +7,10 @@ import { useEffect } from "react";
 import { BiLogOut, BiImageAdd } from "react-icons/bi";
 
 export default ({ currentUser, logoutUser}) => {
+    
+    const categories = [
+        'Fruit', 'Vegetables', 'Nuts', 'Dairy', 'Meats', 'Grains'
+    ]
 
     const session = currentUser ? (
         <div className="profile-dropdown" onClick={toggleDropDown}>
@@ -17,16 +21,16 @@ export default ({ currentUser, logoutUser}) => {
                 </div>
                 <Link className='user-profile-container' to="/user/show">
                     <img src={profilePic} className='prof' />
-                    <Link to="/userProfile">Profile</Link> 
+                    <span to="/userProfile">Profile</span> 
                 </Link>
                 <Link className='add-listing-container' to='/listingForm'>
                     <span><BiImageAdd size={26} color = "black"/></span>
-                    <Link to='/listingForm'>Add Listing</Link>
+                    <span to='/listingForm'>Add Listing</span>
                 </Link>
-                <Link className='sign-out-container' onClick={logoutUser}>
+                <div className='sign-out-container' onClick={logoutUser}>
                     <span><BiLogOut size={26} color = "black"/></span>
                     <button className="logout-button" onClick={logoutUser}>Log Out</button>
-                </Link>
+                </div>
             </div>
         </div>
     ) : (
@@ -86,7 +90,14 @@ export default ({ currentUser, logoutUser}) => {
                     <div>{session}</div> 
                 </div>
                 <div>
-                    <p className='cats'>Categories</p>
+                    <ul className='cats'>
+                        {categories.map(category => {
+                                return (
+                                    <Link to={`/category/${category}`} key={category}>{category}</Link>
+                                )
+                            })
+                        }
+                    </ul>
                 </div>
                
             </header>
