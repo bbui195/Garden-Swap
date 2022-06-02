@@ -19,21 +19,15 @@ class ListingIndexItem extends React.Component {
     }
 
 
-    //need seeds before I can comment out
     render() {
         const {listing} = this.props
-        // console.log(listing);
         return( 
-            <div>
-                <p>Listing items temp</p>
-                    <img src={listing.photoUrls}/>
-                
-                <p>{listing.title}</p>
-                    
-                   {/* <Link to={`/listing/${listing.id}`}> src={listing.photoUrls} alt="" /></Link> */}
-                   {/* <Link to={`/listing/${listing.id}`}><h1>{listing.title.length > 102 ? listing.title + '...' : listing.title}</h1></Link> */}
-                   {/* <p>{listing.location}</p> */}
-            </div>    
+            <Link to="" className='listing-container'>
+                <img src={listing.photoUrls}/>               
+                <p className='title'>{listing.title}</p> 
+                <p>{listing.price}</p>    
+                <p>{listing.location}</p>               
+            </Link>    
         )
     }
 }
