@@ -11,10 +11,16 @@ const toArray = vals => {
 }
 
 const mSTP = (state,ownProps) => { 
-    console.log(Object.values(state.entities.listings.listings), "what is listings?")
+    let listingsArr;
+    if (!state.entities.listings.listings){
+        listingsArr = []
+    }else{
+        listingsArr = Object.values(state.entities.listings.listings)
+    }
+
     return {
         //i'm assuming i have all the listings from enttiies
-        listings: Object.values(state.entities.listings.listings),
+        listings: listingsArr
     }
 }
 
