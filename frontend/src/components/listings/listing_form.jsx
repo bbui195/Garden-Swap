@@ -33,7 +33,7 @@ class ListingForm extends React.Component {
         } else {
             return (
                 <div className='image-preview-container'>
-                    <img src={this.state.photoUrls} alt="listing" />
+                    <img src={this.state.photoUrls} alt="listing" className='form-photo'/>
                 </div>
             )
         }
@@ -59,50 +59,63 @@ class ListingForm extends React.Component {
 
     handleSubmit(e){
         e.preventDefault();
-        // console.log(this.state, "hehehe")
         this.props.makeListing(this.handleFormData())
     }
 
     render(){
         return(
-            <div>
+            <form onSubmit={this.handleSubmit} className='listing-form-container' >
+                <div className='form-inputs-container'>
+                    <div className='form-inputs'>
+                        <input 
+                            type="text" 
+                            value={this.state.title}
+                            onChange={this.update("title")}
+                            placeholder="Title"
+                            className='title-input'
+                            id='title'
+                        />
+                        <label htmlFor="title" className='title__label'>Title</label>
+                        <textarea 
+                            value={this.state.body}
+                            onChange={this.update('body')}
+                            className="description-input"
+                            placeholder='body'
+                        />
+                        <div className='price-cat-container'>
+                            <input 
+                                type="number" 
+                                min="1" 
+                                step="any" 
+                                placeholder='$0.00'
+                                className='price-input'
+                            />
 
-                <form onSubmit={this.handleSubmit} className='listing-form-container'>
-                    <input 
-                        type="text" 
-                        value={this.state.title}
-                        onChange={this.update("title")}
-                        placeholder="Title"
-                        className='title-input'
-                    />
-                    <textarea 
-                        value={this.state.body}
-                        onChange={this.update('body')}
-                        className="description-input"
-                    />
-                    <input 
-                        type="number" 
-                        min="1" 
-                        step="any" 
-                        // value={this.state.price}
-                    />
-                    <select name="categories" id="categories">
-                        <option selected="true" disabled="disabled">Choose Category</option>    
-                        <option value="Fruit">Fruit</option>
-                        <option value="Vegetables">Vegetables</option>
-                        <option value="Nuts">Nuts</option>
-                        <option value="Dairy">Dairy</option>
-                        <option value="Meats">Meats</option>
-                        <option value="Grains">Grains</option>
-                    </select>
-                    <input 
-                        type="file"
-                        onChange={this.handleFile}
-                        className="file-upload"
-                    />
-                    <button type="submit" className='btn'>Submit</button>
-                </form>
-            </div>
+                            <select name="categories" id="categories">
+                                <option selected="true" disabled="disabled">Choose Category</option>    
+                                <option value="Fruit">Fruit</option>
+                                <option value="Vegetables">Vegetables</option>
+                                <option value="Nuts">Nuts</option>
+                                <option value="Dairy">Dairy</option>
+                                <option value="Meats">Meats</option>
+                                <option value="Grains">Grains</option>
+                            </select>
+                        </div>
+               
+                        
+                   
+                    </div>
+                    <div className='image-container'>
+                        {this.previewImage()}
+                        <input 
+                            type="file"
+                            onChange={this.handleFile}
+                            className="file-upload"
+                        />
+                    </div>
+                </div>
+                <button type="submit" className='btn'>Post Listing!</button>
+            </form>
         )
     }
 }

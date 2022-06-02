@@ -1,7 +1,8 @@
 @import "./reset.scss";
 
 // Colors
-$light-orange: #FCD0A1;
+// $light-orange: #FCD0A1;
+$light-orange: #f9c389;
 $laurel-green: #B1B695;
 $wintergreen-dream: #53917E;
 $dark-liver: #63535B;
@@ -17,16 +18,21 @@ $tweed: #937755;
 @import "./listings_form.scss";
 @import "./footer.scss";
 @import "./dropdown.scss";
+@import "./listing_index.scss";
 
 .app-container {
     width: 100%;
     height: 100%;
+    font-family: 'Comfortaa', cursive;  
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: $light-orange ;
     color: white;
-    font-family: 'Comfortaa', cursive;  
-
+    background-image: url(../assets/images/veggie_doodle.png);
+    background-color: #e6e6e6;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
 

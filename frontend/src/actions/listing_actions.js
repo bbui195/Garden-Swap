@@ -46,7 +46,7 @@ export const testMakeListing = listing => dispatch => {
 
 export const requestListings = listings => dispatch => {
     return listingApiUtils.fetchListings(listings)
-        .then(listings => dispatch(receiveListings(listings)) )
+        .then(listings => dispatch(receiveListings(listings.data)) )
 }
 
 export const requestListing = listingId => dispatch => {

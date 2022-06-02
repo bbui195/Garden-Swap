@@ -22,8 +22,12 @@ class ListingIndexItem extends React.Component {
     //need seeds before I can comment out
     render() {
         const {listing} = this.props
+        // console.log(listing);
         return( 
             <div>
+                <p>Listing items temp</p>
+                    <img src={listing.photoUrls}/>
+                
                 <p>{listing.title}</p>
                     
                    {/* <Link to={`/listing/${listing.id}`}> src={listing.photoUrls} alt="" /></Link> */}

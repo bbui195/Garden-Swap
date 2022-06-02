@@ -11,14 +11,21 @@ const toArray = vals => {
 }
 
 const mSTP = (state,ownProps) => { 
+    let listingsArr;
+    if (!state.entities.listings.listings){
+        listingsArr = []
+    }else{
+        listingsArr = Object.values(state.entities.listings.listings)
+    }
+
     return {
         //i'm assuming i have all the listings from enttiies
-        listings: toArray(state.entities.listings),
+        listings: listingsArr
     }
 }
 
 const mDTP = dispatch => ({
     requestListings: () => dispatch(requestListings()),
-})
+});
 
-export default connect(mSTP,mDTP)(ListingIndex)
+export default connect(mSTP, mDTP)(ListingIndex);
