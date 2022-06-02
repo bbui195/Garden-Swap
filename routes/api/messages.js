@@ -43,7 +43,8 @@ router.get('/:userId', // messages with user with id :id
                         to
                     })
                 })
-            }).catch(err => res.status(404).json({ nouserfound: 'No user found with that ID'}))
+            }
+        ).catch(err => res.status(404).json({ nouserfound: 'No user found with that ID'}))
     }
 );
 
