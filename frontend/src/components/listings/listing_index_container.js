@@ -20,6 +20,6 @@ const mSTP = (state,ownProps) => {
 
 const mDTP = dispatch => ({
     requestListings: () => dispatch(requestListings()),
-})
+});
 
-export default connect(mSTP,mDTP)(ListingIndex)
+export default connect(mSTP, mDTP)(ListingIndex);
