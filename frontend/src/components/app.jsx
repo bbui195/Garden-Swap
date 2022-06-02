@@ -13,7 +13,8 @@ import UserShowContainer from '../components/users/user_show_container';
 import Test from "./geo/geo";
 import ListingCategoryIndex from './category/listing_category_index_container';
 import ListingIndexContainer from './listings/listing_index_container';
-import MessageInboxContainer from './messaging/inbox_container';
+import InboxContainer from './messaging/inbox_container';
+import ConversationContainer from "./messaging/conversation_container";
 
 export default () => (
     <div className="app-container">
@@ -26,8 +27,8 @@ export default () => (
             <Route exact path='/listingForm' component={ListingForm} />
             <Route exact path='/user/show' component={UserShowContainer}/>
             <Route exact path='/listingForm' component={ListingForm} />
-            <Route exact path= '/user/inbox' component={MessageInboxContainer}/>
-            <Route exact path="/user/inbox/:sender" />
+            <Route exact path= '/user/inbox' component={InboxContainer}/>
+            <Route exact path="/user/inbox/:sender" component={ConversationContainer}/>
             <Route exact path='/test' component={Test} />
             {/* <Route exact path='/test' component={useGeoLocation} /> */}
             {/* <Route exact path = '/' component={Home} /> */}

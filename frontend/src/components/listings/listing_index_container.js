@@ -11,9 +11,11 @@ const toArray = vals => {
 }
 
 const mSTP = (state,ownProps) => { 
+    console.log(Object.values(state.entities.listings.listings), "what is listings?")
     return {
-        listings: Object.values(state.entities.listings[0])
-    };
+        //i'm assuming i have all the listings from enttiies
+        listings: Object.values(state.entities.listings.listings),
+    }
 }
 
 const mDTP = dispatch => ({
