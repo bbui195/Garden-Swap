@@ -28,7 +28,7 @@ router.get('/:id',
                         to
                     })
                 })
-            }).catch(err => res.status(404).json({ notweetfound: 'No listing found with that ID'}))
+            }).catch(err => res.status(404).json({ nouserfound: 'No user found with that ID'}))
     }
 );
 

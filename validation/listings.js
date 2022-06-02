@@ -1,5 +1,5 @@
 
-const { default: mongoose } = require("mongoose");
+const { default: mongoose, Mongoose } = require("mongoose");
 const Validator = require("validator");
 const validText = require("./valid-text");
 const validCategory = require("./valid_category");
@@ -12,6 +12,10 @@ module.exports = function validateCreateListingInput(data) {
     data.price = mongoose.Types.Decimal128.fromString(data.price);
     data.location = validText(data.location) ? data.location : '';
     data.category = validText(data.category) ? data.category : '';
+    
+    if(!mongoose.Types.ObjectId.isValid(data.userId)) {
+        errors.userId = 'Invalid id';
+    }
 
     if(Validator.isEmpty(data.title)) {
         errors.title = 'Title field is required';
@@ -21,6 +25,9 @@ module.exports = function validateCreateListingInput(data) {
         errors.body = 'Body field is required';
     }
 
+    if(Validator.isEmpty(data.photoUrls)){
+        errors.photoUrls = 'Must upload a photo of your product';
+    }
 
     // if(!Array.isArray(data.photoUrls)) {
     //     errors.photoUrl = 'Photo Urls must be an array';

@@ -1,29 +1,57 @@
 const express = require("express");
 const router = express.Router();
-const Listing = require('../../models/Listing')
+const Review = require('../../models/Review');
+const User = require('../../models/User');
 const mongoose = require("mongoose");
 const passport = require('passport');
 require('dotenv').config()
 
-const validateCreateListingInput = require('../../validation/listings');
+// const validateCreateListingInput = require('../../validation/listings');
 
-const multer = require('multer');
-const Aws = require('aws-sdk');
+// const multer = require('multer');
+// const Aws = require('aws-sdk');
 
 /*
     show
-    index
     create
     update
     delete
 */
 
-router.get('/', (req, res) => {
-    Listing.find()
-        // .sort({ date: -1 })
-        .then(listings => res.json(listings))
-        .catch(err => res.status(404).json( { nolistingsfound: 'No listings found'}));
+router.get('/:userId', (req, res) => {
+    User.findById(req.params.userId)
+        .then(user => {
+            Review.find({ userId: user.id})
+                .then(reviews => {
+                    res.json({
+                        reviews
+                    });
+                });
+        }).catch(err => res.status(404).json({ nouserfound: 'No user found with that ID'}))
 });
+
+router.post('/',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        const { errors, isValid } = validateReviewInput(req.body);
+
+        if(!isValid) {
+            return res.status(400).json(errors);
+        }
+
+        // const newListing = new Listing({
+        //     userId: req.user.id,
+        //     title: req.body.title,
+        //     body: req.body.body,
+        //     photoUrls: req.body.photoUrls,
+        //     price: mongoose.Types.Decimal128.fromString(req.body.price),
+        //     location: req.body.location,
+        //     category: req.body.category
+        // });
+
+        // newListing.save().then(listing => res.json(listing));
+    }
+)
 
 // router.get('/user/:user_id', (req, res) => {
 //     Tweet.find({user: req.params.user_id})
@@ -38,15 +66,7 @@ router.get('/:id', (req, res) => {
     Listing.findById(req.params.id)
         .then(listing => res.json(listing))
         .catch(err =>
-            res.status(404).json({ nolistingfound: 'No listing found with that ID'})
-        )
-});
-
-router.get('/category/:category', (req, res) => {
-    Listing.find({ category: req.params.category })
-        .then(listing => res.json(listing))
-        .catch(err =>
-            res.status(404).json({ nolistingfound: 'No listing found with that ID'})
+            res.status(404).json({ notweetfound: 'No listing found with that ID'})
         )
 });
 
@@ -60,7 +80,7 @@ router.post('/',
         }
 
         const newListing = new Listing({
-            userId: mongoose.Types.ObjectId.fromString(req.user.id),
+            userId: req.user.id,
             title: req.body.title,
             body: req.body.body,
             photoUrls: req.body.photoUrls,
@@ -125,9 +145,7 @@ const storage = multer.memoryStorage({
 })
 
 const filefilter = (req, file, cb) => {
-    if (file.mimetype === 'image/jpeg' || 
-        file.mimetype === 'image/jpg' || 
-        file.mimetype === 'image/png') {
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg') {
         cb(null, true)
     } else {
         cb(null, false)
@@ -150,8 +168,10 @@ const s3 = new Aws.S3({
 router.post(`/image`, upload.single('listing[image]'), (req, res) => { 
     console.log(req.body, 'should log the req.body')// given data object, creates new entry
     const { errors, isValid } = validateCreateListingInput(req.body.listing);
+    debugger
+    console.log(errors);
+    console.log('is valid', isValid);
     console.log(req.body.listing);
-    console.log(req.file)
     if (!isValid) {
         return res.status(400).json(errors);
     }
@@ -165,7 +185,7 @@ router.post(`/image`, upload.single('listing[image]'), (req, res) => {
         ContentType:"image/jpeg"                 // Necessary to define the image content-type to view the photo in the browser with the link
     };
 
-    s3.upload(params,(error, data)=>{
+    s3.upload(params,(error,data)=>{
         if(error){
             res.status(500).send({"err":error})  // if we get any error while uploading error message will be returned.
             return

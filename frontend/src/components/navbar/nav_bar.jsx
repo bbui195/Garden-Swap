@@ -3,41 +3,69 @@ import { Link } from 'react-router-dom'
 import words from "../../assets/images/words.png";
 import cabbage from "../../assets/images/cabbage.png";
 import profilePic from "../../assets/images/cabbage.jpeg"
+import { useEffect } from "react";
+import { BiLogOut, BiImageAdd } from "react-icons/bi";
 
 export default ({ currentUser, logoutUser}) => {
 
     const session = currentUser ? (
-        <div>
-            <div>
-                <img src={profilePic} alt="prof" className='prof'/>  
+        <div className="profile-dropdown" onClick={toggleDropDown}>
+            <img src={profilePic} className='prof' />
+            <div className='dropdown-content'>
+                <div className='username-container'>
+                    Hi, {currentUser.username}
+                </div>
+                <Link className='user-profile-container' to="/userProfile">
+                    <img src={profilePic} className='prof' />
+                    <Link to="/userProfile">Profile</Link> 
+                </Link>
+                <Link className='add-listing-container' to='/listingForm'>
+                    <span><BiImageAdd size={26} color = "black"/></span>
+                    <Link to='/listingForm'>Add Listing</Link>
+                </Link>
+                <Link className='sign-out-container' onClick={logoutUser}>
+                    <span><BiLogOut size={26} color = "black"/></span>
+                    <button className="logout-button" onClick={logoutUser}>Log Out</button>
+                </Link>
             </div>
-            <button onClick={logoutUser}>Log Out</button>
         </div>
-        // <div className="profile-dropdown" onClick={this.toggleDropDown}>
-        //     <img src={window.profilePicLogo} className='profile-logo' />
-        //     <img src={window.downArrowIcon} className='down-arrow-icon' />
-        //     <div className='dropdown-content'>
-        //         <div className='email-container'>
-        //             <img src={window.profilePicLogo} className='profile-logo' />
-        //             <span>{this.props.currentUser.username}</span>
-        //         </div>
-        //         <div className='orders-container'>
-        //             <img src={window.ordersIcon} className='orders-icon' />
-        //             <Link to='/orders'>Order History</Link>
-        //         </div>
-        //         <div className='sign-out-container'>
-        //             <img src={window.signOutIcon} className='sign-out-icon' />
-        //             <button className="logout-button" onClick={this.props.logout}>Log Out</button>
-        //         </div>
-        //     </div>
-        // </div>
     ) : (
         <>
             <ul className='container'>
                 <Link to='/login' className='btn'>Sign In</Link>
             </ul>
         </>
-    )
+    );
+
+    useEffect(() => {
+        let dropDown = document.querySelector('.dropdown-content');
+        if (dropDown) {
+          dropDown.style.display = 'none';
+        }  
+    });
+
+    function dropDown2(e) {
+        console.log(e);
+        if (!e.target.closest(".profile-dropdown") && !e.target.closest(".dropdown-content")) {
+            document.querySelector(".dropdown-content").style.display = 'none'
+            document.removeEventListener("click", dropDown2)
+        }
+    }
+
+    function toggleDropDown() {
+        let dropDown = document.querySelector('.dropdown-content');
+        console.log(dropDown.style.display);
+        if (dropDown.style.display === 'none') {
+            dropDown.style.display = 'flex'
+            document.addEventListener('click', dropDown2);
+
+        } else {
+            dropDown.style.display = 'none'
+            document.removeEventListener('click', dropDown2);
+        };
+    };
+
+ 
 
     
 
