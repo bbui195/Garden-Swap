@@ -1,6 +1,5 @@
 import { connect } from "react-redux";
 import Conversation from "./conversation";
-import Conversation from "./conversation";
 
 const mSTP = state => {
 
