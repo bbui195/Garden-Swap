@@ -1,7 +1,186 @@
 .listing-form-container {
     height: 600px;
-    width: 600px;
-    border: 1px solid black;
+    width: 900px;
+    // border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+    margin-bottom: 5%;
+
+    .form-inputs-container {
+        width: 100%;
+        height: 85%;
+        display: flex;
+        justify-content: space-between;
+
+        .form-inputs {
+            width: 48%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
+            padding: 15px 0 0;
+            margin-top: 10px;
+            width: 50%;
+            box-sizing: border-box;
+
+            $primary: black;
+            $white: #fff;
+            $gray: #6b6b6b;
+
+
+            .title-input {
+                font-family: inherit;
+                width: 90%;
+                border: 0;
+                border-bottom: 2px solid $gray;
+                outline: 0;
+                font-size: 1.3rem;
+                color: black;
+                padding: 7px 0;
+                background: transparent;
+                transition: border-color 0.2s;
+                margin-bottom: 2rem;
+
+            &::placeholder {
+                color: transparent;
+            }
+
+            &:placeholder-shown ~ .title__label {
+                font-size: 1.3rem;
+                cursor: text;
+                top: 85px;
+            }
+            }
+
+            .title__label {
+                position: absolute;
+                top: 0;
+                display: block;
+                transition: 0.2s;
+                font-size: 1rem;
+                color: $gray;
+            }
+
+            .title-input:focus {
+            ~ .title__label {
+                position: absolute;
+                top: 65px;
+                display: block;
+                transition: 0.2s;
+                font-size: 1rem;
+                color: $primary;
+                font-family: 'Comfortaa', cursive;  
+                font-weight:700;    
+            }
+                padding-bottom: 6px;  
+                font-weight: 700;
+                border-width: 3px;
+                border-image: linear-gradient(to right, $primary, $primary);
+                border-image-slice: 1;
+            }
+            /* reset input */
+            .title-input {
+                &:required, &:invalid { box-shadow:none; }
+            }
+
+            .description-input {
+                height: 40%;
+                width: 85%;
+                border-radius: 15px;
+                padding: 10px;
+                margin-bottom: 2rem;
+                font-family: 'Comfortaa', cursive;  
+                font-size: 18px;
+            }
+
+            .price-cat-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 90%;
+                font-family: 'Comfortaa', cursive;  
+            }
+
+            .price-input {
+                height: 37px;
+                width: 45%;
+                font-size: 20px;
+                border-radius: 10px;
+                border: 1px solid black;
+                padding: 5px;
+                box-sizing: border-box;
+                cursor: pointer;
+                font-family: 'Comfortaa', cursive;  
+            }
+            
+            #categories {
+                height: 36px;
+                width: 45%;
+                font-size: 18px;
+                padding: 5px;
+                border: 1px solid black;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+           
+        }
     
+        .image-container {
+            width: 48%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-sizing: border-box;
+            padding: 20px;
+            border: 3px solid black;
+            border-radius: 15px;
+
+            .image-preview-container {
+                height: 90%;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+
+                .form-photo {
+                    max-width: 100%;
+                    max-height: 100%;
+                    object-fit: contain;
+                    border-radius: 20px;
+                }
+            }
+
+            .file-upload {
+                margin: auto;
+                cursor: pointer;
+                color: black;
+                font-family: 'Comfortaa', cursive;  
+            }
+        }
+    }
+
+    .btn {
+        height: 8%;
+        width: 40%;
+        margin: auto;
+        font-size: 24px;
+        font-family: 'Comfortaa', cursive;  
+        background-color: black;
+        color: white;
+        border-radius: 25px;
+        border: none;
+        transition: all 200ms ease;
+        cursor: pointer;
+        margin-top: 3rem;
+    }
+
+    .btn:hover {
+        transform: scale(1.03);
+    }
+
 }
+
+
 
