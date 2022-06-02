@@ -12,13 +12,12 @@ const toArray = vals => {
 
 const mSTP = (state,ownProps) => { 
     return {
-        //i'm assuming i have all the listings from enttiies
-        listings: toArray(state.entities.listings),
-    }
+        listings: Object.values(state.entities.listings[0])
+    };
 }
 
 const mDTP = dispatch => ({
     requestListings: () => dispatch(requestListings()),
-})
+});
 
-export default connect(mSTP,mDTP)(ListingIndex)
+export default connect(mSTP, mDTP)(ListingIndex);
