@@ -15,13 +15,12 @@ class ListingIndex extends React.Component {
     }
 
     render() {
-        //i'm assuming i have all the listings passed in container
         const { listings } = this.props
         if (!listings){
             return null
         }
         return(
-            <div>
+            <div className='listing-index-container'>
                 {listings.map(listing => (
                     <ListingIndexItem key={listing.id} listing={listing} />
                 ))}

@@ -18,7 +18,7 @@ import ConversationContainer from "./messaging/conversation_container";
 
 export default () => (
     <div className="app-container">
-        <NavBarContainer/>
+        <NavBarContainer/> 
         <Switch>
             <AuthRoute exact path='/login' component={LogInContainer}  />
             <AuthRoute exact path='/signup' component={SignUpContainer} />
