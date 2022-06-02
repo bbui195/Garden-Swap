@@ -21,6 +21,13 @@ const listings = require("./routes/api/listings");
 const reviews = require("./routes/api/reviews");
 const messages = require("./routes/api/messages");
 
+//sockets
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
+//
+
 // app.get("/", (req, res) => res.send("Hello World!"));
 app.use(passport.initialize());
 require('./config/passport')(passport);
@@ -29,7 +36,7 @@ app.use(bodyParser.json());
 app.use("/api/users", users);
 app.use("/api/listings", listings);
 app.use("/api/reviews", reviews);
-app.uesr("/api/messages", messages);
+app.use("/api/messages", messages);
 
 
 const port = process.env.PORT || 5000;
