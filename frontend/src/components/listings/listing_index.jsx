@@ -21,7 +21,7 @@ class ListingIndex extends React.Component {
         console.log(listings, 'hehehe');
         return(
             <div>
-                {Object.values(listings).map(listing => (
+                {listings.map(listing => (
                     <ListingIndexItem key={listing.id} listing={listing} />
                 ))}
             </div>
