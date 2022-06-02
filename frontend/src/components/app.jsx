@@ -14,7 +14,6 @@ import Test from "./geo/geo";
 import ListingCategoryIndex from './category/listing_category_index_container'
 import ListingIndexContainer from './listings/listing_index_container'
 import ListingShow from "./listings/listing_show";
-import UserShowContainer from './users/user_show_container'
 
 export default () => (
     <div className="app-container">
@@ -22,14 +21,14 @@ export default () => (
         <Switch>
             <AuthRoute exact path='/login' component={LogInContainer}  />
             <AuthRoute exact path='/signup' component={SignUpContainer} />
-            <Route exact path='/reviews/new' component={ReviewFormContainer} />
+            <Route exact path='/reviews/:userId/new' component={ReviewFormContainer} />
             <Route exact path='/category/:categoryid' component={ListingCategoryIndex} />
             <Route exact path='/listing/show' component={ListingShow} />
             <Route exact path='/listingForm' component={ListingForm} />
             <Route exact path='/user/show' component={UserShowContainer}/>
             <Route exact path='/listingForm' component={ListingForm} />
-            <Route exact path= '/user/inbox' component={InboxContainer}/>
-            <Route exact path="/user/inbox/:sender" component={ConversationContainer}/>
+            {/* <Route exact path= '/user/inbox' component={InboxContainer}/> */}
+            {/* <Route exact path="/user/inbox/:sender" component={ConversationContainer}/> */}
             <Route exact path='/test' component={Test} />
             <Route exact path='/userProfile' />
             <Route exact path='/users/:userId' component={UserShowContainer} />

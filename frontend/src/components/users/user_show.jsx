@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import ListingIndex from '../listings/listing_index'
 
 class UserShow extends React.Component {
     constructor(props) {
@@ -9,7 +10,7 @@ class UserShow extends React.Component {
     }
 
     componentDidMount() {
-        this.props.requestProduct(this.props.match.params.productId)
+        this.props.requestUser(this.props.match.params.userId)
     }
 
     // handleRemove(review) {
@@ -17,17 +18,41 @@ class UserShow extends React.Component {
     // }
 
     render() {
+        if (!this.props.user){
+            return null
+        }
+
+        const userId = this.props.match.params.userId 
         console.log(this.props)
-        // const { username, joined, rating } = this.props
+        const userData = Object.values(this.props.user)[0]
+        // const userListings = userData.listings
+        // console.log(userData)
+        if (!userData) {
+            return null
+        }
+
+        if (!userData.listings) {
+            return null
+        }
+       
         return(
-            <ul>
-                {/* <h1>{this.props.user}</h1> */}
-                {/* <li>{username}</li>
-                <li>{joined}</li>
-                <li>{rating}</li> */}
-                {/* <Link to={`/reviews/${review.id}/edit`}>Edit Button</Link> */}
-                <Link to={`/reviews/new`}>Create Review</Link>
-            </ul>
+            <div className='user-show-container'>
+                <ul className='user-info-container'>
+                    <li>Username: {userData.username}</li>
+                    <li>Joined: {userData.joined}</li>
+                    <li>Zipcode: {userData.zipcode}</li>
+                    <li>Rating: {userData.rating}</li>
+
+                    {/* <div>
+                        {userData.listings.map(listing => (
+                            <ListingIndex listing={listing} />
+                        ))}
+                    </div> */}
+                    <Link to={`/reviews/${this.props.match.params.userId}/new`}>Create Review</Link>
+                </ul>
+            </div>
+
+            
         )
     }
 }

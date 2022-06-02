@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const fetchReviews = () => {
-    return axios.get('api/reviews')
+    return axios.get('api/reviews/')
 }
 
 export const fetchReview = reviewId => {
@@ -9,7 +9,7 @@ export const fetchReview = reviewId => {
 }
 
 export const createReview = review => {
-    return axios.post('/api/users/review',review)
+    return axios.post('/api/review/',review)
 }
 
 export const deleteReview = reviewId => {
