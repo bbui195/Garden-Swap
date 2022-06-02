@@ -11,9 +11,10 @@ const toArray = vals => {
 }
 
 const mSTP = (state,ownProps) => { 
+    console.log(Object.values(state.entities.listings.listings), "what is listings?")
     return {
         //i'm assuming i have all the listings from enttiies
-        listings: toArray(state.entities.listings),
+        listings: Object.values(state.entities.listings.listings),
     }
 }
 
