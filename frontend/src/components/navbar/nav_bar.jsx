@@ -94,7 +94,7 @@ export default ({ currentUser, logoutUser}) => {
                     </div>
                     <div>{session}</div> 
                 </div>
-                <div>
+                <div className='bottom-line'>
                     <ul className='cats'>
                         {categories.map(category => {
                                 return (
