@@ -5,6 +5,7 @@ import cabbage from "../../assets/images/cabbage.png";
 import profilePic from "../../assets/images/prof-placeholder.png"
 import { useEffect } from "react";
 import { BiLogOut, BiImageAdd } from "react-icons/bi";
+import { FiInbox } from "react-icons/fi";
 
 export default ({ currentUser, logoutUser}) => {
     
@@ -26,6 +27,10 @@ export default ({ currentUser, logoutUser}) => {
                 <Link className='add-listing-container' to='/listingForm'>
                     <span><BiImageAdd size={26} color = "black"/></span>
                     <span>Add Listing</span>
+                </Link>
+                <Link className='inbox-container' to='/user/inbox'>
+                    <span><FiInbox size={26} color = "black"/></span>
+                    <span>Inbox</span>
                 </Link>
                 <div className='sign-out-container' onClick={logoutUser}>
                     <span><BiLogOut size={26} color = "black"/></span>
