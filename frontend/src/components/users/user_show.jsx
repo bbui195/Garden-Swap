@@ -10,9 +10,10 @@ class UserShow extends React.Component {
         const { username, joined, rating } = this.props
         return(
             <ul>
-                <li>{username}</li>
+                {/* <li>{username}</li>
                 <li>{joined}</li>
-                <li>{rating}</li>
+                <li>{rating}</li> */}
+                <h1>Hey cowboys!</h1>
             </ul>
         )
     }
