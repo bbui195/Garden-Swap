@@ -84,7 +84,7 @@ router.delete('/:id',
                     Listing.deleteOne({_id: req.params.id})
                         .then(() => res.json({deleted: true}))
                 }
-            }).catch(err => res.status(404).json({ notweetfound: 'No listing found with that ID'}))
+            }).catch(err => res.status(404).json({ nolistingfound: 'No listing found with that ID'}))
     }
 )
 
@@ -111,7 +111,7 @@ passport.authenticate('jwt', { session: false }),
                         .then(list => res.json(listing))
                         .catch(err => res.status(400).json({ failedupdate: 'Failed to update listing'}))
                 }
-            }).catch(err => res.status(404).json({ notweetfound: 'No listing found with that ID'}))
+            }).catch(err => res.status(404).json({ nolistingfound: 'No listing found with that ID'}))
     }
 )
 

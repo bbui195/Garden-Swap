@@ -10,9 +10,9 @@ module.exports = function validateReviewInput(data) {
     data.body = validText(data.body) ? data.body: '';
     data.rating = parseInt(data.rating);
 
-    if(!mongoose.Types.ObjectId.isValid(data.userId)) {
-        errors.userId = 'Invalid id';
-    }
+    // if(!mongoose.Types.ObjectId.isValid(data.userId)) {
+    //     errors.userId = 'Invalid id';
+    // }
 
     if(Validator.isEmpty(data.body)) {
         errors.body = 'Body field is required';
