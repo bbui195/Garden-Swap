@@ -22,9 +22,11 @@ class ListingIndexItem extends React.Component {
     //need seeds before I can comment out
     render() {
         const {listing} = this.props
+        // console.log(listing);
         return( 
             <div>
                 <p>Listing items temp</p>
+                    <img src={listing.photoUrls}/>
                 
                    {/* <Link to={`/listing/${listing.id}`}> src={listing.photoUrls} alt="" /></Link> */}
                    {/* <Link to={`/listing/${listing.id}`}><h1>{listing.title.length > 102 ? listing.title + '...' : listing.title}</h1></Link> */}
