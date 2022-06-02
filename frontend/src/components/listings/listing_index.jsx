@@ -9,16 +9,17 @@ class ListingIndex extends React.Component {
 
 
     componentDidMount() {
-        // let filter = {}
         
         this.props.requestListings()
-        console.log('mount',this.props)
+        console.log('am I here?')
     }
 
     render() {
         //i'm assuming i have all the listings passed in container
         const { listings } = this.props
-        console.log(listings, 'hehehe');
+        if (!listings){
+            return null
+        }
         return(
             <div>
                 {listings.map(listing => (
