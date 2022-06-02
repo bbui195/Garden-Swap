@@ -21,7 +21,7 @@ export default () => (
         <Switch>
             <AuthRoute exact path='/login' component={LogInContainer}  />
             <AuthRoute exact path='/signup' component={SignUpContainer} />
-            <Route exact path='/reviews/' component={ReviewFormContainer} />
+            <Route exact path='/reviews/new' component={ReviewFormContainer} />
             <Route exact path='/category/:categoryid' component={ListingCategoryIndex} />
             <Route exact path='/listing/show' component={ListingShow} />
             <Route exact path='/listingForm' component={ListingForm} />
