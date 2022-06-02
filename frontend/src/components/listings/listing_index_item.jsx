@@ -22,7 +22,7 @@ class ListingIndexItem extends React.Component {
     render() {
         const {listing} = this.props
         return( 
-            <Link to="" className='listing-container'>
+            <Link to={`/listing/${listing.id}`} className='listing-container'>
                 <img src={listing.photoUrls}/>               
                 <p className='title'>{listing.title}</p> 
                 <p>{listing.price}</p>    

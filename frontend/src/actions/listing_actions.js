@@ -44,8 +44,8 @@ export const testMakeListing = listing => dispatch => {
      .then(listing => dispatch(createListing(listing)))
 }
 
-export const requestListings = listings => dispatch => {
-    return listingApiUtils.fetchListings(listings)
+export const requestListings = () => dispatch => {
+    return listingApiUtils.fetchListings()
         .then(listings => dispatch(receiveListings(listings.data)) )
 }
 
