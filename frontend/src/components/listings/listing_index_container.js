@@ -10,7 +10,7 @@ const toArray = vals => {
     }
 }
 
-const mSTP = state => { 
+const mSTP = (state,ownProps) => { 
     return {
         //i'm assuming i have all the listings from enttiies
         listings: toArray(state.entities.listings),

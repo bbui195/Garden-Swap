@@ -9,7 +9,10 @@ class ListingIndex extends React.Component {
 
 
     componentDidMount() {
+        // let filter = {}
+        
         this.props.requestListings()
+        console.log('mount',this.props)
     }
 
     render() {

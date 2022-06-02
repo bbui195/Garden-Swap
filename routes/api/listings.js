@@ -18,10 +18,30 @@ const Aws = require('aws-sdk');
     delete
 */
 
+function formatListings(listings) {
+    let returnData = {};
+    listings.forEach((listing) => {
+        listing.price = listing.price.$numberDecimal;
+        // returnData[listing.id] = listing;
+        returnData[listing.id] = {
+            id: listing.id,
+            body: listing.body,
+            category: listing.category,
+            location: listing.location,
+            photoUrls: listing.photoUrls,
+            title: listing.title,
+            postedAt: listing.createdAt
+        }
+    });
+    return returnData;
+}
+
 router.get('/', (req, res) => {
     Listing.find()
         // .sort({ date: -1 })
-        .then(listings => res.json(listings))
+        .then(listings => {
+            res.json(formatListings(listings));
+        })
         .catch(err => res.status(404).json( { nolistingsfound: 'No listings found'}));
 });
 
@@ -38,7 +58,17 @@ router.get('/:id', (req, res) => {
     Listing.findById(req.params.id)
         .then(listing => res.json(listing))
         .catch(err =>
-            res.status(404).json({ notweetfound: 'No listing found with that ID'})
+            res.status(404).json({ nolistingfound: 'No listing found with that ID'})
+        )
+});
+
+router.get('/category/:category', (req, res) => {
+    Listing.find({ category: req.params.category })
+        .then(listings => {
+            res.json(formatListings(listings));
+        })
+        .catch(err =>
+            res.status(404).json({ nolistingfound: 'No listing found with that ID'})
         )
 });
 
@@ -52,7 +82,7 @@ router.post('/',
         }
 
         const newListing = new Listing({
-            userId: req.user.id,
+            userId: mongoose.Types.ObjectId.fromString(req.user.id),
             title: req.body.title,
             body: req.body.body,
             photoUrls: req.body.photoUrls,
@@ -76,7 +106,7 @@ router.delete('/:id',
                     Listing.deleteOne({_id: req.params.id})
                         .then(() => res.json({deleted: true}))
                 }
-            }).catch(err => res.status(404).json({ notweetfound: 'No listing found with that ID'}))
+            }).catch(err => res.status(404).json({ nolistingfound: 'No listing found with that ID'}))
     }
 )
 
@@ -103,7 +133,7 @@ passport.authenticate('jwt', { session: false }),
                         .then(list => res.json(listing))
                         .catch(err => res.status(400).json({ failedupdate: 'Failed to update listing'}))
                 }
-            }).catch(err => res.status(404).json({ notweetfound: 'No listing found with that ID'}))
+            }).catch(err => res.status(404).json({ nolistingfound: 'No listing found with that ID'}))
     }
 )
 
