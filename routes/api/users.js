@@ -25,6 +25,7 @@ router.get("/:id",
                             rating: Math.ceil(Math.random() * 5).toString(),
                             listings: listings.map(listing => {
                                 return {
+                                    userId: listing.userId,
                                     id: listing.id,
                                     body: listing.body,
                                     category: listing.category,
