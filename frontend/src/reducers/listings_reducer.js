@@ -17,12 +17,12 @@ const listingReducer = (oldState = {}, action) => {
             //this is because our make listing action in the listing_action has 
             //CREATE_NEW_LISTING instead of receive_Listing
         case RECEIVE_LISTINGS:
-            nextState.listings = action.listings
+            nextState = action.listings
             return nextState
         case RECEIVE_LISTING:
-            nextState.listings[action.listing.id]= Object.assign({},action.listing)
+            nextState[action.listing.id]= Object.assign({},action.listing)
         case DELETE_LISTING:
-            delete nextState.listings[action.listing.id]
+            delete nextState[action.listing.id]
             return nextState
         case UPDATE_LISTING:
             nextState[action.listing.id] = Object.assign({},action.listing)

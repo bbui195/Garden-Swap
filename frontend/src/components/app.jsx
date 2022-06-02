@@ -15,6 +15,7 @@ import ListingCategoryIndex from './category/listing_category_index_container';
 import ListingIndexContainer from './listings/listing_index_container';
 import InboxContainer from './messaging/inbox_container';
 import ConversationContainer from "./messaging/conversation_container";
+import ListingShow from "./listings/listing_show_container";
 
 export default () => (
     <div className="app-container">
@@ -28,6 +29,7 @@ export default () => (
             <Route exact path='/user/show' component={UserShowContainer}/>
             <Route exact path='/listingForm' component={ListingForm} />
             <Route exact path= '/user/inbox' component={InboxContainer}/>
+            <Route exact path='/listing/:listingId' component={ListingShow}/>
             <Route exact path="/user/inbox/:sender" component={ConversationContainer}/>
             <Route exact path='/test' component={Test} />
             {/* <Route exact path='/test' component={useGeoLocation} /> */}
