@@ -13,6 +13,7 @@ import Test from "./geo/geo";
 import ListingCategoryIndex from './category/listing_category_index_container'
 import ListingIndexContainer from './listings/listing_index_container'
 import ListingShow from "./listings/listing_show";
+import UserShowContainer from './users/user_show_container'
 
 export default () => (
     <div className="app-container">
@@ -27,9 +28,10 @@ export default () => (
             <Route exact path='/listingForm' component={ListingForm} />
             <Route exact path='/test' component={Test} />
             <Route exact path='/userProfile' />
+            <Route exact path='/users/:userId' component={UserShowContainer} />
             {/* <Route exact path='/test' component={useGeoLocation} /> */}
             {/* <Route exact path = '/' component={Home} /> */}
-            <Route exact path = '/' component={ListingIndexContainer} />
+            <Route exact path ='/' component={ListingIndexContainer} />
             {/* <Route path="*" component={NotFoundPage} /> */}
             <Redirect to='/' />
         </Switch>
