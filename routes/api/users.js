@@ -31,7 +31,8 @@ router.get("/:id",
                                     location: listing.location,
                                     photoUrls: listing.photoUrls,
                                     title: listing.title,
-                                    postedAt: listing.createdAt
+                                    postedAt: listing.createdAt,
+                                    price: listing.price.toString()
                                 }
                             })
                         });
