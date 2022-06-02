@@ -6,8 +6,20 @@ class ListingShow extends React.Component {
     }
 
     componentDidMount(){
-        console.log(this.props.listingId, "listingId???")
         this.props.requestListing(this.props.listingId)
+    }
+
+    renderEditDelete(){
+        if (this.props.currentUser.id === this.props.listingId){
+            return (
+                <>
+                    <li><button>Edit</button></li>
+                    <li><button>Delete</button></li>
+                </>
+            )
+        }else{
+            return null
+        }
     }
 
     render() {
@@ -16,12 +28,14 @@ class ListingShow extends React.Component {
             return null
         }
         return (
-            <div className='listing-container'>
+            <div className='listing-show-container'>
                 <p>{this.props.listing.title}</p>
                 <ul>
                     <li><img src={this.props.listing.photoUrls}/></li>
                     <li>{this.props.listing.body}</li>
                     <li>{this.props.listing.category}</li>
+                    <li>{this.props.listing.price}</li>
+
                 </ul>
             </div>
         )
