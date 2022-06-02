@@ -10,6 +10,8 @@ import useGeoLocation from "../hooks/useGeoLocation";
 import ListingForm from './listings/listing_form_container';
 import ReviewFormContainer from './reviews/create_review_form_container'
 import Test from "./geo/geo";
+import ListingCategoryIndex from './category/listing_category_index_container'
+import ListingIndexContainer from './listings/listing_index_container'
 
 export default () => (
     <div className="app-container">
@@ -18,11 +20,14 @@ export default () => (
             <AuthRoute exact path='/login' component={LogInContainer}  />
             <AuthRoute exact path='/signup' component={SignUpContainer} />
             <Route exact path='/reviews/' component={ReviewFormContainer} />
+            <Route exact path='/category/:categoryid' component={ListingCategoryIndex} />
+            <Route exact path='/listingForm' component={ListingForm} />
             <Route exact path='/listingForm' component={ListingForm} />
             <Route exact path='/test' component={Test} />
             <Route exact path='/userProfile' />
             {/* <Route exact path='/test' component={useGeoLocation} /> */}
-            <Route exact path = '/' component={Home} />
+            {/* <Route exact path = '/' component={Home} /> */}
+            <Route exact path = '/' component={ListingIndexContainer} />
             {/* <Route path="*" component={NotFoundPage} /> */}
             <Redirect to='/' />
         </Switch>

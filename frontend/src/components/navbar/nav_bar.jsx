@@ -7,6 +7,10 @@ import { useEffect } from "react";
 import { BiLogOut, BiImageAdd } from "react-icons/bi";
 
 export default ({ currentUser, logoutUser}) => {
+    
+    const categories = [
+        'Fruit', 'Vegetables', 'Nuts', 'Dairy', 'Meats', 'Grains'
+    ]
 
     const session = currentUser ? (
         <div className="profile-dropdown" onClick={toggleDropDown}>
@@ -86,7 +90,14 @@ export default ({ currentUser, logoutUser}) => {
                     <div>{session}</div> 
                 </div>
                 <div>
-                    <p className='cats'>Categories</p>
+                    <ul className='cats'>
+                        {categories.map(category => {
+                                return (
+                                    <Link to={`/category/${category}`}>{category}</Link>
+                                )
+                            })
+                        }
+                    </ul>
                 </div>
                
             </header>

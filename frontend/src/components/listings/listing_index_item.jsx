@@ -24,8 +24,8 @@ class ListingIndexItem extends React.Component {
         const {listing} = this.props
         return( 
             <div>
-                <p>Listing items temp</p>
-                
+                <p>{listing.title}</p>
+                    
                    {/* <Link to={`/listing/${listing.id}`}> src={listing.photoUrls} alt="" /></Link> */}
                    {/* <Link to={`/listing/${listing.id}`}><h1>{listing.title.length > 102 ? listing.title + '...' : listing.title}</h1></Link> */}
                    {/* <p>{listing.location}</p> */}
