@@ -17,6 +17,7 @@
         text-decoration: none;
         color: black;
         box-sizing: border-box;
+        
 
         img{
             max-width: 100%;
@@ -24,6 +25,10 @@
             object-fit: cover;
             border-radius: 20px;
             border: 2px solid black;
+        }
+
+        img:hover {
+            box-shadow: 1px 1px 5px 1px ;
         }
 
         .title {
@@ -43,11 +48,11 @@
             margin-top: 10px;
         }
 
-    }
-
-    .listing-container:hover {
+      
 
     }
+
+
 }
 
 @media only screen and (max-width: 850px) {
