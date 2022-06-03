@@ -12,29 +12,31 @@ class ReviewForm extends React.Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleRating = this.handleRating.bind(this)
-    }
+    };
 
     handleSubmit(e) {
         e.preventDefault()
         this.props.action(this.state).then(this.props.history.push(`/users/${this.state.userId}`))
-    }
+    };
 
     handleRating(rating) {
         this.setState({...this.state,rating})
-    }
+    };
 
     handleChange(field) {
         return e => {
             this.setState({...this.state,[field]: e.currentTarget.value})
         }
-    }
+    };
 
     render() {
         return (
             <div className='review-form-container'>
-                <h1>{this.props.formType}</h1>
-                <h2>Overall Rating</h2>
-                <Rating updateStars={this.handleRating} />
+                <h1 className='form-title'>{this.props.formType}</h1>
+                <div className='overall-rating'>
+                    <Rating updateStars={this.handleRating} className='stars-component' />
+                </div>
+                
                 <form className='review-form' onSubmit={this.handleSubmit}>
                     <label htmlFor="written-review"><h2>Add a written review</h2></label>
                     <textarea 
@@ -42,12 +44,12 @@ class ReviewForm extends React.Component {
                         id="written-review"
                         value={this.state.body} 
                         onChange={this.handleChange('body')}
-                        />
+                    />
                     <input type="submit" className='submit-form' value='Submit'/>
                 </form>
             </div>
         )
     }
-}
+};
 
-export default ReviewForm
+export default ReviewForm;

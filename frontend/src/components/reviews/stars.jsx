@@ -31,7 +31,7 @@ class Rating extends React.Component {
                             />
                         <IoIosStar 
                             className='star'
-                            color={ratingValue <= (this.state.hover || this.state.rating) ? "rgb(250,156,27)" : "lightgray"}     
+                            color={ratingValue <= (this.state.hover || this.state.rating) ? "black" : "lightgray"}     
                             onMouseEnter={(() => this.setState({hover: ratingValue}))}
                             onMouseLeave={()=> this.setState({hover: null})}
                             />

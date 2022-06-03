@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import words from "../../assets/images/words.png";
 import cabbage from "../../assets/images/cabbage.png";
 import profilePic from "../../assets/images/prof-placeholder.png"
 import { useEffect } from "react";

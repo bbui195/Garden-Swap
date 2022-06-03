@@ -1,0 +1,47 @@
+.review-form-container{
+    margin-top: 10rem;
+    margin-bottom: 2rem;
+    min-height: 30rem;
+    width: 40%;
+    background-color: $light-orange;
+    color: black;
+    font-family: 'Comfortaa', cursive;  
+    border-radius: 25px;
+    box-sizing: border-box;
+    padding: 2rem;
+    box-shadow: 0px 0px 10px #656565;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+
+    input[type='radio'] {
+        display: none;
+    }
+
+    .form-title {
+        font-size: 24px;
+        margin-bottom: 1rem;
+    }
+
+    .overall-rating {
+        width: 100%;
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .stars-component {
+        // width: 50px;
+    }
+
+    #written-review {
+        font-family: 'Comfortaa', cursive;  
+        height: 5rem;
+        width: 100%;
+        font-size: 18px;
+        padding: 10px;
+        border-radius: 15px;
+    }
+
+}
