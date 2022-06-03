@@ -6,6 +6,10 @@
     justify-content: center;
     align-items: center;
     
+    input[type='radio'] {
+        display: none;
+    }
+
     .user-info-container{
         height: 100%;
         border-radius: 25px;
@@ -46,10 +50,11 @@
 
         .rating {
             margin-top: 1rem;
+            margin-bottom: 1rem;
         }
 
         .leave-review {
-            margin-top: 1rem;
+            margin-bottom: 1rem;
             color: $wintergreen-dream;
             border: 2px solid black;
             padding: 10px 15px 10px 15px;
@@ -63,4 +68,47 @@
             transform: scale(1.05);
         }
     }
+}
+
+.user-reviews-container {
+    width: 90%;
+    color: black;
+    border: solid 1px black;
+
+    .user-review {
+        margin-bottom: 1rem;
+        margin-left: 1rem;
+    }
+
+    .rating {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+
+    .buttons {
+        margin-bottom: 1rem;
+
+        button {
+            padding: 10px;
+            background-color: black;
+            color: white;
+            border-radius: 20px;
+            border: none;
+            margin-right: 1rem;
+            margin-left: 1rem;
+            transition: all 200ms ease;
+        }
+
+        button:hover {
+            transform: scale (1.1);
+        }
+    }
+}
+
+.user-reviews-container:first-of-type {
+    border-radius: 20px 20px 0 0 ;
+}
+
+.user-reviews-container:last-of-type {
+    border-radius: 0 0 20px 20px;
 }
