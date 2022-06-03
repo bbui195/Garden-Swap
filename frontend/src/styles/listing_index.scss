@@ -1,21 +1,25 @@
 .listing-index-container {
-
     display: grid;
-    grid-template-columns: repeat(4, 15rem);
+    justify-content: center;
+    grid-template-columns: repeat(4, 22%);
     grid-template-rows: auto;
     gap: 2rem;
     margin-top: 10rem;
     margin-bottom: 3rem;
     box-sizing: border-box;
+    width: 85%;
     padding: 30px;
     border-radius: 25px;
     background-color: $light-orange;
+    box-shadow: 0px 0px 10px #656565;
+
 
     .listing-container {
         margin-bottom: 3rem;
         text-decoration: none;
         color: black;
         box-sizing: border-box;
+        
 
         img{
             max-width: 100%;
@@ -23,6 +27,10 @@
             object-fit: cover;
             border-radius: 20px;
             border: 2px solid black;
+        }
+
+        img:hover {
+            box-shadow: 1px 1px 5px 1px ;
         }
 
         .title {
@@ -42,5 +50,37 @@
             margin-top: 10px;
         }
 
+      
+
+    }
+
+
+}
+
+@media only screen and (max-width: 850px) {
+    .listing-index-container {
+        grid-template-columns: repeat(2, 40%);
+        grid-template-rows: 200px;
+    }
+}
+
+@media only screen and (max-width: 533px) {
+    .listing-index-container {
+        grid-template-columns: repeat(1, 70%);
+        grid-template-rows: 200px;
+
+        .listing-container {
+            margin-bottom: 5rem;
+        }
+    }
+}
+
+@media only screen and (max-width: 533px) {
+    .listing-index-container {
+        
+
+        .listing-container {
+            margin-bottom: 7rem;
+        }
     }
 }

@@ -10,6 +10,7 @@
     box-sizing: border-box;
     width: 100vw;
     border-top: 1px solid rgb(221, 248, 148);
+    box-sizing: border-box;
 
 
     .grid1 {
@@ -65,7 +66,7 @@
         border-radius: 10px;
         border: 1px solid rgb(221, 248, 148);
         box-shadow: 0px 0px 10px rgb(221, 248, 148);
-
+        transform: translateX(-14%);
     }
 
     .bottom {
