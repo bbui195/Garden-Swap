@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom'
 
 class ListingShow extends React.Component {
     constructor(props) {
         super(props)
-        // this.renderEditDelete = this.renderEditDelete.bind(this);
+        this.renderEditDelete = this.renderEditDelete.bind(this);
     }
 
     componentDidMount(){
@@ -14,18 +15,18 @@ class ListingShow extends React.Component {
 
     }
 
-    // renderEditDelete(){
-    //     if (this.props.currentUser.id === this.props.listing.userId){
-    //         // return (
-    //         //     // <>
-    //         //     //     <li><button onClick={this.handleEdit}>Edit</button></li>
-    //         //     //     <li><button onClick={this.handleDelete}>Delete</button></li>
-    //         //     // </>
-    //         // )
-    //     }else{
-    //         return null
-    //     }
-    // }
+    renderEditDelete(){
+        if (this.props.currentUser.id === this.props.listing.userId){
+            return (
+                <>
+                    <li><Link to={`/listing/edit/${this.props.listingId}`}>Edit</Link></li>
+                    <li><button onClick={this.handleDelete}>Delete</button></li>
+                </>
+            )
+        }else{
+            return null
+        }
+    }
 
     render() {
         console.log(this.props.listing, "this is the listing on the show page")
@@ -40,7 +41,7 @@ class ListingShow extends React.Component {
                     <li>{this.props.listing.body}</li>
                     <li>{this.props.listing.category}</li>
                     <li>{this.props.listing.price}</li>
-                    {/* {this.renderEditDelete()} */}
+                    {this.renderEditDelete()}
                 </ul>
             </div>
         )

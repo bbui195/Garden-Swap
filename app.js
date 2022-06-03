@@ -25,6 +25,8 @@ app.use(passport.initialize());
 require('./config/passport')(passport);
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
+// app.use(upload.array());
+// app.use(express.static('public'));
 app.use("/api/users", users);
 app.use("/api/listings", listings);
 app.use("/api/reviews", reviews);

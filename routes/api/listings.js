@@ -5,10 +5,29 @@ const mongoose = require("mongoose");
 const passport = require('passport');
 require('dotenv').config()
 
-const validateCreateListingInput = require('../../validation/listings');
+
+const validateListingInput = require('../../validation/listings');
 
 const multer = require('multer');
 const Aws = require('aws-sdk');
+
+const storage = multer.memoryStorage({
+    destination: function (req, file, cb) {
+        cb(null, '')
+    }
+})
+
+const filefilter = (req, file, cb) => {
+    if (file.mimetype === 'image/jpeg' || 
+        file.mimetype === 'image/jpg' || 
+        file.mimetype === 'image/png') {
+        cb(null, true)
+    } else {
+        cb(null, false)
+    }
+}
+
+const upload = multer({ storage: storage, fileFilter: filefilter });
 
 /*
     show
@@ -116,23 +135,25 @@ router.delete('/:id',
 
 router.patch('/:id',
 passport.authenticate('jwt', { session: false }),
+    upload.single('listing[image]'),
     (req, res) => {
+    console.log(req.params, "this is the request");
         Listing.findById(req.params.id)
             .then(listing => {
-                if(listing.userId !== req.user.id) {
+                if(listing.userId.toString() !== req.user._id.toString()) {
                     res.status().json({ notowned: 'Current user does not own this listing' })
                 } else {
-                    const { errors, isValid } = validateListingInput(req.body);
-
+                    const { errors, isValid } = validateListingInput(req.body.listing);
                     if(!isValid) {
                         return res.status(400).json(errors);
                     }
-                    listing.title = req.body.title;
-                    listing.body = req.body.body;
-                    listing.photoUrls = req.body.photoUrls;
-                    listing.price = mongoose.Types.Decimal128.fromString(req.body.price);
-                    listing.location = req.body.location;
-                    listing.category = req.body.category;
+                    listing.userId = req.body.listing.userId;
+                    listing.title = req.body.listing.title;
+                    listing.body = req.body.listing.body;
+                    listing.photoUrls = req.body.listing.photoUrls;
+                    listing.price = mongoose.Types.Decimal128.fromString(req.body.listing.price);
+                    listing.location = req.body.listing.location;
+                    listing.category = req.body.listing.category;
                     listing.save()
                         .then(list => res.json(listing))
                         .catch(err => res.status(400).json({ failedupdate: 'Failed to update listing'}))
@@ -144,28 +165,13 @@ passport.authenticate('jwt', { session: false }),
 
 //AWS start 
 
-const storage = multer.memoryStorage({
-    destination: function (req, file, cb) {
-        cb(null, '')
-    }
-})
-
-const filefilter = (req, file, cb) => {
-    if (file.mimetype === 'image/jpeg' || 
-        file.mimetype === 'image/jpg' || 
-        file.mimetype === 'image/png') {
-        cb(null, true)
-    } else {
-        cb(null, false)
-    }
-}
 
 const bucketRegion = process.env.AWS_BUCKET_REGION
 const bucketName = process.env.AWS_BUCKET_NAME
 const accessKeyId = process.env.AWS_ACCESS_KEY
 const secretKey = process.env.AWS_SECRET_KEY
 
-const upload = multer({ storage: storage, fileFilter: filefilter });
+
 
 const s3 = new Aws.S3({
     accessKeyId: accessKeyId,              // accessKeyId that is stored in .env file
@@ -175,7 +181,7 @@ const s3 = new Aws.S3({
 
 router.post(`/image`, upload.single('listing[image]'), (req, res) => { 
     console.log(req.body, 'should log the req.body')// given data object, creates new entry
-    const { errors, isValid } = validateCreateListingInput(req.body.listing);
+    const { errors, isValid } = validateListingInput(req.body.listing);
     console.log(req.body.listing);
     console.log(req.file)
     if (!isValid) {

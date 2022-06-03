@@ -60,7 +60,7 @@
 
             .title__label {
                 position: absolute;
-                top: 65px;
+                top: 55px;
                 display: block;
                 transition: 0.2s;
                 font-size: 1rem;
@@ -70,7 +70,7 @@
             .title-input:focus {
             ~ .title__label {
                 position: absolute;
-                top: 65px;
+                top: 55px;
                 display: block;
                 transition: 0.2s;
                 font-size: 1rem;
