@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const multer = require('multer')
 const upload = multer({dest: 'uploads/'})
 const ExtractJwt = require("passport-jwt").ExtractJwt;
+const jwt_decode = require("jwt-decode");
 
 const { uploadFile } = require('./s3')
 
@@ -43,11 +44,16 @@ const io = new Server(server, {
 
 // console.log(io);
 // io = new io.Server(server);
-// messages.io = io;
+messages.io = io;
+io.connectedUsers = {};
 io.on('connection', (socket) => {
     // console.log(socket);
     // console.log(socket.handshake.headers.token.split(" ")[1]);
-    console.log(ExtractJwt.fromAuthHeaderAsBearerToken()(socket.handshake.headers.token));
+    console.log(jwt_decode(socket.handshake.headers.token)); // user that just connected
+    let user = jwt_decode(socket.handshake.headers.token);
+    io.connectedUsers[user.id] = socket.id;
+    console.log(io.connectedUsers);
+    io.to(socket.id).emit("testing 123");
 })
 
 server.listen(5001, () => {
