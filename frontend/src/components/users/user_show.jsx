@@ -23,7 +23,8 @@ class UserShow extends React.Component {
         }
 
         const userId = this.props.match.params.userId 
-        console.log(this.props)
+        console.log('props',this.props)
+        console.log('reviews',Object.values(this.props.reviews))
         const userData = Object.values(this.props.user)[0]
         // const userListings = userData.listings
         // console.log(userData)
@@ -48,7 +49,25 @@ class UserShow extends React.Component {
                             <ListingIndex listing={listing} />
                         ))}
                     </div> */}
+
                     <Link to={`/reviews/${this.props.match.params.userId}/new`}>Create Review</Link>
+
+                    {Object.values(this.props.reviews??{}).map((review,idx) => 
+                    {
+                        return <div>
+                            <p>{review.timestamps}</p>
+                            <p>{review.rating}</p>
+                            <p>{review.body}</p>
+
+                            {review.userId === this.props.UserSession.id ?
+                            <div>
+                                <button onClick={()=>this.handleRemove(review)}>Delete Review</button>
+                                <Link to={`/reviews/${review.id}/edit`}>Edit Button</Link>
+                            </div>
+                            : null
+                    }
+                        </div>     
+                    })}
                 </ul>
             </div>
 
