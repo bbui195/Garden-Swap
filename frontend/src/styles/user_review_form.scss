@@ -1,7 +1,7 @@
 .review-form-container{
     margin-top: 10rem;
     margin-bottom: 2rem;
-    min-height: 30rem;
+    min-height: 21rem;
     width: 40%;
     background-color: $light-orange;
     color: black;
@@ -11,8 +11,8 @@
     padding: 2rem;
     box-shadow: 0px 0px 10px #656565;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    // justify-content: center;
+    // align-items: center;
     flex-direction: column;
 
 
@@ -29,19 +29,46 @@
         width: 100%;
         display: flex;
         align-items: flex-end;
+        justify-content: space-around;
+        align-items: center;
     }
 
     .stars-component {
         // width: 50px;
+        cursor: pointer;
     }
 
     #written-review {
         font-family: 'Comfortaa', cursive;  
-        height: 5rem;
-        width: 100%;
+        height: 6rem;
+        width: 94%;
         font-size: 18px;
         padding: 10px;
         border-radius: 15px;
     }
 
+    .submit-form-btn {
+        height: 45px;
+        width: 60%;
+        margin-left: 20%;
+        margin-top: 2rem;
+        border-radius: 3rem;
+        background-color: black;
+        color: white;
+        transition: all 200ms ease;
+        cursor: pointer;
+        font-size: 18px;
+        font-family: 'Comfortaa', cursive;  
+        border: none;
+    }
+
+    .submit-form-btn:hover {
+        transform: scale(1.05);
+        background-color: rgb(54, 54, 54);
+    }
+
+}
+
+.rating {
+    cursor: pointer;
 }

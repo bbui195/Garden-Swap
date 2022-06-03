@@ -28,7 +28,7 @@ export default () => (
             <AuthRoute exact path='/signup' component={SignUpContainer} />
             <Route exact path='/reviews/:userId/new' component={ReviewFormContainer} />
             <Route exact path='/category/:categoryid' component={ListingCategoryIndex} />
-            <Route exact path='/listing/show' component={ListingShow} />
+            <Route exact path='/listing/:listingId' component={ListingShow} />
             <Route exact path='/listingForm' component={ListingForm} />
             <Route exact path='/listingForm' component={ListingForm} />
             <Route exact path='/users/:userId' component={UserShowContainer}/>
