@@ -1,21 +1,29 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import ListingIndex from '../listings/listing_index'
+import EditReviewForm from '../reviews/edit_review'
+import { patchReview } from '../../actions/review_action'
+
 
 class UserShow extends React.Component {
     constructor(props) {
         super(props)
+        this.state = {
+            reviewId: '',
 
-        // this.handleRemove = this.handleRemove.bind(this)
+        }
+        this.handleRemove = this.handleRemove.bind(this)
     }
 
     componentDidMount() {
         this.props.requestUser(this.props.match.params.userId)
+        this.props.requestReview(this.props.match.params.userId)
     }
 
-    // handleRemove(review) {
-    //     this.props.deleteReview(review.id)
-    // }
+    handleRemove(review) {
+        console.log('review',review)
+        this.props.deleteReview(review._id)
+    }
 
     render() {
         if (!this.props.user){
@@ -35,7 +43,8 @@ class UserShow extends React.Component {
         if (!userData.listings) {
             return null
         }
-       
+        
+        console.log('user-show',this.props)
         return(
             <div className='user-show-container'>
                 <ul className='user-info-container'>
@@ -54,15 +63,18 @@ class UserShow extends React.Component {
 
                     {Object.values(this.props.reviews??{}).map((review,idx) => 
                     {
+                        
                         return <div>
-                            <p>{review.timestamps}</p>
-                            <p>{review.rating}</p>
-                            <p>{review.body}</p>
+                            {review._id === this.state.reviewId ?  <EditReviewForm review={review} action={patchReview} />: <>
+                                <p>{review.timestamps}</p>
+                                <p>{review.rating}</p>
+                                <p>{review.body}</p>
+                            </>}
 
-                            {review.userId === this.props.UserSession.id ?
+                            {review.userId === this.props.userSession.id ?
                             <div>
                                 <button onClick={()=>this.handleRemove(review)}>Delete Review</button>
-                                <Link to={`/reviews/${review.id}/edit`}>Edit Button</Link>
+                                <button onClick={()=>this.setState({reviewId: review._id})}>Edit Button</button>
                             </div>
                             : null
                     }

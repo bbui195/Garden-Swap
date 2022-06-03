@@ -9,6 +9,7 @@ class ListingIndex extends React.Component {
 
     componentDidMount() {
         this.props.requestListings()
+        
     }
 
     render() {
