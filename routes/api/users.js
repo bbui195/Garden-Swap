@@ -42,7 +42,7 @@ router.get("/:id",
     }
 )
 
-router.get("/current", passport.authenticate("jwt", {session: false}), (req, res) => {
+router.get("/current/user", passport.authenticate("jwt", {session: false}), (req, res) => {
     res.json({
         id: req.user.id,
         username: req.user.username
