@@ -1,31 +1,14 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { requestReview, patchReview } from '../../actions/review_action'
-import ReviewForm from './leave_review_form'
 import {withRouter} from 'react-router-dom'
+import EditReviewForm from './edit_review'
 
-class EditReviewForm extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-
-    componentDidMount() {
-        this.props.getReview(this.props.match.params.reviewId)
-    }
-
-    render() {
-
-        if (!this.props.review) return null;
-        return (
-            <ReviewForm
-                {...this.props}
-            />
-        )
-    }
-}
 
 const mSTP = (state,ownProps) =>
+
 {
+    console.log('state',state)
     return {
         formType: 'Edit Form',
         review: state.entities.reviews[ownProps.match.params.reviewId]

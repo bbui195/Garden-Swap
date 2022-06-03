@@ -2,7 +2,7 @@ import React from 'react'
 import Rating from './stars'
 
 
-class ReviewForm extends React.Component {
+class EditReviewForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -16,7 +16,7 @@ class ReviewForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        this.props.action(this.state).then(this.props.history.push(`/users/${this.state.userId}`))
+        this.props.action(this.state)
     }
 
     handleRating(rating) {
@@ -32,6 +32,7 @@ class ReviewForm extends React.Component {
 
 
     render() {
+        console.log('edit page',this.props)
         return (
             <>
                 <div>
@@ -56,4 +57,4 @@ class ReviewForm extends React.Component {
     }
 }
 
-export default ReviewForm
+export default EditReviewForm

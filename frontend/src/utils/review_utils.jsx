@@ -4,12 +4,12 @@ export const fetchReviews = () => {
     return axios.get('api/reviews/')
 }
 
-export const fetchReview = reviewId => {
-    return axios.get(`/api/reviews/${reviewId}`)
+export const fetchReview = userId => {
+    return axios.get(`/api/reviews/${userId}`)
 }
 
 export const createReview = review => {
-    return axios.post('/api/review/',review)
+    return axios.post('/api/reviews/',review)
 }
 
 export const deleteReview = reviewId => {
