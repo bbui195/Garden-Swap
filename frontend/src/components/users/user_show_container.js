@@ -7,7 +7,8 @@ import { requestUser } from '../../actions/user_action'
 const mSTP = state => { 
     return {
         user: state.entities.users,
-        userSession: state.session.currentUser
+        userSession: state.session.currentUser,
+        reviews: state.entities.reviews
     }
 }
 
