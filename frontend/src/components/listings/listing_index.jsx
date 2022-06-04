@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import ListingIndexItem from './listing_index_item'
 
 class ListingIndex extends React.Component {
@@ -9,12 +8,12 @@ class ListingIndex extends React.Component {
 
 
     componentDidMount() {
-        
         this.props.requestListings()
-        console.log('am I here?')
+        
     }
 
     render() {
+        // console.log('current',this.props)
         const { listings } = this.props
         if (!listings){
             return null

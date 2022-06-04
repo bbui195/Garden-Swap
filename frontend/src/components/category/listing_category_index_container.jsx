@@ -8,18 +8,26 @@ class ListingCategoryIndex extends React.Component {
         super(props)
     }
 
-    componentDidMount() {
         // console.log('index container',this.props)
         // console.log(this.props.match.params)
         // const listings = this.props.requestListings()
         // {category: this.props.match.params.category})
-        console.log('listings?',this.props.entities.listings.listings)
-    }
+        // console.log('listings?',this.props.entities.listings.listings)
+    
     render() {
+
+        let listings =  Object.values(this.props.listings)
+        let category = this.props.match.params.categoryId.toLowerCase()
+
+        listings = listings.filter(listing => (
+            listing.category === category
+        ))
         return (
-            <>
-            <p>hi</p>
-            </>
+            <div className='listing-index-container'>
+            {listings.map(listing => (
+            <ListingIndexItem key={listing.id} listing={listing} />
+            ))}
+            </div>
         )
     }
 }

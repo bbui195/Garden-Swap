@@ -14,36 +14,35 @@ const validateReviewInput = require('../../validation/reviews');
     create
     update
     delete
-*/
-
-router.get('/:userId', (req, res) => {
+    */
+   
+    router.get('/:userId', (req, res) => {
     User.findById(req.params.userId)
-        .then(user => {
-            Review.find({ userId: user.id})
-                .then(reviews => {
-                    res.json({
-                        reviews
-                    });
-                });
-        }).catch(err => res.status(404).json({ nouserfound: 'No user found with that ID'}))
+    .then(user => {
+        Review.find({ userId: user.id})
+        .then(reviews => {
+            res.json({
+                reviews
+            });
+        });
+    }).catch(err => res.status(404).json({ nouserfound: 'No user found with that ID'}))
 });
 
 router.post('/',
-    passport.authenticate('jwt', { session: false }),
-    (req, res) => {
+passport.authenticate('jwt', { session: false }),
+(req, res) => {
         const { errors, isValid } = validateReviewInput(req.body);
 
         if(!isValid) {
             return res.status(400).json(errors);
         }
-
+        console.log('mongoose',mongoose.Types.ObjectId)
         const newReview = new Review({
             reviewerId: req.user.id,
-            userId: mongoose.Types.ObjectId.fromString(req.body.userId),
+            userId: mongoose.Types.ObjectId(req.body.userId),
             body: req.body.body,
             rating: req.body.rating
         });
-
         newReview.save().then(review => res.json(review));
     }
 )

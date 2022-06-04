@@ -34,9 +34,9 @@ class ListingShow extends React.Component {
             return null
         }
         return (
-            <div className='listing-show-container'>
-                <p>{this.props.listing.title}</p>
-                <ul>
+            <div className='listings-show-container'>
+                <h1 className='title'>{this.props.listing.title}</h1>
+                <ul >
                     <li><img src={this.props.listing.photoUrls}/></li>
                     <li>{this.props.listing.body}</li>
                     <li>{this.props.listing.category}</li>

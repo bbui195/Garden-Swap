@@ -24,7 +24,7 @@ const reviewReducer = (oldState = {}, action) => {
             nextState[action.review.id] = action.review
             return nextState
         case RECEIVE_REVIEW:
-            nextState[action.review.id] = action.review
+            nextState = action.review.data.reviews
             return nextState         
         default:
             return oldState;
