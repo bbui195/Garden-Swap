@@ -63,9 +63,9 @@ class UserShow extends React.Component {
 
                     {Object.values(this.props.reviews??{}).map((review,idx) => 
                     {
-                        
+                        console.log('access to what',this.props)
                         return <div>
-                            {review._id === this.state.reviewId ?  <EditReviewForm review={review} action={patchReview} />: <>
+                            {review._id === this.state.reviewId ?  <EditReviewForm review={review} action={this.props.action}  />: <>
                                 <p>{review.timestamps}</p>
                                 <p>{review.rating}</p>
                                 <p>{review.body}</p>
