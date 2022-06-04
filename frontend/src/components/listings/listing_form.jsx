@@ -85,8 +85,8 @@ class ListingForm extends React.Component {
                         <div className='price-cat-container'>
                             <input 
                                 type="number" 
-                                min="1" 
-                                step="any" 
+                                min="1.00" 
+                                step="1.00" 
                                 placeholder='$0.00'
                                 className='price-input'
                             />
