@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import words from "../../assets/images/words.png";
 import cabbage from "../../assets/images/cabbage.png";
 import profilePic from "../../assets/images/prof-placeholder.png"
 import { useEffect } from "react";
 import { BiLogOut, BiImageAdd } from "react-icons/bi";
 import { FiInbox } from "react-icons/fi";
+import johnProf from "../../assets/images/john-prof.jpeg"
+
 
 export default ({ currentUser, logoutUser}) => {
     
@@ -15,13 +16,13 @@ export default ({ currentUser, logoutUser}) => {
 
     const session = currentUser ? (
         <div className="profile-dropdown" onClick={toggleDropDown}>
-            <img src={profilePic} className='prof' />
+            <img src={johnProf} className='prof' />
             <div className='dropdown-content'>
                 <div className='username-container'>
                     Hi, {currentUser.username}
                 </div>
-                <Link className='user-profile-container' to="/user/show">
-                    <img src={profilePic} className='prof' />
+                <Link className='user-profile-container' to={`/users/${currentUser.id}`}>
+                    <img src={johnProf} className='prof' />
                     <span>Profile</span> 
                 </Link>
                 <Link className='add-listing-container' to='/listingForm'>
@@ -94,7 +95,7 @@ export default ({ currentUser, logoutUser}) => {
                     </div>
                     <div>{session}</div> 
                 </div>
-                <div>
+                <div className='bottom-line'>
                     <ul className='cats'>
                         {categories.map(category => {
                                 return (
