@@ -65,6 +65,7 @@ class EditListingForm extends React.Component {
 
     handleSubmit(e){
         e.preventDefault();
+        console.log(this.state, 'this is the state')
         this.props.patchListing(this.handleFormData())
             .then(this.props.history.push('/'))
     }

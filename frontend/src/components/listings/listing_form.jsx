@@ -10,6 +10,7 @@ class ListingForm extends React.Component {
         this.handleFile = this.handleFile.bind(this);
         // this.setState = this.setState.bind(this);
         this.previewImage = this.previewImage.bind(this);
+        this.updateCategory = this.updateCategory.bind(this);
     }
 
     handleFile(e){
@@ -41,8 +42,17 @@ class ListingForm extends React.Component {
 
     update(field){
         return e=>{
+            console.log(field, e);
             this.setState({[field]: e.currentTarget.value})
         }
+    }
+
+    updateCategory(e) {
+        this.setState({category: e.target[e.target.selectedIndex].value},
+            () => {
+                console.log(this.state.category)
+            }
+        )
     }
 
     handleFormData(){
@@ -86,13 +96,15 @@ class ListingForm extends React.Component {
                             <input 
                                 type="number" 
                                 min="1" 
-                                step="any" 
+                                step="any"
+                                onChange={this.update('price')}
+                                value={this.state.price}
                                 placeholder='$0.00'
                                 className='price-input'
                             />
 
-                            <select name="categories" id="categories">
-                                <option selected="true" disabled="disabled">Choose Category</option>    
+                            <select onChange={this.updateCategory} name="categories" id="categories">
+                                <option selected={true} disabled="disabled">Choose Category</option>    
                                 <option value="Fruit">Fruit</option>
                                 <option value="Vegetables">Vegetables</option>
                                 <option value="Nuts">Nuts</option>

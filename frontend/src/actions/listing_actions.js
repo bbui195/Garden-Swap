@@ -61,6 +61,6 @@ export const deleteListing = id => dispatch => {
 
 export const patchListing = listing => dispatch => {
     return listingApiUtils.patchListing(listing)
-        .then(listing => dispatch(updateListing(listing)))
+        .then(listing => dispatch(updateListing(listing.data)))
 }
 

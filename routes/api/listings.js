@@ -28,7 +28,10 @@ const filefilter = (req, file, cb) => {
 }
 
 const upload = multer({ storage: storage, fileFilter: filefilter });
-
+const bucketRegion = process.env.AWS_BUCKET_REGION
+const bucketName = process.env.AWS_BUCKET_NAME
+const accessKeyId = process.env.AWS_ACCESS_KEY
+const secretKey = process.env.AWS_SECRET_KEY
 /*
     show
     index
@@ -143,20 +146,56 @@ passport.authenticate('jwt', { session: false }),
                 if(listing.userId.toString() !== req.user._id.toString()) {
                     res.status().json({ notowned: 'Current user does not own this listing' })
                 } else {
+                    console.log(listing);
                     const { errors, isValid } = validateListingInput(req.body.listing);
+                    console.log(listing);
+                    console.log('did we pass the validation?')
                     if(!isValid) {
                         return res.status(400).json(errors);
                     }
-                    listing.userId = req.body.listing.userId;
+
                     listing.title = req.body.listing.title;
                     listing.body = req.body.listing.body;
-                    listing.photoUrls = req.body.listing.photoUrls;
-                    listing.price = mongoose.Types.Decimal128.fromString(req.body.listing.price);
+                    listing.price = req.body.listing.price;
                     listing.location = req.body.listing.location;
                     listing.category = req.body.listing.category;
-                    listing.save()
-                        .then(list => res.json(listing))
-                        .catch(err => res.status(400).json({ failedupdate: 'Failed to update listing'}))
+                    listing.photoUrls = req.body.listing.photoUrls;
+                    
+                    if(req.body.listing.photoUrls.includes(".amazonaws.com/")) {
+                        listing.save()
+                            .then(listing => {
+                                console.log("saved the listing")
+                                res.json(formatListing(listing))
+                            })
+                            .catch(err => res.status(400).json({ failedupdate: 'Failed to update listing'}))
+                    } else {
+                        const params = {
+                            Bucket: bucketName,      // bucket that we made earlier
+                            Key:req.file.originalname,               // Name of the image
+                            Body:req.file.buffer,                    // Body which will contain the image in buffer format
+                            // ACL:"public-read-write",                 // defining the permissions to get the public link
+                            ContentType:"image/jpeg"                 // Necessary to define the image content-type to view the photo in the browser with the link
+                        };
+    
+                        s3.upload(params,(error, data)=>{
+                            if(error){
+                                res.status(500).send({"err":error})  // if we get any error while uploading error message will be returned.
+                                return
+                            }
+    
+                            // console.log('make it past if statement')
+                            listing.photoUrls = data.Location;
+                            // console.log(listing);
+                            listing.save()
+                                .then(listing => {
+                                    console.log("saved the listing")
+                                    res.json(formatListing(listing))
+                                })
+                                .catch(err => res.status(400).json({ failedupdate: 'Failed to update listing'}))
+                            }
+                        )
+                    }
+
                 }
             }).catch(err => res.status(404).json({ nolistingfound: 'No listing found with that ID'}))
     }
@@ -166,10 +205,7 @@ passport.authenticate('jwt', { session: false }),
 //AWS start 
 
 
-const bucketRegion = process.env.AWS_BUCKET_REGION
-const bucketName = process.env.AWS_BUCKET_NAME
-const accessKeyId = process.env.AWS_ACCESS_KEY
-const secretKey = process.env.AWS_SECRET_KEY
+
 
 
 
@@ -206,8 +242,7 @@ router.post(`/image`, upload.single('listing[image]'), (req, res) => {
             photoUrls: data.Location, //what is this??
             title: req.body.listing.title,
             body: req.body.listing.body,
-            price: req.body.listing.price, // latitude/longitude embedded
-            // may need to add locationId here
+            price: req.body.listing.price,
             userId: req.body.listing.userId,
             location: req.body.listing.location,
             category: req.body.listing.category,
