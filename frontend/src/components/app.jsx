@@ -35,8 +35,8 @@ export default () => (
             <Route exact path='/listingForm' component={ListingForm} />
             <Route exact path='/listingForm' component={ListingForm} />
             <Route exact path='/users/:userId' component={UserShowContainer}/>
-            {/* <Route exact path= '/user/inbox' component={InboxContainer}/> */}
-            {/* <Route exact path="/user/inbox/:sender" component={ConversationContainer}/> */}
+            <Route exact path= '/user/inbox' component={InboxContainer}/>
+            <Route exact path="/user/inbox/:userId" component={ConversationContainer}/>
             <Route exact path='/test' component={Test} />
             <Route exact path='/userProfile' />
             {/* <Route exact path='/test' component={useGeoLocation} /> */}

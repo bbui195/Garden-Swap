@@ -56,7 +56,7 @@ io.on('connection', (socket) => {
     io.to(socket.id).emit("testing 123");
 })
 
-server.listen(5001, () => {
+server.listen(5002, () => {
     console.log("Server is listening");
     // console.log(io);
 })
