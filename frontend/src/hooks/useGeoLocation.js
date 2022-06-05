@@ -20,7 +20,7 @@ function Geo() {
                 .then(res => res.json())
                 .then(data => {
                     setZipcode(data.postcode)
-                })
+            })
         })
     },[])
 
@@ -31,10 +31,3 @@ function Geo() {
 }
 
 export default Geo
-
-
-// //to use google maps reverse geo locaiton and show on google maps
-
-// let img = new Image();
-// img.src = `https://maps.googleapis.com/maps/api/staticmap?center=${position.coords.latitude},${position.coords.longitude}&zoom=13&size=800x400&sensor=false`;
-// $('#output').html(img);

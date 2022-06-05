@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import cabbage from "../../assets/images/cabbage.png";
 import profilePic from "../../assets/images/prof-placeholder.png"
-import { useEffect } from "react";
 import { BiLogOut, BiImageAdd } from "react-icons/bi";
 import { FiInbox } from "react-icons/fi";
 import johnProf from "../../assets/images/john-prof.jpeg"
+import { ZipcodeContext } from '../../hooks/zipcodeContext';
+export default (props,{ currentUser, logoutUser}) => {
 
+    // const [longitude, setLongitude] = useState('')
+    // const [zipCode,setZipcode] = useState('')
 
-export default ({ currentUser, logoutUser}) => {
+    // const userLocation= `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
     
     const categories = [
         'Fruit', 'Vegetables', 'Nuts', 'Dairy', 'Meats', 'Grains'
@@ -47,12 +50,6 @@ export default ({ currentUser, logoutUser}) => {
         </>
     );
 
-    useEffect(() => {
-        let dropDown = document.querySelector('.dropdown-content');
-        if (dropDown) {
-          dropDown.style.display = 'none';
-        }  
-    });
 
     function dropDown2(e) {
         console.log(e);
@@ -75,12 +72,24 @@ export default ({ currentUser, logoutUser}) => {
         };
     };
 
- 
 
-    
 
+    const {zipCode, setZipCode} = useContext(ZipcodeContext)
+
+  
+
+    // async function asyncCall() {
+    //     console.log('calling')
+    //     const result = await distanceFilter()
+    // }
+
+    // console.log('this should appear first')
+    // asyncCall()
+
+    console.log('navbar',zipCode)
 
     return (
+    
         <>
             <header className='header-container'>
                 <div className='topline'>
@@ -91,7 +100,8 @@ export default ({ currentUser, logoutUser}) => {
                     <input type="text" className='search-bar' placeholder="Search local gardens"/>
                     <div>
                         <i className="fa-solid fa-location-arrow location-icon"></i>
-                        <p>Current Location</p>
+                        <p>Filter by Zipcode?{zipCode}</p>
+                 
                     </div>
                     <div>{session}</div> 
                 </div>

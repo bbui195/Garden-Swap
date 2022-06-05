@@ -106,7 +106,6 @@ class UserShow extends React.Component {
                         )
                     })};
 
-<<<<<<< HEAD
                     <Link to={`/reviews/${this.props.match.params.userId}/new`}>Create Review</Link>
 
                     {Object.values(this.props.reviews??{}).map((review,idx) => 
@@ -128,8 +127,6 @@ class UserShow extends React.Component {
                     }
                         </div>     
                     })}
-=======
->>>>>>> main
                 </ul>
             </div>
 
