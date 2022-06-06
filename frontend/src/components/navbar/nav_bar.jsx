@@ -5,11 +5,12 @@ import profilePic from "../../assets/images/prof-placeholder.png"
 import { BiLogOut, BiImageAdd } from "react-icons/bi";
 import { FiInbox } from "react-icons/fi";
 import johnProf from "../../assets/images/john-prof.jpeg"
-import { LocationContext } from '../../hooks/zipcodeContext';
+import { LocationContext } from '../hooks/zipcodeContext';
 
 
-export default (props,{ currentUser, logoutUser}) => {
-    
+export default (props) => {
+    const { currentUser, logoutUser} = props;
+    console.log(props, currentUser);
     const categories = [
         'Fruit', 'Vegetables', 'Nuts', 'Dairy', 'Meats', 'Grains'
     ]
@@ -94,7 +95,7 @@ export default (props,{ currentUser, logoutUser}) => {
                         <button>Enter Zipcode</button>
                            {/* populated.length === 0 ? 'null':  */}
         <div className='zipcodeFilter'>
-            <form action="">Distance
+            <form action="">Distance Filter (miles)
 
             <input 
                 type="radio" 

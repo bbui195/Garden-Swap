@@ -1,4 +1,4 @@
-import useGeoLocation from "../../hooks/useGeoLocation";
+import useGeoLocation from "../hooks/useGeoLocation";
 
 
 const Geo = () => {

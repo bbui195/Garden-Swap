@@ -1,10 +1,11 @@
 // import { zipcodeAPIKey } from '../../config/keys'
 import React, { useState, useContext, useEffect } from 'react'
 import ListingIndexItem from './listing_index_item'
-import Navbar from '../navbar/nav_bar'
-import { LocationContext } from '../../hooks/zipcodeContext'
+// import Navbar from '../navbar/nav_bar'
+import { LocationContext } from '../hooks/zipcodeContext'
 import '../../utils/zipcodes_list'
 import { isWithinRadiusFromZipcode } from '../../utils/zipcodes_utils'
+import NavBarContainer from '../navbar/nav_bar_container'
 
 
 function ListingIndex(props) {
@@ -23,7 +24,7 @@ function ListingIndex(props) {
 
     useEffect( ()  => {
         radiusFilter(location.zipCode,location.radius)
-    },[])
+    },[location.zipCode,location.radius])
 
     function radiusFilter(zipcode,distance) {
         let mileConversion = 1609.34
@@ -61,8 +62,8 @@ function ListingIndex(props) {
     // }).catch(function (error) {
     //     console.error(error);
     // });
-
-
+    console.log(props);
+    console.log('populate',populated)
 
 // let response = [
 //     94501,	
@@ -124,10 +125,10 @@ function ListingIndex(props) {
 
 
 
-        console.log('populated',populated)
+        // console.log('populated',populated)
     return(
         <>  
-            <Navbar />
+            <NavBarContainer />
             <div className='listing-index-container'>
                 {populated.map(listing =>
                 (

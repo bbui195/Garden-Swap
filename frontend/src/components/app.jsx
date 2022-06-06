@@ -14,14 +14,14 @@ import ListingIndexContainer from './listings/listing_index_container';
 import InboxContainer from './messaging/inbox_container';
 import ConversationContainer from "./messaging/conversation_container";
 import ListingShow from "./listings/listing_show_container";
-import EditReviewContainer from './reviews/edit_review_form_container'
-import { LocationContext } from "../hooks/zipcodeContext";
+import EditReviewContainer from './reviews/edit_review_form_container';
+import { LocationContext } from "./hooks/zipcodeContext";
 import {useState, useEffect } from 'react'
 
 export default () => {
     const [latitude, setLatitude] = useState('')
     const [longitude, setLongitude] = useState('')
-    const [location,setLocation] = useState('')
+    const [location, setLocation] = useState('')
 
     const userLocation= `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
     
@@ -39,16 +39,18 @@ export default () => {
             fetch(userLocation)
                 .then(res => res.json())
                 .then(data => {
-                    setLocation({radius: 1000,zipCode:data.postcode})
+                    setLocation({radius: 1000, zipCode:data.postcode})
+                    console.log(data, 'this is the data')
                 }) 
                
         })
     });
 
+
+    console.log('nav_bar location',location)
    
     return (
         <div className="app-container">
-
         <LocationContext.Provider value={{location, setLocation}}>
             <NavBarContainer/> 
             <Switch>
@@ -59,7 +61,6 @@ export default () => {
                 <Route exact path='/category/:categoryId' component={ListingCategoryIndex} />
                 <Route exact path='/listing/show' component={ListingShow} />
                 <Route exact path='/listing/:listingId' component={ListingShow} />
-
                 <Route exact path='/listingForm' component={ListingForm} />
                 <Route exact path='/listingForm' component={ListingForm} />
                 <Route exact path='/users/:userId' component={UserShowContainer}/>
@@ -67,10 +68,7 @@ export default () => {
                 {/* <Route exact path="/user/inbox/:sender" component={ConversationContainer}/> */}
                 <Route exact path='/test' component={Test} />
                 <Route exact path='/userProfile' />
-                {/* <Route exact path='/test' component={useGeoLocation} /> */}
-                {/* <Route exact path = '/' component={Home} /> */}
                 <Route exact path ='/' component={ListingIndexContainer} />
-                {/* <Route path="*" component={NotFoundPage} /> */}
                 <Redirect to='/' />
             </Switch>
         </LocationContext.Provider>
