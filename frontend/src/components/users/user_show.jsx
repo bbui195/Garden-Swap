@@ -26,7 +26,7 @@ class UserShow extends React.Component {
     }
 
     handleRemove(review) {
-        console.log('review',review)
+        // console.log('review',review)
         this.props.deleteReview(review._id)
     }
 
@@ -52,8 +52,8 @@ class UserShow extends React.Component {
         }
 
         const userId = this.props.match.params.userId 
-        console.log('props',this.props)
-        console.log('reviews',Object.values(this.props.reviews))
+        // console.log('props',this.props)
+        // console.log('reviews',Object.values(this.props.reviews))
         const userData = Object.values(this.props.user)[0]
         // const userListings = userData.listings
         // console.log(userData)
@@ -65,7 +65,7 @@ class UserShow extends React.Component {
             return null
         }
         
-        console.log('user-show',this.props)
+        // console.log('user-show',this.props)
         return(
             <div className='user-show-container'>
                 <ul className='user-info-container'>
@@ -106,6 +106,27 @@ class UserShow extends React.Component {
                         )
                     })};
 
+                    <Link to={`/reviews/${this.props.match.params.userId}/new`}>Create Review</Link>
+
+                    {Object.values(this.props.reviews??{}).map((review,idx) => 
+                    {
+                        // console.log('access to what',this.props)
+                        return <div>
+                            {review._id === this.state.reviewId ?  <EditReviewForm review={review} action={this.props.action}  />: <>
+                                <p>{review.timestamps}</p>
+                                <p>{review.rating}</p>
+                                <p>{review.body}</p>
+                            </>}
+
+                            {review.userId === this.props.userSession.id ?
+                            <div>
+                                <button onClick={()=>this.handleRemove(review)}>Delete Review</button>
+                                <button onClick={()=>this.setState({reviewId: review._id})}>Edit Button</button>
+                            </div>
+                            : null
+                    }
+                        </div>     
+                    })}
                 </ul>
             </div>
 

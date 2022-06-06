@@ -8,7 +8,7 @@ import EditReviewForm from './edit_review'
 const mSTP = (state,ownProps) =>
 
 {
-    console.log('state',state)
+    // console.log('state',state)
     return {
         formType: 'Edit Form',
         review: state.entities.reviews[ownProps.match.params.reviewId]
