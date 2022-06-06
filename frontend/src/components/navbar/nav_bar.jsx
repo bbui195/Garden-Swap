@@ -10,7 +10,7 @@ import { LocationContext } from '../hooks/zipcodeContext';
 
 export default (props) => {
     const { currentUser, logoutUser} = props;
-    console.log(props, currentUser);
+    // console.log(props, currentUser);
     const categories = [
         'Fruit', 'Vegetables', 'Nuts', 'Dairy', 'Meats', 'Grains'
     ]
@@ -50,7 +50,7 @@ export default (props) => {
 
 
     function dropDown2(e) {
-        console.log(e);
+        // console.log(e);
         if (!e.target.closest(".profile-dropdown") && !e.target.closest(".dropdown-content")) {
             document.querySelector(".dropdown-content").style.display = 'none'
             document.removeEventListener("click", dropDown2)
@@ -59,7 +59,7 @@ export default (props) => {
 
     function toggleDropDown() {
         let dropDown = document.querySelector('.dropdown-content');
-        console.log(dropDown.style.display);
+        // console.log(dropDown.style.display);
         if (dropDown.style.display === 'none') {
             dropDown.style.display = 'flex'
             document.addEventListener('click', dropDown2);

@@ -32,7 +32,7 @@ export default () => {
           dropDown.style.display = 'none';
         } 
         navigator.geolocation.getCurrentPosition(position => {
-            console.log(position)
+            // console.log(position)
             setLatitude(position.coords.latitude)
             setLongitude(position.coords.longitude)
     
@@ -40,14 +40,14 @@ export default () => {
                 .then(res => res.json())
                 .then(data => {
                     setLocation({radius: 1000, zipCode:data.postcode})
-                    console.log(data, 'this is the data')
+                    // console.log(data, 'this is the data')
                 }) 
                
         })
     });
 
 
-    console.log('nav_bar location',location)
+    // console.log('nav_bar location',location)
    
     return (
         <div className="app-container">

@@ -4,7 +4,7 @@ function Geo() {
     const [latitude, setLatitude] = useState('')
     const [longitude, setLongitude] = useState('')
     const [zipCode,setZipcode] = useState('')
-    console.log(zipCode)
+    // console.log(zipCode)
     
     const userLocation= `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
 

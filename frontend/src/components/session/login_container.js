@@ -4,7 +4,7 @@ import Login from './login';
 import { clearErrors } from '../../actions/session_actions';
 
 const mSTP = ({ errors }) => {
-  console.log('login-container')
+  // console.log('login-container')
   return {
     errors: Object.values(errors.session),
   };

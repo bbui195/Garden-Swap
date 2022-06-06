@@ -34,7 +34,7 @@ class EditReviewForm extends React.Component {
 
 
     render() {
-        console.log('edit page',this.props)
+        // console.log('edit page',this.props)
         return (
             <>
                 <div>

@@ -51,7 +51,7 @@ class Login extends React.Component {
   }
 
   render() {
-    console.log('login')
+    // console.log('login')
     return (
       <div>
         <div>

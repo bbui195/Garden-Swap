@@ -28,7 +28,7 @@ class ListingShow extends React.Component {
     // }
 
     render() {
-        console.log(this.props.listing, "this is the listing on the show page")
+        // console.log(this.props.listing, "this is the listing on the show page")
         if (!this.props.listing){
             return null
         }
