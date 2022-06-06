@@ -1,3 +1,3 @@
 import { createContext } from "react";
 
-export const ZipcodeContext = createContext(null)
+export const LocationContext = createContext({zipCode: '94501' ,radius:1000})

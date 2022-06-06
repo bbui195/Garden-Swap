@@ -2,11 +2,9 @@ import Footer from "./footer/footer";
 import { Redirect, Route } from 'react-router-dom';
 import { Switch } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../utils/route_utils';
-import Home from './home/home';
 import LogInContainer from './session/login_container';
 import SignUpContainer from './session/signup_container';
 import NavBarContainer from './navbar/nav_bar_container';
-import useGeoLocation from "../hooks/useGeoLocation";
 import ListingForm from './listings/listing_form_container';
 import ReviewFormContainer from './reviews/create_review_form_container';
 import UserShowContainer from '../components/users/user_show_container';
@@ -17,19 +15,13 @@ import InboxContainer from './messaging/inbox_container';
 import ConversationContainer from "./messaging/conversation_container";
 import ListingShow from "./listings/listing_show_container";
 import EditReviewContainer from './reviews/edit_review_form_container'
-import { ZipcodeContext } from "../hooks/zipcodeContext";
+import { LocationContext } from "../hooks/zipcodeContext";
 import {useState, useEffect } from 'react'
-
-
-
-
-
-
 
 export default () => {
     const [latitude, setLatitude] = useState('')
     const [longitude, setLongitude] = useState('')
-    const [zipCode,setZipCode] = useState('')
+    const [location,setLocation] = useState('')
 
     const userLocation= `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
     
@@ -47,19 +39,17 @@ export default () => {
             fetch(userLocation)
                 .then(res => res.json())
                 .then(data => {
-                    setZipCode(data.postcode)
+                    setLocation({radius: 1000,zipCode:data.postcode})
                 }) 
                
         })
     });
 
-
-    console.log('zipcode',zipCode)
-    
+   
     return (
-    <div className="app-container">
+        <div className="app-container">
 
-        <ZipcodeContext.Provider value={{zipCode, setZipCode}}>
+        <LocationContext.Provider value={{location, setLocation}}>
             <NavBarContainer/> 
             <Switch>
                 <AuthRoute exact path='/login' component={LogInContainer}  />
@@ -83,7 +73,7 @@ export default () => {
                 {/* <Route path="*" component={NotFoundPage} /> */}
                 <Redirect to='/' />
             </Switch>
-        </ZipcodeContext.Provider>
+        </LocationContext.Provider>
 
         <Footer />
     </div>

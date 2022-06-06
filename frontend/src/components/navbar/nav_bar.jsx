@@ -5,13 +5,10 @@ import profilePic from "../../assets/images/prof-placeholder.png"
 import { BiLogOut, BiImageAdd } from "react-icons/bi";
 import { FiInbox } from "react-icons/fi";
 import johnProf from "../../assets/images/john-prof.jpeg"
-import { ZipcodeContext } from '../../hooks/zipcodeContext';
+import { LocationContext } from '../../hooks/zipcodeContext';
+
+
 export default (props,{ currentUser, logoutUser}) => {
-
-    // const [longitude, setLongitude] = useState('')
-    // const [zipCode,setZipcode] = useState('')
-
-    // const userLocation= `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
     
     const categories = [
         'Fruit', 'Vegetables', 'Nuts', 'Dairy', 'Meats', 'Grains'
@@ -72,21 +69,13 @@ export default (props,{ currentUser, logoutUser}) => {
         };
     };
 
+    function updateLocation(e) {
+        setLocation({...location,zipCode:e.currentTarget.value})
+    }
 
 
-    const {zipCode, setZipCode} = useContext(ZipcodeContext)
 
-  
-
-    // async function asyncCall() {
-    //     console.log('calling')
-    //     const result = await distanceFilter()
-    // }
-
-    // console.log('this should appear first')
-    // asyncCall()
-
-    console.log('navbar',zipCode)
+    const {location, setLocation} = useContext(LocationContext)
 
     return (
     
@@ -100,7 +89,33 @@ export default (props,{ currentUser, logoutUser}) => {
                     <input type="text" className='search-bar' placeholder="Search local gardens"/>
                     <div>
                         <i className="fa-solid fa-location-arrow location-icon"></i>
-                        <p>Filter by Zipcode?{zipCode}</p>
+                        <p>Filter by Zipcode?{location.zipCode}</p>
+                        <input value={location.zipCode} onChange={updateLocation} type="text" />
+                        <button>Enter Zipcode</button>
+                           {/* populated.length === 0 ? 'null':  */}
+        <div className='zipcodeFilter'>
+            <form action="">Distance
+
+            <input 
+                type="radio" 
+                name="distance"
+                value='3'
+                onChange={e => setLocation({...location,radius:e.target.value})}
+                />3
+            <input 
+                type="radio" 
+                name="distance"
+                value='5' 
+                onChange={e => setLocation({...location,radius:e.target.value})}
+                />5
+            <input 
+                type="radio" 
+                name="distance"
+                value='10' 
+                onChange={e => setLocation({...location,radius:e.target.value})}
+                />10
+            </form>
+        </div>
                  
                     </div>
                     <div>{session}</div> 
