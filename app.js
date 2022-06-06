@@ -10,7 +10,17 @@ const { uploadFile } = require('./s3')
 const passport = require("passport");
 
 const app = express();
-const db = require('./config/keys').mongoURI;
+
+const path = require('path');
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('frontend/build'));
+    app.get('/', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+    })
+}
+
+// const db = require('./config/keys').mongoURI;
+const db = process.env.MONGO_URI
 mongoose
     .connect(db, { useNewUrlParser: true })
     .then(() => console.log("Connected to MongoDB successfully"))
@@ -20,14 +30,6 @@ const users = require("./routes/api/users");
 const listings = require("./routes/api/listings");
 const reviews = require("./routes/api/reviews");
 const messages = require("./routes/api/messages");
-
-const path = require('path');
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('frontend/build'));
-    app.get('/', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
-    })
-}
 
 //sockets
 const http = require('http');
