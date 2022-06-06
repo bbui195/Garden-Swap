@@ -56,7 +56,9 @@ const users = [
     })
 ]
 
-const db = require('../config/keys').mongoURI;
+// const db = require('../config/keys').mongoURI;
+const db = process.env.MONGO_URI
+
 mongoose
   .connect(db, { useNewUrlParser: true })
   .catch(err => {
