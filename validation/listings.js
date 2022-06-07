@@ -6,13 +6,13 @@ const validCategory = require("./valid_category");
 
 module.exports = function validateListingInput(data) {
     let errors = {};
-    console.log(data, 'this is the data')
+    // console.log(data, 'this is the data')
     data.title = validText(data.title) ? data.title : '';
     data.body = validText(data.body) ? data.body : '';
-    data.price = mongoose.Types.Decimal128.fromString(data.price);
+    // data.price = mongoose.Types.Decimal128.fromString(data.price);
     data.location = validText(data.location) ? data.location : '';
     data.category = validText(data.category) ? data.category : '';
-    
+    data.photoUrls = data.photoUrls || '';
     // if(!mongoose.Types.ObjectId.isValid(data.userId)) {
     //     errors.userId = 'Invalid id';
     // }

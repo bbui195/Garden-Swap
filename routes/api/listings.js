@@ -100,24 +100,69 @@ router.get('/category/:category', (req, res) => {
 
 router.post('/',
     passport.authenticate('jwt', { session: false }),
+    upload.single('listing[image]'),
     (req, res) => {
-        const { errors, isValid } = validateListingInput(req.body);
+        console.log("Validating input");
+        let listing = req.body.listing;
+        listing.userId = req.user.id.toString();
+        // console.log(req);
+        // console.log(req.body);
+        const { errors, isValid } = validateListingInput(listing);
 
         if(!isValid) {
             return res.status(400).json(errors);
         }
-
-        const newListing = new Listing({
-            userId: mongoose.Types.ObjectId.fromString(req.user.id),
-            title: req.body.title,
-            body: req.body.body,
-            photoUrls: req.body.photoUrls,
-            price: mongoose.Types.Decimal128.fromString(req.body.price),
-            location: req.body.location,
-            category: req.body.category
+        let newListing;
+        // console.log(listing.photoUrls);
+        // if(req.body.photoUrls.)
+        console.log(listing);
+        newListing = new Listing({
+            userId: req.user.id,
+            title: listing.title,
+            body: listing.body,
+            // photoUrls: listing.photoUrls,
+            price: listing.price,
+            location: listing.location,
+            category: listing.category
         });
+        if(listing.photoUrls.startsWith("data:image/jpeg;base64")) {
+            const params = {
+                Bucket: bucketName,      // bucket that we made earlier
+                Key:req.file.originalname,               // Name of the image
+                Body:req.file.buffer,                    // Body which will contain the image in buffer format
+                // ACL:"public-read-write",                 // defining the permissions to get the public link
+                ContentType:"image/jpeg"                 // Necessary to define the image content-type to view the photo in the browser with the link
+            };
 
-        newListing.save().then(listing => res.json(listing));
+            s3.upload(params,(error, data)=>{
+                if(error){
+                    res.status(500).send({"err":error})  // if we get any error while uploading error message will be returned.
+                    return
+                }
+
+                // console.log('make it past if statement')
+                newListing.photoUrls = data.Location;
+                // console.log(listing);
+                newListing.save()
+                    .then(listing => {
+                        console.log("saved the listing")
+                        res.json(formatListing(listing))
+                    })
+                    .catch(err => res.status(400).json({ failedcreate: "Failed to create listing"}))
+                }
+            )
+        } else {
+            newListing.photoUrls = listing.photoUrls;
+            newListing.save()
+                .then(listing => {
+                    console.log("saved the listing")
+                    res.json(formatListing(isting))
+                })
+                .catch(err => res.status(400).json({ failedcreate: "Failed to create listing"}))
+        }
+        
+
+        // newListing.save().then(listing => res.json(listing));
     }
 )
 
@@ -126,9 +171,11 @@ router.delete('/:id',
     (req, res) => {
         Listing.findById(req.params.id)
             .then(listing => {
-                if(listing.userId !== req.user.id) {
+                if(listing.userId.toString() !== req.user.id.toString()) {
+                    console.log('am I here in the if?')
                     res.status().json({ notowned: 'Current user does not own this listing' })
                 } else {
+                    console.log('am I here in the else?')
                     Listing.deleteOne({_id: req.params.id})
                         .then(() => res.json({deleted: true}))
                 }

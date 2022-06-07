@@ -17,7 +17,7 @@ export const deleteListing = listingId => {
 }
 
 export const patchListing = listing => {
-    debugger
+    
     for(var pair of listing.entries()) {
         console.log(pair[0]+ ', '+ pair[1]);
     }
@@ -26,9 +26,12 @@ export const patchListing = listing => {
 }
 
 export const testCreateListing = listing => {
-    debugger
+    
     for (var value of listing.values()) {
         console.log(value);
     }
-    return axios.post('/api/listings/image', listing)
+    // return axios.post('/api/listings/image', listing)
+    
+    return axios.post('/api/listings', listing)
+
 }

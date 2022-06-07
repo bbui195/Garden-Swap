@@ -10,6 +10,7 @@ class EditListingForm extends React.Component {
         this.handleFile = this.handleFile.bind(this);
         // this.setState = this.setState.bind(this);
         this.previewImage = this.previewImage.bind(this);
+        this.updateCategory = this.updateCategory.bind(this);
     }
 
     componentDidMount(){
@@ -45,6 +46,7 @@ class EditListingForm extends React.Component {
 
     update(field){
         return e=>{
+            console.log(e.currentTarget, 'this is on generic update')
             this.setState({[field]: e.currentTarget.value})
         }
     }
@@ -61,6 +63,15 @@ class EditListingForm extends React.Component {
         formData.append('listing[id]', this.props.listingId)
         formData.append('listing[userId]', this.props.currentUserId)
         return formData;
+    }
+
+    updateCategory(e) {
+        console.log(e.currentTarget.value, 'this is category target')
+        this.setState({category: e.currentTarget.value},
+            () => {
+                console.log(this.state.category)
+            }
+        )
     }
 
     handleSubmit(e){
@@ -98,9 +109,10 @@ class EditListingForm extends React.Component {
                                 placeholder='$0.00'
                                 defaultValue={this.state.price}
                                 className='price-input'
+                                onChange={this.update('price')}
                             />
 
-                            <select name="categories" defaultValue={this.state.category} id="categories">
+                            <select onChange={this.updateCategory} name="categories" defaultValue={this.state.category} id="categories">
                                 <option disabled="disabled">Choose Category</option>    
                                 <option value="Fruit">Fruit</option>
                                 <option value="Vegetables">Vegetables</option>

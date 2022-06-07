@@ -5,14 +5,16 @@ class ListingShow extends React.Component {
     constructor(props) {
         super(props)
         this.renderEditDelete = this.renderEditDelete.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     componentDidMount(){
         this.props.requestListing(this.props.listingId)
     }
 
-    handleEdit(){
-
+    handleDelete(){
+        this.props.deleteListing(this.props.listingId)
+            .then(this.props.history.push('/'))
     }
 
     renderEditDelete(){

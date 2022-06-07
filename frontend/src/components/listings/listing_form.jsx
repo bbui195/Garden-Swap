@@ -42,17 +42,12 @@ class ListingForm extends React.Component {
 
     update(field){
         return e=>{
-            console.log(field, e);
             this.setState({[field]: e.currentTarget.value})
         }
     }
 
     updateCategory(e) {
-        this.setState({category: e.target[e.target.selectedIndex].value},
-            () => {
-                console.log(this.state.category)
-            }
-        )
+        this.setState({category: e.currentTarget.value})
     }
 
     handleFormData(){
@@ -64,12 +59,15 @@ class ListingForm extends React.Component {
         formData.append('listing[price]', this.state.price)
         formData.append('listing[location]', this.state.location)
         formData.append('listing[category]', this.state.category)
+        formData.append('listing[userId]', this.props.currentUserId)
         return formData;
     }
 
     handleSubmit(e){
+        // console.log(this.state)
         e.preventDefault();
         this.props.makeListing(this.handleFormData())
+            .then(this.props.history.push('/'))
     }
 
     render(){
@@ -94,11 +92,11 @@ class ListingForm extends React.Component {
                         />
                         <div className='price-cat-container'>
                             <input 
-                                type="number" 
-                                min="1" 
+                                type="number"
+                                min="1"
                                 step="any"
                                 onChange={this.update('price')}
-                                value={this.state.price}
+                                defaultValue={this.state.price}
                                 placeholder='$0.00'
                                 className='price-input'
                             />

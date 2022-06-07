@@ -19,7 +19,6 @@ const mDTP = dispatch => {
         deleteListing: id => dispatch(deleteListing(id)),
         
     }
-    
 }
 
 
