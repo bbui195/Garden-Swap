@@ -8,16 +8,10 @@ class ListingCategoryIndex extends React.Component {
         super(props)
     }
 
-        // console.log('index container',this.props)
-        // console.log(this.props.match.params)
-        // const listings = this.props.requestListings()
-        // {category: this.props.match.params.category})
-        // console.log('listings?',this.props.entities.listings.listings)
-    
     render() {
 
         let listings =  Object.values(this.props.listings)
-        let category = this.props.match.params.categoryId.toLowerCase()
+        let category = this.props.match.params.categoryId
 
         listings = listings.filter(listing => (
             listing.category === category

@@ -31,6 +31,7 @@ export default () => {
         if (dropDown) {
           dropDown.style.display = 'none';
         } 
+        
         navigator.geolocation.getCurrentPosition(position => {
             // console.log(position)
             setLatitude(position.coords.latitude)
@@ -44,7 +45,8 @@ export default () => {
                 }) 
                
         })
-    });
+        console.log('app.jsx')
+    },[]);
 
 
     // console.log('nav_bar location',location)

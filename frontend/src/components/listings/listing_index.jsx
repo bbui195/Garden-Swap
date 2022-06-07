@@ -62,9 +62,9 @@ function ListingIndex(props) {
     // }).catch(function (error) {
     //     console.error(error);
     // });
-    // console.log(props);
-    // console.log('populate',populated)
-//
+
+    console.log('populate',populated)
+
 // let response = [
 //     94501,	
 //     94502,
