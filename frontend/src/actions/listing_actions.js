@@ -56,11 +56,11 @@ export const requestListing = listingId => dispatch => {
 
 export const deleteListing = id => dispatch => {
     return listingApiUtils.deleteListing(id)
-        .then(id => dispatch(removeListing(id)))
+        .then(() => dispatch(removeListing(id)))
 }
 
 export const patchListing = listing => dispatch => {
     return listingApiUtils.patchListing(listing)
-        .then(listing => dispatch(updateListing(listing)))
+        .then(listing => dispatch(updateListing(listing.data)))
 }
 
