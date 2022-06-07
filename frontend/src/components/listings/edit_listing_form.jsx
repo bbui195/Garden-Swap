@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-class ListingForm extends React.Component {
+class EditListingForm extends React.Component {
     constructor(props){
         super(props)
         this.state = Object.assign({}, this.props.listing);
@@ -11,6 +11,10 @@ class ListingForm extends React.Component {
         // this.setState = this.setState.bind(this);
         this.previewImage = this.previewImage.bind(this);
         this.updateCategory = this.updateCategory.bind(this);
+    }
+
+    componentDidMount(){
+        this.props.requestListing(this.props.listingId)
     }
 
     handleFile(e){
@@ -42,12 +46,9 @@ class ListingForm extends React.Component {
 
     update(field){
         return e=>{
+            console.log(e.currentTarget, 'this is on generic update')
             this.setState({[field]: e.currentTarget.value})
         }
-    }
-
-    updateCategory(e) {
-        this.setState({category: e.currentTarget.value})
     }
 
     handleFormData(){
@@ -59,14 +60,24 @@ class ListingForm extends React.Component {
         formData.append('listing[price]', this.state.price)
         formData.append('listing[location]', this.state.location)
         formData.append('listing[category]', this.state.category)
+        formData.append('listing[id]', this.props.listingId)
         formData.append('listing[userId]', this.props.currentUserId)
         return formData;
     }
 
+    updateCategory(e) {
+        console.log(e.currentTarget.value, 'this is category target')
+        this.setState({category: e.currentTarget.value},
+            () => {
+                console.log(this.state.category)
+            }
+        )
+    }
+
     handleSubmit(e){
-        // console.log(this.state)
         e.preventDefault();
-        this.props.makeListing(this.handleFormData())
+        console.log(this.state, 'this is the state')
+        this.props.patchListing(this.handleFormData())
             .then(this.props.history.push('/'))
     }
 
@@ -92,17 +103,17 @@ class ListingForm extends React.Component {
                         />
                         <div className='price-cat-container'>
                             <input 
-                                type="number"
-                                min="1"
-                                step="any"
-                                onChange={this.update('price')}
-                                defaultValue={this.state.price}
+                                type="number" 
+                                min="1" 
+                                step="any" 
                                 placeholder='$0.00'
+                                defaultValue={this.state.price}
                                 className='price-input'
+                                onChange={this.update('price')}
                             />
 
-                            <select onChange={this.updateCategory} name="categories" id="categories">
-                                <option selected={true} disabled="disabled">Choose Category</option>    
+                            <select onChange={this.updateCategory} name="categories" defaultValue={this.state.category} id="categories">
+                                <option disabled="disabled">Choose Category</option>    
                                 <option value="Fruit">Fruit</option>
                                 <option value="Vegetables">Vegetables</option>
                                 <option value="Nuts">Nuts</option>
@@ -130,4 +141,4 @@ class ListingForm extends React.Component {
     }
 }
 
-export default ListingForm;
+export default EditListingForm;
