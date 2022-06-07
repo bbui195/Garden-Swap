@@ -10,7 +10,6 @@ import { LocationContext } from '../hooks/zipcodeContext';
 
 export default (props) => {
     const { currentUser, logoutUser} = props;
-    // console.log(props, currentUser);
     const categories = [
         'Fruit', 'Vegetables', 'Nuts', 'Dairy', 'Meats', 'Grains'
     ]
@@ -50,7 +49,6 @@ export default (props) => {
 
 
     function dropDown2(e) {
-        // console.log(e);
         if (!e.target.closest(".profile-dropdown") && !e.target.closest(".dropdown-content")) {
             document.querySelector(".dropdown-content").style.display = 'none'
             document.removeEventListener("click", dropDown2)
@@ -59,7 +57,6 @@ export default (props) => {
 
     function toggleDropDown() {
         let dropDown = document.querySelector('.dropdown-content');
-        // console.log(dropDown.style.display);
         if (dropDown.style.display === 'none') {
             dropDown.style.display = 'flex'
             document.addEventListener('click', dropDown2);
@@ -71,7 +68,7 @@ export default (props) => {
     };
 
     function updateLocation(e) {
-        setLocation({...location,zipCode:e.currentTarget.value})
+        setLocation({...location, zipCode:e.currentTarget.value})
     }
 
 
@@ -89,34 +86,38 @@ export default (props) => {
                     </Link>
                     <input type="text" className='search-bar' placeholder="Search local gardens"/>
                     <div>
-                        <i className="fa-solid fa-location-arrow location-icon"></i>
-                        <p>Filter by Zipcode?{location.zipCode}</p>
-                        <input value={location.zipCode} onChange={updateLocation} type="text" />
-                        <button>Enter Zipcode</button>
+                        {/* <p>Filter by Zipcode?{location.zipCode}</p> */}
                            {/* populated.length === 0 ? 'null':  */}
-        <div className='zipcodeFilter'>
-            <form action="">Distance Filter (miles)
+                        <div className='location-dropdown'>
+                            <button className='dropbtn' >Enter Zipcode{" "}<i className="fa-solid fa-location-arrow location-icon"></i></button>
+                                <form action="" className='zipcode-filter'>
+                                    
 
-            <input 
-                type="radio" 
-                name="distance"
-                value='3'
-                onChange={e => setLocation({...location,radius:e.target.value})}
-                />3
-            <input 
-                type="radio" 
-                name="distance"
-                value='5' 
-                onChange={e => setLocation({...location,radius:e.target.value})}
-                />5
-            <input 
-                type="radio" 
-                name="distance"
-                value='10' 
-                onChange={e => setLocation({...location,radius:e.target.value})}
-                />10
-            </form>
-        </div>
+                                    
+                                    <input value={location.zipCode} onChange={updateLocation} type="text" />
+                                    {/* <input 
+                                        type="radio" 
+                                        name="distance"
+                                        value='3'
+                                        onChange={e => setLocation({...location,radius:e.target.value})}
+                                        />3
+                                        <input 
+                                        type="radio" 
+                                        name="distance"
+                                        value='5' 
+                                        onChange={e => setLocation({...location,radius:e.target.value})}
+                                        />5
+                                        <input 
+                                        type="radio" 
+                                        name="distance"
+                                        value='10' 
+                                        onChange={e => setLocation({...location,radius:e.target.value})}
+                                    />10 */}
+                                    <button>Get My Current Location</button>
+                                    <span>Distance Filter (miles)</span>
+                                    <input type="range" min="1" max="25" placeholder="5" onChange={e => setLocation({...location,radius:e.target.value})} />
+                                </form>
+                        </div>
                  
                     </div>
                     <div>{session}</div> 
