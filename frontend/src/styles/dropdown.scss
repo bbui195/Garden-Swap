@@ -26,11 +26,11 @@
         display: none;
         flex-direction: column;
         background-color: #fff;
-        z-index: 1;
         box-shadow: 0 6px 10px rgb(127, 127, 127);
         transform: translateY(125px) translateX(-37%);
         color: black;
         border-radius: 25px;
+        z-index: 1100000000000000;
 
         .username-container {
             height: 50px;
