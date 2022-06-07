@@ -264,9 +264,11 @@ const s3 = new Aws.S3({
 
 router.post(`/image`, upload.single('listing[image]'), (req, res) => { 
     console.log(req.body, 'should log the req.body')// given data object, creates new entry
-    const { errors, isValid } = validateListingInput(req.body.listing);
-    console.log(req.body.listing);
-    console.log(req.file)
+
+    const { errors, isValid } = validateCreateListingInput(req.body.listing);
+    // console.log(req.body.listing);
+    // console.log(req.file)
+
     if (!isValid) {
         return res.status(400).json(errors);
     }
