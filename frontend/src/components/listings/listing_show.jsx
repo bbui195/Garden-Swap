@@ -14,7 +14,7 @@ class ListingShow extends React.Component {
 
     handleDelete(){
         this.props.deleteListing(this.props.listingId)
-            .then(this.props.history.push('/'))
+            .then(()=>this.props.history.push('/'))
     }
 
     renderEditDelete(){
