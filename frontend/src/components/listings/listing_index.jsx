@@ -128,7 +128,7 @@ function ListingIndex(props) {
         // console.log('populated',populated)
     return(
         <>  
-            <NavBarContainer />
+            {/* <NavBarContainer /> */}
             <div className='listing-index-container'>
                 {populated.map(listing =>
                 (
