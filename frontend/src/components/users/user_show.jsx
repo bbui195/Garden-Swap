@@ -71,7 +71,8 @@ class UserShow extends React.Component {
             return null
         }
         
-        // console.log('user-show',this.props)
+        console.log('user-show',this.props)
+        console.log(this.state);
         return(
             <div className='user-show-container'>
                 <ul className='user-info-container'>
@@ -91,7 +92,7 @@ class UserShow extends React.Component {
                     {Object.values(this.props.reviews??{}).map((review,idx) => {   
                         return (
                             <div key={idx} className='user-reviews-container'>
-                                {review._id === this.state.reviewId ?  
+                                {review.id === this.state.reviewId ?  
                                     <EditReviewForm  review={review} action={this.props.editReview} fetchReviews={this.props.requestReviews} resetState={this.resetReviewState} />
                                 : 
                                     <div className='user-review'>
@@ -101,10 +102,10 @@ class UserShow extends React.Component {
                                     </div>
                                 }
 
-                                {review.userId === this.props.userSession.id ?
+                                {review.reviewerId === this.props.userSession.id ?
                                     <div className='buttons'>
                                         <button onClick={()=>this.handleRemove(review)}>Delete</button>
-                                        <button onClick={()=>this.setState({reviewId: review._id})}>Edit</button>
+                                        <button onClick={()=>this.setState({reviewId: review.id})}>Edit</button>
                                     </div>
                                 : null
                                 }

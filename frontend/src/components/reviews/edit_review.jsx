@@ -8,7 +8,7 @@ class EditReviewForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            id: this.props.review._id,
+            id: this.props.review.id,
             userId: this.props.review.userId,
             rating: this.props.review.rating,
             body: this.props.review.body,
