@@ -10,16 +10,17 @@ export const receiveMessage = (message) => {
     };
 };
 
-const receiveMessages = (messages) => {
+const receiveMessages = ({messages, users}) => {
     return {
         type: RECEIVE_MESSAGES,
-        messages
+        messages,
+        users
     };
 };
 
 export const getMessagesWith = userId => dispatch => {
     return MessageApiUtil.getMessagesWith(userId)
-        .then((messages) => dispatch(receiveMessages(messages)));
+        .then((res) => dispatch(receiveMessages(res.data)));
 };
 
 export const createMessage = message => dispatch => {

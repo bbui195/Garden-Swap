@@ -12,6 +12,8 @@ class Conversation extends React.Component {
             editMessage: "",
             creating: true
         };
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount() {
@@ -21,6 +23,9 @@ class Conversation extends React.Component {
             extraHeaders: {
                 token: this.props.token
             }
+        });
+        socket.on("message", (message) => {
+            this.props.receiveMessage(message);
         });
         this.setState({
             socket
@@ -35,12 +40,24 @@ class Conversation extends React.Component {
         this.setState({ socket: undefined });
     }
 
+    handleChange(type) {
+        return (e) => this.setState({[type]: e.target.value});
+    }
+
+    handleEditClick(message) {
+        return (e) => this.setState({
+            editing: message.id,
+            editMessage: message.body,
+            focusEdit: true
+        });
+    }
+
     handleSubmit(e) {
         e.preventDefault();
         if(this.state.creating && this.state.message !== "") {
             this.props.createMessage({
                 body: this.state.message,
-                // put who to send to here
+                userId: this.props.receiver.id
             });
             this.setState({message: ""});
         };
@@ -51,56 +68,58 @@ class Conversation extends React.Component {
             return;
         }
         return (
-           <div>
+           <div className="message-index">
+                
+                <div className="messages-wrapper">
+                    <div className="messages">
+                        {this.props.messages.map((message) => {
+                            return <div key={message.id}
+                                className={("message" +
+                                    (this.state.editing === message.id ? " editing" : ""))}>
+                                <div className="profile"><i className="fa-brands fa-discord"/></div> 
+                                {/* replace above with profile pic */}
+                                <span className="username">{message.username}</span>
+                                <span className="time">{message.time}</span>
+                                {this.state.editing === message.id ?
+                                    <>
+                                    <input type="text" className="edit-input"
+                                        value={this.state.editMessage}
+                                        onChange={this.handleChange("editMessage")}
+                                        onKeyDown={this.handleEditSubmit}/>
+                                        <div className="edit-label">escape to&nbsp;
+                                            <span onClick={this.stopEdit}
+                                            >cancel</span> • enter to&nbsp;
+                                            <span onClick={this.submitEdit}
+                                            >save</span></div>
+                                    </>
+                                    : <div className="body">{message.body}</div>}
+                                {message.senderId === this.props.currentUserId ?
+                                    <div className="edit-options">
+                                        <div className="edit" name="Edit"
+                                            onClick={this.handleEditClick(message)}
+                                        >
+                                            <i className="fa-solid fa-pencil"></i>
+                                        </div>
+                                        
+                                        <div className="delete" name="Delete"
+                                            onClick={()=>{
+                                                this.setState({
+                                                    deleteModal: true,
+                                                    deleteMessage: message
+                                                });
+                                            }}
+                                        ><i className="fa-solid fa-trash-can"></i></div>
+                                        
+                                    </div> : null
+                                }
+                            </div>
+                        })}
+                    </div>
+                </div>
                 <form
                     onSubmit={this.handleSubmit}
+                    className="message-form"
                 >
-                    <div className="messages-wrapper">
-                        <div className="messages">
-                            {this.props.messages.map((message) => {
-                                return <div key={message.id}
-                                    className={("message" +
-                                        (this.state.editing === message.id ? " editing" : ""))}>
-                                    <div className="profile"><i className="fa-brands fa-discord"/></div> 
-                                    {/* replace above with profile pic */}
-                                    <span className="username">{message.username}</span>
-                                    <span className="time">{message.time}</span>
-                                    {this.state.editing === message.id ?
-                                        <>
-                                        <input type="text" className="edit-input"
-                                            value={this.state.editMessage}
-                                            onChange={this.handleChange("editMessage")}
-                                            onKeyDown={this.handleEditSubmit}/>
-                                            <div className="edit-label">escape to&nbsp;
-                                                <span onClick={this.stopEdit}
-                                                >cancel</span> • enter to&nbsp;
-                                                <span onClick={this.submitEdit}
-                                                >save</span></div>
-                                        </>
-                                        : <div className="body">{message.body}</div>}
-                                    {message.senderId === this.props.currentUserId ?
-                                        <div className="edit-options">
-                                            <div className="edit" name="Edit"
-                                                onClick={this.handleEditClick(message)}
-                                            >
-                                                <i className="fa-solid fa-pencil"></i>
-                                            </div>
-                                            
-                                            <div className="delete" name="Delete"
-                                                onClick={()=>{
-                                                    this.setState({
-                                                        deleteModal: true,
-                                                        deleteMessage: message
-                                                    });
-                                                }}
-                                            ><i className="fa-solid fa-trash-can"></i></div>
-                                            
-                                        </div> : null
-                                    }
-                                </div>
-                            })}
-                        </div>
-                    </div>
                     <input type="text" className="message-input"
                         placeholder={`Message ${this.props.receiver.username}`}
                         value={this.state.message}
