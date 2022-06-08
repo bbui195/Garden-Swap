@@ -29,6 +29,28 @@ router.get('/', // all messages for current user
     }
 );
 
+function formatMessage(message, username) {
+    return {
+        body: message.body,
+        receiverId: message.receiverId,
+        senderId: message.senderId,
+        username: username,
+        time: message.createdAt,
+        id: message.id
+    };
+}
+
+function formatMessages(messages, username) {
+    let formatted = {};
+    messages.forEach(message => {
+        formatted[message.id] = formatMessage(message, username);
+    });
+    return formatted;
+    // return messages.map(message => {
+    //     return formatMessage(message, username);
+    // });
+}
+
 router.get('/:userId', // messages with user with id :id
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
@@ -39,8 +61,21 @@ router.get('/:userId', // messages with user with id :id
                     Message.find({senderId: receiver.id, receiverId: req.user.id})
                 ]).then(([from, to]) => {
                     res.json({
-                        from,
-                        to
+                        messages: Object.assign(formatMessages(from, req.user.username),
+                            formatMessages(to, receiver.username)),
+                            // formatMessages(from, req.user.username)
+                            // .concat(formatMessages(to, receiver.username)),
+                        users: {
+                            [receiver.id]: {
+                                username: receiver.username,
+                                id: receiver.id
+                                // profilePicture
+                            },
+                            [req.user.id]: {
+                                username: req.user.username,
+                                id: req.user.id
+                            }
+                        }
                     })
                 })
             }
@@ -48,18 +83,30 @@ router.get('/:userId', // messages with user with id :id
     }
 );
 
-router.post('/:userId', // messages to id
+router.post('/', // messages to id
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
-        User.findById(req.params.userId)
+        // console.log("messaging");
+        // console.log(req.body)
+        User.findById(req.body.userId)
             .then(receiver => {
                 let newMessage = new Message({
                     senderId: req.user.id,
-                    receiverId: req.params.userId,
+                    receiverId: req.body.userId,
                     body: req.body.body
                 });
 
                 newMessage.save()
+                    .then(message => {
+                        // console.log(router.io);
+                        [message.senderId, message.receiverId].forEach(id => {
+                            if(router.io.connectedUsers[id]) {
+                                router.io.to(router.io.connectedUsers[id]).emit(
+                                    "message", formatMessage(message, req.user.username)
+                                );
+                            }
+                        })
+                    });
                     // .then(message => res.json(message));
 
             }).catch(err => res.status(404).json({ nouserfound: 'No user found with that ID'}))
