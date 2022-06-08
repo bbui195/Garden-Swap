@@ -1,6 +1,6 @@
-import React from 'react'
-import Rating from './stars'
-
+import React from 'react';
+import Rating from './stars';
+import { withRouter } from 'react-router-dom';
 
 
 
@@ -8,26 +8,30 @@ class EditReviewForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            id: this.props.review._id,
             userId: this.props.review.userId,
             rating: this.props.review.rating,
             body: this.props.review.body,
         }
-        this.handleSubmit = this.handleSubmit.bind(this)
-        this.handleRating = this.handleRating.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleRating = this.handleRating.bind(this);
+        this.handleRating = this.handleRating.bind(this);
     }
 
     handleSubmit(e) {
         e.preventDefault()
-        this.props.action(this.state)
+        console.log(this.props)
+        this.props.action(Object.assign({}, this.state))
+            .then(()=>this.props.resetState())
     }
 
     handleRating(rating) {
-        this.setState({...this.state,rating})
+        return this.setState({...this.state, rating: rating})
     }
 
     handleChange(field) {
         return e => {
-            this.setState({...this.state,[field]: e.currentTarget.value})
+            this.setState({[field]: e.currentTarget.value})
         }
     }
 
@@ -59,4 +63,4 @@ class EditReviewForm extends React.Component {
     }
 }
 
-export default EditReviewForm
+export default withRouter(EditReviewForm)
