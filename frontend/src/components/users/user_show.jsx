@@ -60,7 +60,8 @@ class UserShow extends React.Component {
         const userId = this.props.match.params.userId 
         // console.log('props',this.props)
         // console.log('reviews',Object.values(this.props.reviews))
-        const userData = Object.values(this.props.user)[0]
+        // const userData = Object.values(this.props.user)[0]
+        const userData = this.props.user
         // const userListings = userData.listings
         // console.log(userData)
         if (!userData) {
@@ -78,7 +79,7 @@ class UserShow extends React.Component {
                 <ul className='user-info-container'>
                     <img  src={johnProf} alt="" className='prof'/>
                     <li className='username'>Username: {userData.username}</li>
-                    <li className='joined'>Joined: {userData.joined}</li>
+                    <li className='joined'>Joined: {(new Date(userData.joined)).toDateString().split(" ").slice(1).join(" ")}</li>
                     <li className='zipcode'>Zipcode: {userData.zipcode}</li>
                     <li className='rating'>Average Rating: {userData.rating}/5</li>
                     {this.leaveReview()}
