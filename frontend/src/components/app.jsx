@@ -56,6 +56,15 @@ export default () => {
             <Switch>
                 <AuthRoute exact path='/login' component={LogInContainer}  />
                 <AuthRoute exact path='/signup' component={SignUpContainer} />
+
+                <Route exact path='/listingForm' component={ListingForm} />
+                <Route exact path='/listingForm' component={ListingForm} />
+                <Route exact path='/users/:userId' component={UserShowContainer}/>
+                <Route exact path= '/user/inbox' component={InboxContainer}/>
+                <Route exact path="/user/inbox/:userId" component={ConversationContainer}/>
+                <Route exact path='/test' component={Test} />
+                <Route exact path='/userProfile' />
+
                 <Route exact path='/reviews/:userId/new' component={ReviewFormContainer} />
                 <Route exact path='/reviews/:reviewId/edit' component={EditReviewContainer} />
                 <Route exact path='/category/:categoryId' component={ListingCategoryIndex} />

@@ -91,7 +91,7 @@ class UserShow extends React.Component {
 
                     {Object.values(this.props.reviews??{}).map((review,idx) => {   
                         return (
-                            <div key={idx} className='user-reviews-container'>
+                            <div className='user-reviews-container' key={review.id}>
                                 {review.id === this.state.reviewId ?  
                                     <EditReviewForm  review={review} action={this.props.editReview} fetchReviews={this.props.requestReviews} resetState={this.resetReviewState} />
                                 : 

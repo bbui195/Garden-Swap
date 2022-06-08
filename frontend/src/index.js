@@ -18,14 +18,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const decodedUser = jwt_decode(localStorage.jwtToken);
         preloadedState = { session: { isAuthenticated: true, currentUser: decodedUser }}
     }
-    // if (window.currentUser) {
-    //     preloadedState = {
-    //         session: {
-    //             currentUser: window.currentUser
-    //         }
-    //     }
-    // }
+    
     const store = configureStore(preloadedState);
+    if(localStorage.jwtToken) {
+        const decodedUser = jwt_decode(localStorage.jwtToken);
+        const currentTime = Date.now() / 1000;
+        if (decodedUser.exp < currentTime) {
+            store.dispatch(logoutUser());
+        }
+    }
     window.store = store;
     window.getState = store.getState;
     window.dispatch = store.dispatch;
