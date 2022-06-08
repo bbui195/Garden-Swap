@@ -17,7 +17,8 @@ const mDTP = dispatch => ({
     deleteReview: id=> dispatch(deleteReview(id)),
     editReview: review => dispatch(patchReview(review)),
     requestUser: userId => dispatch(requestUser(userId)),
-    requestReview: userId => dispatch(requestReview(userId))
+    requestReview: userId => dispatch(requestReview(userId)),
+    action: review => dispatch(patchReview(review))
 })
 
 export default connect(mSTP,mDTP)(UserShow)

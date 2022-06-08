@@ -4,7 +4,7 @@ function Geo() {
     const [latitude, setLatitude] = useState('')
     const [longitude, setLongitude] = useState('')
     const [zipCode,setZipcode] = useState('')
-    console.log(zipCode)
+    // console.log(zipCode)
     
     const userLocation= `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
 
@@ -20,7 +20,7 @@ function Geo() {
                 .then(res => res.json())
                 .then(data => {
                     setZipcode(data.postcode)
-                })
+            })
         })
     },[])
 
@@ -31,10 +31,3 @@ function Geo() {
 }
 
 export default Geo
-
-
-// //to use google maps reverse geo locaiton and show on google maps
-
-// let img = new Image();
-// img.src = `https://maps.googleapis.com/maps/api/staticmap?center=${position.coords.latitude},${position.coords.longitude}&zoom=13&size=800x400&sensor=false`;
-// $('#output').html(img);

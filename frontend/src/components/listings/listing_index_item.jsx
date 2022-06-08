@@ -8,7 +8,6 @@ class ListingIndexItem extends React.Component {
         this.titleChopper = this.titleChopper.bind(this)
     }
 
-
     titleChopper(title) {
         if (title.length > 25) {
             title = title.substring(0,24) + "..."
@@ -17,7 +16,6 @@ class ListingIndexItem extends React.Component {
             return title
         }
     }
-
 
     render() {
         const {listing} = this.props

@@ -4,16 +4,19 @@ const Validator = require("validator");
 const validText = require("./valid-text");
 const validCategory = require("./valid_category");
 
-module.exports = function validateCreateListingInput(data) {
+module.exports = function validateListingInput(data) {
     let errors = {};
-
+    // console.log(data, 'this is the data')
     data.title = validText(data.title) ? data.title : '';
-    data.body = validText(data.body) ? data.body: '';
-    data.price = mongoose.Types.Decimal128.fromString(data.price);
+    data.body = validText(data.body) ? data.body : '';
+    // data.price = mongoose.Types.Decimal128.fromString(data.price);
     data.location = validText(data.location) ? data.location : '';
     data.category = validText(data.category) ? data.category : '';
-    
-    if(!mongoose.Types.ObjectId.isValid(data.userId)) {
+    data.photoUrls = data.photoUrls || '';
+    // if(!mongoose.Types.ObjectId.isValid(data.userId)) {
+    //     errors.userId = 'Invalid id';
+    // }
+    if(Validator.isEmpty(data.userId)) {
         errors.userId = 'Invalid id';
     }
 
@@ -41,7 +44,7 @@ module.exports = function validateCreateListingInput(data) {
         data.category = '';
         errors.category = 'Invalid category';
     }
-
+    console.log(errors, 'this is the errors')
     return {
         errors,
         isValid: Object.keys(errors).length === 0

@@ -24,7 +24,7 @@ const listingReducer = (oldState = {}, action) => {
             nextState[action.listing.id] = Object.assign({},action.listing)
             return nextState;
         case DELETE_LISTING:
-            delete nextState[action.listing.id]
+            delete nextState[action.listingId]
             return nextState
         case UPDATE_LISTING:
             nextState[action.listing.id] = Object.assign({},action.listing)
