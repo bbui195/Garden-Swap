@@ -14,20 +14,26 @@ class UserShow extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            reviewId: '',
-
+            reviewId: ''
         }
-        this.handleRemove = this.handleRemove.bind(this)
+        this.handleRemove = this.handleRemove.bind(this);
+        this.resetReviewState = this.resetReviewState.bind(this);
     }
 
     componentDidMount() {
         this.props.requestUser(this.props.match.params.userId)
-        this.props.requestReview(this.props.match.params.userId)
+        this.props.requestReviews(this.props.match.params.userId)
+        console.log('did I get to the component did mount?')
+    }
+
+    resetReviewState () {
+        this.props.requestReviews(this.props.match.params.userId)
+        this.setState({reviewId: ''})
     }
 
     handleRemove(review) {
         // console.log('review',review)
-        this.props.deleteReview(review._id)
+        this.props.deleteReview(review.id)
     }
 
     leaveReview() {
@@ -65,11 +71,12 @@ class UserShow extends React.Component {
             return null
         }
         
-        // console.log('user-show',this.props)
+        console.log('user-show',this.props)
+        console.log(this.state);
         return(
             <div className='user-show-container'>
                 <ul className='user-info-container'>
-                    <img src={johnProf} alt="" className='prof'/>
+                    <img  src={johnProf} alt="" className='prof'/>
                     <li className='username'>Username: {userData.username}</li>
                     <li className='joined'>Joined: {userData.joined}</li>
                     <li className='zipcode'>Zipcode: {userData.zipcode}</li>
@@ -84,9 +91,9 @@ class UserShow extends React.Component {
 
                     {Object.values(this.props.reviews??{}).map((review,idx) => {   
                         return (
-                            <div className='user-reviews-container' key={review._id}>
-                                {review._id === this.state.reviewId ?  
-                                    <EditReviewForm review={review} action={patchReview} />
+                            <div className='user-reviews-container' key={review.id}>
+                                {review.id === this.state.reviewId ?  
+                                    <EditReviewForm  review={review} action={this.props.editReview} fetchReviews={this.props.requestReviews} resetState={this.resetReviewState} />
                                 : 
                                     <div className='user-review'>
                                         <p>{review.timestamps}</p>
@@ -95,10 +102,10 @@ class UserShow extends React.Component {
                                     </div>
                                 }
 
-                                {review.userId === this.props.userSession.id ?
+                                {review.reviewerId === this.props.userSession.id ?
                                     <div className='buttons'>
                                         <button onClick={()=>this.handleRemove(review)}>Delete</button>
-                                        <button onClick={()=>this.setState({reviewId: review._id})}>Edit</button>
+                                        <button onClick={()=>this.setState({reviewId: review.id})}>Edit</button>
                                     </div>
                                 : null
                                 }
@@ -108,11 +115,11 @@ class UserShow extends React.Component {
 
                     <Link to={`/reviews/${this.props.match.params.userId}/new`}>Create Review</Link>
 
-                    {Object.values(this.props.reviews??{}).map((review,idx) => 
+                    {/* {Object.values(this.props.reviews??{}).map((review,idx) => 
                     {
                         // console.log('access to what',this.props)
-                        return <div>
-                            {review._id === this.state.reviewId ?  <EditReviewForm review={review} action={this.props.action}  />: <>
+                        return <div key={idx}>
+                            {review._id === this.state.reviewId ?  <EditReviewForm/>: <>
                                 <p>{review.timestamps}</p>
                                 <p>{review.rating}</p>
                                 <p>{review.body}</p>
@@ -125,8 +132,8 @@ class UserShow extends React.Component {
                             </div>
                             : null
                     }
-                        </div>     
-                    })}
+                        </div>
+                    })} */}
                 </ul>
             </div>
 
