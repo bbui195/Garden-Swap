@@ -125,7 +125,7 @@ export default (props) => {
                     <ul className='cats'>
                         {categories.map(category => {
                                 return (
-                                    <Link to={`/category/${category}`} key={category}>{category}</Link>
+                                    <Link to={`/category/${category}?zipcode=${location.zipCode}&radius=${location.radius}`} key={category}>{category}</Link>
                                 )
                             })
                         }

@@ -1,6 +1,9 @@
+
 .zipcodeFilter {
+    position: absolute;
+    margin-top: 500px;
+    z-index: 5000;
     background-color: green;
-    padding: 30px;
     color: white;
 }
 
