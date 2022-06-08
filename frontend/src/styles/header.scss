@@ -195,6 +195,99 @@
                 background-repeat: no-repeat;
                 background-size: 100%;
             }
+
+            .Vegetables::before {  
+                transform: scaleX(0) translateY(-3px);
+                transform-origin: center;
+                height: 100%;
+            }
+            
+            .Vegetables:hover::before {
+                transform: scale(1) translateX(-13%) translateY(-3px);
+                right: 60px;
+                transform-origin: center;
+            }
+              
+            .Vegetables::before {
+                content: "";
+                display: block;
+                position: absolute;
+                top: 0; 
+                right: 60px; 
+                bottom: 0; 
+                left: 0;
+                inset: 0 0 0 0;
+                z-index: -1;
+                transition: transform .3s ease;
+                background-image: url(../assets/images/carrot2.png);
+                height: 100%;
+                width: 135%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 100%;
+            }
+
+            .Dairy::before {  
+                transform: scaleX(0);
+                transform-origin: center;
+                height: 100%;
+            }
+            
+            .Dairy:hover::before {
+                transform: scale(1) translateX(-13%);
+                right: 60px;
+                transform-origin: center;
+            }
+              
+            .Dairy::before {
+                content: "";
+                display: block;
+                position: absolute;
+                top: 0; 
+                right: 60px; 
+                bottom: 0; 
+                left: 0;
+                inset: 0 0 0 0;
+                z-index: -1;
+                transition: transform .3s ease;
+                background-image: url(../assets/images/dairy.png);
+                height: 100%;
+                width: 135%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 100%;
+            }
+
+            .Nuts::before {  
+                transform: scaleX(0);
+                transform-origin: center;
+                height: 100%;
+            }
+            
+            .Nuts:hover::before {
+                transform: scale(1.5) translateX(-9%) translateY(3px);
+                right: 60px;
+                transform-origin: center;
+            }
+              
+            .Nuts::before {
+                content: "";
+                display: block;
+                position: absolute;
+                top: 0; 
+                right: 60px; 
+                bottom: 0; 
+                left: 0;
+                inset: 0 0 0 0;
+                z-index: -1;
+                transition: transform .3s ease;
+                background-image: url(../assets/images/nuts.png);
+                height: 100%;
+                width: 135%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 100%;
+            }
               
         }
     }
