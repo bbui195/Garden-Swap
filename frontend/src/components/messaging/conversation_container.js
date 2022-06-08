@@ -10,7 +10,8 @@ const mSTP = (state, ownProps) => {
     })
     messages.forEach((message) => {
         message.time = (new Date(message.time))
-            .toLocaleDateString(undefined, {day: "2-digit", month: "2-digit", year: "numeric"})
+            .toLocaleString('en-US');
+            // .toLocaleString(undefined, {day: "2-digit", month: "2-digit", year: "numeric"})
     })
     return {
         token: axios.defaults.headers.common["Authorization"],
