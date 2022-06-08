@@ -8,6 +8,9 @@ class ListingCategoryIndex extends React.Component {
         super(props)
     }
 
+    componentDidMount(){
+        this.props.requestListings();
+    }
         // console.log('index container',this.props)
         // console.log(this.props.match.params)
         // const listings = this.props.requestListings()
@@ -81,7 +84,7 @@ const mSTP = state =>
 }
 
 const mDTP = dispatch => ({
-    requestListings: data => dispatch(requestListings(data))
+    requestListings: () => dispatch(requestListings())
 })
 
 export default  connect (mSTP,mDTP)(ListingCategoryIndex)
