@@ -52,7 +52,7 @@ export const createNewUser = formUser => dispatch => {
             return dispatch(receiveCurrentUser(jwt_decode(response.data.token)));
         },
         error => {
-            console.log('errors',error);
+            // console.log('errors',error);
             dispatch(receiveErrors(error.response.data));
         })
 }

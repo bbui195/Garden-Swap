@@ -2,6 +2,8 @@ import React from 'react'
 import Rating from './stars'
 
 
+
+
 class EditReviewForm extends React.Component {
     constructor(props) {
         super(props)
@@ -32,7 +34,7 @@ class EditReviewForm extends React.Component {
 
 
     render() {
-        console.log('edit page',this.props)
+        // console.log('edit page',this.props)
         return (
             <>
                 <div>

@@ -1,15 +1,13 @@
 @import "./reset.scss";
 
 // Colors
-// $light-orange: #FCD0A1;
-$light-orange: #fcd8b1;
+// $light-orange: #fcd8b1;
+$light-orange: #fcd8b1f9;
 $laurel-green: #B1B695;
-// $wintergreen-dream: #53917E;
 $wintergreen-dream: #409d80f9;
 $dark-liver: #63535B;
 $claret: #6D1A36;
 $tweed: #937755;
-// $tweed: #c2ac91;
 
 //Fonts
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
@@ -25,6 +23,8 @@ $tweed: #937755;
 @import "./inbox.scss";
 @import "./user_show.scss";
 @import "./user_review_form.scss";
+@import "./conversation.scss";
+@import "./location.scss";
 
 .app-container {
     width: 100%;

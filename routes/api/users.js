@@ -45,7 +45,7 @@ router.get("/:id",
     }
 )
 
-router.get("/current", passport.authenticate("jwt", {session: false}), (req, res) => {
+router.get("/current/user", passport.authenticate("jwt", {session: false}), (req, res) => {
     res.json({
         id: req.user.id,
         username: req.user.username
@@ -77,7 +77,7 @@ router.post("/register", (req, res) => {
                             .then(user => {
                                 // res.json(user)
                                 const payload = {id: user.id, username: user.username};
-                                jwt.sign(payload, keys.secretOrKey, {expiresIn: 3600},
+                                jwt.sign(payload, keys.secretOrKey, {expiresIn: 3000000},
                                     (err, token) => {
                                         res.json({
                                             success: true,
@@ -120,7 +120,7 @@ router.post("/login", (req, res) => {
                         jwt.sign(
                             payload,
                             keys.secretOrKey,
-                            {expiresIn: 3600},
+                            {expiresIn: 3000000},
                             (err, token) => {
                                 res.json({
                                     success: true,

@@ -1,34 +1,37 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom'
 
 class ListingShow extends React.Component {
     constructor(props) {
         super(props)
-        // this.renderEditDelete = this.renderEditDelete.bind(this);
+        this.renderEditDelete = this.renderEditDelete.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     componentDidMount(){
         this.props.requestListing(this.props.listingId)
     }
 
-    handleEdit(){
-
+    handleDelete(){
+        this.props.deleteListing(this.props.listingId)
+            .then(()=>this.props.history.push('/'))
     }
 
-    // renderEditDelete(){
-    //     if (this.props.currentUser.id === this.props.listing.userId){
-    //         // return (
-    //         //     // <>
-    //         //     //     <li><button onClick={this.handleEdit}>Edit</button></li>
-    //         //     //     <li><button onClick={this.handleDelete}>Delete</button></li>
-    //         //     // </>
-    //         // )
-    //     }else{
-    //         return null
-    //     }
-    // }
+    renderEditDelete(){
+        if (this.props.currentUser.id === this.props.listing.userId){
+            return (
+                <>
+                    <li><Link to={`/listing/edit/${this.props.listingId}`}>Edit</Link></li>
+                    <li><button onClick={this.handleDelete}>Delete</button></li>
+                </>
+            )
+        }else{
+            return null
+        }
+    }
 
     render() {
-        console.log(this.props.listing, "this is the listing on the show page")
+        // console.log(this.props.listing, "this is the listing on the show page")
         if (!this.props.listing){
             return null
         }
@@ -40,6 +43,7 @@ class ListingShow extends React.Component {
                     <li className='body'>{this.props.listing.body}</li>
                     <li className='cat'>{this.props.listing.category}</li>
                     <li className='price'>${this.props.listing.price}</li>
+                    <li><Link to={`/user/inbox/${this.props.listing.userId}`}>Message</Link></li>
                     {/* {this.renderEditDelete()} */}
                 </ul>
             </div>

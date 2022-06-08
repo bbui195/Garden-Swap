@@ -1,15 +1,15 @@
-import React from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import cabbage from "../../assets/images/cabbage.png";
 import profilePic from "../../assets/images/prof-placeholder.png"
-import { useEffect } from "react";
 import { BiLogOut, BiImageAdd } from "react-icons/bi";
 import { FiInbox } from "react-icons/fi";
 import johnProf from "../../assets/images/john-prof.jpeg"
+import { LocationContext } from '../hooks/zipcodeContext';
 
 
-export default ({ currentUser, logoutUser}) => {
-    
+export default (props) => {
+    const { currentUser, logoutUser} = props;
     const categories = [
         'Fruit', 'Vegetables', 'Nuts', 'Dairy', 'Meats', 'Grains'
     ]
@@ -47,15 +47,8 @@ export default ({ currentUser, logoutUser}) => {
         </>
     );
 
-    useEffect(() => {
-        let dropDown = document.querySelector('.dropdown-content');
-        if (dropDown) {
-          dropDown.style.display = 'none';
-        }  
-    });
 
     function dropDown2(e) {
-        console.log(e);
         if (!e.target.closest(".profile-dropdown") && !e.target.closest(".dropdown-content")) {
             document.querySelector(".dropdown-content").style.display = 'none'
             document.removeEventListener("click", dropDown2)
@@ -64,7 +57,6 @@ export default ({ currentUser, logoutUser}) => {
 
     function toggleDropDown() {
         let dropDown = document.querySelector('.dropdown-content');
-        console.log(dropDown.style.display);
         if (dropDown.style.display === 'none') {
             dropDown.style.display = 'flex'
             document.addEventListener('click', dropDown2);
@@ -75,12 +67,16 @@ export default ({ currentUser, logoutUser}) => {
         };
     };
 
- 
+    function updateLocation(e) {
+        setLocation({...location, zipCode:e.currentTarget.value})
+    }
 
-    
 
+
+    const {location, setLocation} = useContext(LocationContext)
 
     return (
+    
         <>
             <header className='header-container'>
                 <div className='topline'>
@@ -90,8 +86,39 @@ export default ({ currentUser, logoutUser}) => {
                     </Link>
                     <input type="text" className='search-bar' placeholder="Search local gardens"/>
                     <div>
-                        <i className="fa-solid fa-location-arrow location-icon"></i>
-                        <p>Current Location</p>
+                        {/* <p>Filter by Zipcode?{location.zipCode}</p> */}
+                           {/* populated.length === 0 ? 'null':  */}
+                        <div className='location-dropdown'>
+                            <button className='dropbtn' >Enter Zipcode{" "}<i className="fa-solid fa-location-arrow location-icon"></i></button>
+                                <form action="" className='zipcode-filter'>
+                                    
+
+                                    
+                                    <input value={location.zipCode} onChange={updateLocation} type="text" />
+                                    {/* <input 
+                                        type="radio" 
+                                        name="distance"
+                                        value='3'
+                                        onChange={e => setLocation({...location,radius:e.target.value})}
+                                        />3
+                                        <input 
+                                        type="radio" 
+                                        name="distance"
+                                        value='5' 
+                                        onChange={e => setLocation({...location,radius:e.target.value})}
+                                        />5
+                                        <input 
+                                        type="radio" 
+                                        name="distance"
+                                        value='10' 
+                                        onChange={e => setLocation({...location,radius:e.target.value})}
+                                    />10 */}
+                                    <button>Get My Current Location</button>
+                                    <span>Distance Filter (miles)</span>
+                                    <input type="range" min="1" max="25" placeholder="5" onChange={e => setLocation({...location,radius:e.target.value})} />
+                                </form>
+                        </div>
+                 
                     </div>
                     <div>{session}</div> 
                 </div>
