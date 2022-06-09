@@ -17,10 +17,10 @@ const mSTP = (state,ownProps) => {
     }else{
         listingsArr = Object.values(state.entities.listings)
     }
-
     return {
         //i'm assuming i have all the listings from enttiies
         listings: listingsArr,
+    
         // category: ownProps.match.
     }
 }

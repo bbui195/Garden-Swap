@@ -5,11 +5,12 @@ import profilePic from "../../assets/images/prof-placeholder.png"
 import { BiLogOut, BiImageAdd } from "react-icons/bi";
 import { FiInbox } from "react-icons/fi";
 import johnProf from "../../assets/images/john-prof.jpeg"
-import { LocationContext } from '../hooks/zipcodeContext';
+import { debounce } from 'lodash';
 
 
 export default (props) => {
     const { currentUser, logoutUser} = props;
+    const {location} = props
     const categories = [
         'Fruit', 'Vegetables', 'Nuts', 'Dairy', 'Meats', 'Grains'
     ]
@@ -68,12 +69,15 @@ export default (props) => {
     };
 
     function updateLocation(e) {
-        setLocation({...location, zipCode:e.currentTarget.value})
+        e.preventDefault()
+        props.updateLocationZipcode(e.target.value)
     }
-
-
-
-    const {location, setLocation} = useContext(LocationContext)
+    
+    
+    function handleScroll(e) {
+        debounce(function() 
+            { props.updateLocationRadius(parseInt(e.target.value),10)},500)()
+    }
 
     return (
     
@@ -95,9 +99,31 @@ export default (props) => {
 
                                     
                                     <input value={location.zipCode} onChange={updateLocation} type="text" />
+<<<<<<< HEAD
+                                    {/* <input 
+                                        type="radio" 
+                                        name="distance"
+                                        value='3'
+                                        onChange={e => setLocation({...location,radius:e.target.value})}
+                                        />3
+                                        <input 
+                                        type="radio" 
+                                        name="distance"
+                                        value='5' 
+                                        onChange={e => setLocation({...location,radius:e.target.value})}
+                                        />5
+                                        <input 
+                                        type="radio" 
+                                        name="distance"
+                                        value='10' 
+                                        onChange={e => setLocation({...location,radius:e.target.value})}
+                                    />10 */}
+                                    <button onClick={props.updateZip}>Get My Current Location</button>
+=======
                                     <button>Get My Current Location</button>
+>>>>>>> main
                                     <span>Distance Filter (miles)</span>
-                                    <input type="range" min="1" max="25" placeholder="5" onChange={e => setLocation({...location,radius:e.target.value})} />
+                                    <input type="range" min="1" max="25" placeholder="5" onChange={handleScroll} />
                                 </form>
                         </div>
                  
@@ -108,7 +134,16 @@ export default (props) => {
                     <ul className='cats'>
                         {categories.map(category => {
                                 return (
+<<<<<<< HEAD
+                                    <Link 
+                                        to={{
+                                        pathname: `/category/${category}`
+                                    }}
+                                    key={category}>{category}
+                                    </Link>
+=======
                                     <Link to={`/category/${category}`} key={category} className={category}>{category}</Link>
+>>>>>>> main
                                 )
                             })
                         }
