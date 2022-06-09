@@ -7,11 +7,13 @@ import { FiInbox } from "react-icons/fi";
 import johnProf from "../../assets/images/john-prof.jpeg"
 import { BsDashLg } from "react-icons/bs";
 import { debounce } from 'lodash';
+import { STATES } from 'mongoose';
 
 
 export default (props) => {
     const { currentUser, logoutUser} = props;
-    const {location} = props
+    const {location} = props;
+    const [distance, setDistance] = useState(5);
     const categories = [
         'Fruit', 'Vegetables', 'Nuts', 'Dairy', 'Meats', 'Grains'
     ]
@@ -72,16 +74,15 @@ export default (props) => {
     function updateLocation(e) {
         e.preventDefault()
         props.updateLocationZipcode(e.target.value)
-    }
+    };
     
     
     function handleScroll(e) {
-        debounce(function() 
-            { props.updateLocationRadius(parseInt(e.target.value),10)},500)()
-    }
+        debounce(function() {props.updateLocationRadius(parseInt(e.target.value), 10)}, 500)();
+        setDistance(e.target.value)
+    };
 
     return (
-    
         <>
             <header className='header-container'>
                 <div className='topline'>
@@ -96,7 +97,6 @@ export default (props) => {
                         <div className='location-dropdown'>
                             <button className='dropbtn' >
                                 Enter Zipcode{" "}
-                                <i className="fa-solid fa-location-arrow location-icon"></i>
                             </button>
                             <form action="" className='zipcode-filter'>
                                 <span>Enter Zipcode</span>
@@ -111,15 +111,23 @@ export default (props) => {
                                     <span>or</span>
                                     <BsDashLg/>
                                 </div>
-                                <button onClick={props.updateZip}>Use Current Location</button>
-                                <span>Distance</span>
-                                <div>
+                                <button onClick={props.updateZip} className="btn">
+                                    Use Current Location
+                                </button>
+                                <div className='slider-container'>
+                                    <div className='distance'>
+                                        <span>Distance:</span>
+                                        <span className='miles'>
+                                            {distance} {distance == 1 ? "Mile" : "Miles"}
+                                        </span>
+                                    </div>
                                     <input 
                                         type="range" 
                                         min="1" 
                                         max="25" 
-                                        placeholder="5" 
+                                        defaultValue='10'
                                         onChange={handleScroll}
+                                        className="slider"
                                     />
                                 </div>
                             </form>

@@ -4,22 +4,22 @@
     
 
     .dropbtn {
-        background-color: #f7e0eb;
-        color: black;
+        background-color: $wintergreen-dream;
+        color: white;
         padding: 8px;
         font-size: 14px;
         border: none;
         border-radius: 15px;
-        border: 2px solid rgb(9, 63, 46);
+        // border: 2px solid white;
     }
 
     .zipcode-filter {
-        display: flex;
+        display: none;
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
         min-width: 174px;
-        height: 10rem;
+        height: 14rem;
         padding: 20px;
         color: black;
         position: absolute;
@@ -38,6 +38,61 @@
             span {
                 margin: .5rem;
                 font-size: 16px;
+            }
+        }
+
+        .btn {
+            border-color: black;
+            color: black;
+            width: 85%;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .slider-container {
+            border-top: 2px solid rgb(157, 157, 157);
+            margin-top: 2rem;
+            box-sizing: border-box;
+            padding: 10px;
+            width: 100%;
+            
+            .distance {
+                display: flex;
+                justify-content: space-between;
+
+                .miles {
+                    border: 1px solid black;
+                    border-radius: 5px;
+                    background-color: #f7e0eb;
+                    color: black;
+                    padding: 5px;
+                    width: 39%;
+                }
+            }
+
+            .slider {
+                margin-top: 2rem;
+                width: 100%;
+                -webkit-appearance: none;
+                width: 100%;
+                height: 5px;
+                border-radius: 5px;  
+                background: #d3d3d3;
+                outline: none;
+                opacity: 95%;
+                -webkit-transition: .2s;
+                transition: opacity .2s;
+            }
+
+            .slider::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 10px;
+                height: 25px;
+                border-radius: 10px; 
+                border: 1px solid black;
+                background: #f7e0eb;
+                cursor: pointer;
             }
         }
     }
