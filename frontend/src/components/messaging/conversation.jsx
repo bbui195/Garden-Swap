@@ -14,6 +14,9 @@ class Conversation extends React.Component {
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleEditSubmit = this.handleEditSubmit.bind(this);
+        this.stopEdit = this.stopEdit.bind(this);
+        this.submitEdit = this.submitEdit.bind(this);
     }
 
     componentDidMount() {
@@ -32,6 +35,15 @@ class Conversation extends React.Component {
         });
     }
 
+    componentDidUpdate() {
+        if(this.state.focusEdit) {
+            document.getElementsByClassName("edit-input")[0].focus();
+            this.setState({
+                focusEdit: false
+            })
+        }
+    }
+
     componentWillUnmount() {
         if(this.state.socket) {
             console.log("disconnecting")
@@ -41,7 +53,10 @@ class Conversation extends React.Component {
     }
 
     handleChange(type) {
-        return (e) => this.setState({[type]: e.target.value});
+        return (e) => {
+            console.log(this.state);
+            this.setState({[type]: e.target.value})
+        };
     }
 
     handleEditClick(message) {
@@ -49,6 +64,30 @@ class Conversation extends React.Component {
             editing: message.id,
             editMessage: message.body,
             focusEdit: true
+        });
+    }
+
+    submitEdit() {
+        if(this.state.editMessage !== "") {
+            this.props.updateMessage({
+                id: this.state.editing,
+                body: this.state.editMessage
+            });
+            this.stopEdit();
+        }
+    }
+
+    handleEditSubmit(e) {
+        if(e.key !== "Enter") {
+            return;
+        }
+        this.submitEdit();
+    }
+
+    stopEdit() {
+        this.setState({
+            editing: undefined,
+            editMessage: "",
         });
     }
 
@@ -103,10 +142,7 @@ class Conversation extends React.Component {
                                         
                                         <div className="delete" name="Delete"
                                             onClick={()=>{
-                                                this.setState({
-                                                    deleteModal: true,
-                                                    deleteMessage: message
-                                                });
+                                                this.props.deleteMessage(message.id);
                                             }}
                                         ><i className="fa-solid fa-trash-can"></i></div>
                                         
