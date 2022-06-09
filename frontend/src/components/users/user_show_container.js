@@ -4,9 +4,10 @@ import { deleteReview, requestUserReviews, patchReview } from '../../actions/rev
 import { requestUser } from '../../actions/user_action'
 // import { requestReviews } from '../../actions/review_action'
 
-const mSTP = state => { 
+const mSTP = (state, ownProps) => { 
     return {
-        user: state.entities.users,
+        // user: state.entities.users,
+        user: state.entities.users[ownProps.match.params.userId],
         userSession: state.session.currentUser || {},
         reviews: state.entities.reviews
     }
