@@ -40,7 +40,8 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server, {
     cors: {
-        origin: "ws://garden-swapp.herokuapp.com/socket.io/?EIO=4&transport=websocket",
+        // origin: "ws://garden-swapp.herokuapp.com/socket.io/?EIO=4&transport=websocket",
+        origin: "ws://garden-swapp.herokuapp.com/",
         credentials: true
     }
 })
@@ -65,8 +66,8 @@ io.on('connection', (socket) => {
     console.log(io.connectedUsers);
     io.to(socket.id).emit("testing 123");
 })
-
-server.listen(5000, () => {
+const port = process.env.PORT || 5000;
+server.listen(port, () => {
     console.log("Server is listening");
     // console.log(io);
 })
@@ -84,6 +85,5 @@ app.use("/api/listings", listings);
 app.use("/api/reviews", reviews);
 app.use("/api/messages", messages);
 
-const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
