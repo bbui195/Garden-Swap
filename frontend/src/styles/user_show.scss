@@ -23,6 +23,8 @@
         flex-direction: column;
         box-shadow: 0px 0px 10px #656565;
 
+       
+
 
         .prof {
             width: 15rem;
@@ -48,9 +50,17 @@
             margin-top: 1rem;
         }
 
-        .rating {
+        .avg-rating {
             margin-top: 1rem;
             margin-bottom: 1rem;
+            width: 80%;
+            display: flex;
+            justify-content: center;
+
+            .review-star-rating {
+                width: 30%;
+                margin-left: 1rem;
+            }
         }
 
         .leave-review {
@@ -74,15 +84,22 @@
     width: 90%;
     color: black;
     border: solid 1px black;
+    margin-bottom: 2rem;
 
     .user-review {
         margin-bottom: 1rem;
         margin-left: 1rem;
+        padding: 6px;
     }
 
     .rating {
         font-size: 20px;
         margin-bottom: 5px;
+
+        .review-star-rating {
+            width: 34%;
+
+        }
     }
 
     .buttons {
