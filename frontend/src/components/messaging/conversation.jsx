@@ -18,7 +18,9 @@ class Conversation extends React.Component {
 
     componentDidMount() {
         this.props.fetchMessages();
-        let socket = socketIOClient("ws://garden-swapp.herokuapp.com/socket.io/?EIO=4&transport=websocket", {
+        let socket = socketIOClient(
+            // "ws://garden-swapp.herokuapp.com/socket.io/?EIO=4&transport=websocket", {
+            "http://garden-swapp.herokuapp.com/", {
             withCredentials: true,
             extraHeaders: {
                 token: this.props.token
