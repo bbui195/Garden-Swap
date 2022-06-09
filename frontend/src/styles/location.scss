@@ -1,0 +1,35 @@
+.location-dropdown {
+    position: relative;
+    display: inline-block;
+
+    .dropbtn {
+        background-color: $light-orange;
+        color: black;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 15px;
+    }
+
+    .zipcode-filter {
+        display: none;
+        min-width: 160px;
+        padding: 20px;
+        color: black;
+        position: absolute;
+        background-color: #f1f1f1;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        border-radius: 15px;
+        z-index: 1;
+    }
+}
+
+.location-dropdown:hover {
+
+    .zipcode-filter {
+        display: block;
+    }
+}
+
+
+

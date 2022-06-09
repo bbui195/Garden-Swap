@@ -17,9 +17,21 @@ export const deleteListing = listingId => {
 }
 
 export const patchListing = listing => {
-    return axios.patch(`/api/listings/${listing.id}`,listing)
+    
+    for(var pair of listing.entries()) {
+        console.log(pair[0]+ ', '+ pair[1]);
+    }
+    let listingId = listing.get('listing[id]');
+    return axios.patch(`/api/listings/${listingId}`, listing)
 }
 
 export const testCreateListing = listing => {
-    return axios.post('/api/listings/image', listing)
+    
+    for (var value of listing.values()) {
+        console.log(value);
+    }
+    // return axios.post('/api/listings/image', listing)
+    
+    return axios.post('/api/listings', listing)
+
 }
