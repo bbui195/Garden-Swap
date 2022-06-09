@@ -40,7 +40,7 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: "ws://garden-swapp.herokuapp.com/socket.io/?EIO=4&transport=websocket",
         credentials: true
     }
 })
@@ -66,7 +66,7 @@ io.on('connection', (socket) => {
     io.to(socket.id).emit("testing 123");
 })
 
-server.listen(5002, () => {
+server.listen(5000, () => {
     console.log("Server is listening");
     // console.log(io);
 })
