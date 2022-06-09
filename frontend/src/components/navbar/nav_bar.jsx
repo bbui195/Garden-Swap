@@ -108,6 +108,7 @@ export default (props) => {
                                     <BsDashLg/>
                                 </div>
                                 <button>Use Current Location</button>
+                                <span>Distance</span>
                                 <div>
                                     <input 
                                         type="range" 
@@ -117,7 +118,6 @@ export default (props) => {
                                         onChange={e => setLocation({...location, radius:e.target.value})} 
                                     />
                                 </div>
-                                <span>Distance</span>
                             </form>
                         </div>
                  
