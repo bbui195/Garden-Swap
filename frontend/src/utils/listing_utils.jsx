@@ -33,5 +33,4 @@ export const testCreateListing = listing => {
     // return axios.post('/api/listings/image', listing)
     
     return axios.post('/api/listings', listing)
-
 }

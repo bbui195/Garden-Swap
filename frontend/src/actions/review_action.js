@@ -33,42 +33,40 @@ const removeReview = reviewId => ({
 })
 
 export const makeReview = review => dispatch => {
-    // console.log('make review',review)
     return reviewApiUtils.createReview(review)
-     .then(review => {
-        //  console.log('nested make review',review)
-        reviewApiUtils.fetchReview(review.data.userId)
-            .then(reviews =>
-                dispatch(receiveReview(reviews))
-            )
-     })
+     .then(review => { dispatch(receiveReview(review))})
 }
 
-export const requestReviews = reviews => dispatch => {
-    return reviewApiUtils.fetchReviews(reviews)
+export const requestUserReviews = userId => dispatch => {
+    return reviewApiUtils.fetchUserReviews(userId)
         .then(reviews => dispatch(receiveReviews(reviews)) )
 }
 
 
-export const requestReview = userId => dispatch => {
-    return reviewApiUtils.fetchReview(userId)
-        .then(review => dispatch(receiveReview(review)) )
-}
+// export const requestReview = userId => dispatch => {
+//     return reviewApiUtils.fetchReview(userId)
+//         .then(review => dispatch(receiveReview(review)) )
+// }
 
 export const deleteReview = id => dispatch => {
     return reviewApiUtils.deleteReview(id)
-        .then(id => dispatch(removeReview(id)))
+        .then(() => dispatch(removeReview(id)))
 }
 
-export const patchReview = review => dispatch => {
-    // console.log('before nested',review)
+// export const patchReview = review => dispatch => {
+//     // console.log('before nested',review)
+//     return reviewApiUtils.patchReview(review)
+//         .then(review => {
+//             // console.log('nested review',review)
+//             reviewApiUtils.fetchReview(review.data.userId)
+//                 .then(review =>
+//                     dispatch(receiveReview(review))
+//                 )
+//         })
+// }
+
+export const patchReview = (review) => dispatch => {
+    console.log('before nested')
     return reviewApiUtils.patchReview(review)
-        .then(review => {
-            // console.log('nested review',review)
-            reviewApiUtils.fetchReview(review.data.userId)
-                .then(reviews =>
-                    dispatch(receiveReview(reviews))
-                )
-        })
+        .then(review => dispatch(receiveReview(review)))
 }
-

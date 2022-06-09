@@ -31,7 +31,6 @@ class ListingShow extends React.Component {
     }
 
     render() {
-        // console.log(this.props.listing, "this is the listing on the show page")
         if (!this.props.listing){
             return null
         }
@@ -44,7 +43,7 @@ class ListingShow extends React.Component {
                     <li className='cat'>{this.props.listing.category}</li>
                     <li className='price'>${this.props.listing.price}</li>
                     <li><Link to={`/user/inbox/${this.props.listing.userId}`}>Message</Link></li>
-                    {/* {this.renderEditDelete()} */}
+                    {this.renderEditDelete()}
                 </ul>
             </div>
         )

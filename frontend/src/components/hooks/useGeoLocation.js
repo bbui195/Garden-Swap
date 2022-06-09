@@ -3,9 +3,7 @@ import { useEffect, useState } from 'react'
 function Geo() {
     const [latitude, setLatitude] = useState('')
     const [longitude, setLongitude] = useState('')
-    const [zipCode,setZipcode] = useState('')
-    // console.log(zipCode)
-    
+    const [zipCode,setZipcode] = useState('')  
     const userLocation= `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
 
     

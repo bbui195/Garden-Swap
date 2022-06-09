@@ -5,11 +5,13 @@ import profilePic from "../../assets/images/prof-placeholder.png"
 import { BiLogOut, BiImageAdd } from "react-icons/bi";
 import { FiInbox } from "react-icons/fi";
 import johnProf from "../../assets/images/john-prof.jpeg"
-import { LocationContext } from '../hooks/zipcodeContext';
+import { BsDashLg } from "react-icons/bs";
+import { debounce } from 'lodash';
 
 
 export default (props) => {
     const { currentUser, logoutUser} = props;
+    const {location} = props
     const categories = [
         'Fruit', 'Vegetables', 'Nuts', 'Dairy', 'Meats', 'Grains'
     ]
@@ -68,12 +70,15 @@ export default (props) => {
     };
 
     function updateLocation(e) {
-        setLocation({...location, zipCode:e.currentTarget.value})
+        e.preventDefault()
+        props.updateLocationZipcode(e.target.value)
     }
-
-
-
-    const {location, setLocation} = useContext(LocationContext)
+    
+    
+    function handleScroll(e) {
+        debounce(function() 
+            { props.updateLocationRadius(parseInt(e.target.value),10)},500)()
+    }
 
     return (
     
@@ -89,34 +94,35 @@ export default (props) => {
                         {/* <p>Filter by Zipcode?{location.zipCode}</p> */}
                            {/* populated.length === 0 ? 'null':  */}
                         <div className='location-dropdown'>
-                            <button className='dropbtn' >Enter Zipcode{" "}<i className="fa-solid fa-location-arrow location-icon"></i></button>
-                                <form action="" className='zipcode-filter'>
-                                    
-
-                                    
-                                    <input value={location.zipCode} onChange={updateLocation} type="text" />
-                                    {/* <input 
-                                        type="radio" 
-                                        name="distance"
-                                        value='3'
-                                        onChange={e => setLocation({...location,radius:e.target.value})}
-                                        />3
-                                        <input 
-                                        type="radio" 
-                                        name="distance"
-                                        value='5' 
-                                        onChange={e => setLocation({...location,radius:e.target.value})}
-                                        />5
-                                        <input 
-                                        type="radio" 
-                                        name="distance"
-                                        value='10' 
-                                        onChange={e => setLocation({...location,radius:e.target.value})}
-                                    />10 */}
-                                    <button>Get My Current Location</button>
-                                    <span>Distance Filter (miles)</span>
-                                    <input type="range" min="1" max="25" placeholder="5" onChange={e => setLocation({...location,radius:e.target.value})} />
-                                </form>
+                            <button className='dropbtn' >
+                                Enter Zipcode{" "}
+                                <i className="fa-solid fa-location-arrow location-icon"></i>
+                            </button>
+                            <form action="" className='zipcode-filter'>
+                                <span>Enter Zipcode</span>
+                                <input 
+                                    value={location.zipCode} 
+                                    className="enter-zip"
+                                    onChange={updateLocation} 
+                                    type="text" 
+                                />
+                                <div className='or-dash'>
+                                    <BsDashLg/>
+                                    <span>or</span>
+                                    <BsDashLg/>
+                                </div>
+                                <button onClick={props.updateZip}>Use Current Location</button>
+                                <span>Distance</span>
+                                <div>
+                                    <input 
+                                        type="range" 
+                                        min="1" 
+                                        max="25" 
+                                        placeholder="5" 
+                                        onChange={handleScroll}
+                                    />
+                                </div>
+                            </form>
                         </div>
                  
                     </div>
@@ -126,7 +132,9 @@ export default (props) => {
                     <ul className='cats'>
                         {categories.map(category => {
                                 return (
-                                    <Link to={`/category/${category}`} key={category}>{category}</Link>
+                                    <Link to={`/category/${category}`} key={category} className={category}>
+                                        {category}
+                                    </Link>
                                 )
                             })
                         }

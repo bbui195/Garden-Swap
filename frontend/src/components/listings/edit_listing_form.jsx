@@ -46,7 +46,6 @@ class EditListingForm extends React.Component {
 
     update(field){
         return e=>{
-            console.log(e.currentTarget, 'this is on generic update')
             this.setState({[field]: e.currentTarget.value})
         }
     }
@@ -66,7 +65,6 @@ class EditListingForm extends React.Component {
     }
 
     updateCategory(e) {
-        console.log(e.currentTarget.value, 'this is category target')
         this.setState({category: e.currentTarget.value},
             () => {
                 console.log(this.state.category)
@@ -76,7 +74,6 @@ class EditListingForm extends React.Component {
 
     handleSubmit(e){
         e.preventDefault();
-        console.log(this.state, 'this is the state')
         this.props.patchListing(this.handleFormData())
             .then(this.props.history.push('/'))
     }

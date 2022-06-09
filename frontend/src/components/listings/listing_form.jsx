@@ -64,7 +64,6 @@ class ListingForm extends React.Component {
     }
 
     handleSubmit(e){
-        // console.log(this.state)
         e.preventDefault();
         this.props.makeListing(this.handleFormData())
             .then(()=>this.props.history.push('/'))

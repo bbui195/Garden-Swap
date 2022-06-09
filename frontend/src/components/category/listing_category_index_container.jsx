@@ -7,13 +7,8 @@ class ListingCategoryIndex extends React.Component {
     constructor(props) {
         super(props)
     }
-
-        // console.log('index container',this.props)
-        // console.log(this.props.match.params)
-        // const listings = this.props.requestListings()
-        // {category: this.props.match.params.category})
-        // console.log('listings?',this.props.entities.listings.listings)
     
+
     render() {
 
         let listings =  Object.values(this.props.listings)
