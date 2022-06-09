@@ -67,10 +67,7 @@ io.on('connection', (socket) => {
     io.to(socket.id).emit("testing 123");
 })
 const port = process.env.PORT || 5000;
-server.listen(port, () => {
-    console.log("Server is listening");
-    // console.log(io);
-})
+
 //
 
 // app.get("/", (req, res) => res.send("Hello World!"));
@@ -86,4 +83,9 @@ app.use("/api/reviews", reviews);
 app.use("/api/messages", messages);
 
 
-app.listen(port, () => console.log(`Server is running on port ${port}`));
+// app.listen(port, () => console.log(`Server is running on port ${port}`));
+
+server.listen(port, () => {
+    console.log("Server is listening");
+    // console.log(io);
+})
