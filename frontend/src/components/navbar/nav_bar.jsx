@@ -5,7 +5,6 @@ import profilePic from "../../assets/images/prof-placeholder.png"
 import { BiLogOut, BiImageAdd } from "react-icons/bi";
 import { FiInbox } from "react-icons/fi";
 import johnProf from "../../assets/images/john-prof.jpeg"
-import { LocationContext } from '../hooks/zipcodeContext';
 import { BsDashLg } from "react-icons/bs";
 import { debounce } from 'lodash';
 
