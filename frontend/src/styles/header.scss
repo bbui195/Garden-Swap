@@ -8,7 +8,7 @@
     color: white;
     justify-content: space-between;
     flex-direction: column;
-    border-bottom: 2px solid $dark-liver;
+    border-bottom: 2px solid black;
     position: fixed;
     z-index: 5;
 
@@ -33,7 +33,6 @@
             text-decoration: none;
             font-size: 52px;
             margin-right: 10px;
-            // text-shadow: 0 0 3px $light-orange, 0 0 6px $dark-liver;
             text-shadow: 1px 1px #353535;
 
         }

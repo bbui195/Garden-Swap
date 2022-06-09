@@ -83,20 +83,27 @@ class UserShow extends React.Component {
                     <li className='username'>Username: {userData.username}</li>
                     <li className='joined'>Joined: {(new Date(userData.joined)).toDateString().split(" ").slice(1).join(" ")}</li>
                     <li className='zipcode'>Zipcode: {userData.zipcode}</li>
-                    <li className='avg-rating'>Average Rating: <ReviewStarRating rating={avgReviewRating} style={{ stroke: "black", strokeWidth: "5"}} /></li>
+                    <li className='avg-rating'>
+                        Average Rating:
+                        <ReviewStarRating rating={avgReviewRating} 
+                            style={{ stroke: "black", strokeWidth: "5"}} 
+                        /> 
+                        ({Object.values(this.props.reviews).length} reviews ) 
+                    </li>
                     {this.leaveReview()}
                 
                     <Link to={`/reviews/${this.props.match.params.userId}/new`} className="leave-review">Leave review for this user</Link>
-                    <h2>User Reviews</h2>
+                    <h1>User Reviews</h1>
                     {Object.values(this.props.reviews??{}).map((review,idx) => {   
                         return (
+                            <>
                             <div className='user-reviews-container' key={review.id}>
                                 {review.id === this.state.reviewId ?  
                                     <EditReviewForm  review={review} action={this.props.editReview} fetchReviews={this.props.requestReviews} resetState={this.resetReviewState} />
                                 : 
                                     <div className='user-review'>
                                         <p>{review.timestamps}</p>
-                                        <p className='rating'>rating: <ReviewStarRating rating={review.rating}/></p>
+                                        <p className='rating'><ReviewStarRating rating={review.rating}/></p>
                                         <p className='body'>{review.body}</p>
                                     </div>
                                 }
@@ -108,7 +115,8 @@ class UserShow extends React.Component {
                                     </div>
                                 : null
                                 }
-                            </div>     
+                            </div>  
+                            </>   
                         )
                     })}
                 </ul>
