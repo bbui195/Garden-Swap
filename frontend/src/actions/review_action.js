@@ -34,16 +34,7 @@ const removeReview = reviewId => ({
 
 export const makeReview = review => dispatch => {
     return reviewApiUtils.createReview(review)
-<<<<<<< HEAD
-     .then(review => {
-        reviewApiUtils.fetchReview(review.data.userId)
-            .then(reviews =>
-                dispatch(receiveReview(reviews))
-            )
-     })
-=======
      .then(review => { dispatch(receiveReview(review))})
->>>>>>> main
 }
 
 export const requestUserReviews = userId => dispatch => {
@@ -62,16 +53,6 @@ export const deleteReview = id => dispatch => {
         .then(() => dispatch(removeReview(id)))
 }
 
-<<<<<<< HEAD
-export const patchReview = review => dispatch => {
-    return reviewApiUtils.patchReview(review)
-        .then(review => {
-            reviewApiUtils.fetchReview(review.data.userId)
-                .then(reviews =>
-                    dispatch(receiveReview(reviews))
-                )
-        })
-=======
 // export const patchReview = review => dispatch => {
 //     // console.log('before nested',review)
 //     return reviewApiUtils.patchReview(review)
@@ -88,5 +69,4 @@ export const patchReview = (review) => dispatch => {
     console.log('before nested')
     return reviewApiUtils.patchReview(review)
         .then(review => dispatch(receiveReview(review)))
->>>>>>> main
 }
