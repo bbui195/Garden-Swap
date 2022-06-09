@@ -95,24 +95,6 @@ export default (props) => {
 
                                     
                                     <input value={location.zipCode} onChange={updateLocation} type="text" />
-                                    {/* <input 
-                                        type="radio" 
-                                        name="distance"
-                                        value='3'
-                                        onChange={e => setLocation({...location,radius:e.target.value})}
-                                        />3
-                                        <input 
-                                        type="radio" 
-                                        name="distance"
-                                        value='5' 
-                                        onChange={e => setLocation({...location,radius:e.target.value})}
-                                        />5
-                                        <input 
-                                        type="radio" 
-                                        name="distance"
-                                        value='10' 
-                                        onChange={e => setLocation({...location,radius:e.target.value})}
-                                    />10 */}
                                     <button>Get My Current Location</button>
                                     <span>Distance Filter (miles)</span>
                                     <input type="range" min="1" max="25" placeholder="5" onChange={e => setLocation({...location,radius:e.target.value})} />

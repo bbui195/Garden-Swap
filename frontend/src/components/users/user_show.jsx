@@ -1,12 +1,13 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import ListingIndex from '../listings/listing_index'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import ListingIndex from '../listings/listing_index';
 
-import EditReviewForm from '../reviews/edit_review'
-import { patchReview } from '../../actions/review_action'
+import EditReviewForm from '../reviews/edit_review';
+import { patchReview } from '../../actions/review_action';
 
-import profilePic from "../../assets/images/prof-placeholder.png"
-import johnProf from "../../assets/images/john-prof.jpeg"
+import profilePic from "../../assets/images/prof-placeholder.png";
+import johnProf from "../../assets/images/john-prof.jpeg";
+import ReviewStarRating from "../reviews/review_star_rating";
 
 
 
@@ -55,25 +56,26 @@ class UserShow extends React.Component {
     render() {
         if (!this.props.user){
             return null
-        }
+        };
 
-        const userId = this.props.match.params.userId 
-        // console.log('props',this.props)
-        // console.log('reviews',Object.values(this.props.reviews))
-        // const userData = Object.values(this.props.user)[0]
-        const userData = this.props.user
-        // const userListings = userData.listings
-        // console.log(userData)
+        const userId = this.props.match.params.userId;
+        const userData = this.props.user;
+      
         if (!userData) {
             return null
-        }
+        };
 
         if (!userData.listings) {
             return null
-        }
-        
-        console.log('user-show',this.props)
-        console.log(this.state);
+        };
+
+        let avgReview = 0;
+        Object.values(this.props.reviews).forEach(review => {
+            console.log(review, 'heheheheheh')
+            avgReview += review.rating
+        });
+        let avgReviewRating = Math.floor(avgReview / Object.values(this.props.reviews).length)
+        console.log(avgReviewRating, 'teheheheheh')
         return(
             <div className='user-show-container'>
                 <ul className='user-info-container'>
@@ -81,15 +83,11 @@ class UserShow extends React.Component {
                     <li className='username'>Username: {userData.username}</li>
                     <li className='joined'>Joined: {(new Date(userData.joined)).toDateString().split(" ").slice(1).join(" ")}</li>
                     <li className='zipcode'>Zipcode: {userData.zipcode}</li>
-                    <li className='rating'>Average Rating: {userData.rating}/5</li>
+                    <li className='avg-rating'>Average Rating: <ReviewStarRating rating={avgReviewRating} style={{ stroke: "black", strokeWidth: "5"}} /></li>
                     {this.leaveReview()}
-                    {/* <div>
-                        {userData.listings.map(listing => (
-                            <ListingIndex listing={listing} />
-                        ))}
-                    </div> */}
+                
                     <Link to={`/reviews/${this.props.match.params.userId}/new`} className="leave-review">Leave review for this user</Link>
-
+                    <h2>User Reviews</h2>
                     {Object.values(this.props.reviews??{}).map((review,idx) => {   
                         return (
                             <div className='user-reviews-container' key={review.id}>
@@ -98,7 +96,7 @@ class UserShow extends React.Component {
                                 : 
                                     <div className='user-review'>
                                         <p>{review.timestamps}</p>
-                                        <p className='rating'>rating: {review.rating}</p>
+                                        <p className='rating'>rating: <ReviewStarRating rating={review.rating}/></p>
                                         <p className='body'>{review.body}</p>
                                     </div>
                                 }
@@ -112,29 +110,7 @@ class UserShow extends React.Component {
                                 }
                             </div>     
                         )
-                    })};
-
-                    <Link to={`/reviews/${this.props.match.params.userId}/new`}>Create Review</Link>
-
-                    {/* {Object.values(this.props.reviews??{}).map((review,idx) => 
-                    {
-                        // console.log('access to what',this.props)
-                        return <div key={idx}>
-                            {review._id === this.state.reviewId ?  <EditReviewForm/>: <>
-                                <p>{review.timestamps}</p>
-                                <p>{review.rating}</p>
-                                <p>{review.body}</p>
-                            </>}
-
-                            {review.userId === this.props.userSession.id ?
-                            <div>
-                                <button onClick={()=>this.handleRemove(review)}>Delete Review</button>
-                                <button onClick={()=>this.setState({reviewId: review._id})}>Edit Button</button>
-                            </div>
-                            : null
-                    }
-                        </div>
-                    })} */}
+                    })}
                 </ul>
             </div>
 
