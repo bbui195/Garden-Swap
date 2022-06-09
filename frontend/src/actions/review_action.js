@@ -33,7 +33,6 @@ const removeReview = reviewId => ({
 })
 
 export const makeReview = review => dispatch => {
-    // console.log('make review',review)
     return reviewApiUtils.createReview(review)
      .then(review => { dispatch(receiveReview(review))})
 }

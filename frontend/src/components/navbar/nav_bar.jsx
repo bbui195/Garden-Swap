@@ -7,10 +7,12 @@ import { FiInbox } from "react-icons/fi";
 import johnProf from "../../assets/images/john-prof.jpeg"
 import { LocationContext } from '../hooks/zipcodeContext';
 import { BsDashLg } from "react-icons/bs";
+import { debounce } from 'lodash';
 
 
 export default (props) => {
     const { currentUser, logoutUser} = props;
+    const {location} = props
     const categories = [
         'Fruit', 'Vegetables', 'Nuts', 'Dairy', 'Meats', 'Grains'
     ]
@@ -69,12 +71,15 @@ export default (props) => {
     };
 
     function updateLocation(e) {
-        setLocation({...location, zipCode:e.currentTarget.value})
+        e.preventDefault()
+        props.updateLocationZipcode(e.target.value)
     }
-
-
-
-    const {location, setLocation} = useContext(LocationContext)
+    
+    
+    function handleScroll(e) {
+        debounce(function() 
+            { props.updateLocationRadius(parseInt(e.target.value),10)},500)()
+    }
 
     return (
     
@@ -107,7 +112,7 @@ export default (props) => {
                                     <span>or</span>
                                     <BsDashLg/>
                                 </div>
-                                <button>Use Current Location</button>
+                                <button onClick={props.updateZip}>Use Current Location</button>
                                 <span>Distance</span>
                                 <div>
                                     <input 
@@ -115,7 +120,7 @@ export default (props) => {
                                         min="1" 
                                         max="25" 
                                         placeholder="5" 
-                                        onChange={e => setLocation({...location, radius:e.target.value})} 
+                                        onChange={handleScroll}
                                     />
                                 </div>
                             </form>
