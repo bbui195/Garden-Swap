@@ -39,9 +39,10 @@ class ListingShow extends React.Component {
                 <h1 className='title'>{this.props.listing.title}</h1>
                 <ul >
                     <li><img src={this.props.listing.photoUrls}/></li>
-                    <li>{this.props.listing.body}</li>
-                    <li>{this.props.listing.category}</li>
-                    <li>{this.props.listing.price}</li>
+                    <li className='body'>{this.props.listing.body}</li>
+                    <li className='cat'>{this.props.listing.category}</li>
+                    <li className='price'>${this.props.listing.price}</li>
+                    <li><Link to={`/user/inbox/${this.props.listing.userId}`}>Message</Link></li>
                     {this.renderEditDelete()}
                 </ul>
             </div>

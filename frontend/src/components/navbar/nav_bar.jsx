@@ -99,6 +99,7 @@ export default (props) => {
 
                                     
                                     <input value={location.zipCode} onChange={updateLocation} type="text" />
+<<<<<<< HEAD
                                     {/* <input 
                                         type="radio" 
                                         name="distance"
@@ -118,6 +119,9 @@ export default (props) => {
                                         onChange={e => setLocation({...location,radius:e.target.value})}
                                     />10 */}
                                     <button onClick={props.updateZip}>Get My Current Location</button>
+=======
+                                    <button>Get My Current Location</button>
+>>>>>>> main
                                     <span>Distance Filter (miles)</span>
                                     <input type="range" min="1" max="25" placeholder="5" onChange={handleScroll} />
                                 </form>
@@ -130,12 +134,16 @@ export default (props) => {
                     <ul className='cats'>
                         {categories.map(category => {
                                 return (
+<<<<<<< HEAD
                                     <Link 
                                         to={{
                                         pathname: `/category/${category}`
                                     }}
                                     key={category}>{category}
                                     </Link>
+=======
+                                    <Link to={`/category/${category}`} key={category} className={category}>{category}</Link>
+>>>>>>> main
                                 )
                             })
                         }
