@@ -6,6 +6,7 @@ import { BiLogOut, BiImageAdd } from "react-icons/bi";
 import { FiInbox } from "react-icons/fi";
 import johnProf from "../../assets/images/john-prof.jpeg"
 import { LocationContext } from '../hooks/zipcodeContext';
+import { BsDashLg } from "react-icons/bs";
 
 
 export default (props) => {
@@ -89,16 +90,35 @@ export default (props) => {
                         {/* <p>Filter by Zipcode?{location.zipCode}</p> */}
                            {/* populated.length === 0 ? 'null':  */}
                         <div className='location-dropdown'>
-                            <button className='dropbtn' >Enter Zipcode{" "}<i className="fa-solid fa-location-arrow location-icon"></i></button>
-                                <form action="" className='zipcode-filter'>
-                                    
-
-                                    
-                                    <input value={location.zipCode} onChange={updateLocation} type="text" />
-                                    <button>Get My Current Location</button>
-                                    <span>Distance Filter (miles)</span>
-                                    <input type="range" min="1" max="25" placeholder="5" onChange={e => setLocation({...location,radius:e.target.value})} />
-                                </form>
+                            <button className='dropbtn' >
+                                Enter Zipcode{" "}
+                                <i className="fa-solid fa-location-arrow location-icon"></i>
+                            </button>
+                            <form action="" className='zipcode-filter'>
+                                <span>Enter Zipcode</span>
+                                <input 
+                                    value={location.zipCode} 
+                                    className="enter-zip"
+                                    onChange={updateLocation} 
+                                    type="text" 
+                                />
+                                <div className='or-dash'>
+                                    <BsDashLg/>
+                                    <span>or</span>
+                                    <BsDashLg/>
+                                </div>
+                                <button>Use Current Location</button>
+                                <div>
+                                    <input 
+                                        type="range" 
+                                        min="1" 
+                                        max="25" 
+                                        placeholder="5" 
+                                        onChange={e => setLocation({...location, radius:e.target.value})} 
+                                    />
+                                </div>
+                                <span>Distance</span>
+                            </form>
                         </div>
                  
                     </div>
@@ -108,7 +128,9 @@ export default (props) => {
                     <ul className='cats'>
                         {categories.map(category => {
                                 return (
-                                    <Link to={`/category/${category}`} key={category} className={category}>{category}</Link>
+                                    <Link to={`/category/${category}`} key={category} className={category}>
+                                        {category}
+                                    </Link>
                                 )
                             })
                         }
