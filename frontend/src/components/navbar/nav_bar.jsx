@@ -5,12 +5,15 @@ import profilePic from "../../assets/images/prof-placeholder.png"
 import { BiLogOut, BiImageAdd } from "react-icons/bi";
 import { FiInbox } from "react-icons/fi";
 import johnProf from "../../assets/images/john-prof.jpeg"
+import { BsDashLg } from "react-icons/bs";
 import { debounce } from 'lodash';
+import { STATES } from 'mongoose';
 
 
 export default (props) => {
     const { currentUser, logoutUser} = props;
-    const {location} = props
+    const {location} = props;
+    const [distance, setDistance] = useState(25);
     const categories = [
         'Fruit', 'Vegetables', 'Nuts', 'Dairy', 'Meats', 'Grains'
     ]
@@ -48,6 +51,18 @@ export default (props) => {
         </>
     );
 
+    // useEffect(() => {
+    //     if (props.currentUser) {
+    //         toggleDropDown()
+    //         // toggleDropDown2()
+    //     };
+    //     let dd = document.querySelector('.zipcode-filter');
+    //     if (dd.style.display === 'none') {
+    //         document.addEventListener('click', dropDown3);
+
+    //     }
+    // });
+
 
     function dropDown2(e) {
         if (!e.target.closest(".profile-dropdown") && !e.target.closest(".dropdown-content")) {
@@ -68,19 +83,37 @@ export default (props) => {
         };
     };
 
+    function dropDown3(e) {
+        if (!e.target.closest(".location-dropdown") && !e.target.closest(".zipcode-filter")) {
+            document.querySelector(".zipcode-filter").style.display = 'none'
+            document.removeEventListener("click", dropDown3)
+        }
+    }
+
+    function toggleDropDown2() {
+        let dropDown = document.querySelector('.zipcode-filter');
+        if (dropDown.style.display === 'none') {
+            dropDown.style.display = 'flex'
+            document.addEventListener('click', dropDown3);
+
+        } else {
+            dropDown.style.display = 'none'
+            document.removeEventListener('click', dropDown3);
+        };
+    };
+
     function updateLocation(e) {
         e.preventDefault()
         props.updateLocationZipcode(e.target.value)
-    }
+    };
     
     
     function handleScroll(e) {
-        debounce(function() 
-            { props.updateLocationRadius(parseInt(e.target.value),10)},500)()
-    }
+        debounce(function() {props.updateLocationRadius(parseInt(e.target.value), 10)}, 500)();
+        setDistance(e.target.value)
+    };
 
     return (
-    
         <>
             <header className='header-container'>
                 <div className='topline'>
@@ -92,37 +125,44 @@ export default (props) => {
                     <div>
                         {/* <p>Filter by Zipcode?{location.zipCode}</p> */}
                            {/* populated.length === 0 ? 'null':  */}
-                        <div className='location-dropdown'>
-                            <button className='dropbtn' >Enter Zipcode{" "}<i className="fa-solid fa-location-arrow location-icon"></i></button>
-                                <form action="" className='zipcode-filter'>
-                                    
-
-                                    
-                                    <input value={location.zipCode} onChange={updateLocation} type="text" />
-                                    {/* <input 
-                                        type="radio" 
-                                        name="distance"
-                                        value='3'
-                                        onChange={e => setLocation({...location,radius:e.target.value})}
-                                        />3
-                                        <input 
-                                        type="radio" 
-                                        name="distance"
-                                        value='5' 
-                                        onChange={e => setLocation({...location,radius:e.target.value})}
-                                        />5
-                                        <input 
-                                        type="radio" 
-                                        name="distance"
-                                        value='10' 
-                                        onChange={e => setLocation({...location,radius:e.target.value})}
-                                    />10 */}
-                                    <button onClick={props.updateZip}>Get My Current Location</button>
-                                    <span>Distance Filter (miles)</span>
-                                    <input type="range" min="1" max="25" placeholder="5" onChange={handleScroll} />
-                                </form>
+                        <div className='location-dropdown' >
+                            <button className='dropbtn'  onClick={toggleDropDown2}>
+                                Enter Zipcode{" "}
+                            </button>
+                            <form action="" className='zipcode-filter'>
+                                <span>Enter Zipcode</span>
+                                <input 
+                                    value={location.zipCode} 
+                                    className="enter-zip"
+                                    onChange={updateLocation} 
+                                    type="text" 
+                                />
+                                <div className='or-dash'>
+                                    <BsDashLg/>
+                                    <span>or</span>
+                                    <BsDashLg/>
+                                </div>
+                                <button onClick={props.updateZip} className="btn">
+                                    Use Current Location
+                                </button>
+                                <div className='slider-container'>
+                                    <div className='distance'>
+                                        <span>Distance:</span>
+                                        <span className='miles'>
+                                            {distance} {distance == 1 ? "Mile" : "Miles"}
+                                        </span>
+                                    </div>
+                                    <input 
+                                        type="range" 
+                                        min="1" 
+                                        max="25" 
+                                        defaultValue='10'
+                                        onChange={handleScroll}
+                                        className="slider"
+                                    />
+                                </div>
+                            </form>
                         </div>
-                 
                     </div>
                     <div>{session}</div> 
                 </div>
@@ -130,13 +170,14 @@ export default (props) => {
                     <ul className='cats'>
                         {categories.map(category => {
                                 return (
-                                    <Link to={`/category/${category}`} key={category} className={category}>{category}</Link>
+                                    <Link to={`/category/${category}`} key={category} className={category}>
+                                        {category}
+                                    </Link>
                                 )
                             })
                         }
                     </ul>
-                </div>
-               
+                </div> 
             </header>
         </>
     )
