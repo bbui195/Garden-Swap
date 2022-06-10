@@ -177,8 +177,7 @@ export default (props) => {
                             })
                         }
                     </ul>
-                </div>
-               
+                </div> 
             </header>
         </>
     )
