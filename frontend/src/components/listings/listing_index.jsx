@@ -12,7 +12,22 @@ function ListingIndex(props) {
     let { categoryId } = useParams()
     let category = categoryId
     let fetchCategoryListings = [];
+    useEffect( () => {
+        async function fetchData() {
+            let fetchedListings = await requestListings()
+            fetchedListings = Object.values(fetchedListings.listings)
 
+            if (category !== undefined) {
+                fetchedListings = fetchedListings.filter(listing => (
+                    listing.category === category
+                ))
+            }
+
+            setCategoryFilter(fetchedListings)
+            radiusFilter(location.zipCode,location.radius,fetchedListings)
+        }
+            fetchData()
+    }, [])
     useEffect( ()  => {
         async function fetchData() {
             let fetchedListings = await requestListings()
@@ -35,9 +50,7 @@ function ListingIndex(props) {
         
     },[location,location.zipCode,location.radius])
 
-    function radiusFilter(zipcode,distance,fetchedListings) {
-        let mileConversion = 1609.34
-        let radius = mileConversion * distance
+    function radiusFilter(zipcode,radius,fetchedListings) {
         let filteredlistings = fetchedListings;
         if (zipcode) {
             filteredlistings = fetchedListings.filter(listing => {

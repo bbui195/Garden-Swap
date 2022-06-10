@@ -139,7 +139,7 @@ export default () => {
 
                 <Route exact path='/reviews/:userId/new' component={ReviewFormContainer} />
                 <Route exact path='/reviews/:reviewId/edit' component={EditReviewContainer} />
-                <Route exact path='/category/:categoryId' component={()=><ListingIndexContainer location={location}/>} />
+                <Route exact path='/category/:categoryId' render={()=><ListingIndexContainer location={location}/>} />
                 <Route exact path='/listing/show' component={ListingShow} />
                 <Route exact path='/listing/:listingId' component={ListingShow} />
                 <Route exact path='/listingForm' component={ListingForm} />
@@ -149,7 +149,7 @@ export default () => {
                 {/* <Route exact path="/user/inbox/:sender" component={ConversationContainer}/> */}
                 <Route exact path='/test' component={Test} />
                 <Route exact path='/userProfile' />
-                <Route exact path ='/' component={()=><ListingIndexContainer location={location}/>} />
+                <Route exact path ='/' render={()=><ListingIndexContainer location={location}/>} />
                 <Redirect to='/' />
             </Switch>
             <Footer />
