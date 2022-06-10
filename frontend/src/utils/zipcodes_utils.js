@@ -11,8 +11,8 @@ export function isWithinRadiusFromZipcode(zipcode,listingZipcode,radius){
     }
 
     return isPointWithinRadius(
-        zipcodes_list[zipcode], // gets long lat
-        zipcodes_list[listingZipcode], //gets long lat
+        zipcodes_list[zipcode], // gets long lat from user zipcode
+        zipcodes_list[listingZipcode], //gets long lat from listingzipcode
         radius
     )
 }
