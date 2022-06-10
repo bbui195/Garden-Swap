@@ -1,16 +1,20 @@
 .location-dropdown {
     position: relative;
-    font-size: 14px;
+    font-size: 16px;
     
-
+    
     .dropbtn {
         background-color: $wintergreen-dream;
+        cursor: pointer;
         color: white;
         padding: 8px;
         font-size: 14px;
         border: none;
         border-radius: 15px;
-        // border: 2px solid white;
+    }
+
+    .dropbtn:hover {
+        text-decoration: underline;
     }
 
     .zipcode-filter {
@@ -28,7 +32,8 @@
         background-color: #f1f1f1;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         border-radius: 15px;
-        z-index: 1;
+        z-index: 5;
+        cursor: pointer;
 
         .or-dash {
             display: flex;
@@ -67,6 +72,7 @@
                     color: black;
                     padding: 5px;
                     width: 39%;
+                    font-size: 14px;
                 }
             }
 
@@ -98,12 +104,12 @@
     }
 }
 
-.location-dropdown:hover {
+// .location-dropdown:hover {
 
-    .zipcode-filter {
-        display: flex;
-    }
-}
+//     .zipcode-filter {
+//         display: flex;
+//     }
+// }
 
 
 

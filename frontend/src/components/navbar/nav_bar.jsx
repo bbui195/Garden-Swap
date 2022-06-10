@@ -51,6 +51,18 @@ export default (props) => {
         </>
     );
 
+    // useEffect(() => {
+    //     if (props.currentUser) {
+    //         toggleDropDown()
+    //         // toggleDropDown2()
+    //     };
+    //     let dd = document.querySelector('.zipcode-filter');
+    //     if (dd.style.display === 'none') {
+    //         document.addEventListener('click', dropDown3);
+
+    //     }
+    // });
+
 
     function dropDown2(e) {
         if (!e.target.closest(".profile-dropdown") && !e.target.closest(".dropdown-content")) {
@@ -68,6 +80,25 @@ export default (props) => {
         } else {
             dropDown.style.display = 'none'
             document.removeEventListener('click', dropDown2);
+        };
+    };
+
+    function dropDown3(e) {
+        if (!e.target.closest(".location-dropdown") && !e.target.closest(".zipcode-filter")) {
+            document.querySelector(".zipcode-filter").style.display = 'none'
+            document.removeEventListener("click", dropDown3)
+        }
+    }
+
+    function toggleDropDown2() {
+        let dropDown = document.querySelector('.zipcode-filter');
+        if (dropDown.style.display === 'none') {
+            dropDown.style.display = 'flex'
+            document.addEventListener('click', dropDown3);
+
+        } else {
+            dropDown.style.display = 'none'
+            document.removeEventListener('click', dropDown3);
         };
     };
 
@@ -94,8 +125,8 @@ export default (props) => {
                     <div>
                         {/* <p>Filter by Zipcode?{location.zipCode}</p> */}
                            {/* populated.length === 0 ? 'null':  */}
-                        <div className='location-dropdown'>
-                            <button className='dropbtn' >
+                        <div className='location-dropdown' >
+                            <button className='dropbtn'  onClick={toggleDropDown2}>
                                 Enter Zipcode{" "}
                             </button>
                             <form action="" className='zipcode-filter'>
@@ -132,7 +163,6 @@ export default (props) => {
                                 </div>
                             </form>
                         </div>
-                 
                     </div>
                     <div>{session}</div> 
                 </div>

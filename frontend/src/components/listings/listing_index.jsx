@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom'
 
 function ListingIndex(props) {
     const [populated, setPopulated] = useState([])
-    const [categoryFilter,setCategoryFilter] = useState([])
+    const [categoryFilter, setCategoryFilter] = useState([])
     const {location, setLocation} = props
     const { listings,requestListings } = props
     let { categoryId } = useParams()
@@ -28,7 +28,7 @@ function ListingIndex(props) {
             radiusFilter(location.zipCode,location.radius,fetchedListings)
         }
         fetchData()
-    },[category])
+    }, [category])
 
     useEffect( ()  => {
         radiusFilter(location.zipCode,location.radius,categoryFilter)
@@ -51,13 +51,12 @@ function ListingIndex(props) {
         return null
     } 
 
-    return(
+    return (
         <>  
             <div className='listing-index-container'>
-                {populated.map(listing =>
-                (
+                {populated.map(listing => (
                     <ListingIndexItem key={listing.id} listing={listing} />
-                    ))}
+                ))}
             </div>
         </>
     )
