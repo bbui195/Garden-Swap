@@ -22,16 +22,16 @@ class EditReviewForm extends React.Component {
         e.preventDefault()
         console.log(this.props)
         this.props.action(Object.assign({}, this.state))
-            .then(()=>this.props.resetState())
+            .then(() => this.props.resetState())
     }
 
     handleRating(rating) {
-        return this.setState({...this.state, rating: rating})
+        return this.setState({ ...this.state, rating: rating })
     }
 
     handleChange(field) {
         return e => {
-            this.setState({[field]: e.currentTarget.value})
+            this.setState({ [field]: e.currentTarget.value })
         }
     }
 
@@ -48,17 +48,17 @@ class EditReviewForm extends React.Component {
                         <Rating updateStars={this.handleRating} />
                         <form onSubmit={this.handleSubmit}>
                             <label htmlFor="written-review"><h2>Add a written review</h2></label>
-                            <textarea 
-                                placeholder="Write your edited review" 
+                            <textarea
+                                placeholder="Write your edited review"
                                 id="written-review"
-                                value={this.state.body} 
+                                value={this.state.body}
                                 onChange={this.handleChange('body')}
-                                />
-                            <input type="submit" className='submit-form' value='Submit'/>
+                            />
+                            <input type="submit" className='submit-form' value='Submit' />
                         </form>
                     </div>
                 </div>
-             </>
+            </>
         )
     }
 }

@@ -33,7 +33,7 @@ class Conversation extends React.Component {
     }
 
     componentWillUnmount() {
-        if(this.state.socket) {
+        if (this.state.socket) {
             console.log("disconnecting")
             this.state.socket.disconnect();
         }
@@ -41,7 +41,7 @@ class Conversation extends React.Component {
     }
 
     handleChange(type) {
-        return (e) => this.setState({[type]: e.target.value});
+        return (e) => this.setState({ [type]: e.target.value });
     }
 
     handleEditClick(message) {
@@ -54,38 +54,38 @@ class Conversation extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        if(this.state.creating && this.state.message !== "") {
+        if (this.state.creating && this.state.message !== "") {
             this.props.createMessage({
                 body: this.state.message,
                 userId: this.props.receiver.id
             });
-            this.setState({message: ""});
+            this.setState({ message: "" });
         };
     }
 
     render() {
-        if(!this.props.receiver) {
+        if (!this.props.receiver) {
             return;
         }
         return (
-           <div className="message-index">
-                
+            <div className="message-index">
+
                 <div className="messages-wrapper">
                     <div className="messages">
                         {this.props.messages.map((message) => {
                             return <div key={message.id}
                                 className={("message" +
                                     (this.state.editing === message.id ? " editing" : ""))}>
-                                <div className="profile"><i className="fa-brands fa-discord"/></div> 
+                                <div className="profile"><i className="fa-brands fa-discord" /></div>
                                 {/* replace above with profile pic */}
                                 <span className="username">{message.username}</span>
                                 <span className="time">{message.time}</span>
                                 {this.state.editing === message.id ?
                                     <>
-                                    <input type="text" className="edit-input"
-                                        value={this.state.editMessage}
-                                        onChange={this.handleChange("editMessage")}
-                                        onKeyDown={this.handleEditSubmit}/>
+                                        <input type="text" className="edit-input"
+                                            value={this.state.editMessage}
+                                            onChange={this.handleChange("editMessage")}
+                                            onKeyDown={this.handleEditSubmit} />
                                         <div className="edit-label">escape to&nbsp;
                                             <span onClick={this.stopEdit}
                                             >cancel</span> • enter to&nbsp;
@@ -100,16 +100,16 @@ class Conversation extends React.Component {
                                         >
                                             <i className="fa-solid fa-pencil"></i>
                                         </div>
-                                        
+
                                         <div className="delete" name="Delete"
-                                            onClick={()=>{
+                                            onClick={() => {
                                                 this.setState({
                                                     deleteModal: true,
                                                     deleteMessage: message
                                                 });
                                             }}
                                         ><i className="fa-solid fa-trash-can"></i></div>
-                                        
+
                                     </div> : null
                                 }
                             </div>
@@ -127,7 +127,7 @@ class Conversation extends React.Component {
                         onKeyDown={(e) => e.key === "ArrowUp" ? this.editLast() : null}
                     />
                 </form>
-           </div>
+            </div>
         )
     }
 };

@@ -12,31 +12,31 @@ class Rating extends React.Component {
     }
 
     changeRating(ratingValue) {
-        this.setState({rating: ratingValue})
+        this.setState({ rating: ratingValue })
         this.props.updateStars(ratingValue)
     }
 
     render() {
-        return(
+        return (
             <div className='rating'>
-                {[...Array(5)].map(( star,idx ) => {
+                {[...Array(5)].map((star, idx) => {
                     const ratingValue = idx + 1
                     return (
-                    <label key={idx}>
-                        <input 
-                            type="radio" 
-                            name='radio' 
-                            onClick={()=>this.changeRating(ratingValue)}
-                            value={ratingValue}
+                        <label key={idx}>
+                            <input
+                                type="radio"
+                                name='radio'
+                                onClick={() => this.changeRating(ratingValue)}
+                                value={ratingValue}
                             />
-                        <IoIosStar 
-                            className='star'
-                            color={ratingValue <= (this.state.hover || this.state.rating) ? "black" : "white"}     
-                            onMouseEnter={(() => this.setState({hover: ratingValue}))}
-                            onMouseLeave={()=> this.setState({hover: null})}
-                            size={24}
+                            <IoIosStar
+                                className='star'
+                                color={ratingValue <= (this.state.hover || this.state.rating) ? "black" : "white"}
+                                onMouseEnter={(() => this.setState({ hover: ratingValue }))}
+                                onMouseLeave={() => this.setState({ hover: null })}
+                                size={24}
                             />
-                    </label>
+                        </label>
                     )
                 })}
             </div>

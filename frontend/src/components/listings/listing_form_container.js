@@ -17,7 +17,7 @@ const mSTP = (state, ownProps) => {
 }
 
 const mDTP = dispatch => ({
-    makeListing: listing =>{
+    makeListing: listing => {
         return dispatch(testMakeListing(listing))
     }
 })

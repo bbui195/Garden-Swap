@@ -6,12 +6,12 @@ import Conversation from "./conversation";
 const mSTP = (state, ownProps) => {
     let messages = Object.values(state.entities.messages);
     messages.sort((a, b) => {
-        return new Date(a.time) < new Date(b.time) ? -1: 1;
+        return new Date(a.time) < new Date(b.time) ? -1 : 1;
     })
     messages.forEach((message) => {
         message.time = (new Date(message.time))
             .toLocaleString('en-US');
-            // .toLocaleString(undefined, {day: "2-digit", month: "2-digit", year: "numeric"})
+        // .toLocaleString(undefined, {day: "2-digit", month: "2-digit", year: "numeric"})
     })
     return {
         token: axios.defaults.headers.common["Authorization"],

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { requestListing } from '../../actions/listing_actions' 
+import { requestListing } from '../../actions/listing_actions'
 import { deleteListing } from '../../actions/listing_actions'
 
 import ListingShow from './listing_show'
@@ -17,9 +17,9 @@ const mDTP = dispatch => {
     return {
         requestListing: listingId => dispatch(requestListing(listingId)),
         deleteListing: id => dispatch(deleteListing(id)),
-        
+
     }
 }
 
 
-export default connect(mSTP,mDTP)(ListingShow)
+export default connect(mSTP, mDTP)(ListingShow)
