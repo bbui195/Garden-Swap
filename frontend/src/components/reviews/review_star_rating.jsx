@@ -22,6 +22,7 @@ class ReviewStarRating extends React.Component {
                             />
                             <FaStar 
                                 className="star"
+                                size={25}
                                 color={ratingValue <= this.props.rating ? "#000000" : "#fff" }                                            
                             />
                         </label>

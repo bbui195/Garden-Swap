@@ -1,25 +1,29 @@
 .location-dropdown {
     position: relative;
-    font-size: 14px;
+    font-size: 16px;
     
-
+    
     .dropbtn {
-        background-color: #f7e0eb;
-        color: black;
+        background-color: $wintergreen-dream;
+        cursor: pointer;
+        color: white;
         padding: 8px;
         font-size: 14px;
         border: none;
         border-radius: 15px;
-        border: 2px solid rgb(9, 63, 46);
+    }
+
+    .dropbtn:hover {
+        text-decoration: underline;
     }
 
     .zipcode-filter {
-        display: flex;
+        display: none;
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
         min-width: 174px;
-        height: 10rem;
+        height: 14rem;
         padding: 20px;
         color: black;
         position: absolute;
@@ -28,7 +32,8 @@
         background-color: #f1f1f1;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         border-radius: 15px;
-        z-index: 1;
+        z-index: 5;
+        cursor: pointer;
 
         .or-dash {
             display: flex;
@@ -40,15 +45,71 @@
                 font-size: 16px;
             }
         }
+
+        .btn {
+            border-color: black;
+            color: black;
+            width: 85%;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .slider-container {
+            border-top: 2px solid rgb(157, 157, 157);
+            margin-top: 2rem;
+            box-sizing: border-box;
+            padding: 10px;
+            width: 100%;
+            
+            .distance {
+                display: flex;
+                justify-content: space-between;
+
+                .miles {
+                    border: 1px solid black;
+                    border-radius: 5px;
+                    background-color: #f7e0eb;
+                    color: black;
+                    padding: 5px;
+                    width: 39%;
+                    font-size: 14px;
+                }
+            }
+
+            .slider {
+                margin-top: 2rem;
+                width: 100%;
+                -webkit-appearance: none;
+                width: 100%;
+                height: 5px;
+                border-radius: 5px;  
+                background: #d3d3d3;
+                outline: none;
+                opacity: 95%;
+                -webkit-transition: .2s;
+                transition: opacity .2s;
+            }
+
+            .slider::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 10px;
+                height: 25px;
+                border-radius: 10px; 
+                border: 1px solid black;
+                background: #f7e0eb;
+                cursor: pointer;
+            }
+        }
     }
 }
 
-.location-dropdown:hover {
+// .location-dropdown:hover {
 
-    .zipcode-filter {
-        display: flex;
-    }
-}
+//     .zipcode-filter {
+//         display: flex;
+//     }
+// }
 
 
 
