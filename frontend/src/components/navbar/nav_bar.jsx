@@ -13,7 +13,7 @@ import { STATES } from 'mongoose';
 export default (props) => {
     const { currentUser, logoutUser} = props;
     const {location} = props;
-    const [distance, setDistance] = useState(5);
+    const [distance, setDistance] = useState(25);
     const categories = [
         'Fruit', 'Vegetables', 'Nuts', 'Dairy', 'Meats', 'Grains'
     ]
