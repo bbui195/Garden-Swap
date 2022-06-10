@@ -9,7 +9,7 @@ const mSTP = (state, ownProps) => {
         listing: state.entities.listings[ownProps.match.params.listingId],
         currentUserId: state.session.currentUser.id
     }
-   
+
 }
 
 const mDTP = dispatch => ({

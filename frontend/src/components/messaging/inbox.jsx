@@ -9,8 +9,8 @@ class Inbox extends React.Component {
 
     render() {
         return (
-           <div className='inbox-page-container'>
-               Message Inbox here  
+            <div className='inbox-page-container'>
+                Message Inbox here
                 <div className='clip-container'>
                     <Link className='conversations-container' to='#'>
                         <p className='sender'>Message Sender</p>

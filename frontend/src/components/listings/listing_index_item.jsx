@@ -8,14 +8,14 @@ class ListingIndexItem extends React.Component {
     }
 
     render() {
-        const {listing} = this.props
-        return( 
+        const { listing } = this.props
+        return (
             <Link to={`/listing/${listing.id}`} className='listing-container'>
-                <img src={listing.photoUrls}/>               
-                <p className='title'>{listing.title}</p> 
-                <p className='price'>${listing.price}</p>    
-                <p className='location'>Zip Code: {listing.location}</p>               
-            </Link>    
+                <img src={listing.photoUrls} />
+                <p className='title'>{listing.title}</p>
+                <p className='price'>${listing.price}</p>
+                <p className='location'>Zip Code: {listing.location}</p>
+            </Link>
         )
     }
 }
