@@ -52,7 +52,7 @@ class Conversation extends React.Component {
 
     componentWillUnmount() {
         if(this.state.socket) {
-            console.log("disconnecting")
+            // console.log("disconnecting")
             this.state.socket.disconnect();
         }
         this.setState({ socket: undefined });
@@ -60,7 +60,7 @@ class Conversation extends React.Component {
 
     handleChange(type) {
         return (e) => {
-            console.log(this.state);
+            // console.log(this.state);
             this.setState({[type]: e.target.value})
         };
     }
