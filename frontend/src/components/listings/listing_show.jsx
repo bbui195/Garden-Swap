@@ -55,9 +55,12 @@ class ListingShow extends React.Component {
                         <h3>Description:</h3>
                         <p className='body'>{this.props.listing.body}</p>
                     </div>
-                    <Link to={`/user/inbox/${this.props.listing.userId}`} className='button'>
-                        Message Poster's Username
-                    </Link>
+                    {this.props.listing.userId !== this.props.currentUser.id ?
+                        <Link to={`/user/inbox/${this.props.listing.userId}`} className='button'>
+                            Message {this.props.listing.username}
+                        </Link> :
+                        null
+                    }
                 </div>
             </div>
         );
