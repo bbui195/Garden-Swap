@@ -40,7 +40,7 @@ function formatMessages(messages, username) {
 router.get('/', // all recent messages for current user
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
-        console.log("fetching recent");
+        // console.log("fetching recent");
         Promise.all([
             Message.find({senderId: req.user.id}).populate('receiverId'),
             Message.find({receiverId: req.user.id}).populate('senderId')
@@ -70,7 +70,7 @@ router.get('/', // all recent messages for current user
                     id: req.user.id
                 }
             })
-            console.log("res is ", resJson);
+            // console.log("res is ", resJson);
             res.json(resJson);
         })
     }
@@ -151,9 +151,9 @@ router.patch('/:messageId',
                 if(message.senderId.toString() !== req.user.id.toString()) {
                     res.status(400).json({ notowned: 'Current user did not send this message' });
                 } else {
-                    console.log(message);
+                    // console.log(message);
                     message.body = req.body.body;
-                    console.log(message);
+                    // console.log(message);
                     message.save()
                         .then(message => {
                             [message.senderId, message.receiverId].forEach(id => {
