@@ -42,7 +42,10 @@ class ListingShow extends React.Component {
                     <li className='body'>{this.props.listing.body}</li>
                     <li className='cat'>{this.props.listing.category}</li>
                     <li className='price'>${this.props.listing.price}</li>
-                    <li><Link to={`/user/inbox/${this.props.listing.userId}`}>Message</Link></li>
+                    { this.props.listing.userId !== this.props.currentUser.id ?
+                        <li><Link to={`/user/inbox/${this.props.listing.userId}`}>Message</Link></li>
+                        : null
+                    }
                     {this.renderEditDelete()}
                 </ul>
             </div>
