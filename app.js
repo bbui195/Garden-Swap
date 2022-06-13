@@ -35,14 +35,14 @@ const reviews = require("./routes/api/reviews");
 const messages = require("./routes/api/messages");
 
 //sockets
-const http = require('http');
-const server = http.createServer(app);
+const https = require('https');
+const server = https.createServer(app);
 
 const { Server } = require("socket.io");
 const io = new Server(server, {
     cors: {
         // origin: "ws://garden-swapp.herokuapp.com/socket.io/?EIO=4&transport=websocket",
-        origin: "http://garden-swapp.herokuapp.com/",
+        origin: "https://garden-swapp.herokuapp.com/",
         credentials: true
     }
 })
