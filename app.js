@@ -35,7 +35,7 @@ const reviews = require("./routes/api/reviews");
 const messages = require("./routes/api/messages");
 
 //sockets
-const https = require('http');
+const http = require('http');
 const server = http.createServer(app);
 
 const { Server } = require("socket.io");
