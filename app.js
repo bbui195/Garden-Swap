@@ -1,3 +1,4 @@
+
 const mongoose = require('mongoose');
 const express = require("express");
 const bodyParser = require('body-parser');
@@ -12,11 +13,21 @@ const { uploadFile } = require('./s3')
 const passport = require("passport");
 
 const app = express();
-const db = require('./config/keys').mongoURI;
+
+const path = require('path');
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('frontend/build'));
+    app.get('/', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+    })
+}
+
+// const db = require('./config/keys').mongoURI;
+const db = process.env.MONGO_URI
 mongoose
-.connect(db, { useNewUrlParser: true })
-.then(() => console.log("Connected to MongoDB successfully"))
-.catch(err => console.log(err));
+    .connect(db, { useNewUrlParser: true })
+    .then(() => console.log("Connected to MongoDB successfully"))
+    .catch(err => console.log(err));
 
 const users = require("./routes/api/users");
 const listings = require("./routes/api/listings");
@@ -27,24 +38,24 @@ const messages = require("./routes/api/messages");
 const http = require('http');
 const server = http.createServer(app);
 
-
 const { Server } = require("socket.io");
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:3000",
+        // origin: "ws://garden-swapp.herokuapp.com/socket.io/?EIO=4&transport=websocket",
+        origin: "http://garden-swapp.herokuapp.com/",
         credentials: true
     }
 })
 // const io = require("socket.io")(server, {
-    //     cors: {
-        //         origin: "http://localhost:3000",
-        //         // origin: "*",
-        //         // methods: ["GET", "POST"]
-        //     }
-        // });
-        
-        // console.log(io);
-        // io = new io.Server(server);
+//     cors: {
+//         origin: "http://localhost:3000",
+//         // origin: "*",
+//         // methods: ["GET", "POST"]
+//     }
+// });
+
+// console.log(io);
+// io = new io.Server(server);
 messages.io = io;
 io.connectedUsers = {};
 io.on('connection', (socket) => {
@@ -56,7 +67,7 @@ io.on('connection', (socket) => {
     console.log(io.connectedUsers);
     io.to(socket.id).emit("testing 123");
 })
-
+const port = process.env.PORT || 5000;
 
 //
 
@@ -73,6 +84,9 @@ app.use("/api/reviews", reviews);
 app.use("/api/messages", messages);
 
 
-const port = process.env.PORT || 5000;
+// app.listen(port, () => console.log(`Server is running on port ${port}`));
 
-app.listen(port, () => console.log(`Server is running on port ${port}`));
+server.listen(port, () => {
+    console.log("Server is listening");
+    // console.log(io);
+})
