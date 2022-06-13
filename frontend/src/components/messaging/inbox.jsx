@@ -31,7 +31,7 @@ class Inbox extends React.Component {
                 <h1>Inbox</h1>
                 <div className='clip-container'>
                     {this.props.messages.map((message) => {
-                        if(message.receiverId == message.senderId) {
+                        if(message.receiverId === message.senderId) {
                             return;
                         }
                         return <Link
