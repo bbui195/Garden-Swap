@@ -14,27 +14,12 @@ const validateMessageInput = require('../../validation/messages');
     delete
 */
 
-router.get('/', // all messages for current user
-    passport.authenticate('jwt', { session: false }),
-    (req, res) => {
-        Promise.all([
-            Message.find({senderId: req.user.id}),
-            Message.find({receiverId: req.user.id})
-        ]).then(([from, to]) => {
-            res.json({
-                from,
-                to
-            })
-        })
-    }
-);
-
 function formatMessage(message, username) {
     return {
         body: message.body,
-        receiverId: message.receiverId,
-        senderId: message.senderId,
-        username: username,
+        receiverId: message.receiverId._id ? message.receiverId._id : message.receiverId,
+        senderId: message.senderId._id ? message.senderId._id : message.senderId,
+        username: username || message.senderId.username || message.receiverId.username,
         time: message.createdAt,
         id: message.id
     };
@@ -50,6 +35,46 @@ function formatMessages(messages, username) {
     //     return formatMessage(message, username);
     // });
 }
+
+
+router.get('/', // all recent messages for current user
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        console.log("fetching recent");
+        Promise.all([
+            Message.find({senderId: req.user.id}).populate('receiverId'),
+            Message.find({receiverId: req.user.id}).populate('senderId')
+        ]).then(([from, to]) => {
+            resJson = {
+                users: {}
+            };
+            function appendRecent(resMessages, messages, otherUser) {
+                messages.forEach((message) => {
+                    if(!resMessages[message[otherUser].id]
+                        || new Date(resMessages[message[otherUser].id].createdAt) < new Date(message.createdAt)) {
+                        resMessages[message[otherUser].id] = message;
+                    }
+                    resJson.users[message[otherUser].id] = {
+                        username: message[otherUser].username,
+                        id: message[otherUser].id
+                    };
+                });
+            }
+            let recent = {};
+            appendRecent(recent, from, "receiverId");
+            appendRecent(recent, to, "senderId");
+            resJson.messages = formatMessages(Object.values(recent));
+            Object.assign(resJson.users,
+                {[req.user.id]: {
+                    username: req.user.username,
+                    id: req.user.id
+                }
+            })
+            console.log("res is ", resJson);
+            res.json(resJson);
+        })
+    }
+);
 
 router.get('/:userId', // messages with user with id :id
     passport.authenticate('jwt', { session: false }),

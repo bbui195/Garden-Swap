@@ -10,7 +10,8 @@ class Conversation extends React.Component {
             message: "",
             editing: false,
             editMessage: "",
-            creating: true
+            creating: true,
+            url: ""
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -20,7 +21,8 @@ class Conversation extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchMessages();
+        this.props.fetchMessages()
+            .then(()=>this.setState({url: this.props.location.pathName}));
         let socket = socketIOClient("http://localhost:5002", {
             withCredentials: true,
             extraHeaders: {
@@ -36,6 +38,10 @@ class Conversation extends React.Component {
     }
 
     componentDidUpdate() {
+        if(this.state.url !== this.props.location.pathName) {
+            this.props.fetchMessages()
+                .then(()=>this.setState({url: this.props.location.pathName}));
+        }
         if(this.state.focusEdit) {
             document.getElementsByClassName("edit-input")[0].focus();
             this.setState({
@@ -105,6 +111,9 @@ class Conversation extends React.Component {
     render() {
         if(!this.props.receiver) {
             return;
+        }
+        if(this.state.url !== this.props.location.pathName) {
+            return
         }
         return (
            <div className="message-index">
