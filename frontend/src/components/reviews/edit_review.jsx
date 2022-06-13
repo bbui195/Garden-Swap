@@ -20,7 +20,7 @@ class EditReviewForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        console.log(this.props)
+        // console.log(this.props)
         this.props.action(Object.assign({}, this.state))
             .then(() => this.props.resetState())
     }
@@ -40,25 +40,22 @@ class EditReviewForm extends React.Component {
     render() {
         // console.log('edit page',this.props)
         return (
-            <>
-                <div>
-                    <div>
-                        <h1>{this.props.formType}</h1>
-                        <h2>Overall Rating</h2>
-                        <Rating updateStars={this.handleRating} />
-                        <form onSubmit={this.handleSubmit}>
-                            <label htmlFor="written-review"><h2>Add a written review</h2></label>
-                            <textarea
-                                placeholder="Write your edited review"
-                                id="written-review"
-                                value={this.state.body}
-                                onChange={this.handleChange('body')}
-                            />
-                            <input type="submit" className='submit-form' value='Submit' />
-                        </form>
-                    </div>
+            <div className='edit-form-container'>
+                <div className='top'>
+                    <h2>Overall Rating:</h2>
+                    <Rating updateStars={this.handleRating} />
                 </div>
-            </>
+                <form onSubmit={this.handleSubmit}>
+                    <label htmlFor="written-review"><h2>Edit your review</h2></label>
+                    <textarea
+                        placeholder="Write your edited review"
+                        id="written-review"
+                        value={this.state.body}
+                        onChange={this.handleChange('body')}
+                    />
+                    <input type="submit" className='submit-form-btn' value='Edit Review' />
+                </form>
+            </div>
         )
     }
 }

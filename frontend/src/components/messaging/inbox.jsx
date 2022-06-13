@@ -28,7 +28,7 @@ class Inbox extends React.Component {
         }
         return (
             <div className='inbox-page-container'>
-                Message Inbox here
+                <h1>Inbox</h1>
                 <div className='clip-container'>
                     {this.props.messages.map((message) => {
                         if(message.receiverId == message.senderId) {
@@ -44,7 +44,7 @@ class Inbox extends React.Component {
                                 this.props.users[message.receiverId].username :
                                 this.props.users[message.senderId].username}
                             </p>
-                            <span className='message'>{this.props.users[message.senderId].username}: {message.body}</span>
+                            <span className='direct-message'>{this.props.users[message.senderId].username}: {message.body}</span>
                         </Link>
                     })}
                 </div>

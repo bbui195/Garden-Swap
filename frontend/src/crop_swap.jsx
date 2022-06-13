@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.loginUser = loginUser
     window.logoutUser = logoutUser
    
- 
     if (window.currentUser) {
         preloadedState = {
             session: {
