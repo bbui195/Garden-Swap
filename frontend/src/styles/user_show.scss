@@ -54,13 +54,14 @@
         .avg-rating {
             margin-top: 1rem;
             margin-bottom: 1rem;
-            width: 80%;
+            width: 125%;
             display: flex;
             justify-content: center;
 
             .review-star-rating {
-                width: 22%;
-                margin-left: 0.3rem;
+                width: 9rem;
+                margin-left: 0.5rem;
+                transform: translateY(-6px);
             }
         }
 

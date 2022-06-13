@@ -15,14 +15,15 @@ class ReviewStarRating extends React.Component {
 
                     return (
                         <label>
-                            <input 
-                                type="radio" 
-                                name="rating" 
+                            <input
+                                type="radio"
+                                name="rating"
                                 value={ratingValue}
                             />
-                            <FaStar 
+                            <FaStar
                                 className="star"
-                                color={ratingValue <= this.props.rating ? "#000000" : "#fff" }                                            
+                                size={25}
+                                color={ratingValue <= this.props.rating ? "#000000" : "#fff"}
                             />
                         </label>
                     )

@@ -6,48 +6,51 @@ class ListingShow extends React.Component {
         super(props)
         this.renderEditDelete = this.renderEditDelete.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
-    }
+    };
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.requestListing(this.props.listingId)
-    }
+    };
 
-    handleDelete(){
+    handleDelete() {
         this.props.deleteListing(this.props.listingId)
-            .then(()=>this.props.history.push('/'))
-    }
+            .then(() => this.props.history.push('/'))
+    };
 
-    renderEditDelete(){
-        if (this.props.currentUser.id === this.props.listing.userId){
+    renderEditDelete() {
+        if (this.props.currentUser.id === this.props.listing.userId) {
             return (
-                <>
-                    <li><Link to={`/listing/edit/${this.props.listingId}`}>Edit</Link></li>
-                    <li><button onClick={this.handleDelete}>Delete</button></li>
-                </>
+                <div className='btns-container'>
+                    <Link to={`/listing/edit/${this.props.listingId}`} className="button">Edit</Link>
+                    <button onClick={this.handleDelete} className="button">Delete</button>
+                </div>
             )
-        }else{
+        } else {
             return null
-        }
-    }
+        };
+    };
 
     render() {
-        if (!this.props.listing){
+        if (!this.props.listing) {
             return null
-        }
+        };
+
         return (
             <div className='listings-show-container'>
-                <h1 className='title'>{this.props.listing.title}</h1>
-                <ul >
-                    <li><img src={this.props.listing.photoUrls}/></li>
-                    <li className='body'>{this.props.listing.body}</li>
-                    <li className='cat'>{this.props.listing.category}</li>
-                    <li className='price'>${this.props.listing.price}</li>
-                    <li><Link to={`/user/inbox/${this.props.listing.userId}`}>Message</Link></li>
+                <div className='left'>
+                    <img src={this.props.listing.photoUrls} />
                     {this.renderEditDelete()}
-                </ul>
+                </div>
+                <div className='right'>
+                    <h1 className='title'>{this.props.listing.title}</h1>
+                    <p className='cat'>{this.props.listing.category}</p>
+                    <p className='price'>${this.props.listing.price}</p>
+                    <p className='body'>{this.props.listing.body}</p>
+                    <Link to={`/user/inbox/${this.props.listing.userId}`}>Message</Link>
+                </div>
             </div>
-        )
-    }
-}
+        );
+    };
+};
 
 export default ListingShow

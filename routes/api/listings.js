@@ -102,7 +102,7 @@ router.post('/',
     passport.authenticate('jwt', { session: false }),
     upload.single('listing[image]'),
     (req, res) => {
-        console.log("Validating input");
+        // console.log("Validating input");
         let listing = req.body.listing;
         listing.userId = req.user.id.toString();
         // console.log(req);
@@ -115,7 +115,7 @@ router.post('/',
         let newListing;
         // console.log(listing.photoUrls);
         // if(req.body.photoUrls.)
-        console.log(listing);
+        // console.log(listing);
         newListing = new Listing({
             userId: req.user.id,
             title: listing.title,
@@ -145,7 +145,7 @@ router.post('/',
                 // console.log(listing);
                 newListing.save()
                     .then(listing => {
-                        console.log("saved the listing")
+                        // console.log("saved the listing")
                         res.json(formatListing(listing))
                     })
                     .catch(err => res.status(400).json({ failedcreate: "Failed to create listing"}))
@@ -155,7 +155,7 @@ router.post('/',
             newListing.photoUrls = listing.photoUrls;
             newListing.save()
                 .then(listing => {
-                    console.log("saved the listing")
+                    // console.log("saved the listing")
                     res.json(formatListing(isting))
                 })
                 .catch(err => res.status(400).json({ failedcreate: "Failed to create listing"}))
@@ -172,10 +172,10 @@ router.delete('/:id',
         Listing.findById(req.params.id)
             .then(listing => {
                 if(listing.userId.toString() !== req.user.id.toString()) {
-                    console.log('am I here in the if?')
+                    // console.log('am I here in the if?')
                     res.status().json({ notowned: 'Current user does not own this listing' })
                 } else {
-                    console.log('am I here in the else?')
+                    // console.log('am I here in the else?')
                     Listing.deleteOne({_id: req.params.id})
                         .then(() => res.json({deleted: true}))
                 }
@@ -187,16 +187,16 @@ router.patch('/:id',
 passport.authenticate('jwt', { session: false }),
     upload.single('listing[image]'),
     (req, res) => {
-    console.log(req.params, "this is the request");
+    // console.log(req.params, "this is the request");
         Listing.findById(req.params.id)
             .then(listing => {
                 if(listing.userId.toString() !== req.user._id.toString()) {
                     res.status().json({ notowned: 'Current user does not own this listing' })
                 } else {
-                    console.log(listing);
+                    // console.log(listing);
                     const { errors, isValid } = validateListingInput(req.body.listing);
-                    console.log(listing);
-                    console.log('did we pass the validation?')
+                    // console.log(listing);
+                    // console.log('did we pass the validation?')
                     if(!isValid) {
                         return res.status(400).json(errors);
                     }
@@ -211,7 +211,7 @@ passport.authenticate('jwt', { session: false }),
                     if(req.body.listing.photoUrls.includes(".amazonaws.com/")) {
                         listing.save()
                             .then(listing => {
-                                console.log("saved the listing")
+                                // console.log("saved the listing")
                                 res.json(formatListing(listing))
                             })
                             .catch(err => res.status(400).json({ failedupdate: 'Failed to update listing'}))
@@ -235,7 +235,7 @@ passport.authenticate('jwt', { session: false }),
                             // console.log(listing);
                             listing.save()
                                 .then(listing => {
-                                    console.log("saved the listing")
+                                    // console.log("saved the listing")
                                     res.json(formatListing(listing))
                                 })
                                 .catch(err => res.status(400).json({ failedupdate: 'Failed to update listing'}))
@@ -263,7 +263,7 @@ const s3 = new Aws.S3({
 
 
 router.post(`/image`, upload.single('listing[image]'), (req, res) => { 
-    console.log(req.body, 'should log the req.body')// given data object, creates new entry
+    // console.log(req.body, 'should log the req.body')// given data object, creates new entry
 
     const { errors, isValid } = validateCreateListingInput(req.body.listing);
     // console.log(req.body.listing);

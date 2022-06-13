@@ -10,17 +10,17 @@ const toArray = vals => {
     }
 }
 
-const mSTP = (state,ownProps) => { 
+const mSTP = (state, ownProps) => {
     let listingsArr;
-    if (!state.entities?.listings){
+    if (!state.entities?.listings) {
         listingsArr = []
-    }else{
+    } else {
         listingsArr = Object.values(state.entities.listings)
     }
     return {
         //i'm assuming i have all the listings from enttiies
         listings: listingsArr,
-    
+
         // category: ownProps.match.
     }
 }

@@ -6,14 +6,13 @@ import { useParams } from 'react-router-dom'
 
 function ListingIndex(props) {
     const [populated, setPopulated] = useState([])
-    const [categoryFilter,setCategoryFilter] = useState([])
-    const {location, setLocation} = props
-    const { listings,requestListings } = props
+    const [categoryFilter, setCategoryFilter] = useState([])
+    const { location, setLocation } = props
+    const { listings, requestListings } = props
     let { categoryId } = useParams()
     let category = categoryId
     let fetchCategoryListings = [];
-
-    useEffect( ()  => {
+    useEffect(() => {
         async function fetchData() {
             let fetchedListings = await requestListings()
             fetchedListings = Object.values(fetchedListings.listings)
@@ -25,39 +24,52 @@ function ListingIndex(props) {
             }
 
             setCategoryFilter(fetchedListings)
-            radiusFilter(location.zipCode,location.radius,fetchedListings)
+            radiusFilter(location.zipCode, location.radius, fetchedListings)
         }
         fetchData()
-    },[category])
+    }, [])
+    useEffect(() => {
+        async function fetchData() {
+            let fetchedListings = await requestListings()
+            fetchedListings = Object.values(fetchedListings.listings)
 
-    useEffect( ()  => {
-        radiusFilter(location.zipCode,location.radius,categoryFilter)
-        
-    },[location,location.zipCode,location.radius])
+            if (category !== undefined) {
+                fetchedListings = fetchedListings.filter(listing => (
+                    listing.category === category
+                ))
+            }
 
-    function radiusFilter(zipcode,distance,fetchedListings) {
-        let mileConversion = 1609.34
-        let radius = mileConversion * distance
+            setCategoryFilter(fetchedListings)
+            radiusFilter(location.zipCode, location.radius, fetchedListings)
+        }
+        fetchData()
+    }, [category])
+
+    useEffect(() => {
+        radiusFilter(location.zipCode, location.radius, categoryFilter)
+
+    }, [location, location.zipCode, location.radius])
+
+    function radiusFilter(zipcode, radius, fetchedListings) {
         let filteredlistings = fetchedListings;
         if (zipcode) {
             filteredlistings = fetchedListings.filter(listing => {
-                return isWithinRadiusFromZipcode(zipcode,listing.location,radius)
+                return isWithinRadiusFromZipcode(zipcode, listing.location, radius)
             })
         }
         setPopulated(filteredlistings)
     }
 
-    if (!listings){
+    if (!listings) {
         return null
-    } 
+    }
 
-    return(
-        <>  
+    return (
+        <>
             <div className='listing-index-container'>
-                {populated.map(listing =>
-                (
+                {populated.map(listing => (
                     <ListingIndexItem key={listing.id} listing={listing} />
-                    ))}
+                ))}
             </div>
         </>
     )

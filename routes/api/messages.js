@@ -14,27 +14,12 @@ const validateMessageInput = require('../../validation/messages');
     delete
 */
 
-router.get('/', // all messages for current user
-    passport.authenticate('jwt', { session: false }),
-    (req, res) => {
-        Promise.all([
-            Message.find({senderId: req.user.id}),
-            Message.find({receiverId: req.user.id})
-        ]).then(([from, to]) => {
-            res.json({
-                from,
-                to
-            })
-        })
-    }
-);
-
 function formatMessage(message, username) {
     return {
         body: message.body,
-        receiverId: message.receiverId,
-        senderId: message.senderId,
-        username: username,
+        receiverId: message.receiverId._id ? message.receiverId._id : message.receiverId,
+        senderId: message.senderId._id ? message.senderId._id : message.senderId,
+        username: username || message.senderId.username || message.receiverId.username,
         time: message.createdAt,
         id: message.id
     };
@@ -50,6 +35,46 @@ function formatMessages(messages, username) {
     //     return formatMessage(message, username);
     // });
 }
+
+
+router.get('/', // all recent messages for current user
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        // console.log("fetching recent");
+        Promise.all([
+            Message.find({senderId: req.user.id}).populate('receiverId'),
+            Message.find({receiverId: req.user.id}).populate('senderId')
+        ]).then(([from, to]) => {
+            resJson = {
+                users: {}
+            };
+            function appendRecent(resMessages, messages, otherUser) {
+                messages.forEach((message) => {
+                    if(!resMessages[message[otherUser].id]
+                        || new Date(resMessages[message[otherUser].id].createdAt) < new Date(message.createdAt)) {
+                        resMessages[message[otherUser].id] = message;
+                    }
+                    resJson.users[message[otherUser].id] = {
+                        username: message[otherUser].username,
+                        id: message[otherUser].id
+                    };
+                });
+            }
+            let recent = {};
+            appendRecent(recent, from, "receiverId");
+            appendRecent(recent, to, "senderId");
+            resJson.messages = formatMessages(Object.values(recent));
+            Object.assign(resJson.users,
+                {[req.user.id]: {
+                    username: req.user.username,
+                    id: req.user.id
+                }
+            })
+            // console.log("res is ", resJson);
+            res.json(resJson);
+        })
+    }
+);
 
 router.get('/:userId', // messages with user with id :id
     passport.authenticate('jwt', { session: false }),
@@ -106,7 +131,8 @@ router.post('/', // messages to id
                                 );
                             }
                         })
-                    });
+                        res.end();
+                    }).catch(err => res.status(401).json({failedmessage: 'Could not send message'}));
                     // .then(message => res.json(message));
 
             }).catch(err => res.status(404).json({ nouserfound: 'No user found with that ID'}))
@@ -118,11 +144,27 @@ router.patch('/:messageId',
     (req, res) => {
         Message.findById(req.params.messageId)
             .then(message => {
-                if(message.senderId !== req.user.id) {
+                if(!message || !message.senderId) {
+                    res.end();
+                    return;
+                }
+                if(message.senderId.toString() !== req.user.id.toString()) {
                     res.status(400).json({ notowned: 'Current user did not send this message' });
                 } else {
+                    // console.log(message);
                     message.body = req.body.body;
+                    // console.log(message);
                     message.save()
+                        .then(message => {
+                            [message.senderId, message.receiverId].forEach(id => {
+                                if(router.io.connectedUsers[id]) {
+                                    router.io.to(router.io.connectedUsers[id]).emit(
+                                        "message", formatMessage(message, req.user.username)
+                                    );
+                                }
+                            })
+                            res.end();
+                        }).catch(err => res.status(401).json({failedmessage: 'Could not edit message'}));
                         // .then(message => res.json(message));
                 }
             }).catch(err => res.status(404).json({nomessagefound: 'No message found with that ID'}));
@@ -134,11 +176,27 @@ router.delete('/:messageId',
     (req, res) => {
         Message.findById(req.params.messageId)
             .then(message => {
-                if(message.senderId !== req.user.id) {
+                if(!message || !message.senderId) {
+                    res.end();
+                    return;
+                }
+                if(message.senderId.toString() !== req.user.id.toString()) {
                     res.status(400).json({ notowned: 'Current user did not send this message' });
                 } else {
-                    Message.findByIdAndDelete(res.params.messageId)
-                        // .then(() => null)
+                    Message.findByIdAndDelete(req.params.messageId)
+                    .then(() => {
+                        [message.senderId, message.receiverId].forEach(id => {
+                            if(router.io.connectedUsers[id]) {
+                                router.io.to(router.io.connectedUsers[id]).emit(
+                                    "message", {
+                                        body: "",
+                                        id: message.id
+                                    }
+                                );
+                            }
+                        })
+                        res.end();
+                        }).catch(err => res.status(401).json({couldnotdelete: "message failed to delete"}));
                 }
             })
     }

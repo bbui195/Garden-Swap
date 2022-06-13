@@ -15,3 +15,7 @@ export const editMessage = (message) => {
 export const deleteMessage = (messageId) => {
     return axios.delete(`api/messages/${messageId}`);
 };
+
+export const fetchRecentMessages = () => {
+    return axios.get(`api/messages`);
+}

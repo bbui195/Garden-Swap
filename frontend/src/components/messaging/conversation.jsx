@@ -10,14 +10,19 @@ class Conversation extends React.Component {
             message: "",
             editing: false,
             editMessage: "",
-            creating: true
+            creating: true,
+            url: ""
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleEditSubmit = this.handleEditSubmit.bind(this);
+        this.stopEdit = this.stopEdit.bind(this);
+        this.submitEdit = this.submitEdit.bind(this);
     }
 
     componentDidMount() {
-        this.props.fetchMessages();
+        this.props.fetchMessages()
+            .then(()=>this.setState({url: this.props.location.pathName}));
         let socket = socketIOClient(
             // "ws://garden-swapp.herokuapp.com/socket.io/?EIO=4&transport=websocket", {
             "http://garden-swapp.herokuapp.com/", {
@@ -34,16 +39,32 @@ class Conversation extends React.Component {
         });
     }
 
+    componentDidUpdate() {
+        if(this.state.url !== this.props.location.pathName) {
+            this.props.fetchMessages()
+                .then(()=>this.setState({url: this.props.location.pathName}));
+        }
+        if(this.state.focusEdit) {
+            document.getElementsByClassName("edit-input")[0].focus();
+            this.setState({
+                focusEdit: false
+            })
+        }
+    }
+
     componentWillUnmount() {
         if(this.state.socket) {
-            console.log("disconnecting")
+            // console.log("disconnecting")
             this.state.socket.disconnect();
         }
         this.setState({ socket: undefined });
     }
 
     handleChange(type) {
-        return (e) => this.setState({[type]: e.target.value});
+        return (e) => {
+            // console.log(this.state);
+            this.setState({[type]: e.target.value})
+        };
     }
 
     handleEditClick(message) {
@@ -54,40 +75,67 @@ class Conversation extends React.Component {
         });
     }
 
+    submitEdit() {
+        if(this.state.editMessage !== "") {
+            this.props.updateMessage({
+                id: this.state.editing,
+                body: this.state.editMessage
+            });
+            this.stopEdit();
+        }
+    }
+
+    handleEditSubmit(e) {
+        if(e.key !== "Enter") {
+            return;
+        }
+        this.submitEdit();
+    }
+
+    stopEdit() {
+        this.setState({
+            editing: undefined,
+            editMessage: "",
+        });
+    }
+
     handleSubmit(e) {
         e.preventDefault();
-        if(this.state.creating && this.state.message !== "") {
+        if (this.state.creating && this.state.message !== "") {
             this.props.createMessage({
                 body: this.state.message,
                 userId: this.props.receiver.id
             });
-            this.setState({message: ""});
+            this.setState({ message: "" });
         };
     }
 
     render() {
-        if(!this.props.receiver) {
+        if (!this.props.receiver) {
             return;
         }
+        if(this.state.url !== this.props.location.pathName) {
+            return
+        }
         return (
-           <div className="message-index">
-                
+            <div className="message-index">
+
                 <div className="messages-wrapper">
                     <div className="messages">
                         {this.props.messages.map((message) => {
                             return <div key={message.id}
                                 className={("message" +
                                     (this.state.editing === message.id ? " editing" : ""))}>
-                                <div className="profile"><i className="fa-brands fa-discord"/></div> 
+                                <div className="profile"><i className="fa-brands fa-discord" /></div>
                                 {/* replace above with profile pic */}
                                 <span className="username">{message.username}</span>
                                 <span className="time">{message.time}</span>
                                 {this.state.editing === message.id ?
                                     <>
-                                    <input type="text" className="edit-input"
-                                        value={this.state.editMessage}
-                                        onChange={this.handleChange("editMessage")}
-                                        onKeyDown={this.handleEditSubmit}/>
+                                        <input type="text" className="edit-input"
+                                            value={this.state.editMessage}
+                                            onChange={this.handleChange("editMessage")}
+                                            onKeyDown={this.handleEditSubmit} />
                                         <div className="edit-label">escape to&nbsp;
                                             <span onClick={this.stopEdit}
                                             >cancel</span> • enter to&nbsp;
@@ -102,16 +150,13 @@ class Conversation extends React.Component {
                                         >
                                             <i className="fa-solid fa-pencil"></i>
                                         </div>
-                                        
+
                                         <div className="delete" name="Delete"
                                             onClick={()=>{
-                                                this.setState({
-                                                    deleteModal: true,
-                                                    deleteMessage: message
-                                                });
+                                                this.props.deleteMessage(message.id);
                                             }}
                                         ><i className="fa-solid fa-trash-can"></i></div>
-                                        
+
                                     </div> : null
                                 }
                             </div>
@@ -129,7 +174,7 @@ class Conversation extends React.Component {
                         onKeyDown={(e) => e.key === "ArrowUp" ? this.editLast() : null}
                     />
                 </form>
-           </div>
+            </div>
         )
     }
 };
