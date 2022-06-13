@@ -6,6 +6,7 @@
     justify-content: center;
     align-items: center;
     
+    
     input[type='radio'] {
         display: none;
     }
@@ -22,6 +23,8 @@
         align-items: center;
         flex-direction: column;
         box-shadow: 0px 0px 10px #656565;
+
+       
 
 
         .prof {
@@ -48,9 +51,18 @@
             margin-top: 1rem;
         }
 
-        .rating {
+        .avg-rating {
             margin-top: 1rem;
             margin-bottom: 1rem;
+            width: 125%;
+            display: flex;
+            justify-content: center;
+
+            .review-star-rating {
+                width: 22%;
+                margin-left: 0.5rem;
+                transform: translateY(-6px);
+            }
         }
 
         .leave-review {
@@ -68,39 +80,60 @@
             transform: scale(1.05);
         }
     }
+
+    h1 {
+        font-size: 24px;
+        color: black;
+        margin-bottom: 1rem;
+        border-top: 2px solid black;
+        width: 90%;
+        padding-top: 18px;
+        text-align: center;
+    }
 }
 
 .user-reviews-container {
     width: 90%;
     color: black;
     border: solid 1px black;
+    // margin-bottom: 2rem;
+    border-bottom: none;
+    box-shadow: 0px 0px 4px #656565;
+
 
     .user-review {
         margin-bottom: 1rem;
         margin-left: 1rem;
+        padding: 6px;
     }
 
     .rating {
         font-size: 20px;
-        margin-bottom: 5px;
+        margin-bottom: 7px;
+        margin-top: 10px;
+
+        .review-star-rating {
+            width: 34%;
+
+        }
     }
 
     .buttons {
         margin-bottom: 1rem;
 
         button {
-            padding: 10px;
+            padding: 5px;
             background-color: black;
             color: white;
-            border-radius: 20px;
+            border-radius: 7px;
+            cursor: pointer;
             border: none;
-            margin-right: 1rem;
             margin-left: 1rem;
             transition: all 200ms ease;
         }
 
         button:hover {
-            transform: scale (1.1);
+            transform: scale(1.1);
         }
     }
 }
@@ -111,4 +144,6 @@
 
 .user-reviews-container:last-of-type {
     border-radius: 0 0 20px 20px;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid black;
 }

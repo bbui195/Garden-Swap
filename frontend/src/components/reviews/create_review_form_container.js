@@ -4,11 +4,10 @@ import { makeReview } from '../../actions/review_action'
 
 
 const mSTP = (state, ownProps) => {
-    // console.log(state)
     return {
         formType: "Create Review",
         fullName: state.session.currentUser.username,
-        review : {
+        review: {
             userId: ownProps.match.params.userId,
             body: '',
             rating: '',
@@ -19,7 +18,7 @@ const mSTP = (state, ownProps) => {
 
 const mDTP = dispatch => {
     return {
-            action: review => dispatch(makeReview(review))
+        action: review => dispatch(makeReview(review))
     }
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 import Rating from './stars'
 
 class ReviewForm extends React.Component {
-   
+
     constructor(props) {
         super(props)
         this.state = {
@@ -20,12 +20,12 @@ class ReviewForm extends React.Component {
     };
 
     handleRating(rating) {
-        this.setState({...this.state,rating})
+        this.setState({ ...this.state, rating })
     };
 
     handleChange(field) {
         return e => {
-            this.setState({...this.state,[field]: e.currentTarget.value})
+            this.setState({ ...this.state, [field]: e.currentTarget.value })
         }
     };
 
@@ -37,16 +37,16 @@ class ReviewForm extends React.Component {
                     <h2>Add a written review</h2>
                     <Rating updateStars={this.handleRating} className='stars-component' />
                 </div>
-                
+
                 <form className='review-form' onSubmit={this.handleSubmit}>
                     <label htmlFor="written-review"></label>
-                    <textarea 
-                        placeholder="Please write a comment" 
+                    <textarea
+                        placeholder="Please write a comment"
                         id="written-review"
-                        value={this.state.body} 
+                        value={this.state.body}
                         onChange={this.handleChange('body')}
                     />
-                    <input type="submit" className='submit-form-btn' value='Submit'/>
+                    <input type="submit" className='submit-form-btn' value='Submit' />
                 </form>
             </div>
         )

@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 class ListingForm extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = Object.assign({}, this.props.listing);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -13,13 +13,13 @@ class ListingForm extends React.Component {
         this.updateCategory = this.updateCategory.bind(this);
     }
 
-    handleFile(e){
+    handleFile(e) {
         const file = e.currentTarget.files[0];
         const fileReader = new FileReader();
-        fileReader.onloadend = function(){
-            this.setState({imageFile: file, photoUrls: fileReader.result})
+        fileReader.onloadend = function () {
+            this.setState({ imageFile: file, photoUrls: fileReader.result })
         }.bind(this)
-        if (file){
+        if (file) {
             fileReader.readAsDataURL(file);
         }
     }
@@ -34,23 +34,23 @@ class ListingForm extends React.Component {
         } else {
             return (
                 <div className='image-preview-container'>
-                    <img src={this.state.photoUrls} alt="listing" className='form-photo'/>
+                    <img src={this.state.photoUrls} alt="listing" className='form-photo' />
                 </div>
             )
         }
     }
 
-    update(field){
-        return e=>{
-            this.setState({[field]: e.currentTarget.value})
+    update(field) {
+        return e => {
+            this.setState({ [field]: e.currentTarget.value })
         }
     }
 
     updateCategory(e) {
-        this.setState({category: e.currentTarget.value})
+        this.setState({ category: e.currentTarget.value })
     }
 
-    handleFormData(){
+    handleFormData() {
         let formData = new FormData();
         formData.append('listing[title]', this.state.title)
         formData.append('listing[body]', this.state.body)
@@ -63,20 +63,19 @@ class ListingForm extends React.Component {
         return formData;
     }
 
-    handleSubmit(e){
-        // console.log(this.state)
+    handleSubmit(e) {
         e.preventDefault();
         this.props.makeListing(this.handleFormData())
-            .then(()=>this.props.history.push('/'))
+            .then(() => this.props.history.push('/'))
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <form onSubmit={this.handleSubmit} className='listing-form-container' >
                 <div className='form-inputs-container'>
                     <div className='form-inputs'>
-                        <input 
-                            type="text" 
+                        <input
+                            type="text"
                             value={this.state.title}
                             onChange={this.update("title")}
                             placeholder="Title"
@@ -84,14 +83,14 @@ class ListingForm extends React.Component {
                             id='title'
                         />
                         <label htmlFor="title" className='title__label'>Title</label>
-                        <textarea 
+                        <textarea
                             value={this.state.body}
                             onChange={this.update('body')}
                             className="description-input"
                             placeholder='body'
                         />
                         <div className='price-cat-container'>
-                            <input 
+                            <input
                                 type="number"
                                 min="1"
                                 step="any"
@@ -102,7 +101,7 @@ class ListingForm extends React.Component {
                             />
 
                             <select onChange={this.updateCategory} name="categories" id="categories">
-                                <option selected={true} disabled="disabled">Choose Category</option>    
+                                <option selected={true} disabled="disabled">Choose Category</option>
                                 <option value="Fruit">Fruit</option>
                                 <option value="Vegetables">Vegetables</option>
                                 <option value="Nuts">Nuts</option>
@@ -111,13 +110,13 @@ class ListingForm extends React.Component {
                                 <option value="Grains">Grains</option>
                             </select>
                         </div>
-               
-                        
-                   
+
+
+
                     </div>
                     <div className='image-container'>
                         {this.previewImage()}
-                        <input 
+                        <input
                             type="file"
                             onChange={this.handleFile}
                             className="file-upload"

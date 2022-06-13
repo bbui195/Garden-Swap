@@ -17,10 +17,7 @@ const mSTP = (state, ownProps) => {
 }
 
 const mDTP = dispatch => ({
-    makeListing: listing =>{
-        // for(let val of listing.values()) {
-        //     console.log(val);
-        // }
+    makeListing: listing => {
         return dispatch(testMakeListing(listing))
     }
 })

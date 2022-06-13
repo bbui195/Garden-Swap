@@ -27,8 +27,8 @@ class Inbox extends React.Component {
             return;
         }
         return (
-           <div className='inbox-page-container'>
-               Message Inbox here  
+            <div className='inbox-page-container'>
+                Message Inbox here
                 <div className='clip-container'>
                     {this.props.messages.map((message) => {
                         return <Link

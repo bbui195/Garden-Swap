@@ -8,7 +8,7 @@
     color: white;
     justify-content: space-between;
     flex-direction: column;
-    border-bottom: 2px solid $dark-liver;
+    border-bottom: 2px solid black;
     position: fixed;
     z-index: 5;
 
@@ -24,15 +24,17 @@
             align-items: center;
             text-decoration: none;
             border-bottom: $dark-liver 2px solid;
-            
+            border-bottom-style: ridge;
         }
 
         .title {
             font-family: 'Amatic SC', cursive;
-            color: $light-orange;
+            color: $dark-liver;
             text-decoration: none;
-            font-size: 48px;
+            font-size: 52px;
             margin-right: 10px;
+            text-shadow: 1px 1px #353535;
+
         }
 
         .logo {
@@ -97,18 +99,18 @@
                 position: relative;
             }
             
-            a::before {  
+            .Fruit::before {  
                 transform: scaleX(0);
                 transform-origin: center;
             }
             
-            a:hover::before {
+            .Fruit:hover::before {
                 transform: scaleX(1) translateX(-13%);
                 right: 60px;
                 transform-origin: center;
-              }
+            }
               
-              a::before {
+            .Fruit::before {
                 content: "";
                 display: block;
                 position: absolute;
@@ -125,7 +127,166 @@
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: 100%;
-              }
+            }
+            
+            a {
+                text-shadow: 1px 1px #353535;
+                font-size: 18px;
+            }
+
+            .Grains::before {  
+                transform: scaleX(0);
+                transform-origin: center;
+            }
+            
+            .Grains:hover::before {
+                transform: scaleX(1) translateX(-13%);
+                right: 60px;
+                transform-origin: center;
+            }
+              
+            .Grains::before {
+                content: "";
+                display: block;
+                position: absolute;
+                top: 0; 
+                right: 60px; 
+                bottom: 0; 
+                left: 0;
+                inset: 0 0 0 0;
+                z-index: -1;
+                transition: transform .3s ease;
+                background-image: url(../assets/images/grains.png);
+                height: 100%;
+                width: 140%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 100%;
+            }
+
+            .Meats::before {  
+                transform: scaleX(0);
+                transform-origin: center;
+                height: 100%;
+            }
+            
+            .Meats:hover::before {
+                transform: scale(1) translateX(-13%);
+                right: 60px;
+                transform-origin: center;
+            }
+              
+            .Meats::before {
+                content: "";
+                display: block;
+                position: absolute;
+                top: 0; 
+                right: 60px; 
+                bottom: 0; 
+                left: 0;
+                inset: 0 0 0 0;
+                z-index: -1;
+                transition: transform .3s ease;
+                background-image: url(../assets/images/steaky.png);
+                height: 100%;
+                width: 135%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 100%;
+            }
+
+            .Vegetables::before {  
+                transform: scaleX(0) translateY(-3px);
+                transform-origin: center;
+                height: 100%;
+            }
+            
+            .Vegetables:hover::before {
+                transform: scale(1) translateX(-13%) translateY(-3px);
+                right: 60px;
+                transform-origin: center;
+            }
+              
+            .Vegetables::before {
+                content: "";
+                display: block;
+                position: absolute;
+                top: 0; 
+                right: 60px; 
+                bottom: 0; 
+                left: 0;
+                inset: 0 0 0 0;
+                z-index: -1;
+                transition: transform .3s ease;
+                background-image: url(../assets/images/carrot.png);
+                height: 100%;
+                width: 135%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 100%;
+            }
+
+            .Dairy::before {  
+                transform: scaleX(0);
+                transform-origin: center;
+                height: 100%;
+            }
+            
+            .Dairy:hover::before {
+                transform: scale(1) translateX(-13%);
+                right: 60px;
+                transform-origin: center;
+            }
+              
+            .Dairy::before {
+                content: "";
+                display: block;
+                position: absolute;
+                top: 0; 
+                right: 60px; 
+                bottom: 0; 
+                left: 0;
+                inset: 0 0 0 0;
+                z-index: -1;
+                transition: transform .3s ease;
+                background-image: url(../assets/images/dairy.png);
+                height: 100%;
+                width: 135%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 100%;
+            }
+
+            .Nuts::before {  
+                transform: scaleX(0);
+                transform-origin: center;
+                height: 100%;
+            }
+            
+            .Nuts:hover::before {
+                transform: scale(1.5) translateX(-9%) translateY(3px);
+                right: 60px;
+                transform-origin: center;
+            }
+              
+            .Nuts::before {
+                content: "";
+                display: block;
+                position: absolute;
+                top: 0; 
+                right: 60px; 
+                bottom: 0; 
+                left: 0;
+                inset: 0 0 0 0;
+                z-index: -1;
+                transition: transform .3s ease;
+                background-image: url(../assets/images/nuts.png);
+                height: 100%;
+                width: 135%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 100%;
+            }
               
         }
     }
