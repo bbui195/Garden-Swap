@@ -13,7 +13,7 @@ const messagesReducer = (state={}, action) => {
             }
             return newState;
         case RECEIVE_MESSAGES:
-            return Object.assign({}, state, action.messages);
+            return Object.assign({}, action.messages);
         default:
             return state;
     }

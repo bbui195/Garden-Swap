@@ -34,3 +34,8 @@ export const updateMessage = message => dispatch => {
 export const deleteMessage = messageId => dispatch => {
     return MessageApiUtil.deleteMessage(messageId);
 };
+
+export const getRecentMessages = () => dispatch => {
+    return MessageApiUtil.fetchRecentMessages()
+        .then((res) => dispatch(receiveMessages(res.data)));
+}

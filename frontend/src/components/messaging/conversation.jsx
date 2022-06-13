@@ -10,14 +10,19 @@ class Conversation extends React.Component {
             message: "",
             editing: false,
             editMessage: "",
-            creating: true
+            creating: true,
+            url: ""
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleEditSubmit = this.handleEditSubmit.bind(this);
+        this.stopEdit = this.stopEdit.bind(this);
+        this.submitEdit = this.submitEdit.bind(this);
     }
 
     componentDidMount() {
-        this.props.fetchMessages();
+        this.props.fetchMessages()
+            .then(()=>this.setState({url: this.props.location.pathName}));
         let socket = socketIOClient("http://localhost:5002", {
             withCredentials: true,
             extraHeaders: {
@@ -32,16 +37,32 @@ class Conversation extends React.Component {
         });
     }
 
+    componentDidUpdate() {
+        if(this.state.url !== this.props.location.pathName) {
+            this.props.fetchMessages()
+                .then(()=>this.setState({url: this.props.location.pathName}));
+        }
+        if(this.state.focusEdit) {
+            document.getElementsByClassName("edit-input")[0].focus();
+            this.setState({
+                focusEdit: false
+            })
+        }
+    }
+
     componentWillUnmount() {
-        if (this.state.socket) {
-            console.log("disconnecting")
+        if(this.state.socket) {
+            // console.log("disconnecting")
             this.state.socket.disconnect();
         }
         this.setState({ socket: undefined });
     }
 
     handleChange(type) {
-        return (e) => this.setState({ [type]: e.target.value });
+        return (e) => {
+            // console.log(this.state);
+            this.setState({[type]: e.target.value})
+        };
     }
 
     handleEditClick(message) {
@@ -49,6 +70,30 @@ class Conversation extends React.Component {
             editing: message.id,
             editMessage: message.body,
             focusEdit: true
+        });
+    }
+
+    submitEdit() {
+        if(this.state.editMessage !== "") {
+            this.props.updateMessage({
+                id: this.state.editing,
+                body: this.state.editMessage
+            });
+            this.stopEdit();
+        }
+    }
+
+    handleEditSubmit(e) {
+        if(e.key !== "Enter") {
+            return;
+        }
+        this.submitEdit();
+    }
+
+    stopEdit() {
+        this.setState({
+            editing: undefined,
+            editMessage: "",
         });
     }
 
@@ -66,6 +111,9 @@ class Conversation extends React.Component {
     render() {
         if (!this.props.receiver) {
             return;
+        }
+        if(this.state.url !== this.props.location.pathName) {
+            return
         }
         return (
             <div className="message-index">
@@ -102,11 +150,8 @@ class Conversation extends React.Component {
                                         </div>
 
                                         <div className="delete" name="Delete"
-                                            onClick={() => {
-                                                this.setState({
-                                                    deleteModal: true,
-                                                    deleteMessage: message
-                                                });
+                                            onClick={()=>{
+                                                this.props.deleteMessage(message.id);
                                             }}
                                         ><i className="fa-solid fa-trash-can"></i></div>
 

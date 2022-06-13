@@ -50,9 +50,9 @@ router.get("/current/user", passport.authenticate("jwt", {session: false}), (req
 });
 
 router.post("/register", (req, res) => {
-    console.log("aaaaaaa", req.body);
+    // console.log("aaaaaaa", req.body);
     const { errors, isValid } = validateRegisterInput(req.body);
-    console.log(errors, isValid);
+    // console.log(errors, isValid);
     if(!isValid) {
         return res.status(400).json(errors);
     }
