@@ -113,7 +113,7 @@ class UserShow extends React.Component {
                                         <button onClick={()=>this.handleRemove(review)}>Delete</button>
                                         <button onClick={()=>this.setState({reviewId: review.id})}>Edit</button>
                                     </div>
-                                : null
+                                    : null
                                 }
                             </div>  
                             </>   

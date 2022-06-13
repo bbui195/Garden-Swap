@@ -14,9 +14,9 @@ const passport = require("passport");
 const app = express();
 const db = require('./config/keys').mongoURI;
 mongoose
-    .connect(db, { useNewUrlParser: true })
-    .then(() => console.log("Connected to MongoDB successfully"))
-    .catch(err => console.log(err));
+.connect(db, { useNewUrlParser: true })
+.then(() => console.log("Connected to MongoDB successfully"))
+.catch(err => console.log(err));
 
 const users = require("./routes/api/users");
 const listings = require("./routes/api/listings");
@@ -27,6 +27,8 @@ const messages = require("./routes/api/messages");
 const http = require('http');
 const server = http.createServer(app);
 
+const favicon = require('serve-favicon');
+
 const { Server } = require("socket.io");
 const io = new Server(server, {
     cors: {
@@ -35,20 +37,20 @@ const io = new Server(server, {
     }
 })
 // const io = require("socket.io")(server, {
-//     cors: {
-//         origin: "http://localhost:3000",
-//         // origin: "*",
-//         // methods: ["GET", "POST"]
-//     }
-// });
-
-// console.log(io);
-// io = new io.Server(server);
-messages.io = io;
-io.connectedUsers = {};
-io.on('connection', (socket) => {
-    // console.log(socket);
-    // console.log(socket.handshake.headers.token.split(" ")[1]);
+    //     cors: {
+        //         origin: "http://localhost:3000",
+        //         // origin: "*",
+        //         // methods: ["GET", "POST"]
+        //     }
+        // });
+        
+        // console.log(io);
+        // io = new io.Server(server);
+        messages.io = io;
+        io.connectedUsers = {};
+        io.on('connection', (socket) => {
+            // console.log(socket);
+            // console.log(socket.handshake.headers.token.split(" ")[1]);
     console.log(jwt_decode(socket.handshake.headers.token)); // user that just connected
     let user = jwt_decode(socket.handshake.headers.token);
     io.connectedUsers[user.id] = socket.id;
@@ -56,10 +58,14 @@ io.on('connection', (socket) => {
     io.to(socket.id).emit("testing 123");
 })
 
+
+
 server.listen(5002, () => {
     console.log("Server is listening");
     // console.log(io);
 })
+
+
 //
 
 // app.get("/", (req, res) => res.send("Hello World!"));
@@ -73,6 +79,8 @@ app.use("/api/users", users);
 app.use("/api/listings", listings);
 app.use("/api/reviews", reviews);
 app.use("/api/messages", messages);
+app.use(favicon(__dirname + 'frontend/public/favicon.ico'));
+
 
 const port = process.env.PORT || 5000;
 
