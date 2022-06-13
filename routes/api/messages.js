@@ -123,14 +123,17 @@ router.post('/', // messages to id
 
                 newMessage.save()
                     .then(message => {
-                        // console.log(router.io);
+                        console.log(router.io);
                         [message.senderId, message.receiverId].forEach(id => {
+                            console.log(id);
                             if(router.io.connectedUsers[id]) {
+                                console.log("messaging", id);
                                 router.io.to(router.io.connectedUsers[id]).emit(
                                     "message", formatMessage(message, req.user.username)
                                 );
                             }
                         })
+                        console.log("finished messaging");
                         res.end();
                     }).catch(err => res.status(401).json({failedmessage: 'Could not send message'}));
                     // .then(message => res.json(message));
