@@ -22,7 +22,9 @@ class ListingShow extends React.Component {
             return (
                 <div className='btns-container'>
                     <Link to={`/listing/edit/${this.props.listingId}`} className="button">Edit</Link>
+                    or
                     <button onClick={this.handleDelete} className="button">Delete</button>
+                    your post
                 </div>
             )
         } else {
@@ -42,11 +44,20 @@ class ListingShow extends React.Component {
                     {this.renderEditDelete()}
                 </div>
                 <div className='right'>
-                    <h1 className='title'>{this.props.listing.title}</h1>
-                    <p className='cat'>{this.props.listing.category}</p>
-                    <p className='price'>${this.props.listing.price}</p>
-                    <p className='body'>{this.props.listing.body}</p>
-                    <Link to={`/user/inbox/${this.props.listing.userId}`}>Message</Link>
+                    <div className='headline'>
+                        <div className='space-btwn'>
+                            <h1 className='title'>{this.props.listing.title}</h1>
+                            <p className='price'>${this.props.listing.price}</p>
+                        </div>
+                        <p className='cat'>{this.props.listing.category}</p>
+                    </div>
+                    <div>
+                        <h3>Description:</h3>
+                        <p className='body'>{this.props.listing.body}</p>
+                    </div>
+                    <Link to={`/user/inbox/${this.props.listing.userId}`} className='button'>
+                        Message Poster's Username
+                    </Link>
                 </div>
             </div>
         );
