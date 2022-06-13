@@ -27,7 +27,6 @@ const messages = require("./routes/api/messages");
 const http = require('http');
 const server = http.createServer(app);
 
-const favicon = require('serve-favicon');
 
 const { Server } = require("socket.io");
 const io = new Server(server, {
@@ -79,7 +78,6 @@ app.use("/api/users", users);
 app.use("/api/listings", listings);
 app.use("/api/reviews", reviews);
 app.use("/api/messages", messages);
-app.use(favicon(__dirname + 'frontend/public/favicon.ico'));
 
 
 const port = process.env.PORT || 5000;
