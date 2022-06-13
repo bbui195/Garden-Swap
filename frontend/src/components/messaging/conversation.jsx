@@ -25,7 +25,7 @@ class Conversation extends React.Component {
             .then(()=>this.setState({url: this.props.location.pathName}));
         let socket = socketIOClient(
             // "ws://garden-swapp.herokuapp.com/socket.io/?EIO=4&transport=websocket", {
-            "http://garden-swapp.herokuapp.com/", {
+            "https://garden-swapp.herokuapp.com/", {
             withCredentials: true,
             extraHeaders: {
                 token: this.props.token

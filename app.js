@@ -42,7 +42,7 @@ const { Server } = require("socket.io");
 const io = new Server(server, {
     cors: {
         // origin: "ws://garden-swapp.herokuapp.com/socket.io/?EIO=4&transport=websocket",
-        origin: "http://garden-swapp.herokuapp.com/",
+        origin: "https://garden-swapp.herokuapp.com/",
         credentials: true
     }
 })
