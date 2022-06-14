@@ -43,6 +43,7 @@ function Footer(props) {
                         <BsPersonSquare className="port" size={25}/>
                     </a>
                 </div>
+                
             </div>
             <div className='lowest'>
                 <div className="details">

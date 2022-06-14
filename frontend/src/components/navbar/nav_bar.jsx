@@ -85,7 +85,8 @@ export default (props) => {
     };
 
     function dropDown3(e) {
-        if (!e.target.closest(".location-dropdown") && !e.target.closest(".zipcode-filter")) {
+        if (!e.target.closest(".location-dropdown") && !e.target.closest(".zipcode-filter")
+                && !e.target.closest(".btn")) {
             document.querySelector(".zipcode-filter").style.display = 'none'
             document.removeEventListener("click", dropDown3)
         }
