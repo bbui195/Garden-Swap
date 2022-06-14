@@ -75,7 +75,7 @@ export default (props) => {
 
     function toggleDropDown() {
         let dropDown = document.querySelector('.dropdown-content');
-        if (dropDown.style.display === 'none') {
+        if (dropDown.style.display === 'none' || dropDown.style.display === '') {
             dropDown.style.display = 'flex'
             document.addEventListener('click', dropDown2);
 
@@ -94,7 +94,7 @@ export default (props) => {
 
     function toggleDropDown2() {
         let dropDown = document.querySelector('.zipcode-filter');
-        if (dropDown.style.display === 'none') {
+        if (dropDown.style.display === 'none' || dropDown.style.display === '') {
             dropDown.style.display = 'flex'
             document.addEventListener('click', dropDown3);
 

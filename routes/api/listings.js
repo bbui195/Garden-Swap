@@ -42,7 +42,8 @@ const secretKey = process.env.AWS_SECRET_KEY
 
 function formatListing(listing) {
     return {
-        userId: listing.userId,
+        userId: listing.userId._id || listing.userId,
+        username: listing.userId.username,
         id: listing.id,
         body: listing.body,
         category: listing.category,
@@ -81,7 +82,7 @@ router.get('/', (req, res) => {
 // });
 
 router.get('/:id', (req, res) => {
-    Listing.findById(req.params.id)
+    Listing.findById(req.params.id).populate("userId")
         .then(listing => res.json(formatListing(listing)))
         .catch(err =>
             res.status(404).json({ nolistingfound: 'No listing found with that ID'})

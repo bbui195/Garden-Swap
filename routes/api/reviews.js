@@ -20,8 +20,9 @@ function formatReview(review) {
         body: review.body,
         postedAt: review.createdAt,
         rating: review.rating,
-        reviewerId: review.reviewerId,
+        reviewerId: review.reviewerId._id || review.reviewerId,
         userId: review.userId,
+        username: review.reviewerId.username,
         id: review.id
     }
 }
@@ -37,7 +38,7 @@ function formatReviews(reviews) {
 router.get('/:userId', (req, res) => {
     User.findById(req.params.userId)
     .then(user => {
-        Review.find({ userId: user.id})
+        Review.find({ userId: user.id}).populate("reviewerId")
         .then(reviews => {
             res.json(formatReviews(reviews));
         });

@@ -96,27 +96,31 @@ class UserShow extends React.Component {
                     <h1>User Reviews</h1>
                     {Object.values(this.props.reviews??{}).map((review,idx) => {   
                         return (
-                            <>
+                            
                             <div className='user-reviews-container' key={review.id}>
                                 {review.id === this.state.reviewId ?  
                                     <EditReviewForm  review={review} action={this.props.editReview} fetchReviews={this.props.requestReviews} resetState={this.resetReviewState} />
                                 : 
                                     <div className='user-review'>
                                         <p>{review.timestamps}</p>
-                                        <p className='rating'><ReviewStarRating rating={review.rating}/></p>
+                                        <div className='rating'><ReviewStarRating rating={review.rating}/></div>
                                         <p className='body'>{review.body}</p>
+                                        <p>{review.username}</p>
                                     </div>
                                 }
 
                                 {review.reviewerId === this.props.userSession.id ?
                                     <div className='buttons'>
                                         <button onClick={()=>this.handleRemove(review)}>Delete</button>
-                                        <button onClick={()=>this.setState({reviewId: review.id})}>Edit</button>
+                                        {this.state.reviewId !== review.id ?
+                                            <button onClick={()=>this.setState({reviewId: review.id})}>Edit</button>
+                                            : null
+                                        }
                                     </div>
                                     : null
                                 }
                             </div>  
-                            </>   
+                            
                         )
                     })}
                 </ul>

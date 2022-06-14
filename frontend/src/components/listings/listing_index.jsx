@@ -63,13 +63,15 @@ function ListingIndex(props) {
     if (!listings) {
         return null
     }
-
+    let listingIndexItems = populated.map(listing => (
+        <ListingIndexItem key={listing.id} listing={listing} />
+    ));
     return (
         <>
             <div className='listing-index-container'>
-                {populated.map(listing => (
-                    <ListingIndexItem key={listing.id} listing={listing} />
-                ))}
+                {listingIndexItems.length > 0 ? 
+                    listingIndexItems :
+                    <p>No results within {props.location.radius} miles of your area</p>}
             </div>
         </>
     )

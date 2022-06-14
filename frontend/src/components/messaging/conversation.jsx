@@ -1,5 +1,8 @@
 import React from 'react';
 import socketIOClient from "socket.io-client";
+import profilePic from "../../assets/images/prof-placeholder.png"
+import { Link } from 'react-router-dom'
+
 
 
 class Conversation extends React.Component {
@@ -117,14 +120,19 @@ class Conversation extends React.Component {
         }
         return (
             <div className="message-index">
-
+                {/* <br /> */}
+                <Link to='/user/inbox' className='linky'>
+                    <i class="fa-solid fa-backward"></i>
+                    Inbox
+                </Link>
+                {/* <br /> */}
                 <div className="messages-wrapper">
                     <div className="messages">
                         {this.props.messages.map((message) => {
                             return <div key={message.id}
                                 className={("message" +
                                     (this.state.editing === message.id ? " editing" : ""))}>
-                                <div className="profile"><i className="fa-brands fa-discord" /></div>
+                                <div className="profile"><i class="fa-solid fa-user"></i></div>
                                 {/* replace above with profile pic */}
                                 <span className="username">{message.username}</span>
                                 <span className="time">{message.time}</span>
