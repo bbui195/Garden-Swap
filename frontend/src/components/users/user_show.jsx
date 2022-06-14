@@ -15,7 +15,8 @@ class UserShow extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            reviewId: ''
+            reviewId: '',
+            userId: ''
         }
         this.handleRemove = this.handleRemove.bind(this);
         this.resetReviewState = this.resetReviewState.bind(this);
@@ -24,7 +25,22 @@ class UserShow extends React.Component {
     componentDidMount() {
         this.props.requestUser(this.props.match.params.userId)
         this.props.requestReviews(this.props.match.params.userId)
+            .then(() => this.setState({
+                userId: this.props.match.params.userId
+            })
+        )
         console.log('did I get to the component did mount?')
+    }
+
+    componentDidUpdate() {
+        if(this.props.match.params.userId !== this.state.userId) {
+            this.props.requestUser(this.props.match.params.userId)
+            this.props.requestReviews(this.props.match.params.userId)
+                .then(() => this.setState({
+                    userId: this.props.match.params.userId
+                })
+            )
+        }
     }
 
     resetReviewState () {
@@ -47,9 +63,15 @@ class UserShow extends React.Component {
                 <span></span>
             )
         }else{
-            return (
+            let ret = (
                 <Link className='leave-review' to={`/reviews/${this.props.match.params.userId}/new`}>Leave a review for this user</Link>
             )
+            Object.values(this.props.reviews??{}).forEach((review) => {
+                if(review.reviewerId == this.props.userSession.id) {
+                    ret = <span />
+                }
+            });
+            return ret;
         }
     };
 
@@ -82,7 +104,7 @@ class UserShow extends React.Component {
                     <img  src={johnProf} alt="" className='prof'/>
                     <li className='username'>Username: {userData.username}</li>
                     <li className='joined'>Joined: {(new Date(userData.joined)).toDateString().split(" ").slice(1).join(" ")}</li>
-                    <li className='zipcode'>Zipcode: {userData.zipcode}</li>
+                    {/* <li className='zipcode'>Zipcode: {userData.zipcode}</li> */}
                     <li className='avg-rating'>
                         Average Rating:
                         <ReviewStarRating rating={avgReviewRating} 
@@ -92,7 +114,7 @@ class UserShow extends React.Component {
                     </li>
                     {this.leaveReview()}
                 
-                    <Link to={`/reviews/${this.props.match.params.userId}/new`} className="leave-review">Leave review for this user</Link>
+                    {/* <Link to={`/reviews/${this.props.match.params.userId}/new`} className="leave-review">Leave review for this user</Link> */}
                     <h1>User Reviews</h1>
                     {Object.values(this.props.reviews??{}).map((review,idx) => {   
                         return (
