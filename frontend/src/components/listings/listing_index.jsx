@@ -71,7 +71,7 @@ function ListingIndex(props) {
             <div className='listing-index-container'>
                 {listingIndexItems.length > 0 ? 
                     listingIndexItems :
-                    <p>No results within your area</p>}
+                    <p>No results within {props.location.radius} miles of your area</p>}
             </div>
         </>
     )
