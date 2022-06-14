@@ -1,7 +1,7 @@
-
-
 .message-index {
     margin-top: 10rem;
+    margin-bottom: 5rem;
+    box-shadow: 0px 0px 10px #656565;
     background-color: $light-orange;
     min-height: 30rem;
     height: 1px;
@@ -9,16 +9,20 @@
     &.direct-messages{
         width: 100%;
     }
-    // border: 1px solid red;
+    border-radius: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     .messages-wrapper {
         border: 1px solid black;
+        border-bottom: 2px solid black;
+        // border-radius: 2rem 2rem 0 0;
         overflow-y: scroll;
         display: flex;
         flex-direction: column-reverse;
         height: 100%;
+        padding: 10px;
+        box-sizing: border-box;
     }
     .messages {
         display: block;
@@ -27,12 +31,11 @@
     input { //.message-input
         box-sizing: border-box;
         font-size: 16px;
-        margin: 24px 16px;
+        margin: 24px 16px 24px 16px;
         flex-shrink: 0;
         height: 44px;
-        background-color: rgb(64, 68, 75);
-        // color: rgb(219, 220, 221);
-        border: none;
+        background-color: #f4c271;
+        border: 1px solid black;
         width: calc(100% - 32px);
         border-radius: 6px;
         padding: 4px 16px;
@@ -48,13 +51,14 @@
 .message {
     position: relative;
     box-sizing: border-box;
-    // border: 1px solid black;
+    border-top: 1px solid rgb(154, 154, 154);
     // padding-right: 48px;
-    padding: 2px 48px 2px 72px;
+    padding: 10px 48px 2px 72px;
     min-height: 48px;
     margin-top: 17px;
     width: 100%;
     word-wrap: break-word;
+    // background-color: #f2dbb6;
     .username {
         color: black;
         cursor: pointer;
@@ -85,7 +89,7 @@
         font-size: 12px;
         margin-bottom: 6px;
         span {
-            color: rgb(31, 167, 228);
+            color: black;
             &:hover {
                 cursor: pointer;
                 text-decoration: underline;
@@ -102,7 +106,7 @@
         height: 40px;
         border-radius: 100%;
         background-color: rgb(118, 126, 138);
-        top: 3px;
+        top: 11px;
         left: 16px;
         &:active {
             top: 5px;
@@ -114,10 +118,10 @@
         height: 32px;
         position: absolute;
         right: 16px;
-        top: -20px;
-        border: 2px solid rgb(44, 47, 51);
+        top: 11px;
+        border: 1px solid rgb(44, 47, 51);
         border-radius: 4px;
-        background-color: rgb(54, 57, 63);
+        background-color: rgb(30, 30, 30);
         * {
             cursor: pointer;
             height: 32px;
@@ -148,7 +152,7 @@
         }
     }
     &.editing {
-        background-color: rgb(50, 53, 59);
+        background-color: $wintergreen-dream;
         .edit-options {
             display: none;
         }
@@ -161,4 +165,17 @@
     // width: 80%;
     // border: 4px solid rgb(54, 57, 63);
     border-radius: 10px;
+}
+
+.link {
+    margin: 1rem;
+    color: black;
+    i {
+        margin-right: .5rem;
+        transform: translateY(1px);
+    }
+}
+
+.link:hover {
+    color: rgb(80, 80, 80);
 }
