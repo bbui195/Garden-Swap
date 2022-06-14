@@ -7,6 +7,7 @@ import { FiInbox } from "react-icons/fi";
 import { BsDashLg } from "react-icons/bs";
 import { debounce } from 'lodash';
 import { STATES } from 'mongoose';
+import SearchBar from '../search/searchbar_container';
 import zipcodes_list from '../../utils/zipcodes_list';
 
 
@@ -158,7 +159,8 @@ export default (props) => {
                         <span className='title'>Garden Swap</span>
                         <img src={cabbage} alt="Logo" className='logo' />
                     </Link>
-                    <input type="text" className='search-bar' placeholder="Search local gardens" />
+                    {/* <input type="text" className='search-bar' placeholder="Search local gardens" /> */}
+                    <SearchBar/>
                     <div>
                         {/* <p>Filter by Zipcode?{location.zipCode}</p> */}
                         {/* populated.length === 0 ? 'null':  */}

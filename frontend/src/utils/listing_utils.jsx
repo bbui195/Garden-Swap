@@ -34,3 +34,7 @@ export const testCreateListing = listing => {
     
     return axios.post('/api/listings', listing)
 }
+
+export const fetchSearchListings = query => {
+    return axios.get(`/api/listings/search/${query}`)
+}
