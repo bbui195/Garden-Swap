@@ -43,26 +43,28 @@ class SearchPage extends React.Component {
         };
 
         return(
-            <div className="search-page-container">
+            <>
                 {this.searchResults()}
-                {this.props.listings.map(listing => {
-                        return (
+                <div className="search-page-container">
+                    {this.props.listings.map(listing => {
+                            return (
 
-                            <ListingIndexItem className="listing-container" key={listing.id} listing={listing}/>
-                            // <Link className="listing-content" to={`/listings/${listing.id}`} >
-                            //     <img src={listing.photoUrl} className='img'/>
-                            //     <div className="details">
-                            //         <div className="p-name">{listing.product_name}</div>
-                            //         <div className="price-shop">
-                            //             <span className="price">${listing.price}</span>
-                            //             <span className="s-name">{listing.shop_name}</span>
-                            //         </div>
-                            //     </div>
-                            // </Link>
-                        )
-                    })
-                }
-            </div>
+                                <ListingIndexItem key={listing.id} listing={listing}/>
+                                // <Link className="listing-content" to={`/listings/${listing.id}`} >
+                                //     <img src={listing.photoUrl} className='img'/>
+                                //     <div className="details">
+                                //         <div className="p-name">{listing.product_name}</div>
+                                //         <div className="price-shop">
+                                //             <span className="price">${listing.price}</span>
+                                //             <span className="s-name">{listing.shop_name}</span>
+                                //         </div>
+                                //     </div>
+                                // </Link>
+                            )
+                        })
+                    }
+                </div>
+            </>
         )
     };
 };
