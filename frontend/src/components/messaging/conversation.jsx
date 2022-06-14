@@ -121,9 +121,9 @@ class Conversation extends React.Component {
         return (
             <div className="message-index">
                 {/* <br /> */}
-                <Link to='/user/inbox' className='link'>
+                <Link to='/user/inbox' className='linky'>
                     <i class="fa-solid fa-backward"></i>
-                    back to inbox
+                    Inbox
                 </Link>
                 {/* <br /> */}
                 <div className="messages-wrapper">
@@ -180,7 +180,6 @@ class Conversation extends React.Component {
                         onKeyDown={(e) => e.key === "ArrowUp" ? this.editLast() : null}
                     />
                 </form>
-               
             </div>
         )
     }
