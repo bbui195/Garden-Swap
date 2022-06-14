@@ -50,10 +50,6 @@
             color: #c8c8c8;
             border: 2px solid $claret;
         }
-
-        .location-icon {
-            color: white;
-        }
     
         .btn {
             text-decoration: none;
@@ -108,8 +104,7 @@
                 transform: scaleX(1) translateX(-13%);
                 right: 60px;
                 transform-origin: center;
-            }
-              
+            }            
             .Fruit::before {
                 content: "";
                 display: block;
@@ -143,8 +138,7 @@
                 transform: scaleX(1) translateX(-13%);
                 right: 60px;
                 transform-origin: center;
-            }
-              
+            }       
             .Grains::before {
                 content: "";
                 display: block;
@@ -174,8 +168,7 @@
                 transform: scale(1) translateX(-13%);
                 right: 60px;
                 transform-origin: center;
-            }
-              
+            }     
             .Meats::before {
                 content: "";
                 display: block;
@@ -205,8 +198,7 @@
                 transform: scale(1) translateX(-13%) translateY(-3px);
                 right: 60px;
                 transform-origin: center;
-            }
-              
+            }             
             .Vegetables::before {
                 content: "";
                 display: block;
@@ -236,8 +228,7 @@
                 transform: scale(1) translateX(-13%);
                 right: 60px;
                 transform-origin: center;
-            }
-              
+            }             
             .Dairy::before {
                 content: "";
                 display: block;
@@ -267,8 +258,7 @@
                 transform: scale(1.5) translateX(-9%) translateY(3px);
                 right: 60px;
                 transform-origin: center;
-            }
-              
+            }             
             .Nuts::before {
                 content: "";
                 display: block;
@@ -286,8 +276,7 @@
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: 100%;
-            }
-              
+            }          
         }
     }
 
@@ -296,5 +285,162 @@
 .prof {
     width: 50px;
     border-radius: 60px;
+}
+
+@media only screen and (max-width: 1030px) {
+    .header-container {
+    
+        .topline {
+    
+            .title {
+                font-size: 44px;
+            }
+    
+            .logo {
+                height: 55px;
+            }
+
+            .profile-dropdown {
+                margin-left: .5rem;
+            }
+    
+        }
+    }
+
+}
+
+@media only screen and (max-width: 970px) {
+    .header-container {
+     
+    
+        .topline {
+    
+            .title {
+                font-size: 44px;
+            }
+    
+            .search-bar {
+                width: 45%;
+              
+            }
+    
+        }
+    }
+
+}
+
+@media only screen and (max-width: 875px) {
+    .header-container {
+     
+    
+        .topline {
+    
+            .title {
+                font-size: 44px;
+            }
+    
+            .search-bar {
+                width: 40%;
+              
+            }
+    
+        }
+    }
+
+}
+
+@media only screen and (max-width: 800px) {
+    .header-container {
+     
+    
+        .topline {
+    
+            .search-bar {
+                width: 35%;            
+            }
+    
+        }
+    }
+
+}
+
+@media only screen and (max-width: 725px) {
+    .header-container {
+     
+    
+        .topline {
+            
+    
+            .logos {
+               
+            }
+    
+            .title {
+                font-size: 38px;
+            }
+    
+            .logo {
+               height: 45px;
+            }
+    
+            .search-bar {
+                width: 35%;            
+            }
+
+            .dropbtn {
+                font-size: 14px;
+            }
+
+            .profile-dropdown {
+
+                 .prof {
+                     width: 35px;
+                     height: 35px;
+                 }
+            }
+    
+        }
+    }
+
+}
+
+@media only screen and (max-width: 645px) {
+    .header-container {
+     
+    
+        .topline {
+            
+    
+            .logos {
+               
+            }
+    
+            .title {
+                font-size: 38px;
+            }
+    
+            .logo {
+               height: 45px;
+            }
+    
+            .search-bar {
+                width: 35%;            
+            }
+
+            .dropbtn {
+                font-size: 14px;
+            }
+
+            .profile-dropdown {
+
+                 .prof {
+                     width: 35px;
+                     height: 35px;
+                 }
+            }
+    
+        }
+    }
+
 }
 
