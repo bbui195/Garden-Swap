@@ -105,13 +105,17 @@ class UserShow extends React.Component {
                                         <p>{review.timestamps}</p>
                                         <p className='rating'><ReviewStarRating rating={review.rating}/></p>
                                         <p className='body'>{review.body}</p>
+                                        <p>{review.username}</p>
                                     </div>
                                 }
 
                                 {review.reviewerId === this.props.userSession.id ?
                                     <div className='buttons'>
                                         <button onClick={()=>this.handleRemove(review)}>Delete</button>
-                                        <button onClick={()=>this.setState({reviewId: review.id})}>Edit</button>
+                                        {this.state.reviewId !== review.id ?
+                                            <button onClick={()=>this.setState({reviewId: review.id})}>Edit</button>
+                                            : null
+                                        }
                                     </div>
                                     : null
                                 }
