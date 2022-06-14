@@ -242,11 +242,21 @@ passport.authenticate('jwt', { session: false }),
                             }
                         )
                     }
-
                 }
             }).catch(err => res.status(404).json({ nolistingfound: 'No listing found with that ID'}))
     }
 )
+
+// `/api/listings/search/${query}`
+
+router.get('/search/:query', (req, res) => {
+    console.log(req.params.query, 'this should be the query')
+    Listing.find({title: req.params.query})
+        .then(listings => {
+            res.json(formatListings(listings));
+        })
+        .catch(err => res.status(404).json( { nolistingsfound: 'No listings found with that query'}));
+})
 
 
 //AWS start 

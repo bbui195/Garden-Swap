@@ -64,3 +64,9 @@ export const patchListing = listing => dispatch => {
         .then(listing => dispatch(updateListing(listing.data)))
 }
 
+ export const fetchListingsBySearch = query => dispatch => {
+     console.log('we made it to the listing action')
+    return listingApiUtils.fetchSearchListings(query)
+            .then(listings => dispatch(receiveListings(listings.data)))
+}
+
