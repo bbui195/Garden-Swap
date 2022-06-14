@@ -4,7 +4,10 @@ import axios from 'axios';
 class ListingForm extends React.Component {
     constructor(props) {
         super(props)
-        this.state = Object.assign({}, this.props.listing);
+        this.state = Object.assign(
+            {
+                submitted: false
+            }, this.props.listing);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleFormData = this.handleFormData.bind(this);
         this.handleFile = this.handleFile.bind(this);
@@ -65,8 +68,13 @@ class ListingForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        if(this.state.submitted) {
+            return;
+        }
+        this.setState({submitted: true});
         this.props.makeListing(this.handleFormData())
             .then(() => this.props.history.push('/'))
+            .finally(() => this.setState({submitted: false}))
     }
 
     render() {
@@ -100,8 +108,8 @@ class ListingForm extends React.Component {
                                 className='price-input'
                             />
 
-                            <select onChange={this.updateCategory} name="categories" id="categories">
-                                <option selected={true} disabled="disabled">Choose Category</option>
+                            <select onChange={this.updateCategory} name="categories" id="categories" defaultValue="disabled">
+                                <option value="disabled" disabled="disabled">Choose Category</option>
                                 <option value="Fruit">Fruit</option>
                                 <option value="Vegetables">Vegetables</option>
                                 <option value="Nuts">Nuts</option>

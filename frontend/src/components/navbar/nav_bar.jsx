@@ -4,10 +4,10 @@ import cabbage from "../../assets/images/cabbage.png";
 import profilePic from "../../assets/images/prof-placeholder.png"
 import { BiLogOut, BiImageAdd } from "react-icons/bi";
 import { FiInbox } from "react-icons/fi";
-import johnProf from "../../assets/images/john-prof.jpeg"
 import { BsDashLg } from "react-icons/bs";
 import { debounce } from 'lodash';
 import { STATES } from 'mongoose';
+import SearchBar from '../search/searchbar_container';
 import zipcodes_list from '../../utils/zipcodes_list';
 
 
@@ -22,13 +22,13 @@ export default (props) => {
 
     const session = currentUser ? (
         <div className="profile-dropdown" onClick={toggleDropDown}>
-            <img src={johnProf} className='prof' />
+            <img src={profilePic} className='prof' />
             <div className='dropdown-content'>
                 <div className='username-container'>
                     Hi, {currentUser.username}
                 </div>
                 <Link className='user-profile-container' to={`/users/${currentUser.id}`}>
-                    <img src={johnProf} className='prof' />
+                    <img src={profilePic} className='prof' />
                     <span>Profile</span>
                 </Link>
                 <Link className='add-listing-container' to='/listingForm'>
@@ -159,7 +159,8 @@ export default (props) => {
                         <span className='title'>Garden Swap</span>
                         <img src={cabbage} alt="Logo" className='logo' />
                     </Link>
-                    <input type="text" className='search-bar' placeholder="Search local gardens" />
+                    {/* <input type="text" className='search-bar' placeholder="Search local gardens" /> */}
+                    <SearchBar/>
                     <div>
                         {/* <p>Filter by Zipcode?{location.zipCode}</p> */}
                         {/* populated.length === 0 ? 'null':  */}

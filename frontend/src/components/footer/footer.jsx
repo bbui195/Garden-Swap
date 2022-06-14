@@ -82,6 +82,7 @@ function Footer(props) {
                         </div>
                     </div>
                 </div>
+                
             </div>
             <div className='lowest'>
                     <div className="details">

@@ -6,7 +6,6 @@ import EditReviewForm from '../reviews/edit_review';
 import { patchReview } from '../../actions/review_action';
 
 import profilePic from "../../assets/images/prof-placeholder.png";
-import johnProf from "../../assets/images/john-prof.jpeg";
 import ReviewStarRating from "../reviews/review_star_rating";
 
 
@@ -29,7 +28,7 @@ class UserShow extends React.Component {
                 userId: this.props.match.params.userId
             })
         )
-        console.log('did I get to the component did mount?')
+        // console.log('did I get to the component did mount?')
     }
 
     componentDidUpdate() {
@@ -93,15 +92,15 @@ class UserShow extends React.Component {
 
         let avgReview = 0;
         Object.values(this.props.reviews).forEach(review => {
-            console.log(review, 'heheheheheh')
+            // console.log(review, 'heheheheheh')
             avgReview += review.rating
         });
         let avgReviewRating = Math.floor(avgReview / Object.values(this.props.reviews).length)
-        console.log(avgReviewRating, 'teheheheheh')
+        // console.log(avgReviewRating, 'teheheheheh')
         return(
             <div className='user-show-container'>
                 <ul className='user-info-container'>
-                    <img  src={johnProf} alt="" className='prof'/>
+                    <img  src={profilePic} alt="" className='prof'/>
                     <li className='username'>Username: {userData.username}</li>
                     <li className='joined'>Joined: {(new Date(userData.joined)).toDateString().split(" ").slice(1).join(" ")}</li>
                     {/* <li className='zipcode'>Zipcode: {userData.zipcode}</li> */}
@@ -124,10 +123,10 @@ class UserShow extends React.Component {
                                     <EditReviewForm  review={review} action={this.props.editReview} fetchReviews={this.props.requestReviews} resetState={this.resetReviewState} />
                                 : 
                                     <div className='user-review'>
+                                        <p className='reviewer'>{review.username}</p>
                                         <p>{review.timestamps}</p>
                                         <div className='rating'><ReviewStarRating rating={review.rating}/></div>
                                         <p className='body'>{review.body}</p>
-                                        <p>{review.username}</p>
                                     </div>
                                 }
 
