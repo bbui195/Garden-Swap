@@ -40,6 +40,10 @@ class ListingShow extends React.Component {
         return (
             <div className='listings-show-container'>
                 <div className='left'>
+                    <Link to='/' className='linky'>
+                        <i class="fa-solid fa-backward"></i>
+                        Back to listings
+                    </Link>
                     <img src={this.props.listing.photoUrls} />
                     {this.renderEditDelete()}
                 </div>
@@ -51,7 +55,7 @@ class ListingShow extends React.Component {
                         </div>
                         <p className='cat'>{this.props.listing.category}</p>
                     </div>
-                    <div>
+                    <div className='list-body'>
                         <h3>Description:</h3>
                         <p className='body'>{this.props.listing.body}</p>
                     </div>
