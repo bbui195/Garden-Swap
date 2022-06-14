@@ -71,11 +71,11 @@ class UserShow extends React.Component {
 
         let avgReview = 0;
         Object.values(this.props.reviews).forEach(review => {
-            console.log(review, 'heheheheheh')
+            // console.log(review, 'heheheheheh')
             avgReview += review.rating
         });
         let avgReviewRating = Math.floor(avgReview / Object.values(this.props.reviews).length)
-        console.log(avgReviewRating, 'teheheheheh')
+        // console.log(avgReviewRating, 'teheheheheh')
         return(
             <div className='user-show-container'>
                 <ul className='user-info-container'>

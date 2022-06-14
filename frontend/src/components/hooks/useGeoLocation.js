@@ -10,7 +10,7 @@ function Geo() {
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(position => {
-            console.log(position)
+            // console.log(position)
             setLatitude(position.coords.latitude)
             setLongitude(position.coords.longitude)
 

@@ -8,7 +8,7 @@ import {
 from "../actions/review_action"
 
 const reviewReducer = (oldState = {}, action) => {
-    console.log(action, "in the review reducer top")
+    // console.log(action, "in the review reducer top")
     Object.freeze(oldState)
     let nextState = Object.assign({}, oldState)
     switch (action.type) {

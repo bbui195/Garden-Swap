@@ -48,7 +48,7 @@ class SearchPage extends React.Component {
                 {this.props.listings.map(listing => {
                         return (
 
-                            <ListingIndexItem key={listing.id} listing={listing}/>
+                            <ListingIndexItem className="listing-container" key={listing.id} listing={listing}/>
                             // <Link className="listing-content" to={`/listings/${listing.id}`} >
                             //     <img src={listing.photoUrl} className='img'/>
                             //     <div className="details">
