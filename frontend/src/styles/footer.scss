@@ -99,15 +99,17 @@
     .bottom {
         display: flex;
         justify-content: space-between;
-        padding: 20px;
+        align-items: center;
+        padding: 20px 40px;
         background-color: $wintergreen-dream;
         color: white;
+        
 
         
 
         span {
             margin-left: 10px;
-            font-size: 12px;
+            font-size: 24px;
         }
 
         .clean {
@@ -134,11 +136,16 @@
             }
         }
 
-        .links {
-            width: 120px;
+        .engineer-profile {
+            width: 250px;
             display: flex;
             justify-content: space-evenly;
             height: 25px;
+            flex-direction: column;;
+
+            .name {
+                margin-top: -10px;
+            }
 
             Link {
                 color: black;
@@ -150,7 +157,6 @@
             }
 
             .github {
-
                 color: white;
             }
 
@@ -186,5 +192,25 @@
             display: flex;
             align-items: center;
         }
+    }
+}
+
+.engineer-container {
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    h3 {
+        margin-bottom: 10px;
+    }
+    p {
+        font-size: 16px;
+        margin-bottom: 5px;
+        margin-right: 5px;
+    }
+
+    .icon-groups {
+        display:flex;
+        align-items: center;;
     }
 }
