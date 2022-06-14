@@ -13,6 +13,13 @@
     background-color: $light-orange;
     box-shadow: 0px 0px 10px #656565;
 
+    .no-results {
+        font-size: 48px;
+        grid-column: span 4;
+        color: black;
+        align-self: center;
+    }
+
 
     .listing-container {
         margin-bottom: 5rem;
@@ -47,13 +54,16 @@
 
         .location {
             font-weight: 300;
-            color: rgb(92, 92, 92);
+            color: rgb(35, 35, 35);
             font-size: 12px;
             margin-top: 10px;
-        }
-
-      
-
+            border: 1px solid black;
+            background-color: #f4c271;
+            width: 60%;
+            border-radius: .5rem;
+            padding: 7px 10px;
+            text-align: center;
+        }  
     }
 
 

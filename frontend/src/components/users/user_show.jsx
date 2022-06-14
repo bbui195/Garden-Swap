@@ -6,7 +6,6 @@ import EditReviewForm from '../reviews/edit_review';
 import { patchReview } from '../../actions/review_action';
 
 import profilePic from "../../assets/images/prof-placeholder.png";
-import johnProf from "../../assets/images/john-prof.jpeg";
 import ReviewStarRating from "../reviews/review_star_rating";
 
 
@@ -79,7 +78,7 @@ class UserShow extends React.Component {
         return(
             <div className='user-show-container'>
                 <ul className='user-info-container'>
-                    <img  src={johnProf} alt="" className='prof'/>
+                    <img  src={profilePic} alt="" className='prof'/>
                     <li className='username'>Username: {userData.username}</li>
                     <li className='joined'>Joined: {(new Date(userData.joined)).toDateString().split(" ").slice(1).join(" ")}</li>
                     <li className='zipcode'>Zipcode: {userData.zipcode}</li>
@@ -102,10 +101,10 @@ class UserShow extends React.Component {
                                     <EditReviewForm  review={review} action={this.props.editReview} fetchReviews={this.props.requestReviews} resetState={this.resetReviewState} />
                                 : 
                                     <div className='user-review'>
+                                        <p className='reviewer'>{review.username}</p>
                                         <p>{review.timestamps}</p>
                                         <div className='rating'><ReviewStarRating rating={review.rating}/></div>
                                         <p className='body'>{review.body}</p>
-                                        <p>{review.username}</p>
                                     </div>
                                 }
 
