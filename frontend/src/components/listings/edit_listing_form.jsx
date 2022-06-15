@@ -132,7 +132,7 @@ class EditListingForm extends React.Component {
                         />
                     </div>
                 </div>
-                <button type="submit" className='btn'>Post Listing!</button>
+                <button type="submit" className='btn'>Save Changes!</button>
             </form>
         )
     }

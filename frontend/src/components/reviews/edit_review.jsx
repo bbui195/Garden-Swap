@@ -54,6 +54,7 @@ class EditReviewForm extends React.Component {
                         onChange={this.handleChange('body')}
                     />
                     <input type="submit" className='submit-form-btn' value='Edit Review' />
+                    <button className='submit-form-btn' onClick={() => this.props.resetState()} >Cancel</button>
                 </form>
             </div>
         )
