@@ -16,7 +16,7 @@
         border-radius: 25px;
         width: 100%;
         margin-bottom: 5rem;
-        padding: 10px;
+        padding: 20px;
         background-color: $light-orange;
         display: flex;
         justify-content: center;
@@ -67,7 +67,7 @@
 
         .leave-review {
             margin-bottom: 1rem;
-            color: $wintergreen-dream;
+            color: rgb(44, 73, 44);
             border: 2px solid black;
             padding: 10px 15px 10px 15px;
             border-radius: 20px;
@@ -105,6 +105,10 @@
         margin-bottom: 1rem;
         margin-left: 1rem;
         padding: 6px;
+
+        .reviewer {
+            text-decoration: underline;
+        }
     }
 
     .rating {

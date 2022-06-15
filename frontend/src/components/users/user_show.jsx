@@ -6,7 +6,6 @@ import EditReviewForm from '../reviews/edit_review';
 import { patchReview } from '../../actions/review_action';
 
 import profilePic from "../../assets/images/prof-placeholder.png";
-import johnProf from "../../assets/images/john-prof.jpeg";
 import ReviewStarRating from "../reviews/review_star_rating";
 
 
@@ -15,7 +14,8 @@ class UserShow extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            reviewId: ''
+            reviewId: '',
+            userId: ''
         }
         this.handleRemove = this.handleRemove.bind(this);
         this.resetReviewState = this.resetReviewState.bind(this);
@@ -24,7 +24,22 @@ class UserShow extends React.Component {
     componentDidMount() {
         this.props.requestUser(this.props.match.params.userId)
         this.props.requestReviews(this.props.match.params.userId)
-        console.log('did I get to the component did mount?')
+            .then(() => this.setState({
+                userId: this.props.match.params.userId
+            })
+        )
+        // console.log('did I get to the component did mount?')
+    }
+
+    componentDidUpdate() {
+        if(this.props.match.params.userId !== this.state.userId) {
+            this.props.requestUser(this.props.match.params.userId)
+            this.props.requestReviews(this.props.match.params.userId)
+                .then(() => this.setState({
+                    userId: this.props.match.params.userId
+                })
+            )
+        }
     }
 
     resetReviewState () {
@@ -47,9 +62,15 @@ class UserShow extends React.Component {
                 <span></span>
             )
         }else{
-            return (
+            let ret = (
                 <Link className='leave-review' to={`/reviews/${this.props.match.params.userId}/new`}>Leave a review for this user</Link>
             )
+            Object.values(this.props.reviews??{}).forEach((review) => {
+                if(review.reviewerId == this.props.userSession.id) {
+                    ret = <span />
+                }
+            });
+            return ret;
         }
     };
 
@@ -71,18 +92,18 @@ class UserShow extends React.Component {
 
         let avgReview = 0;
         Object.values(this.props.reviews).forEach(review => {
-            console.log(review, 'heheheheheh')
+            // console.log(review, 'heheheheheh')
             avgReview += review.rating
         });
         let avgReviewRating = Math.floor(avgReview / Object.values(this.props.reviews).length)
-        console.log(avgReviewRating, 'teheheheheh')
+        // console.log(avgReviewRating, 'teheheheheh')
         return(
             <div className='user-show-container'>
                 <ul className='user-info-container'>
-                    <img  src={johnProf} alt="" className='prof'/>
+                    <img  src={profilePic} alt="" className='prof'/>
                     <li className='username'>Username: {userData.username}</li>
                     <li className='joined'>Joined: {(new Date(userData.joined)).toDateString().split(" ").slice(1).join(" ")}</li>
-                    <li className='zipcode'>Zipcode: {userData.zipcode}</li>
+                    {/* <li className='zipcode'>Zipcode: {userData.zipcode}</li> */}
                     <li className='avg-rating'>
                         Average Rating:
                         <ReviewStarRating rating={avgReviewRating} 
@@ -92,18 +113,19 @@ class UserShow extends React.Component {
                     </li>
                     {this.leaveReview()}
                 
-                    <Link to={`/reviews/${this.props.match.params.userId}/new`} className="leave-review">Leave review for this user</Link>
+                    {/* <Link to={`/reviews/${this.props.match.params.userId}/new`} className="leave-review">Leave review for this user</Link> */}
                     <h1>User Reviews</h1>
                     {Object.values(this.props.reviews??{}).map((review,idx) => {   
                         return (
-                            <>
+                            
                             <div className='user-reviews-container' key={review.id}>
                                 {review.id === this.state.reviewId ?  
                                     <EditReviewForm  review={review} action={this.props.editReview} fetchReviews={this.props.requestReviews} resetState={this.resetReviewState} />
                                 : 
                                     <div className='user-review'>
+                                        <p className='reviewer'>{review.username}</p>
                                         <p>{review.timestamps}</p>
-                                        <p className='rating'><ReviewStarRating rating={review.rating}/></p>
+                                        <div className='rating'><ReviewStarRating rating={review.rating}/></div>
                                         <p className='body'>{review.body}</p>
                                     </div>
                                 }
@@ -111,12 +133,15 @@ class UserShow extends React.Component {
                                 {review.reviewerId === this.props.userSession.id ?
                                     <div className='buttons'>
                                         <button onClick={()=>this.handleRemove(review)}>Delete</button>
-                                        <button onClick={()=>this.setState({reviewId: review.id})}>Edit</button>
+                                        {this.state.reviewId !== review.id ?
+                                            <button onClick={()=>this.setState({reviewId: review.id})}>Edit</button>
+                                            : null
+                                        }
                                     </div>
                                     : null
                                 }
                             </div>  
-                            </>   
+                            
                         )
                     })}
                 </ul>

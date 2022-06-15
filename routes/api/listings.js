@@ -42,7 +42,8 @@ const secretKey = process.env.AWS_SECRET_KEY
 
 function formatListing(listing) {
     return {
-        userId: listing.userId,
+        userId: listing.userId._id || listing.userId,
+        username: listing.userId.username,
         id: listing.id,
         body: listing.body,
         category: listing.category,
@@ -81,7 +82,7 @@ router.get('/', (req, res) => {
 // });
 
 router.get('/:id', (req, res) => {
-    Listing.findById(req.params.id)
+    Listing.findById(req.params.id).populate("userId")
         .then(listing => res.json(formatListing(listing)))
         .catch(err =>
             res.status(404).json({ nolistingfound: 'No listing found with that ID'})
@@ -125,15 +126,18 @@ router.post('/',
             location: listing.location,
             category: listing.category
         });
-        if(listing.photoUrls.startsWith("data:image/jpeg;base64")) {
-            const params = {
-                Bucket: bucketName,      // bucket that we made earlier
-                Key:req.file.originalname,               // Name of the image
-                Body:req.file.buffer,                    // Body which will contain the image in buffer format
-                // ACL:"public-read-write",                 // defining the permissions to get the public link
-                ContentType:"image/jpeg"                 // Necessary to define the image content-type to view the photo in the browser with the link
-            };
-
+        // console.log(listing.photoUrls);
+        let params = {
+            Bucket: bucketName,      // bucket that we made earlier
+            Key:req.file.originalname,               // Name of the image
+            Body:req.file.buffer,                    // Body which will contain the image in buffer format
+            // ACL:"public-read-write",                 // defining the permissions to get the public link
+            ContentType:"image/jpeg"                 // Necessary to define the image content-type to view the photo in the browser with the link
+        };
+        if(listing.photoUrls.startsWith("data:image")) {
+            if(listing.photoUrls.startsWith("data:image/png")) {
+                params.ContentType = "image/png"
+            }
             s3.upload(params,(error, data)=>{
                 if(error){
                     res.status(500).send({"err":error})  // if we get any error while uploading error message will be returned.
@@ -156,7 +160,7 @@ router.post('/',
             newListing.save()
                 .then(listing => {
                     // console.log("saved the listing")
-                    res.json(formatListing(isting))
+                    res.json(formatListing(listing))
                 })
                 .catch(err => res.status(400).json({ failedcreate: "Failed to create listing"}))
         }
@@ -216,13 +220,16 @@ passport.authenticate('jwt', { session: false }),
                             })
                             .catch(err => res.status(400).json({ failedupdate: 'Failed to update listing'}))
                     } else {
-                        const params = {
+                        let params = {
                             Bucket: bucketName,      // bucket that we made earlier
                             Key:req.file.originalname,               // Name of the image
                             Body:req.file.buffer,                    // Body which will contain the image in buffer format
                             // ACL:"public-read-write",                 // defining the permissions to get the public link
                             ContentType:"image/jpeg"                 // Necessary to define the image content-type to view the photo in the browser with the link
                         };
+                        if(listing.photoUrls.startsWith("data:image/png")) {
+                            params.ContentType = "image/png"
+                        }
     
                         s3.upload(params,(error, data)=>{
                             if(error){
@@ -242,11 +249,21 @@ passport.authenticate('jwt', { session: false }),
                             }
                         )
                     }
-
                 }
             }).catch(err => res.status(404).json({ nolistingfound: 'No listing found with that ID'}))
     }
 )
+
+// `/api/listings/search/${query}`
+
+router.get('/search/:query', (req, res) => {
+    //console.log(req.params.query, 'this should be the query')
+    Listing.find({title: req.params.query})
+        .then(listings => {
+            res.json(formatListings(listings));
+        })
+        .catch(err => res.status(404).json( { nolistingsfound: 'No listings found with that query'}));
+})
 
 
 //AWS start 

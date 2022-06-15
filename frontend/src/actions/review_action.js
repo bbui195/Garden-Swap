@@ -66,7 +66,7 @@ export const deleteReview = id => dispatch => {
 // }
 
 export const patchReview = (review) => dispatch => {
-    console.log('before nested')
+    // console.log('before nested')
     return reviewApiUtils.patchReview(review)
         .then(review => dispatch(receiveReview(review)))
 }

@@ -58,8 +58,8 @@ class Login extends React.Component {
         <div className="session-form-container">
           <form onSubmit={this.handleSubmit} className="session-form">
             <br/>
-            {this.renderErrors()}
             <p>Sign In</p> 
+            {this.renderErrors()}
             <div className='input-container'>
               <label>
                 <p>Username:</p>

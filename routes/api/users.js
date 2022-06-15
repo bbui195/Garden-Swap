@@ -24,8 +24,8 @@ router.get("/:id",
                             id: user.id,
                             username: user.username,
                             joined: user.createdAt,
-                            zipcode: Math.floor(Math.random() * 10000).toString(),
-                            rating: Math.ceil(Math.random() * 5).toString(),
+                            // zipcode: Math.floor(Math.random() * 10000).toString(),
+                            // rating: Math.ceil(Math.random() * 5).toString(),
                             listings: listings.map(listing => {
                                 return {
                                     userId: listing.userId,

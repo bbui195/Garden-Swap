@@ -4,10 +4,10 @@ import cabbage from "../../assets/images/cabbage.png";
 import profilePic from "../../assets/images/prof-placeholder.png"
 import { BiLogOut, BiImageAdd } from "react-icons/bi";
 import { FiInbox } from "react-icons/fi";
-import johnProf from "../../assets/images/john-prof.jpeg"
 import { BsDashLg } from "react-icons/bs";
 import { debounce } from 'lodash';
 import { STATES } from 'mongoose';
+import SearchBar from '../search/searchbar_container';
 import zipcodes_list from '../../utils/zipcodes_list';
 
 
@@ -22,13 +22,13 @@ export default (props) => {
 
     const session = currentUser ? (
         <div className="profile-dropdown" onClick={toggleDropDown}>
-            <img src={johnProf} className='prof' />
+            <img src={profilePic} className='prof' />
             <div className='dropdown-content'>
                 <div className='username-container'>
                     Hi, {currentUser.username}
                 </div>
                 <Link className='user-profile-container' to={`/users/${currentUser.id}`}>
-                    <img src={johnProf} className='prof' />
+                    <img src={profilePic} className='prof' />
                     <span>Profile</span>
                 </Link>
                 <Link className='add-listing-container' to='/listingForm'>
@@ -75,7 +75,7 @@ export default (props) => {
 
     function toggleDropDown() {
         let dropDown = document.querySelector('.dropdown-content');
-        if (dropDown.style.display === 'none') {
+        if (dropDown.style.display === 'none' || dropDown.style.display === '') {
             dropDown.style.display = 'flex'
             document.addEventListener('click', dropDown2);
 
@@ -86,7 +86,8 @@ export default (props) => {
     };
 
     function dropDown3(e) {
-        if (!e.target.closest(".location-dropdown") && !e.target.closest(".zipcode-filter")) {
+        if (!e.target.closest(".location-dropdown") && !e.target.closest(".zipcode-filter")
+                && !e.target.closest(".btn")) {
             document.querySelector(".zipcode-filter").style.display = 'none'
             document.removeEventListener("click", dropDown3)
         }
@@ -94,7 +95,7 @@ export default (props) => {
 
     function toggleDropDown2() {
         let dropDown = document.querySelector('.zipcode-filter');
-        if (dropDown.style.display === 'none') {
+        if (dropDown.style.display === 'none' || dropDown.style.display === '') {
             dropDown.style.display = 'flex'
             document.addEventListener('click', dropDown3);
 
@@ -158,52 +159,52 @@ export default (props) => {
                         <span className='title'>Garden Swap</span>
                         <img src={cabbage} alt="Logo" className='logo' />
                     </Link>
-                    <input type="text" className='search-bar' placeholder="Search local gardens" />
-                    <div>
-                        {/* <p>Filter by Zipcode?{location.zipCode}</p> */}
-                        {/* populated.length === 0 ? 'null':  */}
-                        <div className='location-dropdown' >
-                            <button className='dropbtn' onClick={toggleDropDown2}>
-                                Enter Zipcode{" "}
-                            </button>
-                            <form action="" className='zipcode-filter'>
-                                <span>Enter Zipcode</span>
-                                <input
-                                    value={location.zipCode}
-                                    className="enter-zip"
-                                    onChange={updateLocation}
-                                    type="text"
-                                />
-                                <div className='or-dash'>
-                                    <BsDashLg />
-                                    <span>or</span>
-                                    <BsDashLg />
-                                </div>
-
-                                {isLoadingZip ? 
-                                    <span>Loading</span> :   
-                                    <button onClick={updateZip} className="btn">Use Current Location</button>
-                                }
-                                <div className='slider-container'>
-                                    <div className='distance'>
-                                        <span>Distance:</span>
-                                        <span className='miles'>
-                                            {distance} {distance == 1 ? "Mile" : "Miles"}
-                                        </span>
-                                    </div>
+                    <div className='top-right-container'>
+                        <input type="text" className='search-bar' placeholder="Search local gardens" />
+                        <div className='zip-prof'>
+                            <div>{session}</div>
+                            <div className='location-dropdown' >
+                                <button className='dropbtn' onClick={toggleDropDown2}>
+                                    Enter Zipcode{" "}
+                                </button>
+                                <form action="" className='zipcode-filter'>
+                                    <span>Enter Zipcode</span>
                                     <input
-                                        type="range"
-                                        min="1"
-                                        max="25"
-                                        defaultValue='25'
-                                        onChange={handleScroll}
-                                        className="slider"
+                                        value={location.zipCode}
+                                        className="enter-zip"
+                                        onChange={updateLocation}
+                                        type="text"
                                     />
-                                </div>
-                            </form>
+                                    <div className='or-dash'>
+                                        <BsDashLg />
+                                        <span>or</span>
+                                        <BsDashLg />
+                                    </div>
+
+                                    {isLoadingZip ? 
+                                        <span>Loading</span> :   
+                                        <button onClick={updateZip} className="btn">Use Current Location</button>
+                                    }
+                                    <div className='slider-container'>
+                                        <div className='distance'>
+                                            <span>Distance:</span>
+                                            <span className='miles'>
+                                                {distance} {distance == 1 ? "Mile" : "Miles"}
+                                            </span>
+                                        </div>
+                                        <input
+                                            type="range"
+                                            min="1"
+                                            max="25"
+                                            defaultValue='25'
+                                            onChange={handleScroll}
+                                            className="slider"
+                                        />
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                    <div>{session}</div>
                 </div>
                 <div className='bottom-line'>
                     <ul className='cats'>

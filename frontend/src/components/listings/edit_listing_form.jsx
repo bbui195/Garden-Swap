@@ -67,7 +67,7 @@ class EditListingForm extends React.Component {
     updateCategory(e) {
         this.setState({ category: e.currentTarget.value },
             () => {
-                console.log(this.state.category)
+                // console.log(this.state.category)
             }
         )
     }

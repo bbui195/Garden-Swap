@@ -22,7 +22,9 @@ class ListingShow extends React.Component {
             return (
                 <div className='btns-container'>
                     <Link to={`/listing/edit/${this.props.listingId}`} className="button">Edit</Link>
+                    or
                     <button onClick={this.handleDelete} className="button">Delete</button>
+                    your post
                 </div>
             )
         } else {
@@ -38,15 +40,31 @@ class ListingShow extends React.Component {
         return (
             <div className='listings-show-container'>
                 <div className='left'>
+                    <Link to='/' className='linky'>
+                        <i class="fa-solid fa-backward"></i>
+                        Back to listings
+                    </Link>
                     <img src={this.props.listing.photoUrls} />
                     {this.renderEditDelete()}
                 </div>
                 <div className='right'>
-                    <h1 className='title'>{this.props.listing.title}</h1>
-                    <p className='cat'>{this.props.listing.category}</p>
-                    <p className='price'>${this.props.listing.price}</p>
-                    <p className='body'>{this.props.listing.body}</p>
-                    <Link to={`/user/inbox/${this.props.listing.userId}`}>Message</Link>
+                    <div className='headline'>
+                        <div className='space-btwn'>
+                            <h1 className='title'>{this.props.listing.title}</h1>
+                            <p className='price'>${this.props.listing.price}</p>
+                        </div>
+                        <p className='cat'>{this.props.listing.category}</p>
+                    </div>
+                    <div className='list-body'>
+                        <h3>Description:</h3>
+                        <p className='body'>{this.props.listing.body}</p>
+                    </div>
+                    {this.props.listing.userId !== this.props.currentUser.id ?
+                        <Link to={`/user/inbox/${this.props.listing.userId}`} className='button'>
+                            Message {this.props.listing.username}
+                        </Link> :
+                        null
+                    }
                 </div>
             </div>
         );

@@ -43,8 +43,8 @@ class Signup extends React.Component {
         return (
             <div className="session-form-container">
                 <form onSubmit={this.handleSubmit} className="session-form">
-                    {this.renderErrors()}
                     <p>Create Account</p> 
+                    {this.renderErrors()}
                     <div className='input-container'>
                         <label>
                             <p>Username:</p>

@@ -20,8 +20,9 @@ function formatReview(review) {
         body: review.body,
         postedAt: review.createdAt,
         rating: review.rating,
-        reviewerId: review.reviewerId,
+        reviewerId: review.reviewerId._id || review.reviewerId,
         userId: review.userId,
+        username: review.reviewerId.username,
         id: review.id
     }
 }
@@ -37,7 +38,7 @@ function formatReviews(reviews) {
 router.get('/:userId', (req, res) => {
     User.findById(req.params.userId)
     .then(user => {
-        Review.find({ userId: user.id})
+        Review.find({ userId: user.id}).populate("reviewerId")
         .then(reviews => {
             res.json(formatReviews(reviews));
         });
@@ -52,7 +53,7 @@ passport.authenticate('jwt', { session: false }),
         if(!isValid) {
             return res.status(400).json(errors);
         }
-        console.log('mongoose',mongoose.Types.ObjectId)
+        // console.log('mongoose',mongoose.Types.ObjectId)
         const newReview = new Review({
             reviewerId: req.user.id,
             userId: req.body.userId,
@@ -66,17 +67,17 @@ passport.authenticate('jwt', { session: false }),
 router.patch('/:id',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {  
-        console.log(mongoose.Types.ObjectId(req.params.id), "this is the params")
-        console.log(req.user, 'this is the user')
+        // console.log(mongoose.Types.ObjectId(req.params.id), "this is the params")
+        // console.log(req.user, 'this is the user')
         // Review.findById(mongoose.Types.ObjectId(req.params.id))
         Review.findById(req.params.id)
             .then(review => {
-                console.log(review, "this is the review yes it is") //original review
-                console.log(req.body, "this is the req.body") //edited review
+                // console.log(review, "this is the review yes it is") //original review
+                // console.log(req.body, "this is the req.body") //edited review
                 if (review.reviewerId.toString() !== req.user.id.toString()) {
                     res.status().json({ notowned: 'Current user does not own this review' })
                 } else {
-                    console.log('why am I not in the else?')
+                    // console.log('why am I not in the else?')
                     
                     const { errors, isValid } = validateReviewInput(req.body);
 
@@ -96,16 +97,16 @@ router.patch('/:id',
 router.delete('/:id',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
-        console.log(req.user, 'this is the req.user')
-        console.log(req.params, 'this is the req.params')
+        // console.log(req.user, 'this is the req.user')
+        // console.log(req.params, 'this is the req.params')
         Review.findById(req.params.id)
             .then(review => {
-                console.log(review, 'this is the review from DB');
+                // console.log(review, 'this is the review from DB');
                 if(review.reviewerId.toString() !== req.user.id.toString()) {
-                    console.log('I am in the if')
+                    // console.log('I am in the if')
                     res.status().json({ notowned: 'Current user does not own this review' })
                 } else {
-                    console.log('did I make it to the else?')
+                    // console.log('did I make it to the else?')
                     Review.deleteOne({_id: req.params.id})
                         .then(() => res.json({deleted: true}))
                 }

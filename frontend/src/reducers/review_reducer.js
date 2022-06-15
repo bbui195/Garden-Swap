@@ -8,14 +8,14 @@ import {
 from "../actions/review_action"
 
 const reviewReducer = (oldState = {}, action) => {
-    console.log(action, "in the review reducer top")
+    // console.log(action, "in the review reducer top")
     Object.freeze(oldState)
     let nextState = Object.assign({}, oldState)
     switch (action.type) {
         case RECEIVE_REVIEWS:
             // nextState = action.reviews.data.reviews;
             // return nextState
-            return Object.assign({}, oldState, action.reviews.data)
+            return Object.assign({}, action.reviews.data)
         case CREATE_REVIEW:
             nextState[action.review.id] = action.review
             return nextState
