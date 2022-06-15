@@ -153,4 +153,4 @@ class UserShow extends React.Component {
     }
 }
 
-export default UserShow
+export default UserShow;

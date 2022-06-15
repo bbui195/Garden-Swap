@@ -9,6 +9,7 @@ import { debounce } from 'lodash';
 import { STATES } from 'mongoose';
 import SearchBar from '../search/searchbar_container';
 import zipcodes_list from '../../utils/zipcodes_list';
+import SearchBarContainer from '../search/searchbar_container';
 
 
 export default (props) => {
@@ -160,7 +161,8 @@ export default (props) => {
                         <img src={cabbage} alt="Logo" className='logo' />
                     </Link>
                     <div className='top-right-container'>
-                        <input type="text" className='search-bar' placeholder="Search local gardens" />
+                        {/* <input type="text" className='search-bar' placeholder="Search local gardens" /> */}
+                        <SearchBarContainer/>
                         <div className='zip-prof'>
                             <div>{session}</div>
                             <div className='location-dropdown' >

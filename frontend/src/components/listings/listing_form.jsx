@@ -159,7 +159,7 @@ class ListingForm extends React.Component {
                             />
 
                             <select onChange={this.update('category')} name="categories" id="categories" defaultValue="disabled">
-                                <option value="disabled" disabled="disabled">Choose Category</option>
+                                <option value="disabled" disabled="disabled">Category</option>
                                 <option value="Fruit">Fruit</option>
                                 <option value="Vegetables">Vegetables</option>
                                 <option value="Nuts">Nuts</option>
@@ -184,7 +184,8 @@ class ListingForm extends React.Component {
                 <button 
                     type="submit" 
                     className='btn'
-                >Post Listing!
+                >
+                    Post Listing!
                 </button>
             </form>
         )
