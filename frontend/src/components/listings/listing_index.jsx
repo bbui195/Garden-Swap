@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom'
 function ListingIndex(props) {
     const [populated, setPopulated] = useState([])
     const [categoryFilter, setCategoryFilter] = useState([])
+    const [loaded, setLoaded] = useState(false)
     const { location, setLocation } = props
     const { listings, requestListings } = props
     let { categoryId } = useParams()
@@ -15,6 +16,7 @@ function ListingIndex(props) {
     useEffect(() => {
         async function fetchData() {
             let fetchedListings = await requestListings()
+            setLoaded(true);
             fetchedListings = Object.values(fetchedListings.listings)
 
             if (category !== undefined) {
@@ -71,9 +73,15 @@ function ListingIndex(props) {
             <div className='listing-index-container'>
                 {listingIndexItems.length > 0 ? 
                     listingIndexItems :
+                    ( loaded ?
                     <p className='no-results'>
                         No results within {props.location.radius} miles of your area
-                    </p>}
+                    </p> :
+                    <p className='no-results'>
+                        Loading...
+                    </p>
+                    )
+                }
             </div>
         </>
     )
