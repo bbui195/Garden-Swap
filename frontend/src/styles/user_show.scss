@@ -150,6 +150,10 @@
     border-bottom: 1px solid black;
 }
 
+.user-show-link {
+    margin-top: 2rem;
+}
+
 @media only screen and (max-width: 830px) {
 
     .user-show-container {
@@ -194,5 +198,4 @@
     .user-show-container .user-info-container .avg-rating > * {
         margin: .8rem;
     }
-
 }
