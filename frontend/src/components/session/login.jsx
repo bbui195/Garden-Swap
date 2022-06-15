@@ -83,8 +83,7 @@ class Login extends React.Component {
                 <Link to='/signup' className='link'>
                   <span> Start here</span>
                 </Link>
-              </h3> 
-                  
+              </h3>    
             </div> 
           </form>
         </div>
