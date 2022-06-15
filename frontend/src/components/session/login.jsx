@@ -52,9 +52,6 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>
-        </div>
         <div className="session-form-container">
           <form onSubmit={this.handleSubmit} className="session-form">
             <br/>
@@ -79,14 +76,18 @@ class Login extends React.Component {
               </label>
               <input type="submit" value='Sign In' className='button'/>
               <p className='or'>or</p>
-              <button onClick={this.handleDemo} className='button'>Demo User</button> 
-            
-              <p>New User?<Link to='/signup' className='link'><span> Start here</span></Link></p> 
+              <button onClick={this.handleDemo} className='button'>
+                Demo User
+              </button> 
+              <h3>New User?
+                <Link to='/signup' className='link'>
+                  <span> Start here</span>
+                </Link>
+              </h3> 
                   
             </div> 
           </form>
         </div>
-      </div>
     );
   }
 }

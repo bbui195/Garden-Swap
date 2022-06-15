@@ -1,10 +1,14 @@
+$primary: black;
+$white: #fff;
+$gray: #6b6b6b;
 .listing-form-container {
     height: 600px;
-    width: 900px;
+    width: 90%;
     display: flex;
     flex-direction: column;
-    margin-top: 10rem;
+    margin-top: 13rem;
     margin-bottom: 5%;
+    min-width: 315px;
     
     
     
@@ -21,7 +25,6 @@
 
         .form-inputs {
             position: absolute;
-            width: 48%;
             height: 100%;
             display: flex;
             justify-content: center;
@@ -32,9 +35,7 @@
             width: 50%;
             box-sizing: border-box;
 
-            $primary: black;
-            $white: #fff;
-            $gray: #6b6b6b;
+          
 
 
             .title-input {
@@ -130,8 +131,7 @@
                 border: 1px solid black;
                 border-radius: 10px;
                 cursor: pointer;
-            }
-           
+            }     
         }
     
         .image-container {
@@ -170,24 +170,29 @@
     }
 
     .btn {
-        height: 8%;
-        width: 40%;
+        height: 4rem;
+        width: 17rem;
         margin: auto;
         font-size: 24px;
         font-family: 'Comfortaa', cursive;  
-        background-color: black;
-        color: white;
+        background-color: #f7e0eb;
+        color: black;
         border-radius: 25px;
-        border: none;
+        border: 3px solid;
         transition: all 200ms ease;
         cursor: pointer;
         margin-top: 3rem;
+        border-color: rgb(0, 0, 0);
+        box-shadow: 0 1px 4px 0 rgba(34, 34, 34, 50%);
     }
 
     .btn:hover {
         transform: scale(1.03);
+        border: 3px solid rgb(44, 59, 73);
+        box-shadow: 0px 0px 15px rgb(0, 193, 122);
+        // border: 3px solid rgb(221, 248, 148);
+        // box-shadow: 0px 0px 15px rgb(221, 248, 148);
     }
-
 }
 
 
@@ -196,6 +201,47 @@
     p {
         color: red;
         font-size: 12px;;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .listing-form-container {
+        height: auto;
+        .form-inputs-container {
+            flex-direction: column;
+            
+            .form-inputs {
+                width: 100%;
+                align-items: center;
+
+                .title-input {
+                    &:placeholder-shown ~ .title__label {
+                        font-size: 1.3rem;
+                        top: 30px;
+                    }
+                }
+                .title__label {
+                    top: 5px;
+                    left: 25px;
+                }
+                .title-input:focus {
+                    ~ .title__label {
+                        top: 5px;
+                        left: 25px;  
+                    }
+                }
+
+                .description-input {
+                    height: 12rem;
+                }
+            }
+
+            .image-container {
+                width: 100%;
+                margin-top: 2rem;
+                height: 20rem;
+            }
+        }
     }
 }
 
