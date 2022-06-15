@@ -173,25 +173,29 @@ $gray: #6b6b6b;
         height: 4rem;
         width: 17rem;
         margin: auto;
+        margin-top: 0;
+        border: none;
         font-size: 24px;
         font-family: 'Comfortaa', cursive;  
-        background-color: #f7e0eb;
+        background-color: $light-orange;
         color: black;
-        border-radius: 25px;
-        border: 3px solid;
+        border-radius: 0 0 25px 25px;
+        // border-radius: 25px;
+        // border: 3px solid;
         transition: all 200ms ease;
         cursor: pointer;
-        margin-top: 3rem;
-        border-color: rgb(0, 0, 0);
-        box-shadow: 0 1px 4px 0 rgba(34, 34, 34, 50%);
+        // margin-top: 1rem;
+        // border-color: rgb(0, 0, 0);
+        // box-shadow: 0 1px 4px 0 rgba(34, 34, 34, 50%);
     }
 
     .btn:hover {
         transform: scale(1.03);
-        border: 3px solid rgb(44, 59, 73);
-        box-shadow: 0px 0px 15px rgb(0, 193, 122);
+        // border: 3px solid rgb(44, 59, 73);
+        // box-shadow: 0px 0px 15px rgb(212, 247, 234);
         // border: 3px solid rgb(221, 248, 148);
         // box-shadow: 0px 0px 15px rgb(221, 248, 148);
+        text-decoration: underline;
     }
 }
 
