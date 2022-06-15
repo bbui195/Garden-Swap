@@ -18,7 +18,7 @@ class ListingShow extends React.Component {
     };
 
     renderEditDelete() {
-        if (this.props.currentUser.id === this.props.listing.userId) {
+        if (this.props.currentUser && this.props.currentUser.id === this.props.listing.userId) {
             return (
                 <div className='btns-container'>
                     <Link to={`/listing/edit/${this.props.listingId}`} className="button">Edit</Link>
@@ -59,7 +59,7 @@ class ListingShow extends React.Component {
                         <h3>Description:</h3>
                         <p className='body'>{this.props.listing.body}</p>
                     </div>
-                    {this.props.listing.userId !== this.props.currentUser.id ?
+                    {this.props.currentUser && this.props.listing.userId !== this.props.currentUser.id ?
                         <Link to={`/user/inbox/${this.props.listing.userId}`} className='button'>
                             Message {this.props.listing.username}
                         </Link> :
