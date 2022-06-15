@@ -149,6 +149,16 @@
             transform: scale(1.05);
             background-color: rgb(63, 63, 63);
         }
+
+        .user-show-link {
+            .prof-link {
+                color: black;
+
+                &:hover {
+                    color: $wintergreen-dream;
+                }
+            }
+        }
     }
 
 }
