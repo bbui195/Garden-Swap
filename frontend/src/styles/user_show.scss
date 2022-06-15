@@ -23,8 +23,11 @@
         align-items: center;
         flex-direction: column;
         box-shadow: 0px 0px 10px #656565;
+       
+        p {
+            color:black;
+        }
         min-width: 315px;
-
 
         .prof {
             width: 15rem;
@@ -64,6 +67,8 @@
             }
         }
 
+      
+
         .leave-review {
             margin-bottom: 1rem;
             color: rgb(44, 73, 44);
@@ -78,6 +83,8 @@
             color: $claret;
             transform: scale(1.05);
         }
+
+    
     }
 
     h1 {

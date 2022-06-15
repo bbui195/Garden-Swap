@@ -12,35 +12,71 @@ class EditReviewForm extends React.Component {
             userId: this.props.review.userId,
             rating: this.props.review.rating,
             body: this.props.review.body,
+            error_rating: "Rating required",
+            error_comment: false,
+            show_errors: false,
         }
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleRating = this.handleRating.bind(this);
         this.handleRating = this.handleRating.bind(this);
     }
 
     handleSubmit(e) {
         e.preventDefault()
-        // console.log(this.props)
+
+        if (!this.state.body) {
+            this.setState({show_errors: true})
+        }
+
+        const has_errors = (
+            this.state.error_rating || this.state.error_comment
+        )
+
+        if (has_errors) {
+            this.setState({show_errors:true})
+            return
+        }
+
         this.props.action(Object.assign({}, this.state))
             .then(() => this.props.resetState())
     }
 
     handleRating(rating) {
-        return this.setState({ ...this.state, rating: rating })
+        if (rating <= 0) {
+            this.setState({error_rating: "Star rating is required"})
+        } else {
+            this.setState({error_rating: false})
+            this.setState({rating:rating })
+            console.log(this.state.error_rating)
+
+        }
+        return this.setState({rating: rating })
     }
 
     handleChange(field) {
         return e => {
-            this.setState({ [field]: e.currentTarget.value })
+            let value = e.currentTarget.value
+
+            if (field === 'body') {
+                if (value.length <= 0) {
+                    this.setState({error_comment: "Comment cannot be blank"})
+                } else {
+                    // console.log('body',this.state.body)
+                    this.setState({error_comment: false})
+                    // console.log(this.state.error_comment)
+                }
+            }
+            this.setState({ [field]: value })
         }
     }
 
-
-
+    
     render() {
-        // console.log('edit page',this.props)
         return (
             <div className='edit-form-container'>
+                <div className='review-error'>
+                    {this.state.show_errors && this.state.error_rating && <p className='error-p'>{this.state.error_rating}</p>}
+                    {this.state.show_errors && this.state.error_comment && <p className='error-p'>{this.state.error_comment}</p> }
+                </div>
                 <div className='top'>
                     <h2>Overall Rating:</h2>
                     <Rating updateStars={this.handleRating} />

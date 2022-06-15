@@ -68,6 +68,15 @@
 
 }
 
+.review-error {
+    p{
+        color: red;
+        margin-bottom: 5px;
+    }
+}
+
+
+
 .rating {
     cursor: pointer;
 }
@@ -133,3 +142,16 @@
         }
     }
 }
+
+.error-p {
+    color: red;
+    margin-bottom: 5px;
+}
+
+
+.review-error p.error-p {
+    color:red;
+    margin-bottom: 5px;
+}
+
+
