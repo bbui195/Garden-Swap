@@ -257,8 +257,8 @@ passport.authenticate('jwt', { session: false }),
 // `/api/listings/search/${query}`
 
 router.get('/search/:query', (req, res) => {
-    //console.log(req.params.query, 'this should be the query')
-    Listing.find({title: req.params.query})
+    // console.log(req.params.query, 'this should be the query')
+    Listing.find({ "title" : { $regex: req.params.query, $options: 'i' } })
         .then(listings => {
             res.json(formatListings(listings));
         })
