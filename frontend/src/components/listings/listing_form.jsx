@@ -151,7 +151,7 @@ class ListingForm extends React.Component {
                             <input
                                 type="number"
                                 min="1"
-                                step="any"
+                                step="0.01"
                                 onChange={this.update('price')}
                                 defaultValue={this.state.price}
                                 placeholder='$0.00'
