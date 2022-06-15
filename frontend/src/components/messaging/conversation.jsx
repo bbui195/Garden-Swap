@@ -121,10 +121,18 @@ class Conversation extends React.Component {
         return (
             <div className="message-index">
                 {/* <br /> */}
-                <Link to='/user/inbox' className='linky'>
-                    <i class="fa-solid fa-backward"></i>
+                {/* <Link to='/user/inbox' className='linky'>
+                    <i className="fa-solid fa-backward"></i>
                     Inbox
-                </Link>
+                </Link> */}
+                <a href="#" className='linky'
+                    onClick={
+                        ()=>this.props.history.goBack()
+                    }
+                >
+                    <i className="fa-solid fa-backward"></i>
+                    Back
+                </a>
                 {/* <br /> */}
                 <div className="messages-wrapper">
                     <div className="messages">
@@ -132,7 +140,7 @@ class Conversation extends React.Component {
                             return <div key={message.id}
                                 className={("message" +
                                     (this.state.editing === message.id ? " editing" : ""))}>
-                                <div className="profile"><i class="fa-solid fa-user"></i></div>
+                                <div className="profile"><i className="fa-solid fa-user"></i></div>
                                 {/* replace above with profile pic */}
                                 <span className="username">{message.username}</span>
                                 <span className="time">{message.time}</span>

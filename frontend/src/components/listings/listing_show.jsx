@@ -41,7 +41,7 @@ class ListingShow extends React.Component {
             <div className='listings-show-container'>
                 <div className='left'>
                     <Link to='/' className='linky'>
-                        <i class="fa-solid fa-backward"></i>
+                        <i className="fa-solid fa-backward"></i>
                         Back to listings
                     </Link>
                     <img src={this.props.listing.photoUrls} />

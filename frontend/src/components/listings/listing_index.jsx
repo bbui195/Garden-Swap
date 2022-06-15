@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import ListingIndexItem from './listing_index_item'
 import '../../utils/zipcodes_list'
 import { isWithinRadiusFromZipcode } from '../../utils/zipcodes_utils'
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 
 function ListingIndex(props) {
     const [populated, setPopulated] = useState([])
@@ -10,29 +10,32 @@ function ListingIndex(props) {
     const [loaded, setLoaded] = useState(false)
     const { location, setLocation } = props
     const { listings, requestListings } = props
+    const history = useHistory();
     let { categoryId } = useParams()
     let category = categoryId
     let fetchCategoryListings = [];
     useEffect(() => {
         async function fetchData() {
-            let fetchedListings = await requestListings()
-            setLoaded(true);
-            fetchedListings = Object.values(fetchedListings.listings)
-
-            if (category !== undefined) {
+            console.log(history);
+            console.log(history.location.pathname);
+            if (category === undefined) {
+                let fetchedListings = await requestListings()
+                setLoaded(true);
+                fetchedListings = Object.values(fetchedListings.listings)
                 fetchedListings = fetchedListings.filter(listing => (
                     listing.category === category
                 ))
+                setCategoryFilter(fetchedListings)
+                radiusFilter(location.zipCode, location.radius, fetchedListings)
             }
 
-            setCategoryFilter(fetchedListings)
-            radiusFilter(location.zipCode, location.radius, fetchedListings)
         }
         fetchData()
     }, [])
     useEffect(() => {
         async function fetchData() {
             let fetchedListings = await requestListings()
+            setLoaded(true);
             fetchedListings = Object.values(fetchedListings.listings)
 
             if (category !== undefined) {

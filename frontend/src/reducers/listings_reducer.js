@@ -19,6 +19,11 @@ const listingReducer = (oldState = {}, action) => {
             //CREATE_NEW_LISTING instead of receive_Listing
         case RECEIVE_LISTINGS:
             nextState = action.listings
+            Object.values(oldState).forEach(oldListing => {
+                if(nextState[oldListing.id]) {
+                    nextState[oldListing.id] = Object.assign({}, oldListing, action.listings[oldListing.id]);
+                }
+            })
             return nextState
         case RECEIVE_LISTING:
             nextState[action.listing.id] = Object.assign({},action.listing)
