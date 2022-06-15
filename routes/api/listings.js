@@ -27,7 +27,13 @@ const filefilter = (req, file, cb) => {
     }
 }
 
-const upload = multer({ storage: storage, fileFilter: filefilter });
+const upload = multer({
+    storage: storage,
+    fileFilter: filefilter,
+    limits: {
+        fieldSize: 2000000
+    }
+});
 const bucketRegion = process.env.AWS_BUCKET_REGION
 const bucketName = process.env.AWS_BUCKET_NAME
 const accessKeyId = process.env.AWS_ACCESS_KEY
