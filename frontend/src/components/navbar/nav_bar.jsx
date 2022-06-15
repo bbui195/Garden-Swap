@@ -7,6 +7,7 @@ import { FiInbox } from "react-icons/fi";
 import { BsDashLg } from "react-icons/bs";
 import { debounce } from 'lodash';
 import { STATES } from 'mongoose';
+import SearchBar from '../search/searchbar_container';
 import zipcodes_list from '../../utils/zipcodes_list';
 
 

@@ -16,6 +16,7 @@ import InboxContainer from './messaging/inbox_container';
 import ConversationContainer from "./messaging/conversation_container";
 import ListingShow from "./listings/listing_show_container";
 import EditReviewContainer from './reviews/edit_review_form_container';
+import SearchPageContainer from './search/search_page_container'
 import { useState, useEffect } from 'react'
 import { isWithinRadiusFromZipcode } from '../utils/zipcodes_utils'
 import zipcodes_list from "../utils/zipcodes_list";
@@ -58,20 +59,21 @@ export default () => {
                 <Route exact path='/users/:userId' component={UserShowContainer} />
                 <Route exact path='/user/inbox' component={InboxContainer} />
                 <Route exact path="/user/inbox/:userId" component={ConversationContainer} />
-                <Route exact path='/test' component={Test} />
+                {/* <Route exact path='/test' component={Test} /> */}
                 <Route exact path='/userProfile' />
 
                 <Route exact path='/reviews/:userId/new' component={ReviewFormContainer} />
-                <Route exact path='/reviews/:reviewId/edit' component={EditReviewContainer} />
+                {/* <Route exact path='/reviews/:reviewId/edit' component={EditReviewContainer} /> */}
                 <Route exact path='/category/:categoryId' render={() => <ListingIndexContainer location={location} />} />
                 <Route exact path='/listing/show' component={ListingShow} />
                 <Route exact path='/listing/:listingId' component={ListingShow} />
                 <Route exact path='/listingForm' component={ListingForm} />
                 <Route exact path='/listing/edit/:listingId' component={EditListingForm} />
                 <Route exact path='/users/:userId' component={UserShowContainer} />
+                <Route path='/listings/search/:query' component={SearchPageContainer} />
                 {/* <Route exact path= '/user/inbox' component={InboxContainer}/> */}
                 {/* <Route exact path="/user/inbox/:sender" component={ConversationContainer}/> */}
-                <Route exact path='/test' component={Test} />
+                {/* <Route exact path='/test' component={Test} /> */}
                 <Route exact path='/userProfile' />
                 <Route exact path='/' render={() => <ListingIndexContainer location={location} />} />
                 <Redirect to='/' />

@@ -17,7 +17,7 @@ export const deleteReview = reviewId => {
 }
 
 export const patchReview = review => {
-    console.log(review, "this is the review");
+    // console.log(review, "this is the review");
     return axios.patch(`/api/reviews/${review.id}`, review)
 }
 
