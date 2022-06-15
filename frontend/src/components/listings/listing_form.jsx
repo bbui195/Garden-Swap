@@ -24,7 +24,7 @@ class ListingForm extends React.Component {
         const file = e.currentTarget.files[0];
         const fileReader = new FileReader();
         fileReader.onloadend = function () {
-            this.setState({ ...this.state, error_image:false, imageFile: file, photoUrls: fileReader.result })
+            this.setState({ error_image:false, imageFile: file, photoUrls: fileReader.result })
         }.bind(this)
         if (file) {
             fileReader.readAsDataURL(file);
@@ -52,30 +52,30 @@ class ListingForm extends React.Component {
             let value = e.currentTarget.value
             if (field === 'title') {
                 if (value.length < 2) {
-                    this.setState({ ...this.state, error_title: "Title needs to be longer than 2 characters" })
+                    this.setState({ error_title: "Title needs to be longer than 2 characters" })
                 } else {
-                    this.setState({ ...this.state, error_title: false })
+                    this.setState({ error_title: false })
                 }
             }
             if (field === 'body') {
                 if (value.length < 2) {
-                    this.setState({ ...this.state, error_body: "Body needs to be longer than 2 characters" })
+                    this.setState({ error_body: "Body needs to be longer than 2 characters" })
                 } else {
-                    this.setState({ ...this.state, error_body: false })
+                    this.setState({ error_body: false })
                 }
             }
             if (field === 'price') {
                 if (value <= 0.00) {
-                    this.setState({ ...this.state, error_price: "Price needs to be greater than 0.00" })
+                    this.setState({ error_price: "Price needs to be greater than 0.00" })
                 } else {
-                    this.setState({ ...this.state, error_price: false })
+                    this.setState({ error_price: false })
                 }
             }
             if (field === 'category') {
                 if (value === 'disabled') {
-                    this.setState({ ...this.state, error_category: "Category needs to be selected" })
+                    this.setState({ error_category: "Category needs to be selected" })
                 } else {
-                    this.setState({ ...this.state, error_category: false })
+                    this.setState({ error_category: false })
                 }
             }
             this.setState({ [field]: value })
