@@ -42,8 +42,23 @@
             transform: translateY(3px);
         }
 
+        .top-right-container {
+            display: flex;
+            width: 75%;
+            justify-content: space-between;
+            margin-left: 1rem;
+            align-items: center;
+
+            .zip-prof {
+                display: flex;
+                flex-flow: row-reverse;
+                width: 25%;
+                justify-content: space-between;
+            }
+        }
+
         .search-bar {
-            width: 50%;
+            width: 65%;
             height: 35px;
             border-radius: 15px;
             padding-left: 20px;
@@ -287,6 +302,16 @@
     border-radius: 60px;
 }
 
+@media only screen and (max-width: 1160px) {
+    .header-container {
+        .topline {
+            .top-right-container {
+                width: 70%;
+            }
+        }
+    }
+}
+
 @media only screen and (max-width: 1030px) {
     .header-container {
     
@@ -320,7 +345,7 @@
             }
     
             .search-bar {
-                width: 45%;
+                width: 60%;
               
             }
     
@@ -334,13 +359,17 @@
      
     
         .topline {
+
+            .top-right-container {
+                width: 65%;
+            }
     
             .title {
                 font-size: 44px;
             }
     
             .search-bar {
-                width: 40%;
+                width: 55%;
               
             }
     
@@ -356,7 +385,7 @@
         .topline {
     
             .search-bar {
-                width: 35%;            
+                width: 45%;            
             }
     
         }
@@ -364,7 +393,7 @@
 
 }
 
-@media only screen and (max-width: 725px) {
+@media only screen and (max-width: 750px) {
     .header-container {
      
     
@@ -384,7 +413,7 @@
             }
     
             .search-bar {
-                width: 35%;            
+                width: 40%;            
             }
 
             .dropbtn {
@@ -404,27 +433,39 @@
 
 }
 
-@media only screen and (max-width: 645px) {
+@media only screen and (max-width: 665px) {
     .header-container {
-     
+        height: 160px;
     
         .topline {
-            
+            height: 60%;
     
             .logos {
                
             }
     
             .title {
-                font-size: 38px;
+                font-size: 44px;
             }
     
             .logo {
-               height: 45px;
+               height: 55px;
             }
     
+            .top-right-container {
+                flex-flow: column-reverse;
+                flex-shrink: inherit;
+                flex-wrap: wrap-reverse;   
+                width: 50%;
+
+                .zip-prof {
+                    display: flex;
+                    flex-flow: row-reverse;
+                }
+            }
+
             .search-bar {
-                width: 35%;            
+                width: 100%;            
             }
 
             .dropbtn {
