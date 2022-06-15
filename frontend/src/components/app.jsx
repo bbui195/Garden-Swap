@@ -8,7 +8,7 @@ import NavBarContainer from './navbar/nav_bar_container';
 import ListingForm from './listings/listing_form_container';
 import EditListingForm from './listings/edit_listing_form_container'
 import ReviewFormContainer from './reviews/create_review_form_container';
-import UserShowContainer from '../components/users/user_show_container';
+import UserShowContainer from './users/user_show_container';
 import Test from "./geo/geo";
 import ListingCategoryIndex from './category/listing_category_index_container';
 import ListingIndexContainer from './listings/listing_index_container';

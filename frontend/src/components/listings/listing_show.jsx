@@ -65,6 +65,13 @@ class ListingShow extends React.Component {
                         </Link> :
                         null
                     }
+                    {console.log(this.props.listing.userId, 'this ought to be the user Id')}
+                    {console.log(this.props.listing, 'this ought to be the listing')}
+                    {console.log(`users/${this.props.listing.userId}`, 'this should be the entire route')}
+                    <div>
+                        View <Link to={`/users/${this.props.listing.userId}`}>{this.props.listing.username}</Link>'s Profile!
+                    </div>
+                    
                 </div>
             </div>
         );
