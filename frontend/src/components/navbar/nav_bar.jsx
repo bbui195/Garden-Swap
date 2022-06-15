@@ -159,53 +159,52 @@ export default (props) => {
                         <span className='title'>Garden Swap</span>
                         <img src={cabbage} alt="Logo" className='logo' />
                     </Link>
-                    {/* <input type="text" className='search-bar' placeholder="Search local gardens" /> */}
-                    <SearchBar/>
-                    <div>
-                        {/* <p>Filter by Zipcode?{location.zipCode}</p> */}
-                        {/* populated.length === 0 ? 'null':  */}
-                        <div className='location-dropdown' >
-                            <button className='dropbtn' onClick={toggleDropDown2}>
-                                Enter Zipcode{" "}
-                            </button>
-                            <form action="" className='zipcode-filter'>
-                                <span>Enter Zipcode</span>
-                                <input
-                                    value={location.zipCode}
-                                    className="enter-zip"
-                                    onChange={updateLocation}
-                                    type="text"
-                                />
-                                <div className='or-dash'>
-                                    <BsDashLg />
-                                    <span>or</span>
-                                    <BsDashLg />
-                                </div>
-
-                                {isLoadingZip ? 
-                                    <span>Loading</span> :   
-                                    <button onClick={updateZip} className="btn">Use Current Location</button>
-                                }
-                                <div className='slider-container'>
-                                    <div className='distance'>
-                                        <span>Distance:</span>
-                                        <span className='miles'>
-                                            {distance} {distance == 1 ? "Mile" : "Miles"}
-                                        </span>
-                                    </div>
+                    <div className='top-right-container'>
+                        <input type="text" className='search-bar' placeholder="Search local gardens" />
+                        <div className='zip-prof'>
+                            <div>{session}</div>
+                            <div className='location-dropdown' >
+                                <button className='dropbtn' onClick={toggleDropDown2}>
+                                    Enter Zipcode{" "}
+                                </button>
+                                <form action="" className='zipcode-filter'>
+                                    <span>Enter Zipcode</span>
                                     <input
-                                        type="range"
-                                        min="1"
-                                        max="25"
-                                        defaultValue='25'
-                                        onChange={handleScroll}
-                                        className="slider"
+                                        value={location.zipCode}
+                                        className="enter-zip"
+                                        onChange={updateLocation}
+                                        type="text"
                                     />
-                                </div>
-                            </form>
+                                    <div className='or-dash'>
+                                        <BsDashLg />
+                                        <span>or</span>
+                                        <BsDashLg />
+                                    </div>
+
+                                    {isLoadingZip ? 
+                                        <span>Loading</span> :   
+                                        <button onClick={updateZip} className="btn">Use Current Location</button>
+                                    }
+                                    <div className='slider-container'>
+                                        <div className='distance'>
+                                            <span>Distance:</span>
+                                            <span className='miles'>
+                                                {distance} {distance == 1 ? "Mile" : "Miles"}
+                                            </span>
+                                        </div>
+                                        <input
+                                            type="range"
+                                            min="1"
+                                            max="25"
+                                            defaultValue='25'
+                                            onChange={handleScroll}
+                                            className="slider"
+                                        />
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                    <div>{session}</div>
                 </div>
                 <div className='bottom-line'>
                     <ul className='cats'>

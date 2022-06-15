@@ -70,25 +70,14 @@
         box-shadow: 0px 0px 10px rgb(221, 248, 148);
         height: 2rem;
         margin-right: 1rem;
+        min-width: 8rem;
+
+        span {
+            font-size: 14px;
+        }
     }
   
-    @media only screen and (max-width: 750px) {
-        .powered-by {
-            height: 3rem;
-            padding: 2px 4px 4px 4px;
-            
-            
-
-        }
-    }
-
-    @media only screen and (max-width: 600px) {
-        .powered-by {
-            height: 4rem;
-            padding: 2px 4px 4px 4px;
-
-        }
-    }
+ 
 
 
     .bottom {
@@ -98,14 +87,6 @@
         padding: 20px 40px;
         background-color: $wintergreen-dream;
         color: white;
-        
-
-        
-
-        span {
-            margin-left: 10px;
-            font-size: 24px;
-        }
 
         .clean {
             font-size: 16px;
@@ -115,7 +96,6 @@
             display: flex;
 
             div {
-                // margin-left: 2rem;
                 margin-right: 2rem;
             }
 
@@ -140,6 +120,7 @@
 
             .name {
                 margin-top: -10px;
+                font-size: 14px;
             }
 
             Link {
@@ -199,9 +180,10 @@
         margin-bottom: 10px;
     }
     p {
-        font-size: 16px;
+        font-size: 14px;
         margin-bottom: 5px;
-        margin-right: 5px;
+        margin-right: 10px;
+        font-weight: 400;
     }
 
     .icon-groups {
@@ -210,7 +192,34 @@
     }
 }
 
-@media only screen and (max-width: 520px) {
+
+
+
+@media only screen and (max-width: 750px) {
+    .powered-by {
+        height: 3rem;
+        padding: 2px 4px 4px 4px;
+        
+        
+
+    }
+}
+
+@media only screen and (max-width: 625px) {
+
+    .footer {
+        span {
+            font-size: 14px;
+        }
+        .powered-by {
+            height: 4rem;
+            padding: 2px 4px 4px 4px;
+        }
+    
+    }
+}
+
+@media only screen and (max-width: 580px) {
     .footer {
         width: 100vw;
         height: 10%;
@@ -240,7 +249,8 @@
     }
 }
 
-@media only screen and (max-width: 260px) {
+
+@media only screen and (max-width: 310px) {
     .footer {
         .powered-by {
             height: 3rem;
@@ -248,7 +258,7 @@
     }
 }
 
-@media only screen and (max-width: 180px) {
+@media only screen and (max-width: 258px) {
     .footer {
         .powered-by {
             height: 4rem;

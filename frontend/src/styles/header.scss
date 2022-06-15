@@ -25,6 +25,9 @@
             text-decoration: none;
             border-bottom: $dark-liver 2px solid;
             border-bottom-style: ridge;
+            min-width: 151px;
+            margin-right: .7rem;
+            
         }
 
         .title {
@@ -42,8 +45,25 @@
             transform: translateY(3px);
         }
 
+        .top-right-container {
+            display: flex;
+            width: 75%;
+            justify-content: space-between;
+            margin-left: 1rem;
+            align-items: center;
+
+            .zip-prof {
+                display: flex;
+                flex-flow: row-reverse;
+                justify-content: space-between;
+                min-width: 120px;
+                align-items: center;
+                width: 15rem;
+            }
+        }
+
         .search-bar {
-            width: 50%;
+            width: 65%;
             height: 35px;
             border-radius: 15px;
             padding-left: 20px;
@@ -63,6 +83,7 @@
             justify-content: center;
             align-items: center;
             transition: all 200ms ease;
+            min-width: 4rem;
         }
 
         .btn:hover {
@@ -82,6 +103,7 @@
             justify-content: space-around;
             align-items: baseline;
             height: 100%;
+            min-width: 284px;
 
             a {
                 color: white;
@@ -287,6 +309,16 @@
     border-radius: 60px;
 }
 
+@media only screen and (max-width: 1190px) {
+    .header-container {
+        .topline {
+            .top-right-container {
+                width: 70%;
+            }
+        }
+    }
+}
+
 @media only screen and (max-width: 1030px) {
     .header-container {
     
@@ -320,7 +352,7 @@
             }
     
             .search-bar {
-                width: 45%;
+                width: 62%;
               
             }
     
@@ -329,18 +361,22 @@
 
 }
 
-@media only screen and (max-width: 875px) {
+@media only screen and (max-width: 903px) {
     .header-container {
      
     
         .topline {
+
+            .top-right-container {
+                width: 65%;
+            }
     
             .title {
                 font-size: 44px;
             }
     
             .search-bar {
-                width: 40%;
+                width: 55%;
               
             }
     
@@ -356,7 +392,7 @@
         .topline {
     
             .search-bar {
-                width: 35%;            
+                width: 45%;            
             }
     
         }
@@ -364,7 +400,7 @@
 
 }
 
-@media only screen and (max-width: 725px) {
+@media only screen and (max-width: 783px) {
     .header-container {
      
     
@@ -384,7 +420,7 @@
             }
     
             .search-bar {
-                width: 35%;            
+                width: 40%;            
             }
 
             .dropbtn {
@@ -404,12 +440,73 @@
 
 }
 
-@media only screen and (max-width: 645px) {
+
+@media only screen and (max-width: 715px) {
     .header-container {
-     
+        height: 160px;
     
         .topline {
-            
+            height: 60%;
+    
+            .logos {
+               
+            }
+    
+            .title {
+                font-size: 44px;
+            }
+    
+            .logo {
+               height: 55px;
+            }
+    
+            .top-right-container {
+                flex-flow: column-reverse;
+                flex-shrink: inherit;
+                flex-wrap: wrap-reverse;   
+                width: 50%;
+
+                .zip-prof {
+                    display: flex;
+                    flex-flow: row-reverse;
+                    align-items: center;
+                    margin-bottom: .5rem;
+                    width: 100%;
+
+                    .dropbtn {
+                        font-size: 16px;
+                    }
+                }
+            }
+
+            .search-bar {
+                width: 100%;            
+            }
+
+            .dropbtn {
+                font-size: 14px;
+            }
+
+            .profile-dropdown {
+
+                 .prof {
+                     width: 35px;
+                     height: 35px;
+                 }
+            }
+    
+        }
+    }
+
+}
+
+@media only screen and (max-width: 612px) {
+    .header-container {
+        height: 180px;
+        justify-content: unset;
+    
+        .topline {
+            height: 60%;
     
             .logos {
                
@@ -423,8 +520,95 @@
                height: 45px;
             }
     
+            .top-right-container {
+                flex-flow: column-reverse;
+                flex-shrink: inherit;
+                flex-wrap: wrap-reverse;   
+                width: 50%;
+
+                .zip-prof {
+                    display: flex;
+                    flex-flow: row-reverse;
+                    align-items: center;
+                    margin-bottom: .5rem;
+                    width: 100%;
+
+                    .dropbtn {
+                        font-size: 16px;
+                    }
+                }
+            }
+
             .search-bar {
-                width: 35%;            
+                width: 100%;   
+                padding-left: 10px;         
+            }
+
+            .dropbtn {
+                font-size: 14px;
+            }
+
+            .profile-dropdown {
+
+                 .prof {
+                     width: 35px;
+                     height: 35px;
+                 }
+            }
+    
+        }
+
+        .bottom-line {
+            height: 20%;
+            width: 100%;
+    
+            .cats {
+                width: 100%;
+                display:flex;
+                justify-content: space-around;
+                align-items: baseline;
+                height: 100%;
+                flex-wrap: wrap;
+
+                a {
+                    color: white;
+                    text-decoration: none;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    padding: 15px;
+                    box-sizing: border-box;
+                    transform: translateY(15px);
+                    position: relative;
+                }
+            }
+        }
+    }
+
+}
+
+@media only screen and (max-width: 495px) {
+    .header-container {
+     
+    
+        .topline {
+            
+    
+            .logos {
+               margin-right: .7rem;
+            }
+    
+            .title {
+                font-size: 38px;
+                width: 80px;
+            }
+    
+            .logo {
+               height: 60px;
+            }
+    
+            .search-bar {
+                width: 100%;            
             }
 
             .dropbtn {
