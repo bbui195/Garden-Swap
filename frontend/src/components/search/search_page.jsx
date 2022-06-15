@@ -11,6 +11,7 @@ class SearchPage extends React.Component {
     componentDidMount() {
         // debugger
         // console.log(this.props.match.params, 'here I am in the search page')
+        console.log((this.props.match.params.query))
         this.props.fetchListingsBySearch(this.props.match.params.query)
     };
 
@@ -21,6 +22,7 @@ class SearchPage extends React.Component {
     };
 
     searchResults() {
+        console.log(this.props.listings)
         if (this.props.listings.length > 0) {
             return (
                 <div className="results-container">

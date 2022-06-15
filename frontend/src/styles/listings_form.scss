@@ -20,6 +20,7 @@
         border-radius: 20px;
 
         .form-inputs {
+            position: absolute;
             width: 48%;
             height: 100%;
             display: flex;
@@ -189,5 +190,13 @@
 
 }
 
+
+.error {
+    position: absolute;
+    p {
+        color: red;
+        font-size: 12px;;
+    }
+}
 
 
