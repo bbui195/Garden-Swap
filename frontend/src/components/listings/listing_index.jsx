@@ -16,8 +16,8 @@ function ListingIndex(props) {
     let fetchCategoryListings = [];
     useEffect(() => {
         async function fetchData() {
-            console.log(history);
-            console.log(history.location.pathname);
+            // console.log(history);
+            // console.log(history.location.pathname);
             if (category === undefined) {
                 let fetchedListings = await requestListings()
                 setLoaded(true);
