@@ -6,21 +6,25 @@ class ListingForm extends React.Component {
         super(props)
         this.state = Object.assign(
             {
+                error_title: 'Title field required',
+                error_body: 'Body field required',
+                error_price: 'Valid price required',
+                error_category: "Category selection required",
+                error_image: "Image is required",
+                show_errors: false,
                 submitted: false
             }, this.props.listing);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleFormData = this.handleFormData.bind(this);
         this.handleFile = this.handleFile.bind(this);
-        // this.setState = this.setState.bind(this);
         this.previewImage = this.previewImage.bind(this);
-        this.updateCategory = this.updateCategory.bind(this);
     }
 
     handleFile(e) {
         const file = e.currentTarget.files[0];
         const fileReader = new FileReader();
         fileReader.onloadend = function () {
-            this.setState({ imageFile: file, photoUrls: fileReader.result })
+            this.setState({ ...this.state, error_image:false, imageFile: file, photoUrls: fileReader.result })
         }.bind(this)
         if (file) {
             fileReader.readAsDataURL(file);
@@ -45,12 +49,37 @@ class ListingForm extends React.Component {
 
     update(field) {
         return e => {
-            this.setState({ [field]: e.currentTarget.value })
+            let value = e.currentTarget.value
+            if (field === 'title') {
+                if (value.length < 2) {
+                    this.setState({ ...this.state, error_title: "Title needs to be longer than 2 characters" })
+                } else {
+                    this.setState({ ...this.state, error_title: false })
+                }
+            }
+            if (field === 'body') {
+                if (value.length < 2) {
+                    this.setState({ ...this.state, error_body: "Body needs to be longer than 2 characters" })
+                } else {
+                    this.setState({ ...this.state, error_body: false })
+                }
+            }
+            if (field === 'price') {
+                if (value <= 0.00) {
+                    this.setState({ ...this.state, error_price: "Price needs to be greater than 0.00" })
+                } else {
+                    this.setState({ ...this.state, error_price: false })
+                }
+            }
+            if (field === 'category') {
+                if (value === 'disabled') {
+                    this.setState({ ...this.state, error_category: "Category needs to be selected" })
+                } else {
+                    this.setState({ ...this.state, error_category: false })
+                }
+            }
+            this.setState({ [field]: value })
         }
-    }
-
-    updateCategory(e) {
-        this.setState({ category: e.currentTarget.value })
     }
 
     handleFormData() {
@@ -68,19 +97,40 @@ class ListingForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        if(this.state.submitted) {
+
+        const has_errors = (
+            this.state.error_title || 
+            this.state.error_body || 
+            this.state.error_price || 
+            this.state.error_category || 
+            this.state.error_image
+        )
+
+        if (has_errors) {
+            this.setState({...this.state,  show_errors: true})
+            return
+        }
+
+        if (this.state.submitted) {
             return;
         }
-        this.setState({submitted: true});
+        this.setState({ submitted: true });
         this.props.makeListing(this.handleFormData())
             .then(() => this.props.history.push('/'))
-            .finally(() => this.setState({submitted: false}))
+            .finally(() => this.setState({ submitted: false }))
     }
 
     render() {
         return (
             <form onSubmit={this.handleSubmit} className='listing-form-container' >
                 <div className='form-inputs-container'>
+                        <div className='error'>
+                            {this.state.show_errors && this.state.error_title && <p>{this.state.error_title}</p>}
+                            {this.state.show_errors && this.state.error_body && <p>{this.state.error_body}</p>}
+                            {this.state.show_errors && this.state.error_price && <p>{this.state.error_price}</p>}
+                            {this.state.show_errors && this.state.error_category && <p>{this.state.error_category}</p>}
+                            {this.state.show_errors && this.state.error_image && <p>{this.state.error_image}</p>}
+                        </div>
                     <div className='form-inputs'>
                         <input
                             type="text"
@@ -108,7 +158,7 @@ class ListingForm extends React.Component {
                                 className='price-input'
                             />
 
-                            <select onChange={this.updateCategory} name="categories" id="categories" defaultValue="disabled">
+                            <select onChange={this.update('category')} name="categories" id="categories" defaultValue="disabled">
                                 <option value="disabled" disabled="disabled">Choose Category</option>
                                 <option value="Fruit">Fruit</option>
                                 <option value="Vegetables">Vegetables</option>
@@ -131,7 +181,11 @@ class ListingForm extends React.Component {
                         />
                     </div>
                 </div>
-                <button type="submit" className='btn'>Post Listing!</button>
+                <button 
+                    type="submit" 
+                    className='btn'
+                >Post Listing!
+                </button>
             </form>
         )
     }
