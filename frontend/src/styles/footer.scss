@@ -56,8 +56,6 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    // position: absolute;
-    // bottom: 0;
 
     .powered-by {
         color: white;
@@ -113,42 +111,18 @@
             }
         }
 
-        .engineer-profile {
-            width: 250px;
-            display: flex;
-            justify-content: space-evenly;
-            height: 25px;
-            flex-direction: column;;
-
-            .name {
-                margin-top: -10px;
-                font-size: 14px;
-            }
-
-            Link {
-                color: black;
-            }
-
-            .git {
-                border-radius: 5px;
-                transform: translateY(-1px);
-            }
-
-            .github {
-                color: white;
-            }
-
-            .link {
-                transform: translateY(1px);
-                color: white;
-            }
-            
-            .port {
-                color: white;
-
+        .links{
+            h3 {
+                margin-bottom: .2rem;
             }
         }
 
+    }
+
+    .icon-groups > * {
+        color: white;
+        margin-left: .1rem;
+        margin-right: .1rem;
     }
 
     .lowest {
