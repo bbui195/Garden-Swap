@@ -41,7 +41,7 @@ class ListingShow extends React.Component {
             <div className='listings-show-container'>
                 <div className='left'>
                     <Link to='/' className='linky'>
-                        <i class="fa-solid fa-backward"></i>
+                        <i className="fa-solid fa-backward"></i>
                         Back to listings
                     </Link>
                     <img src={this.props.listing.photoUrls} />
@@ -65,6 +65,15 @@ class ListingShow extends React.Component {
                         </Link> :
                         null
                     }
+                    {console.log(this.props.listing.userId, 'this ought to be the user Id')}
+                    {console.log(this.props.listing, 'this ought to be the listing')}
+                    {console.log(`users/${this.props.listing.userId}`, 'this should be the entire route')}
+                    <div className='user-show-link'>
+                        <Link className="prof-link" to={`/users/${this.props.listing.userId}`}>
+                            {this.props.listing.username}'s Profile
+                        </Link>
+                    </div>
+                    
                 </div>
             </div>
         );

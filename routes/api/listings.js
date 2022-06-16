@@ -27,7 +27,13 @@ const filefilter = (req, file, cb) => {
     }
 }
 
-const upload = multer({ storage: storage, fileFilter: filefilter });
+const upload = multer({
+    storage: storage,
+    fileFilter: filefilter,
+    limits: {
+        fieldSize: 2000000
+    }
+});
 const bucketRegion = process.env.AWS_BUCKET_REGION
 const bucketName = process.env.AWS_BUCKET_NAME
 const accessKeyId = process.env.AWS_ACCESS_KEY
@@ -257,8 +263,8 @@ passport.authenticate('jwt', { session: false }),
 // `/api/listings/search/${query}`
 
 router.get('/search/:query', (req, res) => {
-    //console.log(req.params.query, 'this should be the query')
-    Listing.find({title: req.params.query})
+    // console.log(req.params.query, 'this should be the query')
+    Listing.find({ "title" : { $regex: req.params.query, $options: 'i' } })
         .then(listings => {
             res.json(formatListings(listings));
         })

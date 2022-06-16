@@ -1,7 +1,7 @@
 .review-form-container{
     margin-top: 12rem;
     margin-bottom: 7rem;
-    height: 20rem;
+    height: 23rem;
     width: 40%;
     background-color: $light-orange;
     color: black;
@@ -68,6 +68,15 @@
 
 }
 
+.review-error {
+    p{
+        color: red;
+        margin-bottom: 5px;
+    }
+}
+
+
+
 .rating {
     cursor: pointer;
 }
@@ -133,3 +142,16 @@
         }
     }
 }
+
+.error-p {
+    color: red;
+    margin-bottom: 5px;
+}
+
+
+.review-error p.error-p {
+    color:red;
+    margin-bottom: 5px;
+}
+
+

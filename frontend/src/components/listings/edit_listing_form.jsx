@@ -102,7 +102,7 @@ class EditListingForm extends React.Component {
                             <input
                                 type="number"
                                 min="1"
-                                step="any"
+                                step="0.01"
                                 placeholder='$0.00'
                                 defaultValue={this.state.price}
                                 className='price-input'
@@ -132,7 +132,7 @@ class EditListingForm extends React.Component {
                         />
                     </div>
                 </div>
-                <button type="submit" className='btn'>Post Listing!</button>
+                <button type="submit" className='btn'>Save Changes!</button>
             </form>
         )
     }

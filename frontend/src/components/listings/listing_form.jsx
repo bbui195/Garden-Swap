@@ -12,7 +12,8 @@ class ListingForm extends React.Component {
                 error_category: "Category selection required",
                 error_image: "Image is required",
                 show_errors: false,
-                submitted: false
+                submitted: false,
+                postStatus: "Post Listing!"
             }, this.props.listing);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleFormData = this.handleFormData.bind(this);
@@ -107,16 +108,31 @@ class ListingForm extends React.Component {
         )
 
         if (has_errors) {
-            this.setState({...this.state,  show_errors: true})
+            this.setState({show_errors: true})
             return
         }
 
         if (this.state.submitted) {
             return;
         }
-        this.setState({ submitted: true });
+        this.setState({
+            submitted: true,
+            postStatus: "Posting..."
+        });
         this.props.makeListing(this.handleFormData())
-            .then(() => this.props.history.push('/'))
+            .then(() => {
+                this.setState({postStatus: "Success!"});
+                setTimeout(() => {
+                    this.props.history.push('/');
+                }, 2000);
+            })
+            .catch((e) => {
+                console.log(e);
+                this.setState({postStatus: "Image file size too large"});
+                setTimeout(() => {
+                    this.setState({postStatus: "Post Listing!"});
+                }, 2000);
+            })
             .finally(() => this.setState({ submitted: false }))
     }
 
@@ -151,7 +167,7 @@ class ListingForm extends React.Component {
                             <input
                                 type="number"
                                 min="1"
-                                step="any"
+                                step="0.01"
                                 onChange={this.update('price')}
                                 defaultValue={this.state.price}
                                 placeholder='$0.00'
@@ -159,7 +175,7 @@ class ListingForm extends React.Component {
                             />
 
                             <select onChange={this.update('category')} name="categories" id="categories" defaultValue="disabled">
-                                <option value="disabled" disabled="disabled">Choose Category</option>
+                                <option value="disabled" disabled="disabled">Category</option>
                                 <option value="Fruit">Fruit</option>
                                 <option value="Vegetables">Vegetables</option>
                                 <option value="Nuts">Nuts</option>
@@ -184,7 +200,8 @@ class ListingForm extends React.Component {
                 <button 
                     type="submit" 
                     className='btn'
-                >Post Listing!
+                >
+                    {this.state.postStatus}
                 </button>
             </form>
         )

@@ -58,7 +58,7 @@
                 justify-content: space-between;
                 min-width: 120px;
                 align-items: center;
-                width: 15rem;
+                width: 13rem;
             }
         }
 
@@ -68,7 +68,11 @@
             border-radius: 15px;
             padding-left: 20px;
             color: #c8c8c8;
-            border: 2px solid $claret;
+            border: 2px solid black;
+
+            &:focus {
+                color: black;
+            }
         }
     
         .btn {

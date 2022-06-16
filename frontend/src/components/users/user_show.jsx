@@ -115,6 +115,7 @@ class UserShow extends React.Component {
                 
                     {/* <Link to={`/reviews/${this.props.match.params.userId}/new`} className="leave-review">Leave review for this user</Link> */}
                     <h1>User Reviews</h1>
+                    {Object.values(this.props.reviews).length === 0 && <p>This user has no reviews</p>}
                     {Object.values(this.props.reviews??{}).map((review,idx) => {   
                         return (
                             
@@ -152,4 +153,4 @@ class UserShow extends React.Component {
     }
 }
 
-export default UserShow
+export default UserShow;

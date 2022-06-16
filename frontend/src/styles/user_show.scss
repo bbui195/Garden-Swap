@@ -1,5 +1,5 @@
 .user-show-container {
-    margin-top: 10rem;
+    margin-top: 15rem;
     width: 50%;
     min-height: 32rem;
     display: flex;
@@ -23,9 +23,11 @@
         align-items: center;
         flex-direction: column;
         box-shadow: 0px 0px 10px #656565;
-
        
-
+        p {
+            color:black;
+        }
+        min-width: 315px;
 
         .prof {
             width: 15rem;
@@ -65,6 +67,8 @@
             }
         }
 
+      
+
         .leave-review {
             margin-bottom: 1rem;
             color: rgb(44, 73, 44);
@@ -79,6 +83,8 @@
             color: $claret;
             transform: scale(1.05);
         }
+
+    
     }
 
     h1 {
@@ -117,7 +123,6 @@
         margin-top: 10px;
 
         .review-star-rating {
-            width: 34%;
 
         }
     }
@@ -150,4 +155,54 @@
     border-radius: 0 0 20px 20px;
     margin-bottom: 2rem;
     border-bottom: 1px solid black;
+}
+
+.user-show-link {
+    margin-top: 2rem;
+}
+
+@media only screen and (max-width: 830px) {
+
+    .user-show-container {
+        width: 60%;
+    }
+
+}
+
+@media only screen and (max-width: 680px) {
+
+    .user-show-container {
+        width: 70%;
+    }
+
+}
+
+@media only screen and (max-width: 580px) {
+
+    .user-show-container {
+        width: 80%;
+    }
+
+}
+
+@media only screen and (max-width: 480px) {
+
+    .user-show-container {
+        width: 80%;
+    }
+
+    .user-show-container .user-info-container .avg-rating {
+        flex-direction: column;
+        align-items: center;
+
+        .review-star-rating {
+            margin: .5rem;
+            text-align: center;
+            transform: translateY(0px);
+        }
+        
+    }
+    .user-show-container .user-info-container .avg-rating > * {
+        margin: .8rem;
+    }
 }
