@@ -46,8 +46,8 @@ class SearchPage extends React.Component {
 
         return(
             <>
-                {this.searchResults()}
                 <div className="search-page-container">
+                {this.searchResults()}
                     {this.props.listings.map(listing => {
                             return (
 
