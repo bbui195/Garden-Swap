@@ -16,6 +16,8 @@ Users can rely on a responsive design that is friendly to use and has a consiste
 
 Sign up or login
 
+![](https://github.com/bbui195/Garden-Swap/blob/main/session.gif)
+
 View a feed based on user location and what's nearest to them.
 
 View profiles and review other users.
