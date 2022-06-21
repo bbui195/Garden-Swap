@@ -20,11 +20,19 @@ Sign up or login
 
 View a feed based on user location and what's nearest to them.
 
+![](https://github.com/bbui195/Garden-Swap/blob/main/feed.gif)
+
 View profiles and review other users.
+
+![](https://github.com/bbui195/Garden-Swap/blob/main/profile-review.gif)
 
 Make use of search bar to find any specific listing.
 
+![](https://github.com/bbui195/Garden-Swap/blob/main/search.gif)
+
 Message other users to schedule a meet up.
+
+![](https://github.com/bbui195/Garden-Swap/blob/main/message.gif)
 
 ## Technologies
 
