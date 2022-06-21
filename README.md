@@ -41,7 +41,6 @@ Socket.IO API will be used for the direct messaging feature.
 
 
 
-## Featured Code
 
 ## Contributors
 
