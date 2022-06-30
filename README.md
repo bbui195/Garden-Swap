@@ -1,6 +1,6 @@
 # Welcome to Garden Swap 🪴
 
-Garden Swap is an online farmer's market which users can trade, sell and buy produce with their community. Users can set their location and find listings nearest to them, add listings of their own and direct message other users to arrange meetups. Whether you have an excess of tomatoes and what to swap with someone who has an excess of corn or whether you want to start a business selling pecans from the tree in your backyard Gard Swap will suit your needs. Visit [Garden Swap](http://garden-swapp.herokuapp.com/#/) today and begin stocking your pantry with locally grown goods from your neighbors and friends.
+Garden Swap is an online farmer's market which users can trade, sell and buy produce with their community. Users can set their location and find listings nearest to them, add listings of their own and direct message other users to arrange meetups. Whether you have an excess of tomatoes and what to swap with someone who has an excess of corn or whether you want to start a business selling pecans from the tree in your backyard Garden Swap will suit your needs. Visit [Garden Swap](http://garden-swapp.herokuapp.com/#/) today and begin stocking your pantry with locally grown goods from your neighbors and friends.
 
 ## Table of Contents
 
