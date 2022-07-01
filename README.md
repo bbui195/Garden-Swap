@@ -1,6 +1,6 @@
 # Welcome to Garden Swap 🪴
 
-Garden Swap is an online farmer's market which users can trade, sell and buy produce with their community. Users can set their location and find listings nearest to them, add listings of their own and direct message other users to arrange meetups. Whether you have an excess of tomatoes and what to swap with someone who has an excess of corn or whether you want to start a business selling pecans from the tree in your backyard Gard Swap will suit your needs. Visit [Garden Swap](http://garden-swapp.herokuapp.com/#/) today and begin stocking your pantry with locally grown goods from your neighbors and friends.
+Garden Swap is an online farmer's market which users can trade, sell and buy produce with their community. Users can set their location and find listings nearest to them, add listings of their own and direct message other users to arrange meetups. Whether you have an excess of tomatoes and what to swap with someone who has an excess of corn or whether you want to start a business selling pecans from the tree in your backyard Garden Swap will suit your needs. Visit [Garden Swap](http://garden-swapp.herokuapp.com/#/) today and begin stocking your pantry with locally grown goods from your neighbors and friends.
 
 ## Table of Contents
 
@@ -16,13 +16,23 @@ Users can rely on a responsive design that is friendly to use and has a consiste
 
 Sign up or login
 
+![](https://github.com/bbui195/Garden-Swap/blob/main/session.gif)
+
 View a feed based on user location and what's nearest to them.
+
+![](https://github.com/bbui195/Garden-Swap/blob/main/feed.gif)
 
 View profiles and review other users.
 
+![](https://github.com/bbui195/Garden-Swap/blob/main/profile-review.gif)
+
 Make use of search bar to find any specific listing.
 
+![](https://github.com/bbui195/Garden-Swap/blob/main/search.gif)
+
 Message other users to schedule a meet up.
+
+![](https://github.com/bbui195/Garden-Swap/blob/main/message.gif)
 
 ## Technologies
 
@@ -39,7 +49,6 @@ Socket.IO API will be used for the direct messaging feature.
 
 
 
-## Featured Code
 
 ## Contributors
 
