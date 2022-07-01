@@ -76,7 +76,7 @@ function Footer(props) {
                             <a href="https://www.linkedin.com/in/billy-phan-41014a40/">
                                 <BsLinkedin className="link" size={25} />
                             </a>
-                            <a href="#">
+                            <a href="https://bphan002-porftolio-website.herokuapp.com/">
                                 <BsPersonSquare className="port" size={25} />
                             </a>
                         </div>
